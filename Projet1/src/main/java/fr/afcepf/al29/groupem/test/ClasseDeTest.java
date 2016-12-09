@@ -7,7 +7,7 @@ public class ClasseDeTest {
 
 		//lol
 
-System.out.println("Lol!");
+		System.out.println("Lol!");
 		
 		
 		System.out.println("Haiyan Test");

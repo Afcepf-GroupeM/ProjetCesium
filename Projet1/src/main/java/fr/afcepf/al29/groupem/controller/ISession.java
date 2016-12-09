@@ -1,4 +1,4 @@
-package fr.afcepf.al29.groupem.session;
+package fr.afcepf.al29.groupem.controller;
 
 public interface ISession {
 	

@@ -1,4 +1,4 @@
-package fr.afcepf.al29.groupem.security;
+package fr.afcepf.al29.groupem.controller;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
