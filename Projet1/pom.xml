@@ -3,4 +3,40 @@
   <groupId>fr.afcepf.al29.groupem</groupId>
   <artifactId>Projet1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+  
+  
+  	<!-- Log4j dependency -->
+  	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<scope>compile</scope>
+		<version>1.7.7</version>
+	</dependency>
+	
+	<dependency>
+	   <groupId>org.springframework.security</groupId>
+	   <artifactId>spring-security-crypto</artifactId>
+	   <version>3.1.0.RELEASE</version>
+	</dependency>
+	
+  </dependencies>
+  
+  <build>
+  <plugins>
+  
+ 	<!-- Java 1.8 Compilation -->
+	<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+		<configuration>
+			<source>1.8</source>
+			<target>1.8</target>
+		</configuration>
+	</plugin>
+	
+  </plugins>
+  
+  </build>
 </project>
