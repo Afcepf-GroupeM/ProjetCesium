@@ -1,5 +1,5 @@
 package fr.afcepf.al29.groupem.business.api;
 
-public class CartBusApi {
+public interface CartBusApi {
 
 }
