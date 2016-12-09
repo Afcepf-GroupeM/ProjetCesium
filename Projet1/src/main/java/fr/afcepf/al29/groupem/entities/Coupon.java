@@ -3,7 +3,7 @@ package fr.afcepf.al29.groupem.entities;
 import java.util.Date;
 
 public class Coupon {
-	//commentaire
+	
 	private int id;
 	private String code;
 	private Date startDate;
