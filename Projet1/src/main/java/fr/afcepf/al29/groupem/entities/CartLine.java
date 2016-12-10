@@ -1,6 +1,6 @@
 package fr.afcepf.al29.groupem.entities;
 
-public class CartLign {
+public class CartLine {
 	
 	private int id;
 	private float unitPrice;
@@ -8,10 +8,10 @@ public class CartLign {
 	private int cartId;
 	private int itemId;
 	
-	public CartLign() {
+	public CartLine() {
 	}
 	
-	public CartLign(int id, float unitPrice, int quantity, int cartId, int itemId) {
+	public CartLine(int id, float unitPrice, int quantity, int cartId, int itemId) {
 		super();
 		this.id = id;
 		this.quantity = quantity;
