@@ -2,7 +2,7 @@ package fr.afcepf.al29.groupem.entities;
 
 public class Address {
 	
-	private enum RoadType {Avenue,Boulevard,Chemin,Impasse,Rue,Voie,Place,Allée,};
+	private enum RoadType {Avenue,Boulevard,Chemin,Impasse,Rue,Voie,Place,Allee,};
 	
 	private int id;
 	private String name;

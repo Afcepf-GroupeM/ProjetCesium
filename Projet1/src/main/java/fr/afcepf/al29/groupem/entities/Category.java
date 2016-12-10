@@ -7,7 +7,6 @@ public class Category {
 	private int metaCategoryId;
 	
 	public Category() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	

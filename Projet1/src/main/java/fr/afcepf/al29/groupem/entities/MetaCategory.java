@@ -6,7 +6,6 @@ public class MetaCategory {
 	private String name;
 	
 	public MetaCategory() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public MetaCategory(int id, String name) {

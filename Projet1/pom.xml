@@ -3,6 +3,7 @@
   <groupId>fr.afcepf.al29.groupem</groupId>
   <artifactId>Projet1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   
   <dependencies>
   
@@ -21,9 +22,27 @@
 	   <version>3.1.0.RELEASE</version>
 	</dependency>
 	
+	<dependency>
+   		<groupId>org.hibernate</groupId>
+   		<artifactId>hibernate-validator</artifactId>
+   		<version>5.1.2.Final</version>  
+   		<scope>runtime</scope> 
+   </dependency>
+	   
+	   
+   <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.3.2.RELEASE</version>
+		<scope>compile</scope>
+	</dependency>
+	
+	
   </dependencies>
   
   <build>
+  <finalName>${project.artifactId}</finalName>
+  
   <plugins>
   
  	<!-- Java 1.8 Compilation -->
@@ -39,4 +58,5 @@
   </plugins>
   
   </build>
+  
 </project>

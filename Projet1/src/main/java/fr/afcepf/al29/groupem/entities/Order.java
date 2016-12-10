@@ -20,7 +20,6 @@ public class Order {
 	private OrderState state;
 	
 	public Order() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Order(int id, Date creationDate, float amount, TypePayment typePayment, String trackingNumber, int carrierId,

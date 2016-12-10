@@ -9,7 +9,6 @@ public class CartLign {
 	private int itemId;
 	
 	public CartLign() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public CartLign(int id, float unitPrice, int quantity, int cartId, int itemId) {

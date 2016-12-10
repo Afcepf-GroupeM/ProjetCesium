@@ -9,7 +9,6 @@ public class Cart {
 	private int userId;
 	
 	public Cart() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Cart(int id, Date creationDate, int userId) {

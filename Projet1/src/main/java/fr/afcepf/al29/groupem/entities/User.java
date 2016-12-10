@@ -16,7 +16,6 @@ public class User {
 	private String hashPassword;
 	
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 	
 
