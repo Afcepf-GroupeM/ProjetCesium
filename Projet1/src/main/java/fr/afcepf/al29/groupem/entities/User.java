@@ -1,32 +1,72 @@
 package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
 	
 	private enum Civility {Mr,Mme};
 	
+	
+	@Id
+	@Column(name="id") 
+	@GeneratedValue(strategy=GenerationType.AUTO) // Auto increment
 	private int id;
-	private Civility civility;
+	
+	@Column(name="lastname")
 	private String lastName;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="civilite")
+	private Civilite civilite;
+	
+	@Column(name="firstname")
 	private String firstName;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="phone")
 	private String phone;
+	
+	@Column(name="birthdate")
 	private Date birthDate;
-	private String hashPassword;
+	
+	@Column(name="passwordhash")
+	private String passwordHash;
+	
+	
+	@OneToMany(mappedBy="user")
+	private List<Address>adresses;
+	
+	
 	
 	public User() {
 	}
 	
 
-	public User(Civility civility, String lastName, String firstName, String email, String phone, Date birthDate, String hashPassword) {
-		this.civility = civility;
+	public User(Civilite civilite, String lastName, String firstName, String email, String phone, Date birthDate,
+			String passwordHash) {
+		super();
+		this.civilite = civilite;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
 		this.phone = phone;
 		this.birthDate = birthDate;
-		this.hashPassword = hashPassword;
+		this.passwordHash = passwordHash;
 	}
 
 
@@ -78,22 +118,32 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public String getHashPassword() {
-		return hashPassword;
+	public String getpasswordHash() {
+		return passwordHash;
 	}
 
-	public void setHashPassword(String hashPassword) {
-		this.hashPassword = hashPassword;
-	}
-
-
-	public Civility getCivility() {
-		return civility;
+	public void setpasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 
-	public void setCivility(Civility civility) {
-		this.civility = civility;
+	public Civilite getCivilite() {
+		return civilite;
+	}
+
+
+	public void setCivilite(Civilite civilite) {
+		this.civilite = civilite;
+	}
+
+
+	public List<Address> getAdresses() {
+		return adresses;
+	}
+
+
+	public void setAdresses(List<Address> adresses) {
+		this.adresses = adresses;
 	}
 	
 	

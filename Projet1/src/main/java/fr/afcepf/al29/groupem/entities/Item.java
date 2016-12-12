@@ -1,15 +1,48 @@
 package fr.afcepf.al29.groupem.entities;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Item {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String name;
+	
 	private String description;
+	
 	private int stock;
+	
 	private String reference;
+<<<<<<< HEAD
 	private float price;
 	private int categoryId;
+=======
+	
+	private float prix;
+	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	private String imagePath;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="id_category")
+	private Category category;
+	
+	@OneToMany(mappedBy="items")
+	private List<Review> review;
+	
+	
 	
 	public Item() {
 		
@@ -62,17 +95,20 @@ public class Item {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public int getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
+	
 	public String getImagePath() {
 		return imagePath;
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 	

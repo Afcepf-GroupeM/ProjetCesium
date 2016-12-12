@@ -21,6 +21,15 @@ public class SecurityManagerBCrypt implements ISecurityManager{
 		return BCrypt.checkpw(password, passwordHash);
 	}
 
+	// Bcrypt doesn't need a salt to be provided since it's included as part of the hash
+	@Override
+	public boolean verifyPassword(String password, String passwordHash, String salt) {
+		return BCrypt.checkpw(password, passwordHash);
+	}
+
+	
+	// GETTERs/SETTERs
+	
 	public int getComplexity() {
 		return complexity;
 	}
@@ -28,13 +37,6 @@ public class SecurityManagerBCrypt implements ISecurityManager{
 	public void setComplexity(int complexity) {
 		this.complexity = complexity;
 	}
-
-	// Bcrypt doesn't need a salt to be provided since it's included as part of the hash
-	@Override
-	public boolean verifyPassword(String password, String passwordHash, String salt) {
-		return BCrypt.checkpw(password, passwordHash);
-	}
-	
 	
 
 }

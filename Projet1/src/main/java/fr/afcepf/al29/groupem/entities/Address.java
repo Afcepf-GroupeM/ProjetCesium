@@ -1,20 +1,53 @@
 package fr.afcepf.al29.groupem.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Address {
 	
 	private enum RoadType {Avenue,Boulevard,Chemin,Impasse,Rue,Voie,Place,Allee,};
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String name;
+<<<<<<< HEAD
 	private int roadNumber;
+=======
+	
+	private int number;
+	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	private RoadType roadType;
+<<<<<<< HEAD
 	private String roadName;
+=======
+	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	private String city;
+	
 	private String zipcode;
+	
 	private String country;
+	
 	private boolean isBilling;
+<<<<<<< HEAD
 	private boolean isValid;
+=======
+	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	private int userId;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "id_user")
+	private User user;
 	
 	public Address() {
 		
@@ -99,6 +132,12 @@ public class Address {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

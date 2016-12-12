@@ -17,7 +17,7 @@ DROP TABLE administrator;
 
 CREATE TABLE user(
 	id INT UNSIGNED,
-	civility ENUM('Mr','Mme'),
+	civilite ENUM('Mr','Mme'),
 	lastname VARCHAR2(40) NOT NULL,
 	firstname VARCHAR2(40) NOT NULL,
 	birthdate DATE NOT NULL,
