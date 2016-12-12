@@ -1,4 +1,4 @@
-package fr.afcepf.al29.groupem.test;
+package net.sharkou.test;
 
 public class ClasseDeTest {
 

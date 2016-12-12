@@ -1,6 +1,8 @@
 package net.sharkou.test;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -16,6 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import fr.afcepf.al29.groupem.dao.api.UserDaoApi;
+import fr.afcepf.al29.groupem.entities.Civilite;
 import fr.afcepf.al29.groupem.entities.User;
 
 
@@ -62,6 +65,31 @@ public class DbTestEntity {
 		// Checks if the name retrieved is:
 		String expectedLastName = "Laporte";
 		Assert.assertTrue(user.getlastName().equals(expectedLastName));
+	}
+	
+	
+	@Test
+	public void testAddNewUser(){
+		//Creating User to add to DB
+		User user = new User();
+		user.setlastName("Tameule");
+		user.setfirstName("Alphonse");
+		user.setCivilite(Civilite.Mr);
+		user.setEmail("alphonse@tameule.fr");
+		user.setBirthDate(new Date());
+		user.setpasswordHash("LolHash");
+		user.setphone("010203040506");
+		
+		log.debug("User id avant create: " + user.getId());
+		
+		user = userDao.createUser(user);
+		
+		log.debug("User id apres create: " + user.getId());
+		
+		Assert.assertTrue(user.getId() != 0);
+		
+		
+		
 	}
 	
 	
