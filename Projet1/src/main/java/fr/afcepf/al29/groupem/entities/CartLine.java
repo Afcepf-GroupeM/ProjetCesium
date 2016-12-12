@@ -32,9 +32,6 @@ public class CartLine {
 	
 	
 	
-	public CartLine() {
-	}
-	
 	
 
 	public int getId() {
@@ -53,21 +50,7 @@ public class CartLine {
 		this.quantity = quantity;
 	}
 
-	public int getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
-
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
+	
 
 	public float getUnitPrice() {
 		return unitPrice;
@@ -84,7 +67,81 @@ public class CartLine {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
-	
 
+
+
+	public Item getItem() {
+		return item;
+	}
+
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
+
+	public CartLine(int id, float unitPrice, int quantity, Cart cart, Item item) {
+		super();
+		this.id = id;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.cart = cart;
+		this.item = item;
+	}
+	
+	public CartLine() {
+	
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((item == null) ? 0 : item.hashCode());
+		result = prime * result + quantity;
+		result = prime * result + Float.floatToIntBits(unitPrice);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CartLine other = (CartLine) obj;
+		if (cart == null) {
+			if (other.cart != null)
+				return false;
+		} else if (!cart.equals(other.cart))
+			return false;
+		if (id != other.id)
+			return false;
+		if (item == null) {
+			if (other.item != null)
+				return false;
+		} else if (!item.equals(other.item))
+			return false;
+		if (quantity != other.quantity)
+			return false;
+		if (Float.floatToIntBits(unitPrice) != Float.floatToIntBits(other.unitPrice))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "CartLine [id=" + id + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", cart=" + cart
+				+ ", item=" + item + "]";
+	}
+
+	
+	
+	
 }

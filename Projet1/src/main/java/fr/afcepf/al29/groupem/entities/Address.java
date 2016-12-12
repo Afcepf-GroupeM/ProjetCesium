@@ -1,6 +1,8 @@
 package fr.afcepf.al29.groupem.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +12,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Address {
 	
-	private enum RoadType {Avenue,Boulevard,Chemin,Impasse,Rue,Voie,Place,Allee,};
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,7 +22,10 @@ public class Address {
 	
 	private int number;
 	
+	@Enumerated(EnumType.STRING)
 	private RoadType roadType;
+	
+	private String roadName;
 	
 	private String city;
 	
@@ -30,7 +35,9 @@ public class Address {
 	
 	private boolean isBilling;
 	
-	private int userId;
+	private boolean isValide;
+	
+	
 	
 	
 	@ManyToOne
@@ -86,17 +93,117 @@ public class Address {
 	public void setBilling(boolean isBilling) {
 		this.isBilling = isBilling;
 	}
-	public int getUser_id() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getRoadName() {
+		return roadName;
+	}
+	public void setRoadName(String roadName) {
+		this.roadName = roadName;
+	}
+	public boolean isValide() {
+		return isValide;
+	}
+	public void setValide(boolean isValide) {
+		this.isValide = isValide;
+	}
+	public Address(int id, String name, int number, RoadType roadType, String roadName, String city, String zipcode,
+			String country, boolean isBilling, boolean isValide, User user) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.number = number;
+		this.roadType = roadType;
+		this.roadName = roadName;
+		this.city = city;
+		this.zipcode = zipcode;
+		this.country = country;
+		this.isBilling = isBilling;
+		this.isValide = isValide;
+		this.user = user;
+	}
+	
+	public Address() {
+		
+	}
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", name=" + name + ", number=" + number + ", roadType=" + roadType + ", roadName="
+				+ roadName + ", city=" + city + ", zipcode=" + zipcode + ", country=" + country + ", isBilling="
+				+ isBilling + ", isValide=" + isValide + ", user=" + user + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + id;
+		result = prime * result + (isBilling ? 1231 : 1237);
+		result = prime * result + (isValide ? 1231 : 1237);
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + number;
+		result = prime * result + ((roadName == null) ? 0 : roadName.hashCode());
+		result = prime * result + ((roadType == null) ? 0 : roadType.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((zipcode == null) ? 0 : zipcode.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (id != other.id)
+			return false;
+		if (isBilling != other.isBilling)
+			return false;
+		if (isValide != other.isValide)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (number != other.number)
+			return false;
+		if (roadName == null) {
+			if (other.roadName != null)
+				return false;
+		} else if (!roadName.equals(other.roadName))
+			return false;
+		if (roadType != other.roadType)
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (zipcode == null) {
+			if (other.zipcode != null)
+				return false;
+		} else if (!zipcode.equals(other.zipcode))
+			return false;
+		return true;
 	}
 	
 	
