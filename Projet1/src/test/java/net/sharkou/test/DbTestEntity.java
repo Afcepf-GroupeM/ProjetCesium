@@ -1,6 +1,8 @@
 package net.sharkou.test;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -16,6 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import fr.afcepf.al29.groupem.dao.api.UserDaoApi;
+import fr.afcepf.al29.groupem.entities.Civilite;
 import fr.afcepf.al29.groupem.entities.User;
 
 
@@ -64,6 +67,61 @@ public class DbTestEntity {
 		Assert.assertTrue(user.getlastName().equals(expectedLastName));
 	}
 	
+	
+	@Test
+	public void testAddNewUser(){
+		//Creating User to add to DB
+		User user = new User();
+		user.setlastName("Lol");
+		user.setfirstName("PrenomTest");
+		user.setCivilite(Civilite.Mme);
+		user.setEmail("lole@lol.fr");
+		user.setBirthDate(new Date());
+		user.setpasswordHash("LolHash");
+		user.setphone("010203040506");
+		
+		log.debug("User id avant create: " + user.getId());
+		
+		user = userDao.createUser(user);
+		log.debug("\n\n");
+		log.debug("   ----------   ");
+		log.debug("User id apres create: " + user.getId());
+		log.debug("   ----------   ");
+		log.debug("\n\n");
+		Assert.assertTrue(user.getId() != 0);	
+		
+	}
+	
+//	@Test
+	public void testDeleteUser(){
+		// Specify an Id existing in the DB is mandatory to pass the test /!\ 
+		int idToDelete = 5;
+		User user = userDao.getUserById(idToDelete);
+		boolean result = userDao.deleteUser(user);
+		Assert.assertTrue(result);
+	}
+	
+	
+	@Test
+	public void testUpdateUser(){
+		
+		// Id of the user we want to update
+		int idToUpdate = 6;
+		User user = userDao.getUserById(idToUpdate);
+		user.setfirstName("NewFirstName");
+		user.setlastName("NewName");
+		
+		// Updating user in DB
+		user = userDao.updateUser(user);
+		
+		// Reading the User in DB
+		user = userDao.getUserById(idToUpdate);
+		
+		// Checks if the update is succesful
+		Assert.assertTrue(user.getlastName().equals("NewName"));
+		
+		
+	}
 	
 
 	

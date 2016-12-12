@@ -18,8 +18,6 @@ import javax.persistence.Table;
 public class User {
 	
 	
-	private enum Civilite {Mr,Mme};
-	
 	
 	@Id
 	@Column(name="id") 

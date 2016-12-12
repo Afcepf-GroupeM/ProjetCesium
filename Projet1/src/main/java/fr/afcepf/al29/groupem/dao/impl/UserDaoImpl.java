@@ -21,28 +21,31 @@ public class UserDaoImpl implements UserDaoApi {
 	
 	
 	@Override
-	public boolean createAddress(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public User createUser(User user) {
+		entityManager.persist(user);
+		return user;
 	}
 
 	@Override
 	public User getUserById(int userId) {
-		log.debug("Dans: UserDaoImpl - getUserById");
 		User usr = entityManager.find(User.class, userId);
 		return usr;
 	}
 
 	@Override
-	public User updateUserById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public User updateUser(User user) {
+		entityManager.merge(user);
+		return user;
 	}
 
 	@Override
-	public boolean deleteUserById(int userId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteUser(User user) {
+		
+		// GetReference used to attach entity User
+		User userToRemove = entityManager.getReference(User.class, user.getId());
+		entityManager.remove(userToRemove);
+		
+		return (getUserById(user.getId()) == null);
 	}
 
 }
