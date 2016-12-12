@@ -8,7 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+
+@Table(name="carrier")
 @Entity
 public class Carrier {
 	
@@ -66,6 +69,7 @@ public class Carrier {
 		this.trackingUrl = trackingUrl;
 		this.orders = orders;
 	}
+	
 	
 	@Override
 	public int hashCode() {

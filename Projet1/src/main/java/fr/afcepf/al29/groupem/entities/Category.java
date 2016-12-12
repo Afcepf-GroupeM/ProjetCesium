@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Table(name="category")
 @Entity
 public class Category {
 	
@@ -24,8 +26,8 @@ public class Category {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_metaCategory")
-	private MetaCategory metaCategoryId;
+	@JoinColumn(name="metacategoryid")
+	private MetaCategory metaCategory;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="category")
 	private List<Item> items;
@@ -34,13 +36,22 @@ public class Category {
 	private List<Coupon> coupons;
 	
 	
-	public Category(int id, String name, int metaCategoryId) {
-		this.id = id;
-		this.name = name;
-		this.metaCategoryId = metaCategoryId;
-	}
+	
+	
+	
+	
 
 	
+
+	
+	public Category(int id, String name, MetaCategory metaCategory, List<Item> items, List<Coupon> coupons) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.metaCategory = metaCategory;
+		this.items = items;
+		this.coupons = coupons;
+	}
 	public int getId() {
 		return id;
 	}
@@ -96,14 +107,7 @@ public class Category {
 	
 
 
-	public Category(int id, String name, MetaCategory metaCategory, List<Item> items, List<Coupon> coupons) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.metaCategory = metaCategory;
-		this.items = items;
-		this.coupons = coupons;
-	}
+	
 
 
 	public Category() {
