@@ -3,6 +3,7 @@ package fr.afcepf.al29.groupem.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,9 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Table(name="userorder")
 @Entity
 public class Order {
 	
@@ -25,16 +28,21 @@ public class Order {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@Column(name="creationdate")
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
 	private float amount;
 	
+	@Column(name="typepayment")
 	@Enumerated(EnumType.STRING)
 	private TypePayment typePayment;
 	
+	
+	@Column(name="trackingnumber")
 	private String trackingNumber;
 	
+	@Column(name="orderstate")
 	@Enumerated(EnumType.STRING)
 	private OrderState state;
 	
@@ -48,15 +56,15 @@ public class Order {
 	private List<OrderLine> orderLines;
 	
 	@OneToOne()
-	@JoinColumn(name="id_adress")
+	@JoinColumn(name="billingadressid")
 	private Address adresseFacturation;
 	
 	@OneToOne()
-	@JoinColumn(name="id_adress")
+	@JoinColumn(name="shippingadressid")
 	private Address adresseLivraison;
 	
 	@ManyToOne()
-	@JoinColumn(name="id_user")
+	@JoinColumn(name="userid")
 	private User user;
 	
 	@OneToOne()

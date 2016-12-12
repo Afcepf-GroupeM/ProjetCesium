@@ -2,17 +2,20 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
+@Table(name="coupon")
 public class Coupon {
 	
 	
@@ -22,9 +25,11 @@ public class Coupon {
 	
 	private String code;
 	
+	@Column(name="startdate")
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
+	@Column(name="enddate")
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
@@ -32,13 +37,13 @@ public class Coupon {
 	
 	private String description;
 	
+	@Column(name="imagepath")
 	private String imagePath;
-<<<<<<< HEAD
+	
+	@Column(name="categoryid")
 	private int categoryId;
 	
-	public Coupon() {
-		
-	}
+	
 	
 	public Coupon(int id, String code, Date startDate, Date endDate, float rebate, String description, String imagePath, int categoryId) {
 		this.id = id;
@@ -51,7 +56,7 @@ public class Coupon {
 		this.categoryId = categoryId;
 	}
 
-=======
+
 	
 	
 	@ManyToOne
@@ -59,7 +64,7 @@ public class Coupon {
 	private Category categories;
 	
 	
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
+
 	public int getId() {
 		return id;
 	}

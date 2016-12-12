@@ -3,6 +3,7 @@ package fr.afcepf.al29.groupem.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,9 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
+@Table(name="cart")
 @Entity
 public class Cart {
 	
@@ -21,13 +25,14 @@ public class Cart {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@Column(name="creationdate")
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
 	
 	
 	@OneToOne()
-	@JoinColumn(name="id_user")
+	@JoinColumn(name="userid")
 	private User user;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="cart")

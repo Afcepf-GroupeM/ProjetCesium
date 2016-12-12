@@ -47,7 +47,7 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 	
-	@Column(name="passwordhash")
+	@Column(name="hashpassword")
 	private String passwordHash;
 	
 	

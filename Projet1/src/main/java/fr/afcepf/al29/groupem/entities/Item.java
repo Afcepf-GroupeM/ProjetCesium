@@ -2,6 +2,7 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Table(name="item")
 @Entity
 public class Item {
 	
@@ -26,13 +29,14 @@ public class Item {
 	
 	private String reference;
 	
+	@Column(name="price")
 	private float prix;
 	
 	private String imagePath;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_category")
+	@JoinColumn(name="categoryid")
 	private Category category;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="item")
