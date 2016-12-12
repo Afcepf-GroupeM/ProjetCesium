@@ -6,6 +6,16 @@ public class Carrier {
 	private String name;
 	private String trackingUrl;
 	
+	public Carrier() {
+		
+	}
+	
+	public Carrier(int id, String name, String trackingUrl) {
+		this.id = id;
+		this.name = name;
+		this.trackingUrl = trackingUrl;
+	}
+
 	public int getId() {
 		return id;
 	}

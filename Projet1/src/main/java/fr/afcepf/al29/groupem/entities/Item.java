@@ -7,10 +7,25 @@ public class Item {
 	private String description;
 	private int stock;
 	private String reference;
-	private float prix;
+	private float price;
 	private int categoryId;
 	private String imagePath;
 	
+	public Item() {
+		
+	}
+	
+	public Item(int id, String name, String description, int stock, String reference, float price, int categoryId, String imagePath) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.stock = stock;
+		this.reference = reference;
+		this.price = price;
+		this.categoryId = categoryId;
+		this.imagePath = imagePath;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -41,11 +56,11 @@ public class Item {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	public float getPrix() {
-		return prix;
+	public float getPrice() {
+		return price;
 	}
-	public void setPrix(float prix) {
-		this.prix = prix;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 	public int getCategoryId() {
 		return categoryId;

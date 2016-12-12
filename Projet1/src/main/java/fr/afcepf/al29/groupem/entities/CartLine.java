@@ -12,7 +12,6 @@ public class CartLine {
 	}
 	
 	public CartLine(int id, float unitPrice, int quantity, int cartId, int itemId) {
-		super();
 		this.id = id;
 		this.quantity = quantity;
 		this.cartId = cartId;

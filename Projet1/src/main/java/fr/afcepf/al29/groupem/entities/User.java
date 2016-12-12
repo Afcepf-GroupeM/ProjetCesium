@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class User {
 	
-	private enum Civilite {Mr,Mme};
+	private enum Civility {Mr,Mme};
 	
 	private int id;
-	private Civilite civilite;
+	private Civility civility;
 	private String lastName;
 	private String firstName;
 	private String email;
-	private String telephone;
+	private String phone;
 	private Date birthDate;
 	private String hashPassword;
 	
@@ -19,14 +19,12 @@ public class User {
 	}
 	
 
-	public User(Civilite civilite, String lastName, String firstName, String email, String telephone, Date birthDate,
-			String hashPassword) {
-		super();
-		this.civilite = civilite;
+	public User(Civility civility, String lastName, String firstName, String email, String phone, Date birthDate, String hashPassword) {
+		this.civility = civility;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
-		this.telephone = telephone;
+		this.phone = phone;
 		this.birthDate = birthDate;
 		this.hashPassword = hashPassword;
 	}
@@ -40,19 +38,19 @@ public class User {
 		this.id = id;
 	}
 
-	public String getname() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setname(String name) {
-		this.lastName = name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getfirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setfirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -64,12 +62,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Date getBirthDate() {
@@ -89,13 +87,13 @@ public class User {
 	}
 
 
-	public Civilite getCivilite() {
-		return civilite;
+	public Civility getCivility() {
+		return civility;
 	}
 
 
-	public void setCivilite(Civilite civilite) {
-		this.civilite = civilite;
+	public void setCivility(Civility civility) {
+		this.civility = civility;
 	}
 	
 	

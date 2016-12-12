@@ -11,7 +11,6 @@ public class Category {
 	
 	
 	public Category(int id, String name, int metaCategoryId) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.metaCategoryId = metaCategoryId;

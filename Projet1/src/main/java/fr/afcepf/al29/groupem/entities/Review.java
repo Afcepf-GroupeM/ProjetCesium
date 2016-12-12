@@ -11,10 +11,7 @@ public class Review {
 	private int userId;
 	private int itemId;
 	
-	
-	
 	public Review(int id, float rating, String comment, Date creationDate, int userId, int itemId) {
-		super();
 		this.id = id;
 		this.rating = rating;
 		this.comment = comment;

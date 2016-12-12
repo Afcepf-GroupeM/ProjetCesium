@@ -12,6 +12,22 @@ public class Coupon {
 	private String description;
 	private String imagePath;
 	private int categoryId;
+	
+	public Coupon() {
+		
+	}
+	
+	public Coupon(int id, String code, Date startDate, Date endDate, float rebate, String description, String imagePath, int categoryId) {
+		this.id = id;
+		this.code = code;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.rebate = rebate;
+		this.description = description;
+		this.imagePath = imagePath;
+		this.categoryId = categoryId;
+	}
+
 	public int getId() {
 		return id;
 	}

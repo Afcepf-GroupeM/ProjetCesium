@@ -14,7 +14,6 @@ public class Cart {
 	}
 
 	public Cart(int id, Date creationDate, int userId,List<CartLine> cartLine ) {
-		super();
 		this.id = id;
 		this.creationDate = creationDate;
 		this.userId = userId;

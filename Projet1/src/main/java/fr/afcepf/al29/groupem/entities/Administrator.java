@@ -9,11 +9,23 @@ public class Administrator {
 	private String lastName;
 	private String firstName;
 	private String email;
-	private String telephone;
+	private String phone;
 	private String hashPassword;
 	private Date creationDate;
 	
+	public Administrator() {
+		
+	}
 	
+	public Administrator(int id, String lastName, String firstName, String email, String phone, String hashPassword, Date creationDate) {
+		this.id = id;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.phone = phone;
+		this.hashPassword = hashPassword;
+		this.creationDate = creationDate;
+	}
 	public int getId() {
 		return id;
 	}
@@ -38,11 +50,11 @@ public class Administrator {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getTelephone() {
-		return telephone;
+	public String getPhone() {
+		return phone;
 	}
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getHashPassword() {
 		return hashPassword;
