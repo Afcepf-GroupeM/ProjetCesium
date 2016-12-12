@@ -17,19 +17,11 @@ public class Address {
 	private int id;
 	
 	private String name;
-<<<<<<< HEAD
 	private int roadNumber;
-=======
-	
-	private int number;
-	
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	private RoadType roadType;
-<<<<<<< HEAD
+
 	private String roadName;
-=======
-	
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
+
 	private String city;
 	
 	private String zipcode;
@@ -37,11 +29,7 @@ public class Address {
 	private String country;
 	
 	private boolean isBilling;
-<<<<<<< HEAD
 	private boolean isValid;
-=======
-	
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	private int userId;
 	
 	
