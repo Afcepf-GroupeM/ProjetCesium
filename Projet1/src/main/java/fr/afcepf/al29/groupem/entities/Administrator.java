@@ -16,17 +16,9 @@ public class Administrator {
 	private int id;
 	
 	private String lastName;
-	
 	private String firstName;
-	
 	private String email;
-<<<<<<< HEAD
 	private String phone;
-=======
-	
-	private String telephone;
-	
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	private String hashPassword;
 	
 	private Date creationDate;

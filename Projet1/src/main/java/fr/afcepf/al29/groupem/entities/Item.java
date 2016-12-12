@@ -2,6 +2,7 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="item")
 public class Item {
 	
 	@Id
@@ -24,14 +27,11 @@ public class Item {
 	private int stock;
 	
 	private String reference;
-<<<<<<< HEAD
 	private float price;
+	
+	@Column(name="categoryid")
 	private int categoryId;
-=======
-	
-	private float prix;
-	
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
+
 	private String imagePath;
 	
 	

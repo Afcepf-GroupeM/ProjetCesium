@@ -9,7 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import fr.afcepf.al29.groupem.dao.api.ItemDaoApi;;
+import fr.afcepf.al29.groupem.dao.api.ItemDaoApi;
+import fr.afcepf.al29.groupem.entities.Item;;
 
 @ContextConfiguration(locations={"/springConf.xml"})
 public class DBTestItem {
@@ -30,8 +31,23 @@ public class DBTestItem {
 	
 	@Test
 	public void testFindItemById(){
+		int idToSearch = 1;
+		Item item = itemDao.getItemById(idToSearch);
 		
-		Assert.assertTrue(false);
+		// Printing the result in console
+		log.debug("\n\n");
+		log.debug("   ----------   ");
+		log.debug("Result for testSearchItemById #" + idToSearch);
+		log.debug("Item : " + item.getName());
+		log.debug("Price : " + item.getPrice());		
+		log.debug("Category # : " + item.getCategory());
+		log.debug("Description : " + item.getDescription());
+		log.debug("Image Path : " + item.getImagePath());
+		log.debug("Stock : " + item.getStock());
+		log.debug("   ----------   ");
+		log.debug("\n\n");
+		
+		Assert.assertTrue(item.getId() != 0);
 	}
 	
 //	@Test

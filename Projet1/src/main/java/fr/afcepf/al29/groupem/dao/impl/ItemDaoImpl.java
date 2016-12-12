@@ -41,10 +41,10 @@ public class ItemDaoImpl implements ItemDaoApi {
 	@Override
 	public boolean deleteItem(Item item) {
 		// GetReference used to attach entity User
-				Item itemToRemove = entityManager.getReference(Item.class, item.getId());
-				entityManager.remove(itemToRemove);
-				
-				return (getItemById(item.getId()) == null);
+		Item itemToRemove = entityManager.getReference(Item.class, item.getId());
+		entityManager.remove(itemToRemove);
+		
+		return (getItemById(item.getId()) == null);
 	}
 
 	@Override

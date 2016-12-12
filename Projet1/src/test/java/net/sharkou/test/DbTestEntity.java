@@ -53,17 +53,17 @@ public class DbTestEntity {
 		log.debug("\n\n");
 		log.debug("   ----------   ");
 		log.debug("Result for testSearchUserById #" + idToSearch);
-		log.debug("User : " + user.getCivilite() + " " + user.getfirstName() + " " + user.getlastName());
+		log.debug("User : " + user.getCivilite() + " " + user.getFirstName() + " " + user.getLastName());
 		log.debug("Email : " + user.getEmail());
-		log.debug("Phone # : " + user.getphone());
+		log.debug("Phone # : " + user.getPhone());
 		log.debug("Date of bitrth : " + dateFormatter.format(user.getBirthDate()));
-		log.debug("Password Hash : " + user.getpasswordHash());
+		log.debug("Password Hash : " + user.getPasswordHash());
 		log.debug("   ----------   ");
 		log.debug("\n\n");
 		
 		// Checks if the name retrieved is:
 		String expectedLastName = "Laporte";
-		Assert.assertTrue(user.getlastName().equals(expectedLastName));
+		Assert.assertTrue(user.getLastName().equals(expectedLastName));
 	}
 	
 	
@@ -71,13 +71,13 @@ public class DbTestEntity {
 	public void testAddNewUser(){
 		//Creating User to add to DB
 		User user = new User();
-		user.setlastName("Lol");
-		user.setfirstName("PrenomTest");
+		user.setLastName("Lol");
+		user.setFirstName("PrenomTest");
 		user.setCivilite(Civilite.Mme);
 		user.setEmail("lole@lol.fr");
 		user.setBirthDate(new Date());
-		user.setpasswordHash("LolHash");
-		user.setphone("010203040506");
+		user.setPasswordHash("LolHash");
+		user.setPhone("010203040506");
 		
 		log.debug("User id avant create: " + user.getId());
 		
@@ -107,8 +107,8 @@ public class DbTestEntity {
 		// Id of the user we want to update
 		int idToUpdate = 6;
 		User user = userDao.getUserById(idToUpdate);
-		user.setfirstName("NewFirstName");
-		user.setlastName("NewName");
+		user.setFirstName("NewFirstName");
+		user.setLastName("NewName");
 		
 		// Updating user in DB
 		user = userDao.updateUser(user);
@@ -117,7 +117,7 @@ public class DbTestEntity {
 		user = userDao.getUserById(idToUpdate);
 		
 		// Checks if the update is succesful
-		Assert.assertTrue(user.getlastName().equals("NewName"));
+		Assert.assertTrue(user.getLastName().equals("NewName"));
 		
 		
 	}
