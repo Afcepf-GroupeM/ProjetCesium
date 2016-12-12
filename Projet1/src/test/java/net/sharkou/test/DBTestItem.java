@@ -29,7 +29,7 @@ public class DBTestItem {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testFindItemById(){
 		int idToSearch = 1;
 		Item item = itemDao.getItemById(idToSearch);
@@ -39,7 +39,7 @@ public class DBTestItem {
 		log.debug("   ----------   ");
 		log.debug("Result for testSearchItemById #" + idToSearch);
 		log.debug("Item : " + item.getName());
-		log.debug("Price : " + item.getPrice());		
+		log.debug("Price : " + item.getPrix());		
 		log.debug("Category # : " + item.getCategory());
 		log.debug("Description : " + item.getDescription());
 		log.debug("Image Path : " + item.getImagePath());
