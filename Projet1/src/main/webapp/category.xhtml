@@ -1,41 +1,180 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-	
+<body>	
+    <div class="container">
+    <!-- ************************Header Rechercher************************************** -->
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<nav class="navbar navbar-default" role="navigation">
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">						
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">ORDINATEURS TABLETTES<strong class="caret"></strong></a>
-							 <ul class="dropdown-menu">
-								<li>
-									 <a href="#">Ordinateur portable</a>
-								</li>
-								<li>
-									 <a href="#">Ordinateur de bureau</a>
-								</li>
-								<li>
-									 <a href="#">Tablette tactile</a>
-								</li>								
-							</ul>
+				<div class="navbar-header">					
+					<img src="./resources/images/logoInLine.png" class="img-rounded"  width="500" height="150"/>
+				</div>				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">				
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input class="form-control" type="text" />
+						</div> 
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<!-- 
+						<li class="active"><a href="#"><span class="glyphicon glyphicon-user">Mon Compte</span></a></li>
+						<li><a href="#shop"><span class="glyphicon glyphicon-shopping-cart">Mon Panier</span></a></li>
+						-->					
+						<li>
+							<img src="./resources/images/account-icon-2.png" class="img-rounded"  width="70" height="70"/>
+							 <a href="#">Se Connecter</a>
 						</li>
-					</ul>					
-
+						<li>
+							<img src="./resources/images/cart-1.jpg" class="img-rounded"  width="70" height="70"/>
+							 <a href="#">Mon panier</a>
+						</li>
+					</ul>						
 				</div>
 			</nav>
 		</div>
 	</div>
-	<script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<!-- ******************************Header Categories************************************** -->
+	 <div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="dropdown">
+				<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+						data-toggle="dropdown">
+					ORDINATEURS TABLETTES
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Ordinateur portable</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Ordinateur de bureau</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Tablette tactile</a>
+					</li>
+					<li role="presentation" class="divider"></li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">分离的链接</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-12 column">
+			<div class="dropdown">
+				<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+						data-toggle="dropdown">
+					COMPOSANTS
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Ordinateur portable</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Ordinateur de bureau</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Tablette tactile</a>
+					</li>
+					<li role="presentation" class="divider"></li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">分离的链接</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-12 column">
+			<div class="dropdown">
+				<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+						data-toggle="dropdown">
+					TELEPHONE
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Ordinateur portable</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Ordinateur de bureau</a>
+					</li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">Tablette tactile</a>
+					</li>
+					<li role="presentation" class="divider"></li>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#">分离的链接</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- ***********************************Content List Produit************************************** -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="300x200" src="v3/default4.jpg" />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="300x200" src="v3/default5.jpg" />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="300x200" src="v3/default6.jpg" />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>  
+
+</div>	
 </body>
 </html>
