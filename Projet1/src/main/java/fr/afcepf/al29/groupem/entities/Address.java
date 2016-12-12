@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,8 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="adress")
 public class Address {
 	
 	
@@ -20,11 +23,14 @@ public class Address {
 	
 	private String name;
 	
+	@Column(name="roadnumber")
 	private int number;
 	
+	@Column(name="roadtype")
 	@Enumerated(EnumType.STRING)
 	private RoadType roadType;
 	
+	@Column(name="roadname")
 	private String roadName;
 	
 	private String city;
@@ -33,15 +39,17 @@ public class Address {
 	
 	private String country;
 	
+	@Column(name="isbilling")
 	private boolean isBilling;
 	
+	@Column(name="isvalid")
 	private boolean isValide;
 	
 	
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "id_user")
+	@JoinColumn(name = "userid")
 	private User user;
 	
 	

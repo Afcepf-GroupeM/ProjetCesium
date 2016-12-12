@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Table(name="category")
 @Entity
 public class Category {
 	
@@ -24,7 +26,7 @@ public class Category {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_metaCategory")
+	@JoinColumn(name="metacategoryid")
 	private MetaCategory metaCategory;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="category")
@@ -38,15 +40,18 @@ public class Category {
 	
 	
 	
-<<<<<<< HEAD
-	public Category(int id, String name, int metaCategoryId) {
+
+	
+
+	
+	public Category(int id, String name, MetaCategory metaCategory, List<Item> items, List<Coupon> coupons) {
+		super();
 		this.id = id;
 		this.name = name;
-		this.metaCategoryId = metaCategoryId;
+		this.metaCategory = metaCategory;
+		this.items = items;
+		this.coupons = coupons;
 	}
-=======
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
-	
 	public int getId() {
 		return id;
 	}
@@ -102,14 +107,7 @@ public class Category {
 	
 
 
-	public Category(int id, String name, MetaCategory metaCategory, List<Item> items, List<Coupon> coupons) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.metaCategory = metaCategory;
-		this.items = items;
-		this.coupons = coupons;
-	}
+	
 
 
 	public Category() {

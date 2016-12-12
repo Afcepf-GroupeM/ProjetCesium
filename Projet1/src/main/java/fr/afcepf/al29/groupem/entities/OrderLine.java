@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,7 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+
+@Table(name="orderline")
 @Entity
 public class OrderLine {
 	
@@ -16,17 +20,18 @@ public class OrderLine {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@Column(name = "unitprice")
 	private float unitPrice;
 	
 	private int quantity;
 	
 	@OneToOne()
-	@JoinColumn(name="id_item")
+	@JoinColumn(name="itemid")
 	private Item item;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_order")
+	@JoinColumn(name="userorderid")
 	private Order order;
 	
 	
