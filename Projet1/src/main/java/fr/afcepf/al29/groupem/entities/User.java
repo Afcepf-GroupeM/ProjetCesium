@@ -2,33 +2,63 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
 	
 	private enum Civilite {Mr,Mme};
 	
+	
+	@Id
+	@Column(name="id") 
+	@GeneratedValue(strategy=GenerationType.AUTO) // Auto increment
 	private int id;
-	private Civilite civilite;
+	
+	@Column(name="lastname")
 	private String lastName;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="civilite")
+	private Civilite civilite;
+	
+	@Column(name="firstname")
 	private String firstName;
+	
+	@Column(name="email")
 	private String email;
-	private String telephone;
+	
+	@Column(name="phone")
+	private String phone;
+	
+	@Column(name="birthdate")
 	private Date birthDate;
-	private String hashPassword;
+	
+	@Column(name="passwordhash")
+	private String passwordHash;
 	
 	public User() {
 	}
 	
 
-	public User(Civilite civilite, String lastName, String firstName, String email, String telephone, Date birthDate,
-			String hashPassword) {
+	public User(Civilite civilite, String lastName, String firstName, String email, String phone, Date birthDate,
+			String passwordHash) {
 		super();
 		this.civilite = civilite;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
-		this.telephone = telephone;
+		this.phone = phone;
 		this.birthDate = birthDate;
-		this.hashPassword = hashPassword;
+		this.passwordHash = passwordHash;
 	}
 
 
@@ -40,11 +70,11 @@ public class User {
 		this.id = id;
 	}
 
-	public String getname() {
+	public String getlastName() {
 		return lastName;
 	}
 
-	public void setname(String name) {
+	public void setlastName(String name) {
 		this.lastName = name;
 	}
 
@@ -64,12 +94,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getphone() {
+		return phone;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setphone(String phone) {
+		this.phone = phone;
 	}
 
 	public Date getBirthDate() {
@@ -80,12 +110,12 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public String getHashPassword() {
-		return hashPassword;
+	public String getpasswordHash() {
+		return passwordHash;
 	}
 
-	public void setHashPassword(String hashPassword) {
-		this.hashPassword = hashPassword;
+	public void setpasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 
