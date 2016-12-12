@@ -38,7 +38,7 @@ public class DbTestEntity {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testSearchUserById(){
 		
 		// Date formatter to show birthDate in a nice way
@@ -53,31 +53,31 @@ public class DbTestEntity {
 		log.debug("\n\n");
 		log.debug("   ----------   ");
 		log.debug("Result for testSearchUserById #" + idToSearch);
-		log.debug("User : " + user.getCivilite() + " " + user.getFirstName() + " " + user.getLastName());
+		log.debug("User : " + user.getCivilite() + " " + user.getfirstName() + " " + user.getlastName());
 		log.debug("Email : " + user.getEmail());
-		log.debug("Phone # : " + user.getPhone());
+		log.debug("Phone # : " + user.getphone());
 		log.debug("Date of bitrth : " + dateFormatter.format(user.getBirthDate()));
-		log.debug("Password Hash : " + user.getPasswordHash());
+		log.debug("Password Hash : " + user.getpasswordHash());
 		log.debug("   ----------   ");
 		log.debug("\n\n");
 		
 		// Checks if the name retrieved is:
 		String expectedLastName = "Laporte";
-		Assert.assertTrue(user.getLastName().equals(expectedLastName));
+		Assert.assertTrue(user.getlastName().equals(expectedLastName));
 	}
 	
 	
-	@Test
+//	@Test
 	public void testAddNewUser(){
 		//Creating User to add to DB
 		User user = new User();
-		user.setLastName("Lol");
-		user.setFirstName("PrenomTest");
+		user.setlastName("Lol");
+		user.setfirstName("PrenomTest");
 		user.setCivilite(Civilite.Mme);
 		user.setEmail("lole@lol.fr");
 		user.setBirthDate(new Date());
-		user.setPasswordHash("LolHash");
-		user.setPhone("010203040506");
+		user.setpasswordHash("LolHash");
+		user.setphone("0102030405");
 		
 		log.debug("User id avant create: " + user.getId());
 		
@@ -101,14 +101,14 @@ public class DbTestEntity {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testUpdateUser(){
 		
 		// Id of the user we want to update
 		int idToUpdate = 6;
 		User user = userDao.getUserById(idToUpdate);
-		user.setFirstName("NewFirstName");
-		user.setLastName("NewName");
+		user.setfirstName("NewFirstName");
+		user.setfirstName("NewName");
 		
 		// Updating user in DB
 		user = userDao.updateUser(user);
@@ -117,7 +117,7 @@ public class DbTestEntity {
 		user = userDao.getUserById(idToUpdate);
 		
 		// Checks if the update is succesful
-		Assert.assertTrue(user.getLastName().equals("NewName"));
+		Assert.assertTrue(user.getlastName().equals("NewName"));
 		
 		
 	}
