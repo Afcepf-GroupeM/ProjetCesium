@@ -29,7 +29,7 @@ public class DBTestItem {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testFindItemById(){
 		int idToSearch = 1;
 		Item item = itemDao.getItemById(idToSearch);

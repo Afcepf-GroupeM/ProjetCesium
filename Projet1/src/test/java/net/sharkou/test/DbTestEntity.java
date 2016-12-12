@@ -38,7 +38,7 @@ public class DbTestEntity {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testSearchUserById(){
 		
 		// Date formatter to show birthDate in a nice way
@@ -67,7 +67,7 @@ public class DbTestEntity {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testAddNewUser(){
 		//Creating User to add to DB
 		User user = new User();
@@ -77,7 +77,7 @@ public class DbTestEntity {
 		user.setEmail("lole@lol.fr");
 		user.setBirthDate(new Date());
 		user.setpasswordHash("LolHash");
-		user.setphone("010203040506");
+		user.setphone("0102030405");
 		
 		log.debug("User id avant create: " + user.getId());
 		
@@ -101,7 +101,7 @@ public class DbTestEntity {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testUpdateUser(){
 		
 		// Id of the user we want to update
