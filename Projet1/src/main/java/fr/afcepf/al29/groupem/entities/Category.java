@@ -38,6 +38,14 @@ public class Category {
 	
 	
 	
+<<<<<<< HEAD
+	public Category(int id, String name, int metaCategoryId) {
+		this.id = id;
+		this.name = name;
+		this.metaCategoryId = metaCategoryId;
+	}
+=======
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	
 	public int getId() {
 		return id;

@@ -11,13 +11,14 @@
 	<class>fr.afcepf.al29.groupem.entities.CartLine</class>
 	<class>fr.afcepf.al29.groupem.entities.Category</class>
 	<class>fr.afcepf.al29.groupem.entities.Coupon</class>
-	<class>fr.afcepf.al29.groupem.entities.Item</class>
+	
 	<class>fr.afcepf.al29.groupem.entities.MetaCategory</class>
 	<class>fr.afcepf.al29.groupem.entities.Order</class>
 	<class>fr.afcepf.al29.groupem.entities.OrderLine</class>
 	<class>fr.afcepf.al29.groupem.entities.Review</class>
 	
-	 -->	
+	 -->
+	 <class>fr.afcepf.al29.groupem.entities.Item</class>
 	<class>fr.afcepf.al29.groupem.entities.User</class>
 	
 	<properties>

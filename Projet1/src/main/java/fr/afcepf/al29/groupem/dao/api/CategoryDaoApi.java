@@ -7,15 +7,17 @@ import fr.afcepf.al29.groupem.entities.MetaCategory;
 
 public interface CategoryDaoApi {
 	
-	boolean createCategory(Category category);
+	Category createCategory(Category category);
 	Category getCategoryById(int categoryId);
-	Category updateCategoryById(int categoryId);
-	boolean destroyCategoryById(int categoryId);
+	Category updateCategory(Category category);
+	boolean destroyCategory(Category category);
 	
 	List<Category> getCategoryByMetaId(int metaCategoryId);
 	
-	boolean createMetaCategory(MetaCategory metaCategory);
+	MetaCategory createMetaCategory(MetaCategory metaCategory);
 	MetaCategory getMetaCategoryById(int metaCategoryId);
+	MetaCategory updateMetaCategory(MetaCategory metaCategory);
+	boolean destroyMetaCategory(MetaCategory metaCategory);
 	List<MetaCategory> getAllMetaCategory();
 	
 
