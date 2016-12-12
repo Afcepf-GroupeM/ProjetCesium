@@ -32,7 +32,16 @@ public class Cart {
 	public Cart() {
 	}
 
+<<<<<<< HEAD
+	public Cart(int id, Date creationDate, int userId,List<CartLine> cartLine ) {
+		this.id = id;
+		this.creationDate = creationDate;
+		this.userId = userId;
+		this.cartLine = cartLine;
+	}
+=======
 	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 
 	public int getId() {
 		return id;

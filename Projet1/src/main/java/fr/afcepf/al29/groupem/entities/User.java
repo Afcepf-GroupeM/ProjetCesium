@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Table(name="user")
 public class User {
 	
+	private enum Civility {Mr,Mme};
 	
 	
 	@Id
@@ -77,19 +78,19 @@ public class User {
 		this.id = id;
 	}
 
-	public String getlastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setlastName(String name) {
-		this.lastName = name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getfirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setfirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -101,11 +102,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getphone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setphone(String phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

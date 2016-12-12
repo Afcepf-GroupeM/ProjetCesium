@@ -35,7 +35,17 @@ public class CartLine {
 	public CartLine() {
 	}
 	
+<<<<<<< HEAD
+	public CartLine(int id, float unitPrice, int quantity, int cartId, int itemId) {
+		this.id = id;
+		this.quantity = quantity;
+		this.cartId = cartId;
+		this.itemId = itemId;
+		this.unitPrice = unitPrice;
+	}
+=======
 	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 
 	public int getId() {
 		return id;

@@ -27,7 +27,6 @@ public class MetaCategory {
 	}
 	
 	public MetaCategory(int id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}

@@ -29,6 +29,25 @@ public class Coupon {
 	private String description;
 	
 	private String imagePath;
+<<<<<<< HEAD
+	private int categoryId;
+	
+	public Coupon() {
+		
+	}
+	
+	public Coupon(int id, String code, Date startDate, Date endDate, float rebate, String description, String imagePath, int categoryId) {
+		this.id = id;
+		this.code = code;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.rebate = rebate;
+		this.description = description;
+		this.imagePath = imagePath;
+		this.categoryId = categoryId;
+	}
+
+=======
 	
 	
 	@ManyToOne
@@ -36,6 +55,7 @@ public class Coupon {
 	private Category categories;
 	
 	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	public int getId() {
 		return id;
 	}

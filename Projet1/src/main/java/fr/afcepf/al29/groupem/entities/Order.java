@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 public class Order {
 	
 	private enum TypePayment {CarteBleue,MasterCard,Visa,AmericanExpress};
-	private enum OrderState {EnPreparation,EnAttenteDePaiement,Expediee,Livree};
+	private enum OrderState {EnPreparation,CommandePrete,AcheminementChezLeTransporteur,EnAttenteDePaiement,Expediee,Livree};
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -55,9 +55,7 @@ public class Order {
 	public Order() {
 	}
 
-	public Order(int id, Date creationDate, float amount, TypePayment typePayment, String trackingNumber, int carrierId,
-			int userId, int shippingAddressId, int billingAddressId, int couponId, OrderState state) {
-		super();
+	public Order(int id, Date creationDate, float amount, TypePayment typePayment, String trackingNumber, int carrierId, int userId, int shippingAddressId, int billingAddressId, int couponId, OrderState state) {
 		this.id = id;
 		this.creationDate = creationDate;
 		this.amount = amount;

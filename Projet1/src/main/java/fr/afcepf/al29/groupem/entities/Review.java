@@ -27,9 +27,20 @@ public class Review {
 	@JoinColumn(name="id_item")
 	private Item items;
 	
+<<<<<<< HEAD
+	public Review(int id, float rating, String comment, Date creationDate, int userId, int itemId) {
+		this.id = id;
+		this.rating = rating;
+		this.comment = comment;
+		this.creationDate = creationDate;
+		this.userId = userId;
+		this.itemId = itemId;
+	}
+=======
 	
 	
 	
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 
 	public Review() {
 	}

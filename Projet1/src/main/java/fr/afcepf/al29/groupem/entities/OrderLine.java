@@ -34,6 +34,16 @@ public class OrderLine {
 	public OrderLine() {
 	}
 
+	public OrderLine(int id, float unitPrice, int quantity, int orderId, int itemId) {
+		this.id = id;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.orderId = orderId;
+		this.itemId = itemId;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
