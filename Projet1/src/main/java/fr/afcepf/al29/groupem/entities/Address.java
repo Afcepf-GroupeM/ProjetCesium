@@ -1,18 +1,41 @@
 package fr.afcepf.al29.groupem.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Address {
 	
 	private enum RoadType {Avenue,Boulevard,Chemin,Impasse,Rue,Voie,Place,Allee,};
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String name;
+	
 	private int number;
+	
 	private RoadType roadType;
+	
 	private String city;
+	
 	private String zipcode;
+	
 	private String country;
+	
 	private boolean isBilling;
+	
 	private int userId;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "id_user")
+	private User user;
 	
 	
 	public int getId() {
@@ -68,6 +91,12 @@ public class Address {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

@@ -2,15 +2,29 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+
+@Entity
 public class Administrator {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String lastName;
+	
 	private String firstName;
+	
 	private String email;
+	
 	private String telephone;
+	
 	private String hashPassword;
+	
 	private Date creationDate;
 	
 	

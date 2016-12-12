@@ -3,23 +3,36 @@ package fr.afcepf.al29.groupem.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Cart {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private Date creationDate;
-	private int userId;
+	
+	
+	
+	@OneToOne()
+	@JoinColumn(name="id_user")
+	private User user;
+	
+	@OneToMany(mappedBy="cart")
 	private List<CartLine> cartLine;
 	
 	public Cart() {
 	}
 
-	public Cart(int id, Date creationDate, int userId,List<CartLine> cartLine ) {
-		super();
-		this.id = id;
-		this.creationDate = creationDate;
-		this.userId = userId;
-		this.cartLine = cartLine;
-	}
+	
 
 	public int getId() {
 		return id;
@@ -37,13 +50,8 @@ public class Cart {
 		this.creationDate = creationDate;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
+	
 
 	public List<CartLine> getCartLine() {
 		return cartLine;
@@ -51,6 +59,18 @@ public class Cart {
 
 	public void setCartLine(List<CartLine> cartLine) {
 		this.cartLine = cartLine;
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

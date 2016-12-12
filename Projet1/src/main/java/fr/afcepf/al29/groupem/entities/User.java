@@ -1,6 +1,7 @@
 package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="user")
 public class User {
+	
 	
 	private enum Civilite {Mr,Mme};
 	
@@ -44,6 +47,12 @@ public class User {
 	
 	@Column(name="passwordhash")
 	private String passwordHash;
+	
+	
+	@OneToMany(mappedBy="user")
+	private List<Address>adresses;
+	
+	
 	
 	public User() {
 	}
@@ -126,6 +135,16 @@ public class User {
 
 	public void setCivilite(Civilite civilite) {
 		this.civilite = civilite;
+	}
+
+
+	public List<Address> getAdresses() {
+		return adresses;
+	}
+
+
+	public void setAdresses(List<Address> adresses) {
+		this.adresses = adresses;
 	}
 	
 	

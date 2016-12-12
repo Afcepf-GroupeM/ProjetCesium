@@ -2,16 +2,40 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class Coupon {
 	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String code;
+	
 	private Date startDate;
+	
 	private Date endDate;
+	
 	private float rebate;
+	
 	private String description;
+	
 	private String imagePath;
-	private int categoryId;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="id_category")
+	private Category categories;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -54,12 +78,13 @@ public class Coupon {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public int getCategoryId() {
-		return categoryId;
+	public Category getCategory() {
+		return category;
 	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
+	
 	
 	
 	

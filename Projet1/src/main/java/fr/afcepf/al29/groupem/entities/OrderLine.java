@@ -1,12 +1,35 @@
 package fr.afcepf.al29.groupem.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
 public class OrderLine {
 	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private float unitPrice;
+	
 	private int quantity;
-	private int orderId;
-	private int itemId;
+	
+	@OneToOne()
+	@JoinColumn(name="id_item")
+	private Item item;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="id_order")
+	private Order order;
+	
+	
 	
 	public OrderLine() {
 	}
@@ -35,21 +58,7 @@ public class OrderLine {
 		this.quantity = quantity;
 	}
 
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
+	
 	
 	
 

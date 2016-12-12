@@ -2,26 +2,34 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class Review {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private float rating;
+	
 	private String comment;
+	
 	private Date creationDate;
-	private int userId;
-	private int itemId;
+	
+	@ManyToOne
+	@JoinColumn(name="id_item")
+	private Item items;
 	
 	
 	
-	public Review(int id, float rating, String comment, Date creationDate, int userId, int itemId) {
-		super();
-		this.id = id;
-		this.rating = rating;
-		this.comment = comment;
-		this.creationDate = creationDate;
-		this.userId = userId;
-		this.itemId = itemId;
-	}
+	
 
 	public Review() {
 	}
@@ -58,21 +66,15 @@ public class Review {
 		this.creationDate = creationDate;
 	}
 
-	public int getUserId() {
-		return userId;
+	public Item getItems() {
+		return items;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setItems(Item items) {
+		this.items = items;
 	}
 
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
+	
 	
 	
 	

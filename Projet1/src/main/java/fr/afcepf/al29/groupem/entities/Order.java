@@ -1,23 +1,56 @@
 package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Order {
 	
 	private enum TypePayment {CarteBleue,MasterCard,Visa,AmericanExpress};
 	private enum OrderState {EnPreparation,EnAttenteDePaiement,Expediee,Livree};
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private Date creationDate;
+	
 	private float amount;
+	
 	private TypePayment typePayment;
+	
 	private String trackingNumber;
+	
 	private int carrierId;
+	
 	private int userId;
+	
 	private int shippingAddressId;
+	
 	private int billingAddressId;
+	
 	private int couponId;
+	
 	private OrderState state;
+	
+	
+	
+	@ManyToOne
+	@JoinColumn(name="id_carrier")
+	private Carrier carrier;
+	
+	@OneToMany(mappedBy="order")
+	private List<OrderLine> orderLines;
+	
+	
 	
 	public Order() {
 	}
@@ -124,6 +157,14 @@ public class Order {
 
 	public void setState(OrderState state) {
 		this.state = state;
+	}
+
+	public Carrier getCarrier() {
+		return carrier;
+	}
+
+	public void setCarrier(Carrier carrier) {
+		this.carrier = carrier;
 	}
 	
 	
