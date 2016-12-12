@@ -25,7 +25,7 @@ public class Category {
 	
 	@ManyToOne
 	@JoinColumn(name="id_metaCategory")
-	private MetaCategory metaCategory;
+	private MetaCategory metaCategoryId;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="category")
 	private List<Item> items;
@@ -34,18 +34,12 @@ public class Category {
 	private List<Coupon> coupons;
 	
 	
-	
-	
-	
-	
-<<<<<<< HEAD
 	public Category(int id, String name, int metaCategoryId) {
 		this.id = id;
 		this.name = name;
 		this.metaCategoryId = metaCategoryId;
 	}
-=======
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
+
 	
 	public int getId() {
 		return id;
