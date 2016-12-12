@@ -35,13 +35,17 @@ public class UserDaoImpl implements UserDaoApi {
 	@Override
 	public User updateUser(User user) {
 		entityManager.merge(user);
-		return null;
+		return user;
 	}
 
 	@Override
 	public boolean deleteUser(User user) {
-		entityManager.remove(user);
-		return false;
+		
+		// GetReference used to attach entity User
+		User userToRemove = entityManager.getReference(User.class, user.getId());
+		entityManager.remove(userToRemove);
+		
+		return (getUserById(user.getId()) == null);
 	}
 
 }
