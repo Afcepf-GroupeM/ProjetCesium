@@ -7,10 +7,10 @@ import fr.afcepf.al29.groupem.entities.Item;
 public interface ItemDaoApi {
 	
 	// CRUD (Create - Read - Update - Delete)
-	boolean createItem(Item item);
+	Item createItem(Item item);
 	Item getItemById(int itemId);
-	Item updateItemById(int itemId);
-	boolean deleteItemById(int itemId);
+	Item updateItem(Item item);
+	boolean deleteItem(Item item);
 	
 	List<Item> getItemsByCategory (int categoryId);
 	

@@ -1,15 +1,79 @@
 package fr.afcepf.al29.groupem.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Table(name="orderline")
+@Entity
 public class OrderLine {
 	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	@Column(name = "unitprice")
 	private float unitPrice;
+	
 	private int quantity;
-	private int orderId;
-	private int itemId;
+	
+	@OneToOne()
+	@JoinColumn(name="itemid")
+	private Item item;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="userorderid")
+	private Order order;
+	
+	
 	
 	public OrderLine() {
 	}
+
+	
+	
+	
+	
+	public Item getItem() {
+		return item;
+	}
+
+
+
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
+
+
+
+	public Order getOrder() {
+		return order;
+	}
+
+
+
+
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+
+
+
 
 	public int getId() {
 		return id;
@@ -35,21 +99,78 @@ public class OrderLine {
 		this.quantity = quantity;
 	}
 
-	public int getOrderId() {
-		return orderId;
+
+
+
+
+	public OrderLine(int id, float unitPrice, int quantity, Item item, Order order) {
+		super();
+		this.id = id;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.item = item;
+		this.order = order;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((item == null) ? 0 : item.hashCode());
+		result = prime * result + ((order == null) ? 0 : order.hashCode());
+		result = prime * result + quantity;
+		result = prime * result + Float.floatToIntBits(unitPrice);
+		return result;
 	}
 
-	public int getItemId() {
-		return itemId;
+
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderLine other = (OrderLine) obj;
+		if (id != other.id)
+			return false;
+		if (item == null) {
+			if (other.item != null)
+				return false;
+		} else if (!item.equals(other.item))
+			return false;
+		if (order == null) {
+			if (other.order != null)
+				return false;
+		} else if (!order.equals(other.order))
+			return false;
+		if (quantity != other.quantity)
+			return false;
+		if (Float.floatToIntBits(unitPrice) != Float.floatToIntBits(other.unitPrice))
+			return false;
+		return true;
 	}
 
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+
+
+
+
+	@Override
+	public String toString() {
+		return "OrderLine [id=" + id + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", item=" + item
+				+ ", order=" + order + "]";
 	}
+
+	
 	
 	
 

@@ -2,8 +2,6 @@ package fr.afcepf.al29.groupem.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,17 +11,15 @@ import fr.afcepf.al29.groupem.entities.User;
 @Transactional
 @Component 
 public class UserDaoImpl implements UserDaoApi {
-	
-	Logger log = Logger.getLogger(this.getClass());
 
 	@PersistenceContext(unitName="Projet1") 
 	private EntityManager entityManager;
 	
 	
 	@Override
-	public boolean createAddress(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public User createUser(User user) {
+		entityManager.persist(user);
+		return user;
 	}
 
 	@Override
@@ -33,15 +29,19 @@ public class UserDaoImpl implements UserDaoApi {
 	}
 
 	@Override
-	public User updateUserById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public User updateUser(User user) {
+		entityManager.merge(user);
+		return user;
 	}
 
 	@Override
-	public boolean deleteUserById(int userId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteUser(User user) {
+		
+		// GetReference used to attach entity User
+		User userToRemove = entityManager.getReference(User.class, user.getId());
+		entityManager.remove(userToRemove);
+		
+		return (getUserById(user.getId()) == null);
 	}
 
 }
