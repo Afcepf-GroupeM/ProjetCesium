@@ -28,7 +28,6 @@ public class UserDaoImpl implements UserDaoApi {
 
 	@Override
 	public User getUserById(int userId) {
-		log.debug("Dans: UserDaoImpl - getUserById");
 		User usr = entityManager.find(User.class, userId);
 		return usr;
 	}
