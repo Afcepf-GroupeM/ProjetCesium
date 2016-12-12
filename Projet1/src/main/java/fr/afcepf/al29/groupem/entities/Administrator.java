@@ -24,14 +24,21 @@ public class Administrator {
 	@Column(name="civilite")
 	private Civilite civilite;
 	
+	@Column(name="lastname")
 	private String lastName;
 	
+	@Column(name="firstname")
 	private String firstName;
 	
 	private String email;
 	
+	private String phone;
+	
+	
+	@Column(name="hashpassword")
 	private String hashPassword;
 	
+	@Column(name="creationdate")
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	

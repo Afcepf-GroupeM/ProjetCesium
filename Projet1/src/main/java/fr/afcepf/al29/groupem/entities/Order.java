@@ -49,7 +49,7 @@ public class Order {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="id_carrier")
+	@JoinColumn(name="carrierid")
 	private Carrier carrier;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="order")
@@ -68,7 +68,7 @@ public class Order {
 	private User user;
 	
 	@OneToOne()
-	@JoinColumn(name="id_coupon")
+	@JoinColumn(name="couponid")
 	private Coupon coupon;
 	
 	
