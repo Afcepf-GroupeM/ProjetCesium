@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Civilite;
+import fr.afcepf.al29.groupem.entities.User;
 
 @Component
 @ManagedBean
@@ -43,18 +44,7 @@ public class AddUserController {
 	private List<String> monthList;
 	private List<String> yearList;
 	
-	private String errorLastName;
-	private String errorFirstName;
-	private String errorEmail;
-	private String errorPassword;
-	private String errorPhone;
-	private String errorBirthDate;
-	
-	
 
-
-	
-	
 	@Autowired
 	private UserBusApi userBus;
 	
@@ -73,8 +63,6 @@ public class AddUserController {
 									  "1944","1943","1942","1941","1940","1939","1938","1937","1936","1935","1934","1933","1932","1931","1930","1929","1928","1927",
 									  "1926","1925","1924","1923","1922","1921","1920","1919","1918","1917","1916","1915","1914","1913","1912","1911","1910","1909",
 									  "1908","1907","1906","1905"));
-		
-		
 	}
 	
 	public String action(){
@@ -84,7 +72,6 @@ public class AddUserController {
 		RegexValidator phoneValidator = new RegexValidator("^0[1-6]{1}(([0-9]{2}){4})|((\\s[0-9]{2}){4})|((-[0-9]{2}){4})$",false);
 		
 		DateValidator dateValidator = DateValidator.getInstance();
-//		DateFormat dateFormater = new SimpleDateFormat("ddMMyyyy");
 		String birthDate = birthDay+birthMonth+birthYear;
 		
 		boolean civiliteValid =false;
@@ -101,28 +88,41 @@ public class AddUserController {
 		boolean birthDateValid = dateValidator.isValid(birthDate, "ddMMyyy");
 		boolean phoneValid = phoneValidator.isValid(phone);
 		
-		if(!civiliteValid){message += "Civilité invalide\n";}
-		if(!lastNameValid){message += "Nom invalide\n";}
-		if(!firstNameValid){message += "Prénom invalide\n";}
-		if(!emailValid){message += "Email invalide\n";}
-		if(!birthDateValid){message += "Date de naissance invalide\n";}
-		if(!phoneValid){message += "Téléphone invalide\n";}
-		if(!passwordValid){message += "Les mots de passe ne correspondent pas.\n";}
-		
+		if(!civiliteValid){message += "Civilité invalide<br/>";}
+		if(!lastNameValid){message += "Nom invalide<br/>";}
+		if(!firstNameValid){message += "Prénom invalide<br/>";}
+		if(!emailValid){message += "Email invalide<br/>";}
+		if(!birthDateValid){message += "Date de naissance invalide<br/>";}
+		if(!phoneValid){message += "Téléphone invalide<br/>";}
+		if(!passwordValid){message += "Les mots de passe ne correspondent pas ou sont vides.<br/>";}
 			
-		
-//		message = "Civilité: " + civilite + " " + firstName + " " + lastName + "<br />"
-//				   + "Date de naissance: " + birthDay + "/" + birthMonth + "/" + birthYear + "<br />"
-//				   + "Téléphone: " + phone + "<br />"
-//				   + "Email: " + email + "<br />"
-//				   + "Mot de passe: " + password1 +"<br />"
-//				   + "Verif mot de passe: " + password2 +"<br />"
-//				   + "Mots de passe identiques: " + (password1.equals(password2));
-		
+		if(lastNameValid && firstNameValid && passwordValid && emailValid && birthDateValid && phoneValid){
+			DateFormat dateFormater = new SimpleDateFormat("ddMMyyyy"); 
+			
+			Date formattedDate = null;
+			try {
+				formattedDate = dateFormater.parse(birthDate);
+			} catch (ParseException e) {
+				System.out.println("ERREUR - Parsing birthDate in AddUserController - action()" + e.getMessage());
+			}
+			User user = userBus.createUser(civilite, lastName, firstName, email, phone, password1,formattedDate );
+			resetFields();
+			message = "Utilisateur créé avec succes!<br/>Id du nouvel utilisateur: " + user.getId();
+		}	
 		return null;		
 	}
 	
-	
+	public void resetFields(){
+		
+		civilite = null;
+		lastName = "";
+		firstName = "";
+		birthDay = "";
+		birthMonth = "";
+		birthYear = "";
+		email = "";
+		phone = "";		
+	}
 	
 	
 	public int getId() {
@@ -149,7 +149,6 @@ public class AddUserController {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -162,26 +161,18 @@ public class AddUserController {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-
-	
-
 	public String getBirthDay() {
 		return birthDay;
 	}
-
 	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
-
 	public String getBirthMonth() {
 		return birthMonth;
 	}
-
 	public void setBirthMonth(String birthMonth) {
 		this.birthMonth = birthMonth;
 	}
-
 	public String getBirthYear() {
 		return birthYear;
 	}
@@ -217,58 +208,25 @@ public class AddUserController {
 	public String getPassword1() {
 		return password1;
 	}
-
-
-
-
 	public void setPassword1(String password1) {
 		this.password1 = password1;
 	}
-
-
-
-
 	public String getPassword2() {
 		return password2;
 	}
-
-
-
-
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
-
-
-
-
 	public String getMessage() {
 		return message;
 	}
-
-
-
-
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-
-
-
 	public Civilite[] getListeCivilite() {
 		return listeCivilite;
 	}
-
-
-
-
 	public void setListeCivilite(Civilite[] listeCivilite) {
 		this.listeCivilite = listeCivilite;
 	}
-	
-
-	
-	
-	
 }
