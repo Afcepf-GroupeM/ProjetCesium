@@ -9,6 +9,9 @@
 
 Guillaume:
 - Ajout/inscription utilisateur
+
+Haiyan
+- IHM Category
 	
 
 ## Fait ##
