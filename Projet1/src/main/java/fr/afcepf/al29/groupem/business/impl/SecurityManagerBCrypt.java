@@ -1,9 +1,12 @@
-package fr.afcepf.al29.groupem.controller;
+package fr.afcepf.al29.groupem.business.impl;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.stereotype.Component;
 
+import fr.afcepf.al29.groupem.business.api.SecurityManagerApi;
 
-public class SecurityManagerBCrypt implements ISecurityManager{
+@Component 
+public class SecurityManagerBCrypt implements SecurityManagerApi{
 
 	// log2 of the number of rounds of hashing to apply
 	// default = 10. Range 4 to 31.
@@ -26,9 +29,6 @@ public class SecurityManagerBCrypt implements ISecurityManager{
 	public boolean verifyPassword(String password, String passwordHash, String salt) {
 		return BCrypt.checkpw(password, passwordHash);
 	}
-
-	
-	// GETTERs/SETTERs
 	
 	public int getComplexity() {
 		return complexity;

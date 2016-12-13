@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>Contenu du panier</h:head>
+
+<body>
+
+	<div>
+		<span>Détail de votre panier</span>
+	</div>
+
+	<div>
+		<h:form>
+		<h:datatable>
+				<tr>
+					<th>Designation de vos articles</th>
+					<th>Disponibilité</th>
+					<th>Prix unitaire €</th>
+					<th>Quantité</th>
+					<th>Prix TTC</th>
+					
+						
+						
+				<ui:repeat var=""  value="">
+				<tr>
+				<!-- Iterer la liste des articles contenus dans le panier, cf Sebastien -->
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+				</tr>
+				</ui:repeat>
+	
+		</h:datatable>
+		<br/>
+		<span>Total</span>
+		<h:commandButton value="Poursuivez votre achat"  action=""/>
+		<br/>
+		
+		<h:commandButton value="Continuez votre commande"  action=""/>
+	
+	</h:form>
+	</div>
+</body>
+</html>

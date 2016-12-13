@@ -38,7 +38,8 @@ public class DbTestEntity {
 		
 	}
 	
-//	@Test
+	
+	@Test
 	public void testSearchUserById(){
 		
 		// Date formatter to show birthDate in a nice way
@@ -46,20 +47,20 @@ public class DbTestEntity {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 		
 		// User id to search trough the DAO
-		int idToSearch = 1;
+		int idToSearch = 2;
 		User user = userDao.getUserById(idToSearch);
 		
 		// Printing the result in console
-		log.debug("\n\n");
-		log.debug("   ----------   ");
-		log.debug("Result for testSearchUserById #" + idToSearch);
-		log.debug("User : " + user.getCivilite() + " " + user.getfirstName() + " " + user.getlastName());
-		log.debug("Email : " + user.getEmail());
-		log.debug("Phone # : " + user.getphone());
-		log.debug("Date of bitrth : " + dateFormatter.format(user.getBirthDate()));
-		log.debug("Password Hash : " + user.getpasswordHash());
-		log.debug("   ----------   ");
-		log.debug("\n\n");
+		log.info("\n\n");
+		log.info("   ----------   ");
+		log.info("Result for testSearchUserById #" + idToSearch);
+		log.info("User : " + user.getCivilite() + " " + user.getfirstName() + " " + user.getlastName());
+		log.info("Email : " + user.getEmail());
+		log.info("Phone # : " + user.getphone());
+		log.info("Date of bitrth : " + dateFormatter.format(user.getBirthDate()));
+		log.info("Password Hash : " + user.getpasswordHash());
+		log.info("   ----------   ");
+		log.info("\n\n");
 		
 		// Checks if the name retrieved is:
 		String expectedLastName = "Laporte";
@@ -67,7 +68,7 @@ public class DbTestEntity {
 	}
 	
 	
-//	@Test
+	@Test
 	public void testAddNewUser(){
 		//Creating User to add to DB
 		User user = new User();
@@ -79,14 +80,14 @@ public class DbTestEntity {
 		user.setpasswordHash("LolHash");
 		user.setphone("0102030405");
 		
-		log.debug("User id avant create: " + user.getId());
+		log.info("User id avant create: " + user.getId());
 		
 		user = userDao.createUser(user);
-		log.debug("\n\n");
-		log.debug("   ----------   ");
-		log.debug("User id apres create: " + user.getId());
-		log.debug("   ----------   ");
-		log.debug("\n\n");
+		log.info("\n\n");
+		log.info("   ----------   ");
+		log.info("User id apres create: " + user.getId());
+		log.info("   ----------   ");
+		log.info("\n\n");
 		Assert.assertTrue(user.getId() != 0);	
 		
 	}

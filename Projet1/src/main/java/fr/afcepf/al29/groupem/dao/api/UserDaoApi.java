@@ -7,6 +7,7 @@ public interface UserDaoApi {
 	// CRUD (Create - Read - Update - Delete)
 	User createUser(User user);
 	User getUserById(int userId);
+	User getUserByEmail(String email);
 	User updateUser(User user);
 	boolean deleteUser(User user);
 

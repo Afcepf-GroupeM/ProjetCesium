@@ -44,4 +44,13 @@ public class UserDaoImpl implements UserDaoApi {
 		return (getUserById(user.getId()) == null);
 	}
 
+	@Override
+	public User getUserByEmail(String email) {
+		User user = null;
+		try {
+			user = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.email = :useremail",User.class).setParameter("useremail", email).getSingleResult();
+		} catch (Exception e) {} // Catches exception if email doesn't exists. Mandatory with getSingleResult
+		return user;
+	}
+
 }
