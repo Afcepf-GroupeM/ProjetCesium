@@ -21,6 +21,9 @@ public class UserBusImpl implements UserBusApi{
 	
 	
 	
+	
+	
+	
 	public boolean checkUserCredential(String login, String password){
 		boolean result = false;
 		User userToCheck = null;
