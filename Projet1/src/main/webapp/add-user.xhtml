@@ -25,7 +25,9 @@
 		</h:selectOneMenu>
     <h:outputLabel value="Nom:"/> <h:inputText value="#{addUserController.lastName}"  />
     <h:outputLabel value="Prénom:"/> <h:inputText value="#{addUserController.firstName}"  />
-    <h:outputLabel value="Date de naissance:"/> <h:inputText value="#{addUserController.birthDate}"  />
+    <h:outputLabel value="Date de naissance:"/> <h:inputText value="#{addUserController.birthDate}">
+    											<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
+    											</h:inputText>
     <h:outputLabel value="Téléphone:"/> <h:inputText value="#{addUserController.phone}"  />
     <h:outputLabel value="Email"/> <h:inputText value="#{addUserController.email}"  />
     <h:outputLabel value="Mot de passe:"/> <h:inputSecret value="#{addUserController.password1}"  />
