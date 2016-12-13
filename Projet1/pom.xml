@@ -136,6 +136,17 @@
 	    <version>4.4</version>
 	    <scope>test</scope>
 	</dependency>
+	
+		
+	<!-- ############################## -->
+	<!-- Common validators dependencies -->
+	<!-- ############################## -->	
+		
+	<dependency>
+	    <groupId>commons-validator</groupId>
+	    <artifactId>commons-validator</artifactId>
+	    <version>1.4.0</version>
+	</dependency>		
 		
 		
   </dependencies>
