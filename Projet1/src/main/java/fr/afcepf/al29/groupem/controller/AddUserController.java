@@ -39,7 +39,7 @@ public class AddUserController {
 	
 	@PostConstruct
 	public void init(){
-		listeCivilite = civilite.getDeclaringClass().getEnumConstants();
+		listeCivilite = Civilite.class.getEnumConstants();
 	}
 	
 	public String action(){
