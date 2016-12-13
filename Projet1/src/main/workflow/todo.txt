@@ -9,11 +9,16 @@
 
 Guillaume:
 - Ajout/inscription utilisateur
+
+Philippe:
+- CartBusImpl
 	
 
 ## Fait ##
 
 - Login (DAO/Impl/JSF) (G)
+- Address (DAO) (P)
+- Cart (DAO) (P)
 	
 	
 

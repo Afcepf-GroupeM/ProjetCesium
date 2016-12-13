@@ -1,10 +1,8 @@
 package net.pfrancois.test;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +20,6 @@ import fr.afcepf.al29.groupem.entities.User;
 
 @ContextConfiguration(locations={"/springConf.xml"})
 public class DbTestAddress {
-	Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired
 	private AddressDaoApi addressDao;
@@ -61,10 +58,10 @@ public class DbTestAddress {
 		address.setValide(true);
 		address.setUser(user);
 		
-		log.debug("Address id avant create: " + address.getId());
+		System.out.println("Address id avant create: " + address.getId());
 		
 		address = addressDao.createAddress(address);
-		log.debug("Address id apres create: " + address.getId());
+		System.out.println("Address id apres create: " + address.getId());
 		Assert.assertTrue(address.getId() != 0);
 	}
 	
@@ -88,14 +85,14 @@ public class DbTestAddress {
 	public void majAddress(){
 		Address address = addressDao.getAddressById(1);
 		
-		log.debug("@@@@@@@@@@@ Address country avant update: " + address.getCountry() + " @@@@@@@@@@@");
+		System.out.println("@@@@@@@@@@@ Address country avant update: " + address.getCountry() + " @@@@@@@@@@@");
 		
 		address.setCountry("Euros");
 		addressDao.updateAddress(address);
 		
 		address = addressDao.getAddressById(1);
 		
-		log.debug("@@@@@@@@@@@ Address country apres update: " + address.getCountry() + " @@@@@@@@@@@");
+		System.out.println("@@@@@@@@@@@ Address country apres update: " + address.getCountry() + " @@@@@@@@@@@");
 		Assert.assertTrue(address.getCountry().equals("Euros"));
 	}
 	
