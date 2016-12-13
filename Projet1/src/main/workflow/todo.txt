@@ -5,25 +5,30 @@
 	######################
 	
 
-## En cours ##
+###### En cours ######
 
 Guillaume:
-- Ajout/inscription utilisateur
+----------
 
-Haiyan
+
+Haiyan:
+-------
 - IHM Category
 	
 
-## Fait ##
-
-- Login (DAO/Impl/JSF) (G)
-	
-	
 
 
+###### Fait ######
+
+- Login (DAO/Business/Controller/JSF) (G)
+- Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
+	
+
+
 	
 	
-## A faire ##
+	
+###### A faire ######
 	
 - Affichage panier
 - Affichage article
@@ -31,3 +36,5 @@ Haiyan
 - Affichage liste article	
 
 - Ajouter article
+
+- Gestionnaire de session
