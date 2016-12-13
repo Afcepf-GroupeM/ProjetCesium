@@ -38,6 +38,7 @@ public class DbTestEntity {
 		
 	}
 	
+	
 	@Test
 	public void testSearchUserById(){
 		
@@ -46,7 +47,7 @@ public class DbTestEntity {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 		
 		// User id to search trough the DAO
-		int idToSearch = 1;
+		int idToSearch = 2;
 		User user = userDao.getUserById(idToSearch);
 		
 		// Printing the result in console
