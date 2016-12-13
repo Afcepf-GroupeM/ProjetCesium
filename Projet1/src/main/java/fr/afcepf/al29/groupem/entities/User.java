@@ -52,7 +52,7 @@ public class User {
 	
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="user")
-	private List<Address>adresses;
+	private List<Address>addresses;
 	
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="user")
@@ -149,13 +149,13 @@ public class User {
 	}
 
 
-	public List<Address> getAdresses() {
-		return adresses;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
 
-	public void setAdresses(List<Address> adresses) {
-		this.adresses = adresses;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 
@@ -163,7 +163,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adresses == null) ? 0 : adresses.hashCode());
+		result = prime * result + ((addresses == null) ? 0 : addresses.hashCode());
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
 		result = prime * result + ((civilite == null) ? 0 : civilite.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
@@ -187,10 +187,10 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (adresses == null) {
-			if (other.adresses != null)
+		if (addresses == null) {
+			if (other.addresses != null)
 				return false;
-		} else if (!adresses.equals(other.adresses))
+		} else if (!addresses.equals(other.addresses))
 			return false;
 		if (birthDate == null) {
 			if (other.birthDate != null)
@@ -244,7 +244,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", lastName=" + lastName + ", civilite=" + civilite + ", firstName=" + firstName
 				+ ", email=" + email + ", phone=" + phone + ", birthDate=" + birthDate + ", passwordHash="
-				+ passwordHash + ", adresses=" + adresses + ", orders=" + orders + ", reviews=" + reviews + "]";
+				+ passwordHash + "]";
 	}
 	
 	

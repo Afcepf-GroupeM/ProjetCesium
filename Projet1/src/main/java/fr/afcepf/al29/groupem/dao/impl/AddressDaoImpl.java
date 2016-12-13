@@ -1,5 +1,7 @@
 package fr.afcepf.al29.groupem.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -23,9 +25,13 @@ public class AddressDaoImpl implements AddressDaoApi {
 	}
 
 	@Override
-	public Address getAddressByUserId(int userId) {
-		Address address = entityManager.find(Address.class, userId);
-		return address;
+	public List<Address> getAddressesByUserId(int userId) {
+		return entityManager.createQuery("SELECT adr FROM Address adr INNER JOIN adr.user usr WHERE usr.id = :userId", Address.class).setParameter("userId", userId).getResultList();
+	}
+	
+	@Override
+	public Address getAddressById(int addressId) {
+		return entityManager.find(Address.class, addressId);
 	}
 
 	@Override
@@ -35,10 +41,9 @@ public class AddressDaoImpl implements AddressDaoApi {
 	}
 
 	@Override
-	public boolean disableAddress(Address address) {
+	public Address disableAddress(Address address) {
 		address.setValide(false);
 		updateAddress(address);
-		return (getAddressByUserId(address.getUser().getId()).isValide());
+		return (address);
 	}
-
 }
