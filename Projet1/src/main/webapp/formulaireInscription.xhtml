@@ -12,33 +12,34 @@
 
 <h:form>
 	<span>nom :</span>
-	<h:inputText value=""/>
+	<h:inputText value="#{UserController.user.lastName}"/>
 	<br/>
 	
 	<span>prenom :</span>
-	<h:inputText value=""/>
+	<h:inputText value="#{UserController.user.firstName}"/>
 	<br/>
 	
 	<span>naissance :</span>
-	<h:inputText value="">
+	<h:inputText value="#{UserController.user.birthDate}">
 	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
 	</h:inputText>
 	<br/>
 	
 	<span>mail :</span>
-	<h:inputText value=""/>
+	<h:inputText value="#{UserController.user.email}"/>
 	<br/>
 	
 	<span>telephone :</span>
-	<h:inputText value=""/>
+	<h:inputText value="#{UserController.user.phone}"/>
 	<br/>
 	
 	<span>mot de passe :</span>
-	<h:inputSecret value=""/>
+	<h:inputSecret value="#{UserController.user.passwordHash}"/>
 	<br/>
 	
-	<h:commandButton value="Inscrivez-vous"  action=""/>
+	<h:commandButton value="Inscrivez-vous"  action="#{UserController.inscription}"/>
 	
+	<span>#{UserController.message}</span>
 
 </h:form>
 </body>
