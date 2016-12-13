@@ -86,7 +86,13 @@ public class Administrator {
 	public void setCivilite(Civilite civilite) {
 		this.civilite = civilite;
 	}
-	public Administrator(int id, Civilite civilite, String lastName, String firstName, String email,
+	
+	
+	
+	
+	
+	
+	public Administrator(int id, Civilite civilite, String lastName, String firstName, String email, String phone,
 			String hashPassword, Date creationDate) {
 		super();
 		this.id = id;
@@ -94,10 +100,10 @@ public class Administrator {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
+		this.phone = phone;
 		this.hashPassword = hashPassword;
 		this.creationDate = creationDate;
 	}
-	
 	public Administrator() {
 		
 	}
@@ -112,6 +118,7 @@ public class Administrator {
 		result = prime * result + ((hashPassword == null) ? 0 : hashPassword.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		return result;
 	}
 	@Override
@@ -152,14 +159,22 @@ public class Administrator {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "Administrator [id=" + id + ", civilite=" + civilite + ", lastName=" + lastName + ", firstName="
-				+ firstName + ", email=" + email + ", hashPassword=" + hashPassword + ", creationDate=" + creationDate
-				+ "]";
+				+ firstName + ", email=" + email + ", phone=" + phone + ", hashPassword=" + hashPassword
+				+ ", creationDate=" + creationDate + "]";
 	}
+	
+	
+	
 	
 	
 }

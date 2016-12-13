@@ -32,4 +32,11 @@ public class UserBusImpl implements UserBusApi{
 		return result;
 	}
 
+
+
+	@Override
+	public User createUser(User user) {
+		return userDao.createUser(user);
+	}
+
 }
