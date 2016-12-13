@@ -33,7 +33,7 @@ public class UserBusImpl implements UserBusApi{
 	}
 
 
-
+	//methode pour s'inscrire
 	@Override
 	public User createUser(User user) {
 		return userDao.createUser(user);
