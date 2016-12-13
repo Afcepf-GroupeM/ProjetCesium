@@ -1,0 +1,30 @@
+	######################
+	##					##
+	##      TO DO		##
+	##					##
+	######################
+	
+
+## En cours ##
+
+Guillaume:
+- Ajout/inscription utilisateur
+	
+
+## Fait ##
+
+- Login (DAO/Impl/JSF) (G)
+	
+	
+
+
+	
+	
+## A faire ##
+	
+- Affichage panier
+- Affichage article
+- Affichage compte client
+- Affichage liste article	
+
+- Ajouter article
