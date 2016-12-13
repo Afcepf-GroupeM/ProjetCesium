@@ -9,6 +9,7 @@
 
 Guillaume:
 ----------
+- Affichage liste article par categorie	
 
 
 Haiyan:
@@ -33,8 +34,5 @@ Haiyan:
 - Affichage panier
 - Affichage article
 - Affichage compte client
-- Affichage liste article	
-
 - Ajouter article
-
 - Gestionnaire de session
