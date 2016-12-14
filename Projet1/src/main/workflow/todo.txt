@@ -11,7 +11,10 @@ Guillaume:
 - Ajout/inscription utilisateur
 
 Philippe:
+- AddressBusImpl
 - CartBusImpl
+- CartLineImpl
+- OrderLineImpl
 	
 
 ## Fait ##
@@ -19,6 +22,9 @@ Philippe:
 - Login (DAO/Impl/JSF) (G)
 - Address (DAO) (P)
 - Cart (DAO) (P)
+- CartLine (DAO) (P)
+- OrderLine (DAO) (P)
+- Carrier (DAO) (P)
 	
 	
 

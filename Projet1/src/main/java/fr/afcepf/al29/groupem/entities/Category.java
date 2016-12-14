@@ -32,7 +32,7 @@ public class Category {
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="category")
 	private List<Item> items;
 	
-	@OneToMany(fetch=FetchType.LAZY,mappedBy="categories")
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="category")
 	private List<Coupon> coupons;
 	
 	
@@ -166,8 +166,7 @@ public class Category {
 	}
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", metaCategory=" + metaCategory + ", items=" + items
-				+ ", coupons=" + coupons + "]";
+		return "Category [id=" + id + ", name=" + name + ", metaCategory=" + metaCategory + "]";
 	}
 
 

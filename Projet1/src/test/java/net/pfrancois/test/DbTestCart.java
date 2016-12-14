@@ -25,7 +25,7 @@ public class DbTestCart {
 	
 	// Context initialization - Need to be done at the very beginning of our app... 
 	@Before
-	public void initAddressDao(){
+	public void initCartDao(){
 		ApplicationContext contextSpring = new ClassPathXmlApplicationContext("springConf.xml");
 		cartDao = (CartDaoApi) contextSpring.getBean(CartDaoApi.class);
 		userDao = (UserDaoApi) contextSpring.getBean(UserDaoApi.class);

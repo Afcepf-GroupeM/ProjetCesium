@@ -8,7 +8,6 @@ public interface CartDaoApi {
 	Cart createCart(Cart cart);
 	Cart getCartById(int cartId);
 	boolean destroyCartById(int cartId);
-	
 	Cart getCartByUserId(int userId);
 
 }
