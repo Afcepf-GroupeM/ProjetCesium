@@ -9,10 +9,12 @@
 
 Guillaume:
 ----------
-- Affichage liste article par categorie	
+- Gestionnaire de session
+
 
 
 Philippe:
+---------
 - AddressBusImpl
 - CartBusImpl
 - CartLineImpl
@@ -30,6 +32,7 @@ Haiyan:
 
 ###### Fait ######
 
+- Affichage liste article par categorie	(G)
 - Login (DAO/Business/Controller/JSF) (G)
 - Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
 
@@ -52,4 +55,3 @@ Haiyan:
 - Affichage article
 - Affichage compte client
 - Ajouter article
-- Gestionnaire de session
