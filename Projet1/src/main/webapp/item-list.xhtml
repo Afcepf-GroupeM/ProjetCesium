@@ -43,7 +43,7 @@
     			rowClasses="order-table-odd-row,order-table-even-row">
 			<h:column>
 				<f:facet name="header">Photo</f:facet>
-				<h:outputText value="PHOTO"/>
+				<img src="#{itemListController.imagePath}#{it.id}/1.jpg" height="128" width="128"></img>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Nom</f:facet>
@@ -67,6 +67,8 @@
 			</h:column>
 		</h:dataTable>
 	</div>
+	
+	
 
 </div>
 </h:body>

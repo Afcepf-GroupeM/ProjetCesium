@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,8 @@ public class ItemListController {
 	private List<Item> listItem;
 	
 	private Category chosenCategory;
+
+	private String imagePath = "images/items/";
 	
 	
 	@Autowired
@@ -42,13 +45,18 @@ public class ItemListController {
 		
 		int categoryByDefault = 1;
 		chosenCategory = catBus.getCategoryById(categoryByDefault);
-		
+		List<Item> listItemToTrim = chosenCategory.getItems();
+		for (Item item : listItemToTrim) {
+			String description = item.getDescription();
+			int numberOfCharPrinted = 70;
+			if (description.length() > numberOfCharPrinted)
+			    description = description.substring(0, numberOfCharPrinted-3) + "...";
+			item.setDescription(description);
+		}	
 	}
 	
 	//TODO
 	// - manage multiple pages
-	// - pictures
-	// - shorten description for printing in list tab
 	// - link to other categories
 	// - link to article page
 
@@ -104,7 +112,16 @@ public class ItemListController {
 	public void setChosenCategory(Category chosenCategory) {
 		this.chosenCategory = chosenCategory;
 	}
-	
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
 	
 	
 	
