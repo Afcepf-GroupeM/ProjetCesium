@@ -19,10 +19,14 @@ import fr.afcepf.al29.groupem.entities.MetaCategory;
 public class ItemListController {
 	
 	private List<MetaCategory> listMetaCategory;
+	private List<Category> listCategory;
 	private MetaCategory metaCategory;
 	private Category category;
 	
 	private List<Item> listItem;
+	
+	private Category chosenCategory;
+	
 	
 	@Autowired
 	CategoryBusApi catBus;
@@ -36,8 +40,18 @@ public class ItemListController {
 		listMetaCategory = new ArrayList<>();
 		listMetaCategory = catBus.getAllMetaCategory();
 		
+		int categoryByDefault = 1;
+		chosenCategory = catBus.getCategoryById(categoryByDefault);
+		
 	}
 	
+	//TODO
+	// - manage multiple pages
+	// - pictures
+	// - shorten description for printing in list tab
+	// - link to other categories
+	// - link to article page
+
 	
 	
 	
@@ -73,6 +87,22 @@ public class ItemListController {
 
 	public void setListItem(List<Item> listItem) {
 		this.listItem = listItem;
+	}
+
+	public List<Category> getListCategory() {
+		return listCategory;
+	}
+
+	public void setListCategory(List<Category> listCategory) {
+		this.listCategory = listCategory;
+	}
+
+	public Category getChosenCategory() {
+		return chosenCategory;
+	}
+
+	public void setChosenCategory(Category chosenCategory) {
+		this.chosenCategory = chosenCategory;
 	}
 	
 	

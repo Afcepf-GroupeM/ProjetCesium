@@ -26,10 +26,17 @@ public class CategoryBusImpl implements CategoryBusApi {
 	}
 
 	@Override
-	public List<Category> getCategoryByMetaCat(int metaCategoryId) {
-		// TODO Auto-generated method stub
+	public MetaCategory getMetaCategoryById(int metaCategoryId) {
+		
 		return null;
 	}
+
+	@Override
+	public Category getCategoryById(int categoryId) {
+		//TODO Add check if null = category doesn't exist.
+		return catDao.getCategoryById(categoryId);
+	}
+
 	
 
 }

@@ -8,18 +8,67 @@
 
 <h:head>
 <title>.: Item list :.</title>
+
+
+<style>
+.order-table{border-collapse:collapse;}
+.order-table-header{text-align:center;background:none repeat scroll 0 0 #E5E5E5;border-bottom:1px solid #BBBBBB;padding:16px;}
+.order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
+.order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
+</style>
+
 </h:head>
 
 <h:body>
-<h1>.: Liste d'items par categorie :.</h1>
+<div style="float:left; margin: 0 auto">
+	<h1>.: Liste d'items par categorie :.</h1>
+	<div style="width: 100%">
+		<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+			<div style="width: 150px;margin: 20px auto;padding: 5px;float: left">
+					<h:outputText value="#{metaCat.id}"/> - <h:outputText value="#{metaCat.name}"/><br/>
+					<ul style="margin: 0">
+						<ui:repeat var="cat" value="#{metaCat.categories}">
+							<li><h:outputText value="#{cat.name}"/></li>
+						</ui:repeat>
+					</ul>
+			</div>
+		</ui:repeat>
+	</div>
+	
+		
+	<div style="width: 100%;float: left;">
+	<h2>- Articles pour la catégorie <h:outputText value="#{itemListController.chosenCategory.name}" /> -</h2>
+		<h:dataTable var="it" value="#{itemListController.chosenCategory.items}" styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+			<h:column>
+				<f:facet name="header">Photo</f:facet>
+				<h:outputText value="PHOTO"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				<h:outputText value="#{it.name}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Reference</f:facet>
+				<h:outputText value="#{it.reference}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Prix</f:facet>
+				<h:outputText value="#{it.prix}"/>€
+			</h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+				<h:outputText value="#{it.description}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Stock</f:facet>
+				<h:outputText value="#{it.stock}"/>
+			</h:column>
+		</h:dataTable>
+	</div>
 
-
-	<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
-		<h:outputText value="#{metaCat.id}"/><br/>
-		<h:outputText value="#{metaCat.name}"/><br/>
-		<br/>
-	</ui:repeat>
-
+</div>
 </h:body>
 
 

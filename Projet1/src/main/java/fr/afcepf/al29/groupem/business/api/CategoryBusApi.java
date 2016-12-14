@@ -8,6 +8,7 @@ import fr.afcepf.al29.groupem.entities.MetaCategory;
 public interface CategoryBusApi {
 	
 	List<MetaCategory> getAllMetaCategory();
-	List<Category> getCategoryByMetaCat(int metaCategoryId);
+	MetaCategory getMetaCategoryById(int metaCategoryId);
+	Category getCategoryById(int categoryByDefault);
 
 }
