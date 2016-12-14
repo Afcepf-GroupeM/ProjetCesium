@@ -54,7 +54,7 @@ public class CategoryDaoImpl implements CategoryDaoApi{
 	@Override
 	public List<Category> getCategoryByMetaId(int metaCategoryId) {
 		List<Category> listCategories = new ArrayList<>();
-		listCategories = entityManager.createQuery("SELECT cat FROM category cat WHERE cat.metacategoryid = :metacatid",Category.class)
+		listCategories = entityManager.createQuery("SELECT cat FROM Category cat WHERE cat.metaCategory = :metacatid",Category.class)
 									  .setParameter("metacatid", metaCategoryId)
 									  .getResultList();
 		return listCategories;
@@ -92,7 +92,7 @@ public class CategoryDaoImpl implements CategoryDaoApi{
 
 	@Override
 	public List<MetaCategory> getAllMetaCategory() {
-		List<MetaCategory> listMetaCat = entityManager.createQuery("SELECT * FROM metacategory metcat",MetaCategory.class).getResultList();
+		List<MetaCategory> listMetaCat = entityManager.createQuery("SELECT metcat FROM MetaCategory metcat",MetaCategory.class).getResultList();
 		return listMetaCat;
 	}
 

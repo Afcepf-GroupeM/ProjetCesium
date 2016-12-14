@@ -5,36 +5,35 @@
 	######################
 	
 
-## En cours ##
+###### En cours ######
 
 Guillaume:
-- Ajout/inscription utilisateur
+----------
+- Affichage liste article par categorie	
 
-<<<<<<< HEAD
-Philippe:
-- CartBusImpl
-=======
-Haiyan
-- IHM Category
->>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
-	
 
-## Fait ##
-
-- Login (DAO/Impl/JSF) (G)
-- Address (DAO) (P)
-- Cart (DAO) (P)
-	
+Haiyan:
+-------
+- IHM Produits
 	
 
 
+
+###### Fait ######
+
+- Login (DAO/Business/Controller/JSF) (G)
+- Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
+- IHM Account
+	
+
+
 	
 	
-## A faire ##
+	
+###### A faire ######
 	
 - Affichage panier
 - Affichage article
 - Affichage compte client
-- Affichage liste article	
-
 - Ajouter article
+- Gestionnaire de session

@@ -21,14 +21,23 @@
 	</f:facet>
 	<h:outputLabel value="Civilité: "/> 
 		<h:selectOneMenu value="#{addUserController.civilite}">
-			<f:selectItems value="#{addUserController.listeCivilite}" itemLabel="#{addUserController.listeCivilite}"/>
+			<f:selectItems value="#{addUserController.listeCivilite}" />
 		</h:selectOneMenu>
     <h:outputLabel value="Nom:"/> <h:inputText value="#{addUserController.lastName}"  />
     <h:outputLabel value="Prénom:"/> <h:inputText value="#{addUserController.firstName}"  />
-    <h:outputLabel value="Date de naissance:"/> <h:inputText value="#{addUserController.birthDate}">
-    											<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
-    											</h:inputText>
-    <h:outputLabel value="Téléphone:"/> <h:inputText value="#{addUserController.phone}"  />
+    <h:outputLabel value="Date de naissance:"/>
+    <h:panelGroup>
+    	<h:selectOneMenu value="#{addUserController.birthDay}">
+			<f:selectItems value="#{addUserController.dayList}" />
+		</h:selectOneMenu>
+		<h:selectOneMenu value="#{addUserController.birthMonth}">
+			<f:selectItems value="#{addUserController.monthList}" />
+		</h:selectOneMenu>
+		<h:selectOneMenu value="#{addUserController.birthYear}">
+			<f:selectItems value="#{addUserController.yearList}" />
+		</h:selectOneMenu>
+    </h:panelGroup>
+    <h:outputLabel value="Téléphone:"/> <h:inputText value="#{addUserController.phone}" maxlength="10" />
     <h:outputLabel value="Email"/> <h:inputText value="#{addUserController.email}"  />
     <h:outputLabel value="Mot de passe:"/> <h:inputSecret value="#{addUserController.password1}"  />
     <h:outputLabel value="Mot de passe (verification):"/> <h:inputSecret value="#{addUserController.password2}"  />
@@ -42,7 +51,7 @@
 </div>
 
 <div>
-	<h:outputLabel value="#{addUserController.message}"/>
+	<h:outputText value="#{addUserController.message}"  escape="false"/>
 </div>
 
 

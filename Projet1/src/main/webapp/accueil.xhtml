@@ -1,12 +1,17 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE   html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <head>
-<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Products :: w3layouts</title>
+<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Home :: w3layouts</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -32,6 +37,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					});
 				</script>
+<!--slider-script-->
+		<script src="js/responsiveslides.min.js"></script>
+			<script>
+				$(function () {
+				  $("#slider1").responsiveSlides({
+					auto: true,
+					speed: 500,
+					namespace: "callbacks",
+					pager: true,
+				  });
+				});
+			</script>
+<!--//slider-script-->
 <script>$(document).ready(function(c) {
 	$('.alert-close').on('click', function(c){
 		$('.message').fadeOut('slow', function(c){
@@ -96,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	                        	<div class="clearfix"> </div>
 	                        </div>
                             <div class="login_buttons">
-							  <div class="check_button"><a href="panier.xhtml">Check out</a></div>
+							  <div class="check_button"><a href="checkout.xhtml">Check out</a></div>
 							  <div class="clearfix"></div>
 						    </div>
 					      <div class="clearfix"></div>
@@ -113,8 +131,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="h_menu4">
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
-					<li ><a href="accueil.xhtml"><i> </i>Desktops</a></li>
-					<li class="active"><a href="#" >Laptops Notebooks</a>
+					<li class="active"><a href="accueil.xhtml"><i> </i>Desktops</a></li>
+					<li ><a href="#" >Laptops Notebooks</a>
 						<ul class="drop">
 							<li><a href="produits.xhtml">Sony(2)</a></li>
 							<li><a href="produits.xhtml">Android(4)</a></li>
@@ -137,8 +155,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 		<div class="header-bottom-in">
-		<div class="container">
-		<div class="header-bottom-on">
+			<div class="container">
+			<div class="header-bottom-on">
 			<p class="wel"><a href="#">Welcome visitor you can login or create an account.</a></p>
 			<div class="header-can">
 				<ul class="social-in">
@@ -148,7 +166,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#"><i class="skype"> </i></a></li>
 					</ul>	
 					<div class="down-top">		
-						  <select class="in-drop">
+							<select class="in-drop">
 							  <option value="Dollars" class="in-of">Dollars</option>
 							  <option value="Euro" class="in-of">Euro</option>
 							  <option value="Yen" class="in-of">Yen</option>
@@ -156,10 +174,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </div>
 					<div class="search">
 						<form>
-							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
+							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" />
 							<input type="submit" value=""/>
 						</form>
 					</div>
+
 					<div class="clearfix"> </div>
 			</div>
 			<div class="clearfix"></div>
@@ -167,132 +186,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
-	
+	<div class="banner-mat">
 		<div class="container">
-			<div class="products">
-					<h2 class=" products-in">PRODUCTS</h2>
-					<div class=" top-products">
+			<div class="banner">
+	
+				<!-- Slideshow 4 -->
+			   <div class="slider">
+			<ul class="rslides" id="slider1">
+			  <li><img src="images/banner.jpg" alt=""/>
+			  </li>
+			  <li><img src="images/banner1.jpg" alt=""/>
+			  </li>
+			  <li><img src="images/banner.jpg" alt=""/>
+			  </li>
+			  <li><img src="images/banner2.jpg" alt=""/>
+			  </li>
+			</ul>
+		</div>
+
+				<div class="banner-bottom">
+					<div class="banner-matter">
+						<p>Childish Gambino - Camp Now Available for just $9.99</p> 
+						<a href="article.xhtml" class="hvr-shutter-in-vertical ">Purchase</a>
+					</div>
+					<div class="purchase">
+						<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2 ">Purchase</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>				
+			<!-- //slider-->
+		</div>
+	</div>
+		<!---->
+		<div class="container">
+			<div class="content">
+				<div class="content-top">
+					<h3 class="future">FEATURED</h3>
+					<div class="content-top-in">
 						<div class="col-md-3 md-col">
 							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic.jpg" alt="" />
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>	
+								<a href="article.xhtml"><img  src="images/pi.jpg" alt="" /></a>	
 								<div class="top-content">
-									<h5><a href="article.xhtml">Popular belief</a></h5>
+									<h5><a href="article.xhtml">Mascot Kitty - White</a></h5>
 									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
+										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2 ">ADD TO CART</a>
 										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>0</span></p>
 										<div class="clearfix"></div>
 									</div>
+
 								</div>							
 							</div>
 						</div>
 						<div class="col-md-3 md-col">
 							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic1.jpg" alt="" />	
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>
+								<a href="article.xhtml"><img  src="images/pi1.jpg" alt="" />	</a>
 								<div class="top-content">
-									<h5><a href="article.xhtml" >Simply random</a></h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>6</span><span>0</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic2.jpg" alt="" />	
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>
-								<div class="top-content">
-									<h5> <a href="article.xhtml">Classical Latin</a></h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>1</span><span>5</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic3.jpg" alt="" />	
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>
-								<div class="top-content">
-									<h5><a href="article.xhtml">Standard chunk</a></h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>4</span><span>0</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-					<div class="clearfix"></div>
-					</div>
-					<div class=" top-products">
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic4.jpg" alt="" />	
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>
-								<div class="top-content">
-									<h5><a href="article.xhtml">Simply random</a></h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>5</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic5.jpg" alt="" />	
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>
-								<div class="top-content">
-									<h5><a href="article.xhtml">Popular belief</a></h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>5</span><span>5</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-3 md-col">
-							<div class="col-md ">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic6.jpg" alt="" />	
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>
-								<div class="top-content">
-									<h5> <a href="article.xhtml">Classical Latin</a></h5>
+									<h5><a href="article.xhtml">Bite Me</a></h5>
 									<div class="white">
 										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
 										<p class="dollar"><span class="in-dollar">$</span><span>3</span><span>0</span></p>
@@ -302,18 +252,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 						<div class="col-md-3 md-col">
-							<div class="col-md ">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic7.jpg" alt="" />	
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>
+							<div class="col-md">
+								<a href="article.xhtml"><img  src="images/pi2.jpg" alt="" /></a>	
 								<div class="top-content">
-									<h5><a href="article.xhtml">Standard chunk</a></h5>
+									<h5><a href="article.xhtml">Little Fella</a></h5>
 									<div class="white">
 										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>6</span><span>0</span></p>
+										<p class="dollar"><span class="in-dollar">$</span><span>5</span><span>0</span></p>
+										<div class="clearfix"></div>
+									</div>
+								</div>							
+							</div>
+						</div>
+						<div class="col-md-3 md-col">
+							<div class="col-md">
+								<a href="article.xhtml"><img  src="images/pi3.jpg" alt="" /></a>	
+								<div class="top-content">
+									<h5><a href="article.xhtml">Astral Cruise</a></h5>
+									<div class="white">
+										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
+										<p class="dollar"><span class="in-dollar">$</span><span>4</span><span>5</span></p>
 										<div class="clearfix"></div>
 									</div>
 								</div>							
@@ -321,81 +279,154 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					<div class="clearfix"></div>
 					</div>
-					<div class="top-products">
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in" ><img  src="images/pic8.jpg" alt="" />
-								<div class="compare">
+				</div>
+				<!---->
+				<div class="content-middle">
+					<h3 class="future">BRANDS</h3>
+					<div class="content-middle-in">
+					<ul id="flexiselDemo1">			
+						<li><img src="images/ap.png"/></li>
+						<li><img src="images/ap1.png"/></li>
+						<li><img src="images/ap2.png"/></li>
+						<li><img src="images/ap3.png"/></li>
+					
+					</ul>
+            		<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo1").flexisel({
+				visibleItems: 4,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,    		
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+		    	responsiveBreakpoints: { 
+		    		portrait: { 
+		    			changePoint:480,
+		    			visibleItems: 1
+		    		}, 
+		    		landscape: { 
+		    			changePoint:640,
+		    			visibleItems: 2
+		    		},
+		    		tablet: { 
+		    			changePoint:768,
+		    			visibleItems: 3
+		    		}
+		    	}
+		    });
+		    
+		});
+	</script>
+	<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+
+					</div>
+				</div>
+				<!---->
+				<div class="content-bottom">
+					<h3 class="future">LATEST</h3>
+					<div class="content-bottom-in">
+					<ul id="flexiselDemo2">			
+						<li><div class="col-md men">
+								<a href="article.xhtml" class="compare-in "><img  src="images/pi4.jpg" alt="" />
+								<div class="compare in-compare">
 									<span>Add to Compare</span>
 									<span>Add to Whislist</span>
-								</div>
-								</a>
-								<div class="top-content">
-									<h5> <a href="article.xhtml">Classical Latin</a></h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>0</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic9.jpg" alt="" />
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>	
-								<div class="top-content">
-									<h5><a href="article.xhtml">Standard chunk</a></h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>1</span><span>5</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic10.jpg" alt="" />
-								<div class="compare">
-									<span>Add to Compare</span>
-									<span>Add to Whislist</span>
-								</div>
-								</a>	
-								<div class="top-content">
-								<h5><a href="article.xhtml">Simply random</a></h5>
+								</div></a>
+								<div class="top-content bag">
+									<h5><a href="article.xhtml">Symbolic Bag</a></h5>
 									<div class="white">
 										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
 										<p class="dollar"><span class="in-dollar">$</span><span>4</span><span>0</span></p>
 										<div class="clearfix"></div>
 									</div>
 								</div>							
-							</div>
-						</div>
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<a href="article.xhtml" class="compare-in"><img  src="images/pic11.jpg" alt="" />
-								<div class="compare">
+							</div></li>
+						<li><div class="col-md men">
+								<a href="article.xhtml" class="compare-in "><img  src="images/pi5.jpg" alt="" />
+								<div class="compare in-compare">
 									<span>Add to Compare</span>
 									<span>Add to Whislist</span>
-								</div>
-								</a>	
-								<div class="top-content">
-									<h5><a href="article.xhtml">Popular belief</a></h5>
+								</div></a>	
+								<div class="top-content bag">
+									<h5><a href="article.xhtml">Interesting Read</a></h5>
 									<div class="white">
 										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>9</span></p>
+										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>5</span></p>
 										<div class="clearfix"></div>
 									</div>
 								</div>							
-							</div>
-						</div>
-					<div class="clearfix"></div>
+							</div></li>
+						<li><div class="col-md men">
+								<a href="article.xhtml" class="compare-in "><img  src="images/pi6.jpg" alt="" />
+								<div class="compare in-compare">
+									<span>Add to Compare</span>
+									<span>Add to Whislist</span>
+								</div></a>	
+								<div class="top-content bag">
+									<h5><a href="article.xhtml">The Carter</a></h5>
+									<div class="white">
+										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
+										<p class="dollar"><span class="in-dollar">$</span><span>1</span><span>0</span></p>
+										<div class="clearfix"></div>
+									</div>
+								</div>							
+							</div></li>
+						<li><div class="col-md men">
+								<a href="article.xhtml" class="compare-in "><img  src="images/pi7.jpg" alt="" />
+								<div class="compare in-compare">
+									<span>Add to Compare</span>
+									<span>Add to Whislist</span>
+								</div></a>	
+								<div class="top-content bag">
+									<h5><a href="article.xhtml">Onesie</a></h5>
+									<div class="white">
+										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
+										<p class="dollar"><span class="in-dollar">$</span><span>6</span><span>0</span></p>
+										<div class="clearfix"></div>
+									</div>
+								</div>							
+							</div></li>
+					
+					</ul>
+					<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo2").flexisel({
+				visibleItems: 4,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,    		
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+		    	responsiveBreakpoints: { 
+		    		portrait: { 
+		    			changePoint:480,
+		    			visibleItems: 1
+		    		}, 
+		    		landscape: { 
+		    			changePoint:640,
+		    			visibleItems: 2
+		    		},
+		    		tablet: { 
+		    			changePoint:768,
+		    			visibleItems: 3
+		    		}
+		    	}
+		    });
+		    
+		});
+	</script>
 					</div>
+				</div>
+				<ul class="start">
+					<li ><a href="#"><i></i></a></li>
+					<li><span>1</span></li>
+					<li class="arrow"><a href="#">2</a></li>
+					<li class="arrow"><a href="#">3</a></li>
+					<li class="arrow"><a href="#">4</a></li>
+					<li class="arrow"><a href="#">5</a></li>
+					<li ><a href="#"><i  class="next"> </i></a></li>
+				</ul>
 			</div>
 		</div>
 		<!---->
@@ -462,7 +493,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="clearfix"></div>
 				</div>
 			</div>
-			<p class="footer-class">Copyright © 2015 Bonfire Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+			<p class="footer-class">Copyright © 2015 Modern Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
 			<script type="text/javascript">
 						$(document).ready(function() {
 							/*
