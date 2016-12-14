@@ -14,7 +14,7 @@ Guillaume:
 
 Haiyan:
 -------
-- IHM Category
+- IHM Produits
 	
 
 
@@ -23,6 +23,7 @@ Haiyan:
 
 - Login (DAO/Business/Controller/JSF) (G)
 - Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
+- IHM Account
 	
 
 
