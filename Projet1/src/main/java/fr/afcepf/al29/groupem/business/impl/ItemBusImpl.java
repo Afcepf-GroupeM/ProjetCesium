@@ -50,6 +50,18 @@ public class ItemBusImpl implements ItemBusApi {
 		return null;
 	}
 
+	@Override
+	public List<Item> searchItems(String keyword) {
+		
+		return itemDao.searchItems(keyword);
+	}
+
+	@Override
+	public Item findItem(int itemId) {
+		
+		return itemDao.findItem(itemId);
+	}
+
 	
 	
 	

@@ -14,5 +14,8 @@ public interface ItemDaoApi {
 	
 	List<Item> getItemsByCategory (int categoryId);
 	
+	List<Item> searchItems(String keyword);
+	
+	Item findItem(int itemId);
 
 }

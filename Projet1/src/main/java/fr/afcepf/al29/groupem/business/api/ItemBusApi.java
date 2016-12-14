@@ -13,6 +13,9 @@ public interface ItemBusApi {
 	
 	List<Item> getItemsByCategory (int categoryId);
 	
+	List<Item> searchItems(String keyword);
+	
+	Item findItem (int itemId);
 	
 	
 }

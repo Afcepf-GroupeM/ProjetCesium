@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +55,25 @@ public class ItemDaoImpl implements ItemDaoApi {
 								 .setParameter("catid", categoryId)
 								 .getResultList();
 		return listItems;
+	}
+
+	@Override
+	public List<Item> searchItems(String keyword) {
+		
+		Query query;
+		List<Item> items;
+		query = entityManager.createQuery("SELECT i FROM Item i WHERE UPPER(i.name) LIKE:keyword OR UPPER (i.category.name) LIKE :keyword ORDER BY i.category.metacategory.name, i.category.name");
+		query.setParameter("keyword", "%" + keyword.toUpperCase() + "%");
+		items = query.getResultList();
+		
+		return items;
+		
+	}
+
+	@Override
+	public Item findItem(int itemId) {
+		Item item = entityManager.find(Item.class, itemId);
+		return item;
 	}
 
 }
