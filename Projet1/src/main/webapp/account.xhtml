@@ -57,53 +57,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container">
 			<div class="header-top-in">			
 				<div class="logo">
-					<a href="accueil.xhtml"><img src="images/logoBlancImgOrigine.png" alt=" "/></a>
+					<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" "/></a>
 				</div>
 				<div class="header-in">
 					<ul class="icon1 sub-icon1">
-							<li  ><a href="wishlist.xhtml">WISH LIST (0)</a> </li>
-							<li  ><a href="account.xhtml">  MY ACCOUNT</a></li>
-							<li ><a href="#" > SHOPPING CART</a></li>
-							<li > <a href="panier.xhtml" >CHECKOUT</a> </li>	
-							<li><div class="cart">
-									<a href="#" class="cart-in"> </a>
-									<span> 0</span>
-								</div>
-								<ul class="sub-icon1 list">
-						  <h3>Recently added items(2)</h3>
-						  <div class="shopping_cart">
-							  <div class="cart_box">
-							   	 <div class="message">
-							   	     <div class="alert-close"> </div> 
-					                <div class="list_img"><img src="images/14.jpg" class="img-responsive" alt=""/></div>
-								    <div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>1 x<span class="actual">
-		                             $12.00</span></div>
-		                              <div class="clearfix"></div>
-	                              </div>
-	                            </div>
-	                            <div class="cart_box1">
-								  <div class="message1">
-							   	     <div class="alert-close1"> </div> 
-					                <div class="list_img"><img src="images/15.jpg" class="img-responsive" alt=""/></div>
-								    <div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>1 x<span class="actual">
-		                             $12.00</span></div>
-		                              <div class="clearfix"></div>
-	                              </div>
-	                            </div>
-	                        </div>
-	                        <div class="total">
-	                        	<div class="total_left">CartSubtotal : </div>
-	                        	<div class="total_right">$250.00</div>
-	                        	<div class="clearfix"> </div>
-	                        </div>
-                            <div class="login_buttons">
-							  <div class="check_button"><a href="panier.xhtml">Check out</a></div>
-							  <div class="clearfix"></div>
-						    </div>
-					      <div class="clearfix"></div>
-						</ul>
-							</li>
-						</ul>
+							<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
+							<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
+							<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+							<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
+							<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+					</ul>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -148,6 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#"><i class="twitter"> </i></a></li>					
 						<li><a href="#"><i class="skype"> </i></a></li>
 					</ul>	
+					<!-- 
 					<div class="down-top">		
 						  <select class="in-drop">
 							  <option value="Dollars" class="in-of">Dollars</option>
@@ -155,6 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							  <option value="Yen" class="in-of">Yen</option>
 							</select>
 					 </div>
+					 -->
 					<div class="search">
 						<form>
 							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
@@ -223,20 +188,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 		<!---->
-		<div class="footer">
+				<div class="footer">
 			<div class="footer-top">
 				<div class="container">
-					<div class="col-md-4 footer-in">
-						<h4><i> </i>Suspendisse sed</h4>
-						<p>Aliquam dignissim porttitor tortor non fermentum. Curabitur in magna lectus. Duis sed eros diam. Lorem ipsum dolor sit amet, consectetur.</p>
+					<div class="col-md-4 footer-in">						
+						<h4><i><img src="images/telorange.png" alt=" " /></i> A VOTRE ECOUTE</h4>
+						<span class="span">Conseil:0673842460 (Service gratuite)</span>						
+						<p>N'hésitez pas à nous appeler pour obtenir un conseil ou vous accompagner dans votre prise de commande.</p>						
 					</div>
 					<div class="col-md-4 footer-in">
-						<h4><i class="cross"> </i>Suspendisse sed</h4>
-						<p>Aliquam dignissim porttitor tortor non fermentum. Curabitur in magna lectus. Duis sed eros diam. Lorem ipsum dolor sit amet, consectetur.</p>
+						<h4><i class="cross"><img src="images/emailorange.png" alt=" " /> </i>NEWSLETTER</h4>
+						<p>Inscrivez-vous à notre newsletter et restez informé de l’actualité et des bons plans MixHighTech.</p>
+						<form id="get_email" name="getEmail" action="">
+							<p>
+								<input class="input" type= "text"  name="abonnement" value="Votre adresse e-mail"/>
+								<button class="button" onclick="">OK</button>
+							</p>
+						</form>						
 					</div>
 					<div class="col-md-4 footer-in">
-						<h4><i class="down"> </i>Suspendisse sed</h4>
-						<p>Aliquam dignissim porttitor tortor non fermentum. Curabitur in magna lectus. Duis sed eros diam. Lorem ipsum dolor sit amet, consectetur.</p>
+						<h4><i class="down"><img src="images/morange.png" alt=" " /> </i>SUIVEZ-NOUS!</h4>
+						<p> <a href="https://fr-fr.facebook.com/"><img class="facebook" src="images/facebook.png" alt=" " /></a>
+							<a href="https://twitter.com/"><img class="twitter" src="images/twitter.png" alt=" " /></a>
+							<a href="https://www.skype.com/"><img class="skype" src="images/skype.png" alt=" " /></a>
+							<a href="accueil.jsf"><img class="earth" src="images/earth.png" alt=" " /></a>
+						</p>
+						
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -286,7 +263,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="clearfix"></div>
 				</div>
 			</div>
-			<p class="footer-class">Copyright © 2015 Bonfire Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+			<p class="footer-class">  <a href="http://w3layouts.com/" target="_blank"></a> </p>
 			<script type="text/javascript">
 						$(document).ready(function() {
 							/*
