@@ -20,6 +20,9 @@
 </h:head>
 
 <h:body>
+
+<h:form>
+
 <div style="float:left; margin: 0 auto">
 	<h1>.: Liste d'items par categorie :.</h1>
 	<div style="width: 100%">
@@ -65,12 +68,22 @@
 				<f:facet name="header">Stock</f:facet>
 				<h:outputText value="#{it.stock}"/>
 			</h:column>
+			<h:column>
+				<f:facet name="header">Détails</f:facet>
+				<h:commandLink action="#{detailArticleController.doFindItem}">
+					<h:outputText value="#{it.name}"/>
+					<f:param name = "itemId" value="#{it.id}"/>
+				</h:commandLink>	
+			</h:column>
+			
 		</h:dataTable>
 	</div>
 	
 	
 
 </div>
+
+</h:form>
 </h:body>
 
 
