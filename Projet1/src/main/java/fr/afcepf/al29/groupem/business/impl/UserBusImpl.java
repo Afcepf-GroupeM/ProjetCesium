@@ -58,23 +58,6 @@ public class UserBusImpl implements UserBusApi{
 
 
 	@Override
-	public User createUser(Civilite civilite, String lastName, String firstName, String email, String phone, String passwordPlaintext, Date birthDate) {
-		User user = new User();
-		user.setlastName(lastName);
-		user.setfirstName(firstName);
-		user.setCivilite(civilite);
-		user.setBirthDate(birthDate);
-		user.setEmail(email);
-		user.setphone(phone);
-		user.setpasswordHash(secMan.hashPassword(passwordPlaintext));
-		
-		User userCreated = userDao.createUser(user);
-		return userCreated;
-	}
-
-
-
-	@Override
 	public User createUser(User user) {
 		// TODO Auto-generated method stub
 		return null;

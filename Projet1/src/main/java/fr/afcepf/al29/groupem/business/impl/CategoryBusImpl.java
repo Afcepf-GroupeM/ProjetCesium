@@ -37,6 +37,54 @@ public class CategoryBusImpl implements CategoryBusApi {
 		return catDao.getCategoryById(categoryId);
 	}
 
+	@Override
+	public Category createCategory(Category category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Category updateCategory(Category category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean destroyCategory(Category category) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Category> getCategoryByMetaId(int metaCategoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MetaCategory createMetaCategory(MetaCategory metaCategory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MetaCategory updateMetaCategory(MetaCategory metaCategory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean destroyMetaCategory(MetaCategory metaCategory) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Category findCategory(int categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

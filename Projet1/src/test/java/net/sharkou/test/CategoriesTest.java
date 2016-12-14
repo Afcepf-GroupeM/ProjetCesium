@@ -66,7 +66,7 @@ public class CategoriesTest {
 		for (Item item : category.getItems()) {
 			log.info("\t\t- Nom: " + item.getName());
 			log.info("\t\t\tReference: " + item.getReference());
-			log.info("\t\t\tPrix: " + item.getPrix()+ "€");
+			log.info("\t\t\tPrix: " + item.getPrice()+ "€");
 			log.info("\n");
 		}
 
