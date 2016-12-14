@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>Détail de l'article</h:head>
+
+<body>
+
+<h:form>
+
+<h:panelGrid columns="2">
+	
+	<h:column>
+		<h:graphicImage url=""/>
+	</h:column>
+	
+	<h:column>
+		<h:outputText value="Nom de l'article: "/>
+		<h:outputText value="#{detailArticleController.item.name}"/>
+		<br/>
+		<h:outputText value="Description: "/>
+		<h:outputText value="#{detailArticleController.item.description}"/>
+		<br/>
+		<h:outputLabel value="Stock: "/> 
+		<h:selectOneMenu value="#{detailArticleController.item.stock}">
+			<f:selectItems value="#{detailArticleController.item.stock}" />
+		</h:selectOneMenu>
+		<br/>
+		<h:outputText value="Prix: "/>
+		<h:outputText value="#{detailArticleController.item.prix}"/>
+		<br/>
+		<h:commandButton value="Ajouter au panier" />
+		
+		
+	
+	</h:column>
+
+
+
+</h:panelGrid>
+
+
+
+
+</h:form>
+
+
+
+
+</body>
+
+
+</html>
