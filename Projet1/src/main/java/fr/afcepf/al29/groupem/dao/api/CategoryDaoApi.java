@@ -19,6 +19,7 @@ public interface CategoryDaoApi {
 	MetaCategory updateMetaCategory(MetaCategory metaCategory);
 	boolean destroyMetaCategory(MetaCategory metaCategory);
 	List<MetaCategory> getAllMetaCategory();
+	Category findCategory(int categoryId);
 	
 
 }

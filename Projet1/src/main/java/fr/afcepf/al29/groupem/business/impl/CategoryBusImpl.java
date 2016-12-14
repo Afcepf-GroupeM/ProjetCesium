@@ -83,4 +83,10 @@ public class CategoryBusImpl implements CategoryBusApi {
 		return null;
 	}
 
+	@Override
+	public Category findCategory(int categoryId) {
+		
+		return categoryDao.findCategory(categoryId);
+	}
+
 }

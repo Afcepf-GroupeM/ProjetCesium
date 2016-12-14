@@ -21,5 +21,7 @@ public interface CategoryBusApi {
 	boolean destroyMetaCategory(MetaCategory metaCategory);
 	List<MetaCategory> getAllMetaCategory();
 	
+	Category findCategory(int categoryId);
+	
 	
 }

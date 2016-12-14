@@ -97,4 +97,11 @@ public class CategoryDaoImpl implements CategoryDaoApi{
 	}
 
 
+	@Override
+	public Category findCategory(int categoryId) {
+		Category category = entityManager.find(Category.class, categoryId);
+		return category;
+	}
+
+
 }

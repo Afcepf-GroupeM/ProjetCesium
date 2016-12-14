@@ -10,8 +10,13 @@
 Guillaume:
 - Ajout/inscription utilisateur
 
+<<<<<<< HEAD
 Philippe:
 - CartBusImpl
+=======
+Haiyan
+- IHM Category
+>>>>>>> branch 'master' of ssh://git@github.com/Afcepf-GroupeM/ProjetCesium.git
 	
 
 ## Fait ##
