@@ -30,7 +30,7 @@ public class Item {
 	private String reference;
 	
 	@Column(name="price")
-	private float prix;
+	private float price;
 	
 	private String imagePath;
 	
@@ -82,11 +82,11 @@ public class Item {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	public float getPrix() {
-		return prix;
+	public float getPrice() {
+		return price;
 	}
-	public void setPrix(float prix) {
-		this.prix = prix;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 	
 	public String getImagePath() {
@@ -107,7 +107,7 @@ public class Item {
 	
 	
 	
-	public Item(int id, String name, String description, int stock, String reference, float prix, String imagePath,
+	public Item(int id, String name, String description, int stock, String reference, float price, String imagePath,
 			Category category, List<Review> reviews) {
 		super();
 		this.id = id;
@@ -115,7 +115,7 @@ public class Item {
 		this.description = description;
 		this.stock = stock;
 		this.reference = reference;
-		this.prix = prix;
+		this.price = price;
 		this.imagePath = imagePath;
 		this.category = category;
 		this.reviews = reviews;
@@ -138,7 +138,7 @@ public class Item {
 		result = prime * result + id;
 		result = prime * result + ((imagePath == null) ? 0 : imagePath.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + Float.floatToIntBits(prix);
+		result = prime * result + Float.floatToIntBits(price);
 		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
 		result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
 		result = prime * result + stock;
@@ -175,7 +175,7 @@ public class Item {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (Float.floatToIntBits(prix) != Float.floatToIntBits(other.prix))
+		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
 			return false;
 		if (reference == null) {
 			if (other.reference != null)
@@ -197,8 +197,8 @@ public class Item {
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", stock=" + stock
-				+ ", reference=" + reference + ", prix=" + prix + ", imagePath=" + imagePath + ", category=" + category
-				+ ", reviews=" + reviews + "]";
+				+ ", reference=" + reference + ", price=" + price + ", imagePath=" + imagePath + ", category=" + category
+				+ "]";
 	}
 	
 	

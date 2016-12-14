@@ -12,6 +12,12 @@ Guillaume:
 - Affichage liste article par categorie	
 
 
+Philippe:
+- AddressBusImpl
+- CartBusImpl
+- CartLineImpl
+- OrderLineImpl
+
 Haiyan:
 -------
 - IHM Produits
@@ -19,10 +25,20 @@ Haiyan:
 
 
 
+
+	
+
 ###### Fait ######
 
 - Login (DAO/Business/Controller/JSF) (G)
 - Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
+
+- Address (DAO) (P)
+- Cart (DAO) (P)
+- CartLine (DAO) (P)
+- OrderLine (DAO) (P)
+- Carrier (DAO) (P)
+
 - IHM Account
 	
 
