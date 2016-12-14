@@ -9,8 +9,6 @@ public interface CategoryBusApi {
 	
 	List<MetaCategory> getAllMetaCategory();
 	MetaCategory getMetaCategoryById(int metaCategoryId);
-	Category getCategoryById(int categoryByDefault);
-
 	
 	Category createCategory(Category category);
 	Category getCategoryById(int categoryId);
@@ -20,10 +18,10 @@ public interface CategoryBusApi {
 	List<Category> getCategoryByMetaId(int metaCategoryId);
 	
 	MetaCategory createMetaCategory(MetaCategory metaCategory);
-	MetaCategory getMetaCategoryById(int metaCategoryId);
+
 	MetaCategory updateMetaCategory(MetaCategory metaCategory);
 	boolean destroyMetaCategory(MetaCategory metaCategory);
-	List<MetaCategory> getAllMetaCategory();
+
 	
 	Category findCategory(int categoryId);
 	
