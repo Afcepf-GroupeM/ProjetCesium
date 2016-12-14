@@ -27,7 +27,7 @@ public class DetailArticleController {
 	
 	
 	
-	//les méthodes getParam permettent de récupérer un paramètre passé par la page JSP.Doit être utilisé en lien avec la balise <f:param>
+	//les methodes getParam permettent de recuperer un parametre passÃ© par la page JSP.Doit ï¿½tre utilise en lien avec la balise <f:param>
 	protected String getParam(String param) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Map<String, String> map = context.getExternalContext().getRequestParameterMap();
@@ -46,7 +46,7 @@ public class DetailArticleController {
 	}
 	
 	
-	//méthode qui retourne la fiche détaillée d'un article à partir de son id
+	//methode qui retourne la fiche dun article a partir de son id
 	public String doFindItem() {
 		item = itemBus.findItem(getParamId("itemId"));
 		return "item.displayed";
