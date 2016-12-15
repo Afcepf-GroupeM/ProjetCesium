@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>.: Gestionnaire d'adresse :.</title>
+	</h:head>
+
+	<h:body>
+		<h1>.: Gestionnaire d'adresse :.</h1>
+
+		<div>
+			<h:form>
+				<h:panelGrid id="pannelGrid" columns="2" border="1" cellpadding="10" cellspacing="1">
+					<f:facet name="header">
+						<h:outputLabel value="- Ajouter une adresse -"/>
+					</f:facet>
+					<h:outputLabel value="Nom:"/> <h:inputText value="#{addAddressController.name}"  />
+					<h:outputLabel value="Numéro:"/> <h:inputText value="#{addAddressController.number}"  />
+					<h:outputLabel value="Complément:"/>
+					<h:selectOneMenu value="#{addAddressController.complement}">
+						<f:selectItem itemValue="#{null}" itemLabel="--select--" />
+						<f:selectItems value="#{addAddressController.complementList}" />
+					</h:selectOneMenu>
+					<h:outputLabel value="Type de voie:"/>
+					<h:selectOneMenu value="#{addAddressController.roadType}">
+						<f:selectItems value="#{addAddressController.roadTypeList}" />
+					</h:selectOneMenu>
+    				<h:outputLabel value="Nom de la voie:"/> <h:inputText value="#{addAddressController.roadName}" />
+    				<h:outputLabel value="Ville:"/> <h:inputText value="#{addAddressController.city}" />
+    				<h:outputLabel value="Code postal:"/> <h:inputText value="#{addAddressController.zipcode}" maxlength="5" />
+    				<h:outputLabel value="Pays:"/> <h:inputText value="#{addAddressController.country}"  />
+   					<h:outputLabel value="Adresse de facturation:"/> <h:selectBooleanCheckbox value="#{addAddressController.billing}" />
+					<f:facet name="footer">
+						<h:panelGroup style="text-align:center">
+							<h:commandButton value="Ajouter" action="#{addAddressController.action}"/>
+						</h:panelGroup>
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</div>
+
+		<div>
+			<h:outputText value="#{addAddressController.message}"  escape="false"/>
+		</div>
+	</h:body>
+</html>

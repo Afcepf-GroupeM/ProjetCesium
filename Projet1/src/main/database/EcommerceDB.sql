@@ -25,7 +25,7 @@ CREATE TABLE user(
 	birthdate DATE NOT NULL,
 	email VARCHAR(64) NOT NULL,
 	phone VARCHAR(10),
-	hashpassword TEXT NOT NULL,
+	hashpassword VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -33,7 +33,8 @@ CREATE TABLE address(
 	id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
 	name VARCHAR(40),
 	roadnumber TINYINT UNSIGNED NOT NULL,
-	roadtype ENUM('Avenue','Boulevard','Chemin','Impasse','Rue'),
+	complement ENUM('bis','a','b'),
+	roadtype ENUM('Avenue','Boulevard','Chemin','Impasse','Rue','Voie','Place','Allee'),
 	roadname VARCHAR(255) NOT NULL,
 	city VARCHAR(40) NOT NULL,
 	zipcode VARCHAR(5) NOT NULL,
@@ -87,7 +88,8 @@ CREATE TABLE review(
 CREATE TABLE cart(
 	id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
 	creationdate DATE NOT NULL,
-	userid INT UNSIGNED NOT NULL,
+	userid INT UNSIGNED,
+	sessionid INT UNSIGNED,
 	PRIMARY KEY (id)
 );
 
