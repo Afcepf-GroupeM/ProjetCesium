@@ -49,7 +49,7 @@ public class UpdateAddressController {
 		roadTypeList = RoadType.class.getEnumConstants();
 		complementList = ComplementAddress.class.getEnumConstants();
 		
-		address = addressBus.getAddressById(6);
+		address = addressBus.getAddressById(1);
 		initFields(address);
 	}
 	
