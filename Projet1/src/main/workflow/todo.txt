@@ -13,10 +13,8 @@ Guillaume:
 
 
 Philippe:
-- AddressBusImpl
-- CartBusImpl
-- CartLineImpl
-- OrderLineImpl
+- AddressBusImpl/Controller/JSF (affichage liste adresses + disable)
+
 
 Haiyan:
 -------
@@ -34,6 +32,7 @@ Haiyan:
 - Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
 
 - Address (DAO) (P)
+- Ajout/modification d'adresse (Business/Controller/JSF) (P)
 - Cart (DAO) (P)
 - CartLine (DAO) (P)
 - OrderLine (DAO) (P)
@@ -47,7 +46,10 @@ Haiyan:
 	
 	
 ###### A faire ######
-	
+
+- CartBusImpl/Controller/JSF
+- CartLineImpl/Controller/JSF
+- OrderLineImpl/Controller/JSF
 - Affichage panier
 - Affichage article
 - Affichage compte client
