@@ -20,11 +20,11 @@
 		<h:dataTable value="#{ajoutArticlePanierController.cartLines}"  var="cartLine" >
 			<h:column>
 				<f:facet name="header">Nom des articles</f:facet>
-				<h:outputText value=      />
+				<h:outputText value="#{cartLine.item.name}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Prix unitaire</f:facet>
-				<h:outputText value="#{it.reference}"/>
+				<h:outputText value="#{cartLine.unitPrice}"/>
 			</h:column>
 			<!-- <h:column>
 				<f:facet name="header">Quantité</f:facet>
@@ -32,16 +32,16 @@
 			</h:column> -->
 			<h:column>
 				<f:facet name="header">Prix Total</f:facet>
-				<h:outputText value="#{it.description}"/>
+				<h:outputText value="#{cartLine.subTotal}"/>
 			</h:column>
-			<h:column>
+			<!--  <h:column>
 				<f:facet name="header">Supprimer</f:facet>
 				<h:outputText value="#{it.stock}"/>
-			</h:column>
+			</h:column> -->
 		</h:dataTable>
 
 		<br/>
-		<span>Total</span>
+		<!--  Total<h:outputText value="#{ajoutArticlePanierController.getTotal}"/> -->
 		<h:commandButton value="Poursuivez vos achats"  action=""/>
 		<br/>
 		

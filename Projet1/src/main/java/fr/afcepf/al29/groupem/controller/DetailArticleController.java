@@ -56,7 +56,7 @@ public class DetailArticleController {
 		//item = itemBus.findItem(2);
 		item = itemBus.findItem(getParamId("itemId"));
 		return "/detailArticle.xhtml?faces-redirect=true";
-				//"item.displayed";
+				
 		
 	}
 

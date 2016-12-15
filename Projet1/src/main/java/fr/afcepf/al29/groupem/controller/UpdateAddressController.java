@@ -44,13 +44,13 @@ public class UpdateAddressController {
 	@Autowired
 	private AddressBusApi addressBus;
 	
-	@PostConstruct
+	//@PostConstruct
 	public void init(){
 		roadTypeList = RoadType.class.getEnumConstants();
 		complementList = ComplementAddress.class.getEnumConstants();
 		
-		address = addressBus.getAddressById(6);
-		initFields(address);
+		//address = addressBus.getAddressById(1);
+		//initFields(address);
 	}
 	
 	public String action(){
