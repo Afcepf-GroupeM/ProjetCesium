@@ -99,6 +99,14 @@ public class CartLine {
 	public CartLine() {
 	
 	}
+	
+	public CartLine(int quantity, Item item) {
+		super();
+		this.quantity = quantity;
+		this.item = item;
+	}
+	
+	
 
 	@Override
 	public int hashCode() {

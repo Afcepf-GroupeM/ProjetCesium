@@ -62,7 +62,7 @@ public class ItemDaoImpl implements ItemDaoApi {
 		
 		Query query;
 		List<Item> items;
-		query = entityManager.createQuery("SELECT i FROM Item i WHERE UPPER(i.name) LIKE:keyword OR UPPER (i.category.name) LIKE :keyword ORDER BY i.category.metacategory.name, i.category.name");
+		query = entityManager.createQuery("SELECT i FROM Item i WHERE UPPER(i.name) LIKE:keyword OR UPPER (i.category.name) LIKE :keyword ORDER BY i.category.metaCategory.name, i.category.name");
 		query.setParameter("keyword", "%" + keyword.toUpperCase() + "%");
 		items = query.getResultList();
 		

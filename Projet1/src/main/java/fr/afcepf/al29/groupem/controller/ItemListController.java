@@ -2,10 +2,14 @@ package fr.afcepf.al29.groupem.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,10 +29,10 @@ public class ItemListController {
 	private Category category;
 	
 	private List<Item> listItem;
-	
+	private int idCatToPrint;
 	private Category chosenCategory;
 
-	private String imagePath = "images/items/";
+	private String imagePath = "/images/items/";
 	
 	
 	@Autowired
@@ -38,13 +42,16 @@ public class ItemListController {
 	
 	
 	
-	@PostConstruct
-	public void init(){
+//	@PostConstruct
+	public void init(ComponentSystemEvent e){
 		listMetaCategory = new ArrayList<>();
 		listMetaCategory = catBus.getAllMetaCategory();
 		
-		int categoryByDefault = 1;
-		chosenCategory = catBus.getCategoryById(categoryByDefault);
+		if(idCatToPrint == 0){
+			idCatToPrint = 1;
+		}
+		
+		chosenCategory = catBus.getCategoryById(idCatToPrint);
 		List<Item> listItemToTrim = chosenCategory.getItems();
 		for (Item item : listItemToTrim) {
 			String description = item.getDescription();
@@ -119,6 +126,14 @@ public class ItemListController {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public int getIdCatToPrint() {
+		return idCatToPrint;
+	}
+
+	public void setIdCatToPrint(int idCatToPrint) {
+		this.idCatToPrint = idCatToPrint;
 	}
 
 

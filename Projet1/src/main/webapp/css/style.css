@@ -385,9 +385,9 @@ select.in-drop option {
 	color:#4c4c4c;
 }
 .search{
-	float:left;
+	float:right;
 	position:relative;
-	width:47%;
+	width:75%;
 	border-top: 1px solid #DADADA;	
 	border-left: 1px solid #DADADA;	
 	background: #fff;
@@ -1429,16 +1429,56 @@ ul.start li a i.next {
 .footer-in h4 i{
 	width: 30px;
 	height: 30px;
-	background: url(../images/img-sprite.png)no-repeat -235px -11px ;
+	/*background: url(../images/img-sprite.png)no-repeat -235px -11px ;*/
 	display: inline-block;
 	vertical-align: middle;
 }
 .footer-in h4 i.cross{
-	background-position:-275px -11px ;
+	/*background-position:-275px -11px ;*/
 }
 .footer-in h4 i.down{
-	background-position:-313px -11px ;
+	/*background-position:-313px -11px ;*/
 }
+.footer-in span{
+	color:red;
+	font-size:1.2em;
+	line-height:1.8em;
+	padding: 0.3em 0 0 2.1em;
+	
+}
+.footer-in input{
+	float:left;
+	position:relative;
+	width:85%;
+	border-top: 1px solid #DADADA;	
+	border-left: 1px solid #DADADA;	
+	background: #fff;
+	border-radius: 4px;
+	
+}
+.footer-in button{
+	float:right;
+	position:relative;
+	width:12%;
+	border-top: 1px solid #DADADA;	
+	border-left: 1px solid #DADADA;	
+	background: #fff;
+	border-radius: 4px;
+	
+}
+/*
+.footer-in facebook{
+	float:left;
+	padding:10 10 10 0 px;	
+	position:absolute,	
+}
+.footer-in twitter{
+	float:middle;	
+}
+.footer-in skype{
+	float:right;
+	}
+*/
 .footer-in p{
 	color:#7d7253;
 	font-size:0.9em;
