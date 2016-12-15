@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.ItemBusApi;
+import fr.afcepf.al29.groupem.entities.CartLine;
 import fr.afcepf.al29.groupem.entities.Item;
 
 
@@ -24,6 +25,10 @@ public class DetailArticleController {
 	
 	private Item item;
 	private List<Item> items;
+	private CartLine cartLine;
+	
+	
+	private String imagePath = "/images/items/";
 	
 	
 	
@@ -57,6 +62,7 @@ public class DetailArticleController {
 
 
 
+	//GETTERS et SETTERS
 	public ItemBusApi getItemBus() {
 		return itemBus;
 	}
@@ -89,6 +95,30 @@ public class DetailArticleController {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+
+	public CartLine getCartLine() {
+		return cartLine;
+	}
+
+
+
+	public void setCartLine(CartLine cartLine) {
+		this.cartLine = cartLine;
 	}
 	
 	
