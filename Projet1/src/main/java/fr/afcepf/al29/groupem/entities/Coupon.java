@@ -40,28 +40,9 @@ public class Coupon {
 	@Column(name="imagepath")
 	private String imagePath;
 	
-	@Column(name="categoryid")
-	private int categoryId;
-	
-	
-	
-	public Coupon(int id, String code, Date startDate, Date endDate, float rebate, String description, String imagePath, int categoryId) {
-		this.id = id;
-		this.code = code;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.rebate = rebate;
-		this.description = description;
-		this.imagePath = imagePath;
-		this.categoryId = categoryId;
-	}
-
-
-	
-	
 	@ManyToOne
-	@JoinColumn(name="id_category")
-	private Category categories;
+	@JoinColumn(name="categoryid")
+	private Category category;
 	
 	
 
@@ -107,14 +88,14 @@ public class Coupon {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public Category getCategories() {
-		return categories;
+	public Category getCategory() {
+		return category;
 	}
-	public void setCategories(Category categories) {
-		this.categories = categories;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	public Coupon(int id, String code, Date startDate, Date endDate, float rebate, String description, String imagePath,
-			Category categories) {
+			Category category) {
 		super();
 		this.id = id;
 		this.code = code;
@@ -123,7 +104,7 @@ public class Coupon {
 		this.rebate = rebate;
 		this.description = description;
 		this.imagePath = imagePath;
-		this.categories = categories;
+		this.category = category;
 	}
 	
 	public Coupon() {
@@ -133,7 +114,7 @@ public class Coupon {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
@@ -152,10 +133,10 @@ public class Coupon {
 		if (getClass() != obj.getClass())
 			return false;
 		Coupon other = (Coupon) obj;
-		if (categories == null) {
-			if (other.categories != null)
+		if (category == null) {
+			if (other.category != null)
 				return false;
-		} else if (!categories.equals(other.categories))
+		} else if (!category.equals(other.category))
 			return false;
 		if (code == null) {
 			if (other.code != null)
@@ -191,7 +172,7 @@ public class Coupon {
 	@Override
 	public String toString() {
 		return "Coupon [id=" + id + ", code=" + code + ", startDate=" + startDate + ", endDate=" + endDate + ", rebate="
-				+ rebate + ", description=" + description + ", imagePath=" + imagePath + ", categories=" + categories
+				+ rebate + ", description=" + description + ", imagePath=" + imagePath + ", category=" + category
 				+ "]";
 	}
 	

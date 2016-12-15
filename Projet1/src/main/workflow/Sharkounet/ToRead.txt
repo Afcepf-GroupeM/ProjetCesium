@@ -1,0 +1,2 @@
+http://www.oio.de/public/java/jsf-best-practices-javaserver-faces-session-tips.htm
+http://stackoverflow.com/questions/17802136/session-management-in-jsf-2-0

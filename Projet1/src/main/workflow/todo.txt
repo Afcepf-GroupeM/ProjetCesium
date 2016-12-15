@@ -9,8 +9,16 @@
 
 Guillaume:
 ----------
-- Affichage liste article par categorie	
+- Gestionnaire de session
 
+
+
+Philippe:
+---------
+- AddressBusImpl
+- CartBusImpl
+- CartLineImpl
+- OrderLineImpl
 
 Haiyan:
 -------
@@ -19,10 +27,21 @@ Haiyan:
 
 
 
+
+	
+
 ###### Fait ######
 
+- Affichage liste article par categorie	(G)
 - Login (DAO/Business/Controller/JSF) (G)
 - Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
+
+- Address (DAO) (P)
+- Cart (DAO) (P)
+- CartLine (DAO) (P)
+- OrderLine (DAO) (P)
+- Carrier (DAO) (P)
+
 - IHM Account
 	
 
@@ -36,4 +55,3 @@ Haiyan:
 - Affichage article
 - Affichage compte client
 - Ajouter article
-- Gestionnaire de session

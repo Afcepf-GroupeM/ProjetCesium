@@ -56,11 +56,11 @@ public class Order {
 	private List<OrderLine> orderLines;
 	
 	@OneToOne()
-	@JoinColumn(name="billingadressid")
+	@JoinColumn(name="billingaddressid")
 	private Address adresseFacturation;
 	
 	@OneToOne()
-	@JoinColumn(name="shippingadressid")
+	@JoinColumn(name="shippingaddressid")
 	private Address adresseLivraison;
 	
 	@ManyToOne()
@@ -320,7 +320,7 @@ public class Order {
 	public String toString() {
 		return "Order [id=" + id + ", creationDate=" + creationDate + ", amount=" + amount + ", typePayment="
 				+ typePayment + ", trackingNumber=" + trackingNumber + ", state=" + state + ", carrier=" + carrier
-				+ ", orderLines=" + orderLines + ", adresseFacturation=" + adresseFacturation + ", adresseLivraison="
+				+ ", adresseFacturation=" + adresseFacturation + ", adresseLivraison="
 				+ adresseLivraison + ", user=" + user + ", coupon=" + coupon + "]";
 	}
 	

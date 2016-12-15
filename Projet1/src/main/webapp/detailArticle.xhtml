@@ -37,7 +37,9 @@
 
 </h:panelGrid>
 
-	<h:commandButton value="Ajouter au panier" />
+	<h:commandButton value="Ajouter au panier" action ="#{ajoutArticlePanierController.addItemToCart}"   type="submit">
+	<f:param name = "itemId" value="#{ajoutArticlePanierController.item.id}"/>
+	</h:commandButton>
 </h:form>
 </body>
 </html>

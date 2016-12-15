@@ -113,7 +113,7 @@ public class MetaCategory {
 
 	@Override
 	public String toString() {
-		return "MetaCategory [id=" + id + ", name=" + name + ", categories=" + categories + "]";
+		return "MetaCategory [id=" + id + ", name=" + name + "]";
 	}
 	
 	

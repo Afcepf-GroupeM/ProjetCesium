@@ -7,9 +7,6 @@ import fr.afcepf.al29.groupem.entities.MetaCategory;
 
 public interface CategoryBusApi {
 	
-	List<MetaCategory> getAllMetaCategory();
-	MetaCategory getMetaCategoryById(int metaCategoryId);
-	
 	Category createCategory(Category category);
 	Category getCategoryById(int categoryId);
 	Category updateCategory(Category category);
@@ -18,10 +15,10 @@ public interface CategoryBusApi {
 	List<Category> getCategoryByMetaId(int metaCategoryId);
 	
 	MetaCategory createMetaCategory(MetaCategory metaCategory);
-
+	MetaCategory getMetaCategoryById(int metaCategoryId);
 	MetaCategory updateMetaCategory(MetaCategory metaCategory);
 	boolean destroyMetaCategory(MetaCategory metaCategory);
-
+	List<MetaCategory> getAllMetaCategory();
 	
 	Category findCategory(int categoryId);
 	

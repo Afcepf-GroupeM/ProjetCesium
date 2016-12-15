@@ -57,8 +57,6 @@ public class UserBusImpl implements UserBusApi{
 
 
 
-
-
 	@Override
 	public User createUser(User user) {
 		// TODO Auto-generated method stub

@@ -1,0 +1,14 @@
+to do session
+
+
+login -> Ok
+--> Creation UUID
+UUID lié a User
+
+- creer objet session
+- stockage session DB ?
+
+- creation du cookie
+- injection cookie
+- fetch cookie
+- read cookie
