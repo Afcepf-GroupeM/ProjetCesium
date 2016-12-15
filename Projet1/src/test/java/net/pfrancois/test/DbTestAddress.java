@@ -75,13 +75,13 @@ public class DbTestAddress {
 		}
 	}
 	
-	@Test	//OK
+	//@Test	//OK
 	public void getAddress(){
 		Address address = addressDao.getAddressById(1);
 		Assert.assertTrue(address.getId() == 1);
 	}
 	
-	@Test	//OK
+	//@Test	//OK
 	public void majAddress(){
 		Address address = addressDao.getAddressById(1);
 		
@@ -96,7 +96,7 @@ public class DbTestAddress {
 		Assert.assertTrue(address.getCountry().equals("Euros"));
 	}
 	
-	@Test	//OK
+	//@Test	//OK
 	public void oldAddress(){
 		Address address = addressDao.getAddressById(1);
 		System.out.println("@@@@@@@@@@@@@@ Validité addresse avant: " + address.isValide() + " @@@@@@@@@@@@");

@@ -17,35 +17,35 @@
 
 	<div>
 		<h:form>
-		<h:datatable>
-				<tr>
-					<th>Designation de vos articles</th>
-					<th>Disponibilité</th>
-					<th>Prix unitaire €</th>
-					<th>Quantité</th>
-					<th>Prix TTC</th>
-					
-				</tr>		
-						
-				<ui:repeat var=""  value="">
-				<tr>
-				<!-- Iterer la liste des articles contenus dans le panier, cf Sebastien -->
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					
-				</tr>
-				</ui:repeat>
-	
-		</h:datatable>
+		<h:dataTable value="#{ajoutArticlePanierController.cartLines}"  var="cartLine" >
+			<h:column>
+				<f:facet name="header">Nom des articles</f:facet>
+				<h:outputText value="#{cartLine.item.name}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Prix unitaire</f:facet>
+				<h:outputText value="#{cartLine.unitPrice}"/>
+			</h:column>
+			<!-- <h:column>
+				<f:facet name="header">Quantité</f:facet>
+				<h:outputText value="#{it.price}"/>
+			</h:column> -->
+			<h:column>
+				<f:facet name="header">Prix Total</f:facet>
+				<h:outputText value="#{cartLine.subTotal}"/>
+			</h:column>
+			<!--  <h:column>
+				<f:facet name="header">Supprimer</f:facet>
+				<h:outputText value="#{it.stock}"/>
+			</h:column> -->
+		</h:dataTable>
+
 		<br/>
-		<span>Total</span>
-		<h:commandButton value="Poursuivez votre achat"  action=""/>
+		<!--  Total<h:outputText value="#{ajoutArticlePanierController.getTotal}"/> -->
+		<h:commandButton value="Poursuivez vos achats"  action=""/>
 		<br/>
 		
-		<h:commandButton value="Continuez votre commande"  action=""/>
+		<h:commandButton value="Validez la commande"  action=""/>
 	
 	</h:form>
 	</div>

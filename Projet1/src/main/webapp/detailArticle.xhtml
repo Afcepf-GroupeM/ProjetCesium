@@ -15,7 +15,7 @@
 <h:panelGrid columns="2">
 	
 	<h:column>
-		<h:graphicImage url=""/>
+		<img src="#{request.contextPath}#{detailArticleController.imagePath}#{it.id}/1.jpg" height="128" width="128"></img>
 	</h:column>
 	
 	<h:column>
@@ -25,13 +25,19 @@
 		<h:outputText value="Description: "/>
 		<h:outputText value="#{detailArticleController.item.description}"/>
 		<br/>
-		<h:outputLabel value="Stock: "/> 
-		<h:selectOneMenu value="#{detailArticleController.item.stock}">
-			<f:selectItems value="#{detailArticleController.item.stock}" />
-		</h:selectOneMenu>
+		<h:outputText value="Stock: "/>
+		<h:outputText value="#{detailArticleController.item.stock}"/>
 		<br/>
+		<!-- <h:outputLabel value="Quantité: "/> 
+		<h:selectOneMenu value="#{detailArticleController.cartLine.quantity}">
+			<f:selectItems itemLabel="1" />
+			<f:selectItems itemLabel="2" />
+			<f:selectItems itemLabel="3" />
+			<f:selectItems itemLabel="4" />
+		</h:selectOneMenu>
+		<br/> -->
 		<h:outputText value="Prix: "/>
-		<h:outputText value="#{detailArticleController.item.prix}"/>
+		<h:outputText value="#{detailArticleController.item.price}"/>
 		<br/>
 	</h:column>
 

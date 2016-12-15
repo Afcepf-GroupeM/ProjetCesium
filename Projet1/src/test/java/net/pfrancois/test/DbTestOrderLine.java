@@ -21,6 +21,7 @@ import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.Carrier;
 import fr.afcepf.al29.groupem.entities.Category;
 import fr.afcepf.al29.groupem.entities.Civilite;
+import fr.afcepf.al29.groupem.entities.ComplementAddress;
 import fr.afcepf.al29.groupem.entities.Coupon;
 import fr.afcepf.al29.groupem.entities.Item;
 import fr.afcepf.al29.groupem.entities.MetaCategory;
@@ -78,6 +79,7 @@ public class DbTestOrderLine {
 		Address address = new Address();
 		address.setName("Coffre");
 		address.setNumber(13);
+		address.setComplement(ComplementAddress.bis);
 		address.setRoadType(RoadType.Rue);
 		address.setRoadName(" du fric");
 		address.setCity("PicsouVille");

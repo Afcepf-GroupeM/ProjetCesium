@@ -156,5 +156,13 @@ public class CartLine {
 
 	
 	
+	//méthode qui permet de retourner le prix total d'une ligne panier c'est à dire le prix unitaire de l'article multiplié par la quantité
+	
+		public Float getSubTotal() {
+			return item.getPrice()*quantity;
+		}
+	
+	
+	
 	
 }
