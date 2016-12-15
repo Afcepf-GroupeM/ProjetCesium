@@ -48,6 +48,7 @@ public class DetailArticleController {
 	
 	//m�thode qui retourne la fiche d�taill�e d'un article � partir de son id
 	public String doFindItem() {
+		//item = itemBus.findItem(2);
 		item = itemBus.findItem(getParamId("itemId"));
 		return "/detailArticle.xhtml?faces-redirect=true";
 				//"item.displayed";
