@@ -9,10 +9,10 @@ public interface UserBusApi {
 	
 	public boolean checkUserCredential(String login, String password);
 	
-	User createUser(User user);
 
 	User createUser(Civilite civilite, String lastName, String firstName, String email, String phone,
 			String passwordPlaintext, Date birthDate);
 	
+	User getUserByLogin(String login);
 	
 }

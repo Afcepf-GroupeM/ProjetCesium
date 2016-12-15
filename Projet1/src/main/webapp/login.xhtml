@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
 
 <h:head>
 <title>.: Login :.</title>
@@ -16,11 +17,26 @@
  <h:form>
        Login : <h:inputText value="#{loginController.login}"  /> <br/>
        Passord : <h:inputSecret value="#{loginController.password}"  /><br/>
-       <h:commandButton value="Connect!" action="#{loginController.action}"/>
+       <h:commandButton value="Connect!" action="#{loginController.loginaction}"/>
  </h:form>
  </div>
+ <br/>
  <div>
  <h:outputLabel value="#{loginController.errorMessage}"/>
+  <br/>
+ </div>
+ <div>
+ <br/>
+ <br/>
+ Acceder aux pages:<br/>
+ <a href="secret.jsf">Secrete</a><br/><br/><br/>
+ <a href="item-list.jsf">Item list</a><br/><br/>
+ 
+ 
+<!--  <pretty:link mappingId="secret">- Secrete (login requiered)</pretty:link><br/>
+ <pretty:link mappingId="item-list"><f:param value="1" />- Item List</pretty:link><br/> -->
+ 
+ 
  </div>
 
 </h:body>

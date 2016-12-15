@@ -32,7 +32,7 @@ public class CategoriesTest {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testGetAllMeta(){
 		
 		List<MetaCategory> listMeta = null;
@@ -55,7 +55,7 @@ public class CategoriesTest {
 	}
 	
 	
-	@Test
+//	@Test
 	public void testPrintCategory(){
 		
 		Category category = catDao.getCategoryById(1);

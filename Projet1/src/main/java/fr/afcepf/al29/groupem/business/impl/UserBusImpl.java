@@ -24,9 +24,6 @@ public class UserBusImpl implements UserBusApi{
 	
 	
 	
-	
-	
-	
 	public boolean checkUserCredential(String login, String password){
 		boolean result = false;
 		User userToCheck = null;
@@ -56,11 +53,12 @@ public class UserBusImpl implements UserBusApi{
 	}
 
 
-
 	@Override
-	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUserByLogin(String login) {
+		User user = userDao.getUserByEmail(login);
+		return user;
 	}
+	
+	
 
 }
