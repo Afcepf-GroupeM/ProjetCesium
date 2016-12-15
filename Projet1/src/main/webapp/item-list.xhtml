@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">  <!-- Important pour les balises prettylink -->
 
 <h:head>
 <title>.: Item list :.</title>
@@ -20,9 +21,8 @@
 </h:head>
 
 <h:body>
-
+<f:event listener="#{itemListController.init}" type="preRenderView" />
 <h:form>
-
 <div style="float:left; margin: 0 auto">
 	<h1>.: Liste d'items par categorie :.</h1>
 	<div style="width: 100%">
@@ -31,7 +31,7 @@
 					<h:outputText value="#{metaCat.id}"/> - <h:outputText value="#{metaCat.name}"/><br/>
 					<ul style="margin: 0">
 						<ui:repeat var="cat" value="#{metaCat.categories}">
-							<li><h:outputText value="#{cat.name}"/></li>
+							<li><pretty:link mappingId="item-list"><f:param value="#{cat.id}" /><h:outputText value="#{cat.name}"/></pretty:link></li>
 						</ui:repeat>
 					</ul>
 			</div>
@@ -46,7 +46,7 @@
     			rowClasses="order-table-odd-row,order-table-even-row">
 			<h:column>
 				<f:facet name="header">Photo</f:facet>
-				<img src="#{itemListController.imagePath}#{it.id}/1.jpg" height="128" width="128"></img>
+				<img src="#{request.contextPath}#{itemListController.imagePath}#{it.id}/1.jpg" height="128" width="128"></img>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Nom</f:facet>
@@ -58,7 +58,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Prix</f:facet>
-				<h:outputText value="#{it.prix}"/>€
+				<h:outputText value="#{it.price}"/>€
 			</h:column>
 			<h:column>
 				<f:facet name="header">Description</f:facet>
@@ -75,14 +75,9 @@
 					<f:param name = "itemId" value="#{it.id}"/>
 				</h:commandLink>	
 			</h:column>
-			
 		</h:dataTable>
 	</div>
-	
-	
-
 </div>
-
 </h:form>
 </h:body>
 
