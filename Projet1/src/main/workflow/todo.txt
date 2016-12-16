@@ -9,18 +9,19 @@
 
 Guillaume:
 ----------
-- BAT d'installation de la base de données
+- Panier (CartBusImpl/Controller/JSF)
+- lignePanier (CartLineImpl/Controller/JSF)
 
 
 
 Philippe:
 ---------
-- AddressBusImpl/Controller/JSF (affichage liste adresses + disable)
+- réévaluation fiche article (Controller/JSF)
 
 
 Haiyan:
 -------
-- IHM Produits
+- espace client (Controller/JSF)
 	
 
 
@@ -35,9 +36,9 @@ Haiyan:
 - Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
 - Gestionnaire de session (G)
 - Fichier BAT installation de la DB (G)
+- BAT d'installation de la base de données (G)
 
-- Address (DAO) (P)
-- Ajout/modification d'adresse (Business/Controller/JSF) (P)
+- AddressManager (DAO/Business/Controller/JSF) (P)
 - Cart (DAO) (P)
 - CartLine (DAO) (P)
 - OrderLine (DAO) (P)
@@ -52,10 +53,5 @@ Haiyan:
 	
 ###### A faire ######
 
-- CartBusImpl/Controller/JSF
-- CartLineImpl/Controller/JSF
-- OrderLineImpl/Controller/JSF
-- Affichage panier
-- Affichage article
-- Affichage compte client
+- OrderLineImpl (Business/Controller/JSF)
 - Ajouter article
