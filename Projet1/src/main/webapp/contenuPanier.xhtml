@@ -7,46 +7,56 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 
-<h:head>Contenu du panier</h:head>
+<h:head>
+<title>.: Item list :.</title>
+</h:head>
 
 <body>
 
 	<div>
-		<span>Détail de votre panier</span>
+		<h1>Détail de votre panier</h1>
 	</div>
-
 	<div>
+		<h2>Panier Id <h:outputText value="#{panierController.cart.id}"/> - (Printing for debug purpose only)</h2>
 		<h:form>
-		<h:datatable>
-				<tr>
-					<th>Designation de vos articles</th>
-					<th>Disponibilité</th>
-					<th>Prix unitaire €</th>
-					<th>Quantité</th>
-					<th>Prix TTC</th>
-					
-						
-						
-				<ui:repeat var=""  value="">
-				<tr>
-				<!-- Iterer la liste des articles contenus dans le panier, cf Sebastien -->
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					
-				</tr>
-				</ui:repeat>
-	
-		</h:datatable>
+		<h:dataTable value="#{panierController.cartLines}"  var="line" >
+			<h:column>
+				<f:facet name="header">Nom des articles</f:facet>
+				<h:outputText value="#{line.item.name}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Prix unitaire</f:facet>
+				<h:outputText value="#{line.unitPrice}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Stock</f:facet>
+				<h:outputText value="#{line.item.stock}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Quantité</f:facet>
+				<h:outputText value="#{line.quantity}"/>
+			</h:column> 
+			<h:column>
+				<f:facet name="header">Prix Total</f:facet>
+				<h:outputText value="#{panierController.cartLinesSubtotal[line.id]}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Supprimer</f:facet>
+				<h:commandLink action="#{panierController.removeItemFromCart}">
+					<h:outputText value="Supprimer"/>
+					<f:param name="itemIdToRemove" value="#{line.item.id}"/>
+				</h:commandLink>	
+			</h:column>
+		</h:dataTable>
+
 		<br/>
-		<span>Total</span>
-		<h:commandButton value="Poursuivez votre achat"  action=""/>
+		<div class="zoneButton">
+		Montant total: <h:outputText value="#{panierController.totalAmount}"/>€<br/><br/>
+		<h:commandButton value="Poursuivez votre achat"  action="#"/>
 		<br/>
 		
-		<h:commandButton value="Continuez votre commande"  action=""/>
-	
+		<h:commandButton value="Continuez votre commande"  action="#"/>
+		</div>
 	</h:form>
 	</div>
 </body>

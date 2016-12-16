@@ -12,10 +12,10 @@
 
 <h:form>
 	<fieldset>
-		<legend>Recherche par libellé</legend>
-		<span>nom :</span>
+		<legend>Recherche :</legend>
+		<span>recherche :</span>
 		<h:inputText value="#{rechercheArticleController.keyword}"/>
-		<h:commandLink action="#{rechercheArticleController.doSearch}"  value="chercher" />
+		<h:commandLink action="#{rechercheArticleController.doSearch}"  value="valider" />
 	</fieldset>
 
 	<fieldset>
@@ -31,7 +31,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Prix</f:facet>
-				<h:outputLabel value="#{item.prix}"/>
+				<h:outputLabel value="#{item.price}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Stock</f:facet>

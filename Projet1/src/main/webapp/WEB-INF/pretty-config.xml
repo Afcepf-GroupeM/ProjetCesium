@@ -5,9 +5,36 @@
                       
 	
 	<url-mapping id="item-list">
-		<pattern value="/category/#{itemListController.idCatToPrint}" />
+		<pattern value="/Category/#{itemListController.idCatToPrint}" />
 		<view-id value="/item-list.jsf" />
 	</url-mapping>
+	
+	<url-mapping id="login">
+		<pattern value="/Login" />
+		<view-id value="/login.jsf" />
+	</url-mapping>
+	
+<!-- 	<url-mapping id="session-expired">
+		<pattern value="/SessionExpired" />
+		<view-id value="/session-expired.jsf" />
+	</url-mapping>
+	
+	<url-mapping id="logout">
+        <pattern value="/Logout" />
+        <view-id value="/logout.jsf" />
+        <action>#{loginController.logout}</action>
+    </url-mapping>
+    
+    <url-mapping id="secret">
+        <pattern value="/PageSecrete" />
+        <view-id value="/secret.jsf" />
+        <action>#{loginController.logout}</action>
+    </url-mapping>
+    
+    <url-mapping id="error-not-connected">
+        <pattern value="/ErrorNotConnected" />
+        <view-id value="/error-needtobeconnected.jsf" />
+    </url-mapping> -->
 	
 	
 

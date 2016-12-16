@@ -27,6 +27,10 @@ public class Address {
 	@Column(name="roadnumber")
 	private int number;
 	
+	@Column(name="complement")
+	@Enumerated(EnumType.STRING)
+	private ComplementAddress complement;
+	
 	@Column(name="roadtype")
 	@Enumerated(EnumType.STRING)
 	private RoadType roadType;
@@ -44,7 +48,7 @@ public class Address {
 	private boolean isBilling;
 	
 	@Column(name="isvalid")
-	private boolean isValide;
+	private boolean isValid;
 	
 	
 	
@@ -71,6 +75,12 @@ public class Address {
 	}
 	public void setNumber(int number) {
 		this.number = number;
+	}
+	public ComplementAddress getComplement() {
+		return complement;
+	}
+	public void setComplement(ComplementAddress complement) {
+		this.complement = complement;
 	}
 	public RoadType getRoadType() {
 		return roadType;
@@ -115,46 +125,51 @@ public class Address {
 	public void setRoadName(String roadName) {
 		this.roadName = roadName;
 	}
-	public boolean isValide() {
-		return isValide;
+	public boolean isValid() {
+		return isValid;
 	}
-	public void setValide(boolean isValide) {
-		this.isValide = isValide;
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
 	}
-	public Address(int id, String name, int number, RoadType roadType, String roadName, String city, String zipcode,
-			String country, boolean isBilling, boolean isValide, User user) {
+	
+	public Address() {
+		
+	}
+	public Address(int id, String name, int number, ComplementAddress complement, RoadType roadType, String roadName, String city,
+			String zipcode, String country, boolean isBilling, boolean isValid, User user) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.number = number;
+		this.complement = complement;
 		this.roadType = roadType;
 		this.roadName = roadName;
 		this.city = city;
 		this.zipcode = zipcode;
 		this.country = country;
 		this.isBilling = isBilling;
-		this.isValide = isValide;
+		this.isValid = isValid;
 		this.user = user;
 	}
 	
-	public Address() {
-		
-	}
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", name=" + name + ", number=" + number + ", roadType=" + roadType + ", roadName="
-				+ roadName + ", city=" + city + ", zipcode=" + zipcode + ", country=" + country + ", isBilling="
-				+ isBilling + ", isValide=" + isValide + ", user=" + user + "]";
+		return "Address [id=" + id + ", name=" + name + ", number=" + number + ", complement=" + complement
+				+ ", roadType=" + roadType + ", roadName=" + roadName + ", city=" + city + ", zipcode=" + zipcode
+				+ ", country=" + country + ", isBilling=" + isBilling + ", isValid=" + isValid + ", user=" + user
+				+ "]";
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((complement == null) ? 0 : complement.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + id;
 		result = prime * result + (isBilling ? 1231 : 1237);
-		result = prime * result + (isValide ? 1231 : 1237);
+		result = prime * result + (isValid ? 1231 : 1237);
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + number;
 		result = prime * result + ((roadName == null) ? 0 : roadName.hashCode());
@@ -163,6 +178,7 @@ public class Address {
 		result = prime * result + ((zipcode == null) ? 0 : zipcode.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -177,6 +193,8 @@ public class Address {
 				return false;
 		} else if (!city.equals(other.city))
 			return false;
+		if (complement != other.complement)
+			return false;
 		if (country == null) {
 			if (other.country != null)
 				return false;
@@ -186,7 +204,7 @@ public class Address {
 			return false;
 		if (isBilling != other.isBilling)
 			return false;
-		if (isValide != other.isValide)
+		if (isValid != other.isValid)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -214,7 +232,4 @@ public class Address {
 			return false;
 		return true;
 	}
-	
-	
-
 }

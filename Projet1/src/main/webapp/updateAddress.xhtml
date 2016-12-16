@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>.: Gestionnaire d'adresse :.</title>
+	</h:head>
+
+	<h:body>
+		<f:event listener="#{updateAddressController.init}" type="preRenderView" />
+		<h1>.: Gestionnaire d'adresse :.</h1>
+
+		<div>
+			<h:form>
+				<h:panelGrid id="pannelGrid" columns="2" border="1" cellpadding="10" cellspacing="1">
+					<f:facet name="header">
+						<h:outputLabel value="- Mettre à jour une adresse -"/>
+					</f:facet>
+					<h:outputLabel value="Nom:"/> <h:inputText value="#{updateAddressController.name}"  />
+					<h:outputLabel value="Numéro:"/> <h:inputText value="#{updateAddressController.number}"  />
+					<h:outputLabel value="Complément:"/>
+					<h:selectOneMenu value="#{updateAddressController.complement}">
+						<f:selectItem itemValue="#{null}" itemLabel="--select--" />
+						<f:selectItems value="#{updateAddressController.complementList}" />
+					</h:selectOneMenu>
+					<h:outputLabel value="Type de voie:"/>
+					<h:selectOneMenu value="#{updateAddressController.roadType}">
+						<f:selectItems value="#{updateAddressController.roadTypeList}" />
+					</h:selectOneMenu>
+    				<h:outputLabel value="Nom de la voie:"/> <h:inputText value="#{updateAddressController.roadName}" />
+    				<h:outputLabel value="Ville:"/> <h:inputText value="#{updateAddressController.city}" />
+    				<h:outputLabel value="Code postal:"/> <h:inputText value="#{updateAddressController.zipcode}" maxlength="5" />
+    				<h:outputLabel value="Pays:"/> <h:inputText value="#{updateAddressController.country}"  />
+   					<h:outputLabel value="Adresse de facturation:"/> <h:selectBooleanCheckbox value="#{updateAddressController.billing}" />
+					<f:facet name="footer">
+						<h:panelGroup style="text-align:center">
+							<h:commandButton value="Mettre à jour" action="#{updateAddressController.action}"/>
+							<h:button outcome="addressManager" value="Annuler" />
+						</h:panelGroup>
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</div>
+
+		<div>
+			<h:outputText value="#{updateAddressController.message}"  escape="false"/>
+		</div>
+	</h:body>
+</html>
