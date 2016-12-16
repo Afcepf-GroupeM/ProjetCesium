@@ -42,7 +42,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Supprimer</f:facet>
-				<h:commandLink action="#{ajoutArticlePanierController.removeItemFromCart}">
+				<h:commandLink action="#{panierController.removeItemFromCart}">
 					<h:outputText value="Supprimer"/>
 					<f:param name="itemIdToRemove" value="#{line.item.id}"/>
 				</h:commandLink>	
@@ -51,7 +51,7 @@
 
 		<br/>
 		<div class="zoneButton">
-		<!--  Total<h:outputText value="#{ajoutArticlePanierController.total}"/> -->
+		Montant total: <h:outputText value="#{panierController.totalAmount}"/>€<br/><br/>
 		<h:commandButton value="Poursuivez votre achat"  action="#"/>
 		<br/>
 		

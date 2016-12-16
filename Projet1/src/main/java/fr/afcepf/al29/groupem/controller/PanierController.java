@@ -46,15 +46,29 @@ public class PanierController {
 	
 	@PostConstruct
 	public void init() {
+		
+	System.out.println("\n-------------------------------");
+	System.out.println("Debut post construct PanierController");
+	System.out.println("-------------------------------\n");
 	
 //	Checking if we are trying to add a new item in the cart
 	Integer idNewItem = 0;
 	Integer quantityNewItem = 0;
 	
 //	Checking if the parameters are castable into int, if not, error: no new item added.
+	
+	String idNewItemString;
+	String quantityNewItemString;
 	try {
-		idNewItem = Integer.valueOf(getParam("idItem"));
-		quantityNewItem = Integer.valueOf(getParam("quantity"));
+		idNewItemString = getParam("idItem");
+		quantityNewItemString = getParam("quantity");
+	} catch (NullPointerException e1) {
+		idNewItemString = "";
+		quantityNewItemString = "";
+	}
+	try {
+		idNewItem = Integer.valueOf(idNewItemString);
+		quantityNewItem = Integer.valueOf(quantityNewItemString);
 	} catch (NumberFormatException e) {
 		idNewItem = 0;
 		quantityNewItem = 0;
@@ -129,6 +143,44 @@ public class PanierController {
 	
 	//methode qui prend en compte les 2 methodes precedentes et qui permettent d'ajouter un article au panier.
 	public String addItemToCart() {
+		
+//		Checking if we are trying to add a new item in the cart
+		Integer idNewItem = 0;
+		Integer quantityNewItem = 0;
+		
+//		Checking if the parameters are castable into int, if not, error: no new item added.
+		
+		String idNewItemString;
+		String quantityNewItemString;
+		try {
+			idNewItemString = getParam("idItem");
+			quantityNewItemString = getParam("quantity");
+		} catch (NullPointerException e1) {
+			idNewItemString = "";
+			quantityNewItemString = "";
+		}
+		try {
+			idNewItem = Integer.valueOf(idNewItemString);
+			quantityNewItem = Integer.valueOf(quantityNewItemString);
+		} catch (NumberFormatException e) {
+			idNewItem = 0;
+			quantityNewItem = 0;
+		}
+		
+		if((idNewItem==0) || (quantityNewItem==0)){
+			setNewItemAdded(false);
+		}else{
+			setNewItemAdded(true);
+		}
+		
+		if(newItemAdded){
+			int cartId = cart.getId();
+			CartLine newCartline = cartBus.createCartLine(cartId, idNewItem, quantityNewItem);
+			float subtotal = newCartline.getUnitPrice() * newCartline.getQuantity();
+			cartLinesSubtotal.put(newCartline.getId(), subtotal);
+			totalAmount += subtotal;
+		}
+
 		return "contenuPanier?faces-redirect=true";
 	}
 
@@ -150,6 +202,9 @@ public class PanierController {
 		removeItem(item);
 		return null;
 	}
+	
+	
+	
 	
 	
 	
