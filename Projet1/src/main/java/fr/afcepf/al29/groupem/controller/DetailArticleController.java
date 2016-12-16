@@ -161,7 +161,7 @@ public class DetailArticleController {
 	public void setQuantityList(List<Integer> quantityList) {
 		this.quantityList = quantityList;
 	}
-	
+
 	
 	
 	
