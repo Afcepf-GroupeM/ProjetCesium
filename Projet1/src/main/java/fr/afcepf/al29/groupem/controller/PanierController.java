@@ -37,25 +37,25 @@ public class PanierController {
 	
 	
 	
-	@PostConstruct
-	public void init() {
-	
-//	Checking if we are trying to add a new item in the cart
-	String idNewItemString = getParam("idItem");
-	String quantityNewItemString = getParam("quantity");
-	if(idNewItemString.isEmpty() || quantityNewItemString.isEmpty()){
-		setNewItemAdded(false);
-	}else{
-		setNewItemAdded(true);
-	}
-	
-//	Getting the cart to print
-	cart = cartBus.getCartByUserId(idOwnerCart);
-	
-// Getting the cart lines
-//	cartLines = cartBus.
-		
-	}
+//	@PostConstruct
+//	public void init() {
+//	
+////	Checking if we are trying to add a new item in the cart
+//	String idNewItemString = getParam("idItem");
+//	String quantityNewItemString = getParam("quantity");
+//	if(idNewItemString.isEmpty() || quantityNewItemString.isEmpty()){
+//		setNewItemAdded(false);
+//	}else{
+//		setNewItemAdded(true);
+//	}
+//	
+////	Getting the cart to print
+//	cart = cartBus.getCartByUserId(idOwnerCart);
+//	
+//// Getting the cart lines
+////	cartLines = cartBus.
+//		
+//	}
 	
 	
 	
