@@ -11,6 +11,7 @@
 	</h:head>
 
 	<h:body>
+		<f:event listener="#{addAddressController.init}" type="preRenderView" />
 		<h1>.: Gestionnaire d'adresse :.</h1>
 
 		<div>
@@ -38,6 +39,7 @@
 					<f:facet name="footer">
 						<h:panelGroup style="text-align:center">
 							<h:commandButton value="Ajouter" action="#{addAddressController.action}"/>
+							<h:button outcome="addressManager" value="Annuler" />
 						</h:panelGroup>
 					</f:facet>
 				</h:panelGrid>

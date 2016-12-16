@@ -49,7 +49,7 @@ public class OrderDaoImpl implements OrderDaoApi{
 	@Override
 	public List<Order> getOrderByUserId(int userId) {
 		List<Order> listOrders = new ArrayList<>();
-		listOrders = entityManager.createQuery("SELECT ord FROM userorder ord WHERE ord.userid = :userid", Order.class)
+		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.userid = :userid", Order.class)
 								 .setParameter("userid", userId)
 								 .getResultList();
 		return listOrders;

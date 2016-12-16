@@ -34,7 +34,7 @@ public class AddressBusImpl implements AddressBusApi {
 		address.setZipcode(zipcode);
 		address.setCountry(country);
 		address.setBilling(isBilling);
-		address.setValide(isValid);
+		address.setValid(isValid);
 		address.setUser(user);
 		
 		Address addressCreated = addressDao.createAddress(address);
@@ -43,8 +43,7 @@ public class AddressBusImpl implements AddressBusApi {
 
 	@Override
 	public List<Address> getAddressesByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return addressDao.getAddressesByUserId(userId);
 	}
 
 	@Override
@@ -65,7 +64,7 @@ public class AddressBusImpl implements AddressBusApi {
 		address.setZipcode(zipcode);
 		address.setCountry(country);
 		address.setBilling(isBilling);
-		address.setValide(isValid);
+		address.setValid(isValid);
 		address.setUser(user);
 		
 		Address addressUpdated = addressDao.updateAddress(address);
@@ -73,9 +72,9 @@ public class AddressBusImpl implements AddressBusApi {
 	}
 
 	@Override
-	public Address disableAddress(Address address) {
-		// TODO Auto-generated method stub
-		return null;
+	public Address disableAddress(int addressId) {
+		Address addressToDisable = getAddressById(addressId);
+		Address addressDisabled = addressDao.disableAddress(addressToDisable);
+		return addressDisabled;
 	}
-
 }

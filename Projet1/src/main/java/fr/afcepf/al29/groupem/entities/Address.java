@@ -48,7 +48,7 @@ public class Address {
 	private boolean isBilling;
 	
 	@Column(name="isvalid")
-	private boolean isValide;
+	private boolean isValid;
 	
 	
 	
@@ -125,18 +125,18 @@ public class Address {
 	public void setRoadName(String roadName) {
 		this.roadName = roadName;
 	}
-	public boolean isValide() {
-		return isValide;
+	public boolean isValid() {
+		return isValid;
 	}
-	public void setValide(boolean isValide) {
-		this.isValide = isValide;
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
 	}
 	
 	public Address() {
 		
 	}
 	public Address(int id, String name, int number, ComplementAddress complement, RoadType roadType, String roadName, String city,
-			String zipcode, String country, boolean isBilling, boolean isValide, User user) {
+			String zipcode, String country, boolean isBilling, boolean isValid, User user) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -148,7 +148,7 @@ public class Address {
 		this.zipcode = zipcode;
 		this.country = country;
 		this.isBilling = isBilling;
-		this.isValide = isValide;
+		this.isValid = isValid;
 		this.user = user;
 	}
 	
@@ -156,7 +156,7 @@ public class Address {
 	public String toString() {
 		return "Address [id=" + id + ", name=" + name + ", number=" + number + ", complement=" + complement
 				+ ", roadType=" + roadType + ", roadName=" + roadName + ", city=" + city + ", zipcode=" + zipcode
-				+ ", country=" + country + ", isBilling=" + isBilling + ", isValide=" + isValide + ", user=" + user
+				+ ", country=" + country + ", isBilling=" + isBilling + ", isValid=" + isValid + ", user=" + user
 				+ "]";
 	}
 	
@@ -169,7 +169,7 @@ public class Address {
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + id;
 		result = prime * result + (isBilling ? 1231 : 1237);
-		result = prime * result + (isValide ? 1231 : 1237);
+		result = prime * result + (isValid ? 1231 : 1237);
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + number;
 		result = prime * result + ((roadName == null) ? 0 : roadName.hashCode());
@@ -204,7 +204,7 @@ public class Address {
 			return false;
 		if (isBilling != other.isBilling)
 			return false;
-		if (isValide != other.isValide)
+		if (isValid != other.isValid)
 			return false;
 		if (name == null) {
 			if (other.name != null)
