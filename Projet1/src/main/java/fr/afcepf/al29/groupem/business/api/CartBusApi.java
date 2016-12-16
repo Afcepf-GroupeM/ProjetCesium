@@ -8,4 +8,5 @@ public interface CartBusApi {
 	Cart getCartById(int cartId);
 	boolean destroyCartById(int cartId);
 	Cart getCartByUserId(int userId);
+//	List<CartLines>
 }
