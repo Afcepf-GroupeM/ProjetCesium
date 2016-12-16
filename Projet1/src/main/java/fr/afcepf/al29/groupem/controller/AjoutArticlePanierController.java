@@ -36,6 +36,7 @@ public class AjoutArticlePanierController {
 	
 	private Item item;
 	
+	
 	//liste des articles
 	private List<Item> items;
 	
@@ -59,6 +60,10 @@ public class AjoutArticlePanierController {
 	
 	
 	protected Integer getParamId(String param) {
+		String valeurParam = getParam(param);
+		System.out.println("\n------------------------");
+		System.out.println("Dans getparamid: " + valeurParam);
+		System.out.println("------------------------\n");
 		Integer result = Integer.valueOf(getParam(param));
 		
 		return result;
@@ -85,7 +90,7 @@ public class AjoutArticlePanierController {
 	
 	//methode qui prend en compte les 2 methodes precedentes et qui permettent d'ajouter un article au panier.
 	public String addItemToCart() {
-		Item item = itemBus.findItem(getParamId("itemId"));
+		item = itemBus.findItem(getParamId("itemId"));
 		addItem(item);
 		return "/contenuPanier.xhtml?faces-redirect=true";
 				
@@ -111,22 +116,21 @@ public class AjoutArticlePanierController {
 	
 	
 	
-	//création d'une méthode qui permet de récupérer le prix d'une ligne de panier dans l'entité CartLine : methode SubTotal
-	
+	//la methode subTotal se trouve dans CartLine.java
 	
 	
 	
 	//méthode qui additionne le prix de chaque article pour retourner le prix total du panier
-	public Float getTotal() {
-		if (cartLines == null || cartLines.isEmpty())
-			return 0f;
-		Float total = 0f;
+	//public Float getTotal() {
+		//if (cartLines == null || cartLines.isEmpty())
+			//return 0f;
+		//Float total = 0f;
 		
-		for (CartLine cartLine : cartLines) {
-			total += (cartLine.getSubTotal());
-		}
-		return total;
-		}
+		//for (CartLine cartLine : cartLines) {
+			//total += (cartLine.getSubTotal());
+		//}
+		//return total;
+		//}
 	
 	
 	//Implémentation du bouton "valider commande".Aucune action n'est effectuée, seule la redirection vers la prochaine page est lancée.

@@ -1,8 +1,11 @@
 package fr.afcepf.al29.groupem.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
@@ -25,10 +28,22 @@ public class DetailArticleController {
 	
 	private Item item;
 	private List<Item> items;
-	private CartLine cartLine;
+	private CartLine cartLine = new CartLine();
+	
+	
+	private int quantity;
 	
 	
 	private String imagePath = "/images/items/";
+	
+	
+	private List<Integer> quantityList;
+
+	@PostConstruct
+	public void init(){
+	quantityList = new ArrayList<>();
+	quantityList.addAll(Arrays.asList(1,2,3,4,5,6,7,8,9,10));}
+	
 	
 	
 	
@@ -119,6 +134,32 @@ public class DetailArticleController {
 
 	public void setCartLine(CartLine cartLine) {
 		this.cartLine = cartLine;
+	}
+
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+
+	public List<Integer> getQuantityList() {
+		return quantityList;
+	}
+
+
+
+
+	public void setQuantityList(List<Integer> quantityList) {
+		this.quantityList = quantityList;
 	}
 	
 	

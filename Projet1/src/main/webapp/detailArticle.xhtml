@@ -15,7 +15,7 @@
 <h:panelGrid columns="2">
 	
 	<h:column>
-		<img src="#{request.contextPath}#{detailArticleController.imagePath}#{it.id}/1.jpg" height="128" width="128"></img>
+		<img src="#{request.contextPath}#{detailArticleController.imagePath}#{detailArticleController.item.id}/1.jpg" height="128" width="128"></img>
 	</h:column>
 	
 	<h:column>
@@ -28,14 +28,10 @@
 		<h:outputText value="Stock: "/>
 		<h:outputText value="#{detailArticleController.item.stock}"/>
 		<br/>
-		<!-- <h:outputLabel value="Quantité: "/> 
-		<h:selectOneMenu value="#{detailArticleController.cartLine.quantity}">
-			<f:selectItems itemLabel="1" />
-			<f:selectItems itemLabel="2" />
-			<f:selectItems itemLabel="3" />
-			<f:selectItems itemLabel="4" />
+		<h:selectOneMenu value="#{detailArticleController.quantity}">
+			<f:selectItems value="#{detailArticleController.quantityList}" />
 		</h:selectOneMenu>
-		<br/> -->
+		<br/>
 		<h:outputText value="Prix: "/>
 		<h:outputText value="#{detailArticleController.item.price}"/>
 		<br/>
@@ -43,9 +39,10 @@
 
 </h:panelGrid>
 
-	<h:commandButton value="Ajouter au panier" action ="#{ajoutArticlePanierController.addItemToCart}"   type="submit">
-	<f:param name = "itemId" value="#{ajoutArticlePanierController.item.id}"/>
-	</h:commandButton>
+	<h:commandLink value="Ajouter au panier" action ="#{ajoutArticlePanierController.addItemToCart}" >
+	<f:param name = "itemId" value="#{detailArticleController.quantity}"/>
+	<f:param name = "quantity" value="#{detailArticleController.item.id}"/>
+	</h:commandLink>
 </h:form>
 </body>
 </html>

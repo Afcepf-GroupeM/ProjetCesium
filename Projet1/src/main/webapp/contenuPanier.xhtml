@@ -26,27 +26,35 @@
 				<f:facet name="header">Prix unitaire</f:facet>
 				<h:outputText value="#{cartLine.unitPrice}"/>
 			</h:column>
+			<h:column>
+				<f:facet name="header">Stock</f:facet>
+				<h:outputText value="#{cartLine.item.stock}"/>
+			</h:column>
 			<!-- <h:column>
 				<f:facet name="header">Quantité</f:facet>
-				<h:outputText value="#{it.price}"/>
+				<h:outputText value="#{cartLine.quantity}"/>
 			</h:column> -->
-			<h:column>
+			<!--  <h:column>
 				<f:facet name="header">Prix Total</f:facet>
 				<h:outputText value="#{cartLine.subTotal}"/>
-			</h:column>
-			<!--  <h:column>
+			</h:column>-->
+			<h:column>
 				<f:facet name="header">Supprimer</f:facet>
-				<h:outputText value="#{it.stock}"/>
-			</h:column> -->
+				<h:commandLink action="#{ajoutArticlePanierController.removeItemFromCart}">
+					<h:outputText value="Suppression"/>
+					<f:param name="itemId" value="#{cartLine.item.id}"/>
+				</h:commandLink>	
+			</h:column>
 		</h:dataTable>
 
 		<br/>
-		<!--  Total<h:outputText value="#{ajoutArticlePanierController.getTotal}"/> -->
-		<h:commandButton value="Poursuivez vos achats"  action=""/>
+		<div class="zoneButton">
+		<!--  Total<h:outputText value="#{ajoutArticlePanierController.total}"/> -->
+		<h:commandButton value="Poursuivez votre achat"  action="#"/>
 		<br/>
 		
-		<h:commandButton value="Validez la commande"  action=""/>
-	
+		<h:commandButton value="Continuez votre commande"  action="#"/>
+		</div>
 	</h:form>
 	</div>
 </body>

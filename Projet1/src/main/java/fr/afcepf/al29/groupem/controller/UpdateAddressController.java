@@ -44,7 +44,7 @@ public class UpdateAddressController {
 	@Autowired
 	private AddressBusApi addressBus;
 	
-	@PostConstruct
+	//@PostConstruct
 	public void init(){
 		roadTypeList = RoadType.class.getEnumConstants();
 		complementList = ComplementAddress.class.getEnumConstants();
