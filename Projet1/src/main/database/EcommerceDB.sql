@@ -129,7 +129,7 @@ CREATE TABLE userorder(
 	creationdate DATE NOT NULL,
 	amount FLOAT NOT NULL,
 	typepayment ENUM('CarteBleue','MasterCard','Visa','AmericanExpress'),
-	orderstate ENUM('EnPreparation','EnAttenteDePaiement','Expediee','Livree'),
+	orderstate ENUM('EnPreparation','Expediee','Livree','EnAttenteDePaiement','RetourClient','RemboursementClient','EchangeProduit'),
 	trackingnumber VARCHAR(40),
 	userid INT UNSIGNED NOT NULL,
 	billingaddressid BIGINT UNSIGNED NOT NULL,
