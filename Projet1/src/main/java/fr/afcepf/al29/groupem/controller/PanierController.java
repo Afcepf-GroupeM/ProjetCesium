@@ -1,6 +1,5 @@
 package fr.afcepf.al29.groupem.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,60 +11,65 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import fr.afcepf.al29.groupem.business.api.CartBusApi;
 import fr.afcepf.al29.groupem.business.api.ItemBusApi;
+import fr.afcepf.al29.groupem.entities.Cart;
 import fr.afcepf.al29.groupem.entities.CartLine;
 import fr.afcepf.al29.groupem.entities.Item;
 
 @Component
 @ManagedBean
-public class AjoutArticlePanierController {
+public class PanierController {
 
+	
+	
+	
+	private Cart cart;
+	private List<CartLine> cartLines;
+	private boolean newItemAdded;
+	private int idOwnerCart = 1 ;    // For testing pupose, we set the user to id=1;
+	
 	@Autowired
 	private ItemBusApi itemBus;
 	
+	@Autowired
+	private CartBusApi cartBus;
 	
-	//méthode qui permet d'instancier la liste de lignes paniers
+	
+	
 	@PostConstruct
-	public void initialize() {
-		cartLines = new ArrayList<CartLine>();
+	public void init() {
+	
+//	Checking if we are trying to add a new item in the cart
+	String idNewItemString = getParam("idItem");
+	String quantityNewItemString = getParam("quantity");
+	if(idNewItemString.isEmpty() || quantityNewItemString.isEmpty()){
+		setNewItemAdded(false);
+	}else{
+		setNewItemAdded(true);
+	}
+	
+//	Getting the cart to print
+	cart = cartBus.getCartByUserId(idOwnerCart);
+	
+// Getting the cart lines
+//	cartLines = cartBus.
+		
 	}
 	
 	
 	
-	
-	
-	private Item item;
-	
-	
-	//liste des articles
-	private List<Item> items;
-	
-	//liste des lignes paniers
-	private List<CartLine> cartLines;
-	
-	
-	
-	
-	
-	
-	
-	//les 2 methodes getParam ci-dessous permettent de recuperer un parametre passÃ© par la page JSP.Doit ï¿½tre utilise en lien avec la balise <f:param>
+	// Get the parameters sent in HTTP Request
 	protected String getParam(String param) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Map<String, String> map = context.getExternalContext().getRequestParameterMap();
 		String result = map.get(param);
-		
 		return result;
 	}
 	
 	
 	protected Integer getParamId(String param) {
-		String valeurParam = getParam(param);
-		System.out.println("\n------------------------");
-		System.out.println("Dans getparamid: " + valeurParam);
-		System.out.println("------------------------\n");
 		Integer result = Integer.valueOf(getParam(param));
-		
 		return result;
 		
 	}
@@ -89,12 +93,12 @@ public class AjoutArticlePanierController {
 	}
 	
 	//methode qui prend en compte les 2 methodes precedentes et qui permettent d'ajouter un article au panier.
-	public String addItemToCart() {
-		item = itemBus.findItem(getParamId("itemId"));
-		addItem(item);
-		return "/contenuPanier.xhtml?faces-redirect=true";
-				
-	}
+//	public String addItemToCart() {
+//		item = itemBus.findItem(getParamId("itemId"));
+//		addItem(item);
+//		return "/contenuPanier.xhtml?faces-redirect=true";
+//				
+//	}
 
 
 	//methode qui supprime un article du panier
@@ -165,31 +169,6 @@ public class AjoutArticlePanierController {
 	}
 
 
-
-	public Item getItem() {
-		return item;
-	}
-
-
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
-
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
-
-
 	public List<CartLine> getCartLines() {
 		return cartLines;
 	}
@@ -198,6 +177,26 @@ public class AjoutArticlePanierController {
 
 	public void setCartLines(List<CartLine> cartLines) {
 		this.cartLines = cartLines;
+	}
+
+
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+
+	public boolean isNewItemAdded() {
+		return newItemAdded;
+	}
+
+
+	public void setNewItemAdded(boolean newItemAdded) {
+		this.newItemAdded = newItemAdded;
 	}
 	
 	
