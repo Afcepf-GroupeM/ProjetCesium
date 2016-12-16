@@ -39,7 +39,7 @@
 
 </h:panelGrid>
 
-	<h:commandLink value="Ajouter au panier" action ="#{ajoutArticlePanierController.addItemToCart}" >
+	<h:commandLink value="Ajouter au panier" action ="#{PanierController.addItemToCart}" >
 	<f:param name = "itemId" value="#{detailArticleController.quantity}"/>
 	<f:param name = "quantity" value="#{detailArticleController.item.id}"/>
 	</h:commandLink>
