@@ -23,8 +23,9 @@ public class RechercheArticleController {
 	private String keyword;
 	
 	
-	public void doSearch() {
+	public String doSearch() {
 		items = itemBus.searchItems(keyword);
+		return null;
 	}
 
 

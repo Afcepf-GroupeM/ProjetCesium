@@ -1,0 +1,34 @@
+EspaceClientController:
+	messageInfoPerso:"votre infomation personnelle est ajouté/modifié/supprimé." en rouge
+	userConnecté
+	
+	messageCommandeEncours:"vous n'avez pas de commande en cours."
+	listCommande
+	listCommandeEncours
+	commandeEncours
+	ligneCommandeEncours
+	
+	listCommandeHistoire
+	ligneCommandeHistoire
+	commandeHistoire
+
+	
+	messageAdresse: "votre adress est ajouté/modifié/supprimé." en rouge
+	listAdresse
+	adresse
+	
+	
+	
+Règle:
+	si user est connecté, quand il clique sur "MON COMPTE", return dans la page espace client;
+	sinon, il est visiter, répondre la page login.
+
+Entities liés:
+	coupon?
+	adress x
+	transporteur x
+	item
+	orderline x
+	user
+	userorder x
+	

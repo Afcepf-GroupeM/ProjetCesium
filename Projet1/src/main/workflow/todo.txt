@@ -9,7 +9,7 @@
 
 Guillaume:
 ----------
-- Gestionnaire de session
+- BAT d'installation de la base de données
 
 
 
@@ -33,6 +33,8 @@ Haiyan:
 - Affichage liste article par categorie	(G)
 - Login (DAO/Business/Controller/JSF) (G)
 - Ajout/inscription utilisateur	(DAO/Business/Controller/JSF) (G)
+- Gestionnaire de session (G)
+- Fichier BAT installation de la DB (G)
 
 - Address (DAO) (P)
 - Ajout/modification d'adresse (Business/Controller/JSF) (P)

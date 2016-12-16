@@ -1,8 +1,11 @@
 package fr.afcepf.al29.groupem.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.ItemBusApi;
+import fr.afcepf.al29.groupem.entities.CartLine;
 import fr.afcepf.al29.groupem.entities.Item;
 
 
@@ -24,6 +28,22 @@ public class DetailArticleController {
 	
 	private Item item;
 	private List<Item> items;
+	private CartLine cartLine = new CartLine();
+	
+	
+	private int quantity;
+	
+	
+	private String imagePath = "/images/items/";
+	
+	
+	private List<Integer> quantityList;
+
+	@PostConstruct
+	public void init(){
+	quantityList = new ArrayList<>();
+	quantityList.addAll(Arrays.asList(1,2,3,4,5,6,7,8,9,10));}
+	
 	
 	
 	
@@ -51,12 +71,13 @@ public class DetailArticleController {
 		//item = itemBus.findItem(2);
 		item = itemBus.findItem(getParamId("itemId"));
 		return "/detailArticle.xhtml?faces-redirect=true";
-				//"item.displayed";
+				
 		
 	}
 
 
 
+	//GETTERS et SETTERS
 	public ItemBusApi getItemBus() {
 		return itemBus;
 	}
@@ -89,6 +110,56 @@ public class DetailArticleController {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+
+	public CartLine getCartLine() {
+		return cartLine;
+	}
+
+
+
+	public void setCartLine(CartLine cartLine) {
+		this.cartLine = cartLine;
+	}
+
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+
+	public List<Integer> getQuantityList() {
+		return quantityList;
+	}
+
+
+
+
+	public void setQuantityList(List<Integer> quantityList) {
+		this.quantityList = quantityList;
 	}
 	
 	
