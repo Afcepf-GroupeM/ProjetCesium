@@ -19,7 +19,7 @@ public class SessionListener implements PhaseListener{
 			String currentPage = facesContext.getViewRoot().getViewId();
 			 
 		
-			// ADD PAGE WITH LOGIN IN REQUIERED HERE
+//			 ADD PAGE WITH LOGIN IN REQUIERED HERE
 			boolean isPageWithLoginInRequiered = (currentPage.lastIndexOf("secret.xhtml") > -1) 
 //												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
 //												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
