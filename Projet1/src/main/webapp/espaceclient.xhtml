@@ -1,0 +1,98 @@
+<!DOCTYPE   html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Bon</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<f:event listener="#{espaceClientController.init}" type="preRenderView" />
+ <h:form>
+	<h:outputLabel value="- Espace Client -"/>
+	 <h:outputLabel value="Bonjour"/> 
+	<h:outputLabel value="#{espaceClientController.userConnect.firstName}"/> 
+	<h:outputLabel value="#{espaceClientController.userConnect.lastname}"/> 
+	<h:commandButton value="Modifier information personnalle"/>
+	<h:outputLabel value="messageInfoPerso"/> 
+
+	<div style="width: 100%;float: left;">
+		<h2>Suivi de votre commande en cours: </h2>
+		<br/>
+		<h:outputLabel value="#{espaceClientController.messageOrdering}"/>
+		<br/>	
+		<h:dataTable var="order" value="#{espaceClientController.listOrdering}" styleClass="order-table"
+	    			headerClass="order-table-header"
+	    			rowClasses="order-table-odd-row,order-table-even-row">		
+	    	<h:column>
+	    		<f:facet name="header">No.</f:facet>
+				<h:outputLabel value="#{order.id}"></h:outputLabel>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Designation de votre articles</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLine" value="#{order.orderLines}">
+						<li><h:outputText value="#{orderLine.item.name}"/><h:outputText value="&#160;" /><h:outputText value="#{orderLine.item.reference}"/></li>							
+					</ui:repeat>
+				</ul>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Prix unitaire</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLine" value="#{order.orderLines}">
+						<li><h:outputText value="#{orderLine.unitPrice}"/></li>							
+					</ui:repeat>
+				</ul>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Quantité</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLine" value="#{order.orderLines}">
+						<li><h:outputText value="#{orderLine.quantity}"/></li>							
+					</ui:repeat>
+				</ul>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Prix TTC</f:facet>			
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Status</f:facet>	
+	    		<h:outputLabel value="#{order.state}"></h:outputLabel>		
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">No. Suivi</f:facet>	
+	    		<h:outputLabel value="#{order.trackingNumber}"></h:outputLabel>		
+	    	</h:column>    	
+		</h:dataTable>
+	</div>
+	
+	<h:outputLabel value="Suivi de votre commande historique:"/> 
+		<h:outputLabel value="messageOldCommande"/>
+	<div>
+		<h6><h:outputLabel>No. </h:outputLabel>
+			<h:outputLabel>Designation de votre articles </h:outputLabel>
+			<h:outputLabel>Prix unitaire </h:outputLabel>
+			<h:outputLabel>Quantité </h:outputLabel>
+			<h:outputLabel>Prix TTC </h:outputLabel>			
+		</h6>	
+		<p>
+			<h:outputLabel>No. </h:outputLabel>
+			<h:outputLabel>Designation de votre articles </h:outputLabel>
+			<h:outputLabel>Prix unitaire </h:outputLabel>
+			<h:outputLabel>Quantité </h:outputLabel>
+			<h:outputLabel>Prix TTC </h:outputLabel>	
+		</p>
+	</div>
+	
+	<div>
+		<h:outputLabel value="Gestion addresse:"/>
+		<h:commandButton value="Ajouter une nouvelle adresse"/>
+		<h:outputLabel value="messageAdresse"/>  
+	</div>
+
+ </h:form>
+</body>
+</html>
