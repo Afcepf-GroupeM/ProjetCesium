@@ -51,7 +51,7 @@ public class ItemDaoImpl implements ItemDaoApi {
 	@Override
 	public List<Item> getItemsByCategory(int categoryId) {
 		List<Item> listItems = new ArrayList<>();
-		listItems = entityManager.createQuery("SELECT itm FROM item itm WHERE itm.categoryid = :catid", Item.class)
+		listItems = entityManager.createQuery("SELECT itm FROM Item itm WHERE itm.categoryid = :catid", Item.class)
 								 .setParameter("catid", categoryId)
 								 .getResultList();
 		return listItems;

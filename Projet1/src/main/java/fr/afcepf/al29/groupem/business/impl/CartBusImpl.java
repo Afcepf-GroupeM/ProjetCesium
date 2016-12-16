@@ -29,6 +29,7 @@ public class CartBusImpl implements CartBusApi {
 	@Autowired
 	UserDaoApi userDao;
 	
+	@Autowired
 	ItemDaoApi itemDao;
 	
 	
@@ -71,6 +72,9 @@ public class CartBusImpl implements CartBusApi {
 	@Override
 	public CartLine createCartLine(int cartId, int itemId, int quantity) {
 		CartLine cartLine = new CartLine();
+		System.out.println("Dans itemDao - CreateCarteLine - cartId: " + cartId);
+		System.out.println("Dans itemDao - CreateCarteLine - itemId: " + itemId);
+		System.out.println("Dans itemDao - CreateCarteLine - quantity: " + quantity);
 		Item item = itemDao.getItemById(itemId);
 		cartLine.setItem(item);
 		cartLine.setQuantity(quantity);

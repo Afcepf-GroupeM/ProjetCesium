@@ -28,8 +28,8 @@ public class ItemBusImpl implements ItemBusApi {
 
 	@Override
 	public Item getItemById(int itemId) {
-		// TODO Auto-generated method stub
-		return null;
+		Item item = itemDao.getItemById(itemId);
+		return item;
 	}
 
 	@Override
