@@ -1,10 +1,7 @@
 package fr.afcepf.al29.groupem.controller;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
@@ -15,8 +12,6 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
-import fr.afcepf.al29.groupem.entities.Address;
-import fr.afcepf.al29.groupem.entities.Civilite;
 import fr.afcepf.al29.groupem.entities.ComplementAddress;
 import fr.afcepf.al29.groupem.entities.RoadType;
 import fr.afcepf.al29.groupem.entities.User;
