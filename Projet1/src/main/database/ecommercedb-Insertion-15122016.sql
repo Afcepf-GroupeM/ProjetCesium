@@ -91,20 +91,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES ('7', '/images/items/7', 'REFProd1', 'Produit1', 'Integer gravida lorem id sodales accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi aliquet feugiat interdum. Curabitur arcu augue, aliquam sed lectus ut, hendrerit dignissim tortor.', '20', '12', '1');
-INSERT INTO `item` VALUES ('8', '/images/items/8', 'REFProd2', 'Produit2', 'Duis porta risus sit amet libero pulvinar, ut tincidunt diam feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.', '39.9', '5', '1');
-INSERT INTO `item` VALUES ('9', '/images/items/9', 'REFProd3', 'Produit3', 'Aenean vehicula viverra varius. Curabitur mauris augue, bibendum a cursus nec, sodales non felis. Proin vehicula sem augue, eu rutrum dui maximus non. Phasellus non tempor ipsum, quis vehicula augue.', '9.9', '4', '1');
-INSERT INTO `item` VALUES ('10', '/images/items/10', 'REFProd4', 'Produit4', 'Aliquam faucibus arcu ut velit interdum, sit amet congue quam sodales. Morbi non risus egestas, pharetra dui in, ullamcorper risus. Aenean congue turpis mattis sapien cursus scelerisque.', '109.2', '2', '2');
-INSERT INTO `item` VALUES ('11', '/images/items/11', 'RefProd5', 'Produit5', 'Vestibulum fringilla cursus sem eget eleifend. Nam gravida risus et ex mattis, ut egestas lorem congue. Phasellus aliquam varius tellus in finibus.', '42.7', '50', '2');
-INSERT INTO `item` VALUES ('12', '/images/items/12', 'RefProduit6', 'Produit6', 'Mauris porttitor hendrerit mollis. Pellentesque mauris magna, sollicitudin vitae accumsan quis, varius quis odio. Phasellus ac libero in velit convallis ultricies. In vitae interdum purus. In ac placerat lacus.', '12.5', '23', '1');
-INSERT INTO `item` VALUES ('13', '/images/items/13', 'REFProd7', 'Produit7', 'Curabitur quis euismod odio, sed commodo nisi. Etiam vel tincidunt augue, non rhoncus augue. ', '89.7', '5', '1');
-INSERT INTO `item` VALUES ('14', '/images/items/14', 'REFProd8', 'Produit8', 'Cras vel erat eget nisl rutrum euismod. Etiam convallis bibendum efficitur. Nulla facilisi.', '23.52', '74', '2');
-INSERT INTO `item` VALUES ('15', '/images/items/15', 'REFProd9', 'Produit9', 'Fusce eros mauris, finibus vitae lobortis ut, luctus eu nisi. Ut pellentesque pharetra risus, eget efficitur augue congue eget. Aenean sed porttitor lectus.', '14.99', '3', '3');
-INSERT INTO `item` VALUES ('16', '/images/items/16', 'REFProd10', 'Produit10', 'Aenean pharetra sapien id risus imperdiet, in consectetur nunc pharetra. Cras sit amet tortor ligula. Morbi vel augue a dolor aliquam tincidunt at vel augue. Curabitur vitae dignissim arcu.', '20', '65', '3');
-INSERT INTO `item` VALUES ('17', '/images/items/17', 'REFProd11', 'Produit11', 'Phasellus tincidunt ultrices lacus, non varius quam viverra sit amet. Phasellus eros tortor, ultricies at tellus ac, malesuada bibendum lacus.', '100', '12', '4');
-INSERT INTO `item` VALUES ('18', '/images/items/18', 'REFProd12', 'Produit12', 'Phasellus quam tortor, ultricies a scelerisque non, condimentum vitae nulla. Donec vestibulum dui in condimentum lobortis. ', '5.99', '10', '5');
-INSERT INTO `item` VALUES ('19', '/images/items/19', 'REFProd13', 'Produit13', ' Nunc eget nunc eu ligula dignissim facilisis et sit amet arcu. Nunc enim dui, volutpat vitae efficitur vitae, mollis eu lectus. Duis leo eros, tincidunt ac gravida tempus, porttitor ac ante.', '45.15', '8', '5');
-INSERT INTO `item` VALUES ('20', '/images/items/20', 'REFProd14', 'Produit14', 'Aliquam efficitur, ante nec laoreet dignissim, ante justo sagittis nunc, a tempor augue turpis et nisi.', '78.9', '15', '6');
+INSERT INTO `item` VALUES (7,'/images/items/7','REFProd1','Produit1','Integer gravida lorem id sodales accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi aliquet feugiat interdum. Curabitur arcu augue, aliquam sed lectus ut, hendrerit dignissim tortor.',20,12,1),(8,'/images/items/8','REFProd2','Produit2','Duis porta risus sit amet libero pulvinar, ut tincidunt diam feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',39.9,5,1),(9,'/images/items/9','REFProd3','Produit3','Aenean vehicula viverra varius. Curabitur mauris augue, bibendum a cursus nec, sodales non felis. Proin vehicula sem augue, eu rutrum dui maximus non. Phasellus non tempor ipsum, quis vehicula augue.',9.9,4,1),(10,'/images/items/10','REFProd4','Produit4','Aliquam faucibus arcu ut velit interdum, sit amet congue quam sodales. Morbi non risus egestas, pharetra dui in, ullamcorper risus. Aenean congue turpis mattis sapien cursus scelerisque.',109.2,2,2),(11,'/images/items/11','RefProd5','Produit5','Vestibulum fringilla cursus sem eget eleifend. Nam gravida risus et ex mattis, ut egestas lorem congue. Phasellus aliquam varius tellus in finibus.',42.7,50,2),(12,'/images/items/12','RefProduit6','Produit6','Mauris porttitor hendrerit mollis. Pellentesque mauris magna, sollicitudin vitae accumsan quis, varius quis odio. Phasellus ac libero in velit convallis ultricies. In vitae interdum purus. In ac placerat lacus.',12.5,23,1),(13,'/images/items/13','REFProd7','Produit7','Curabitur quis euismod odio, sed commodo nisi. Etiam vel tincidunt augue, non rhoncus augue. ',89.7,5,1),(14,'/images/items/14','REFProd8','Produit8','Cras vel erat eget nisl rutrum euismod. Etiam convallis bibendum efficitur. Nulla facilisi.',23.52,74,2),(15,'/images/items/15','REFProd9','Produit9','Fusce eros mauris, finibus vitae lobortis ut, luctus eu nisi. Ut pellentesque pharetra risus, eget efficitur augue congue eget. Aenean sed porttitor lectus.',14.99,3,3),(16,'/images/items/16','REFProd10','Produit10','Aenean pharetra sapien id risus imperdiet, in consectetur nunc pharetra. Cras sit amet tortor ligula. Morbi vel augue a dolor aliquam tincidunt at vel augue. Curabitur vitae dignissim arcu.',20,65,3),(17,'/images/items/17','REFProd11','Produit11','Phasellus tincidunt ultrices lacus, non varius quam viverra sit amet. Phasellus eros tortor, ultricies at tellus ac, malesuada bibendum lacus.',100,12,4),(18,'/images/items/18','REFProd12','Produit12','Phasellus quam tortor, ultricies a scelerisque non, condimentum vitae nulla. Donec vestibulum dui in condimentum lobortis. ',5.99,10,5),(19,'/images/items/19','REFProd13','Produit13',' Nunc eget nunc eu ligula dignissim facilisis et sit amet arcu. Nunc enim dui, volutpat vitae efficitur vitae, mollis eu lectus. Duis leo eros, tincidunt ac gravida tempus, porttitor ac ante.',45.15,8,5),(20,'/images/items/20','REFProd14','Produit14','Aliquam efficitur, ante nec laoreet dignissim, ante justo sagittis nunc, a tempor augue turpis et nisi.',78.9,15,6);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +102,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `metacategory` WRITE;
 /*!40000 ALTER TABLE `metacategory` DISABLE KEYS */;
-INSERT INTO `metacategory` VALUES (1,'MetaCat1'),(2,'MetaCat2'),(3,'MetaCat3'),(4,'MetaCat4'),(5,'MetaCat5'),(6,'MetaCat6');
+INSERT INTO `metacategory` VALUES (1,'MetaCat1'),(2,'MetaCat2'),(3,'MetaCat3'),(4,'MetaCat4'),(5,'MetaCat5');
 /*!40000 ALTER TABLE `metacategory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +133,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `userorder` WRITE;
 /*!40000 ALTER TABLE `userorder` DISABLE KEYS */;
-INSERT INTO `userorder` VALUES (1,'2016-12-14','200.0','CarteBleu','Livree','Post123456','8','1','1','1',null),(2,'2015-12-14','200.0','CarteBleu','Livree','Post123456','8','1','1','1',null);
+INSERT INTO `userorder` VALUES (1,'2016-12-14','200.0','CarteBleue','Expediee','Post123456','8','1','1','1',null),(2,'2015-12-14','200.0','CarteBleue','Livree','Post123456','8','1','1','1',null);
 /*!40000 ALTER TABLE `userorder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +143,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `orderline` WRITE;
 /*!40000 ALTER TABLE `orderline` DISABLE KEYS */;
-INSERT INTO `orderline` VALUES (1,'20','5','1','7'),(2,'100','1','1','17'),(3,'20','5','1','7'),(4,'100','1','1','17');
+INSERT INTO `orderline` VALUES (1,'20','5','1','7'),(2,'100','1','1','17'),(3,'20','5','2','7'),(4,'100','1','2','17');
 /*!40000 ALTER TABLE `orderline` ENABLE KEYS */;
 UNLOCK TABLES;
 

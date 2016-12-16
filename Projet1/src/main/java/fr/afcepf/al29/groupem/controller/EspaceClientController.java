@@ -1,7 +1,5 @@
 package fr.afcepf.al29.groupem.controller;
 
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,9 +16,9 @@ import fr.afcepf.al29.groupem.business.api.AddressBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Address;
-import fr.afcepf.al29.groupem.entities.Civilite;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
+import fr.afcepf.al29.groupem.entities.OrderState;
 import fr.afcepf.al29.groupem.entities.User;
 
 @Component
@@ -46,54 +44,76 @@ public class EspaceClientController {
 	private Address address;
 	private List<Address> listAddress;
 	
+	@Autowired
 	UserBusApi userBusApi;
 	@Autowired
-	OrderBusApi orderBusApi;	
+	OrderBusApi orderBusApi;
+	@Autowired	
 	AddressBusApi addressBusApi;
 	
-	public void init(ComponentSystemEvent e){		
-		Date date= new Date();
-		try {
-			date = simpleDateFormat.parse("02/10/1956");
-		} catch (ParseException e1) {			
-			e1.printStackTrace();
-		}
-		User userConnect = new User(Civilite.Mr,"Lagaffe","Gaston","toto@franquin.com","0163458950",date,"$2a$10$ql6IkE4MblaPsc5FTwzulOyYD49HKv65AIbMrdAru.MBU4uhHx18q");
+	public void init(ComponentSystemEvent e){			
 		int idUser = 8;
+		userConnect =  userBusApi.getUserById(idUser);
+		messageInfoPerson = "";
+		System.out.println("********************userConnect******************"+userConnect.getfirstName() + " " + userConnect.getlastName());
+		
 		listOrder = new ArrayList<>();
 		listOrder = orderBusApi.getOrderByUserId(idUser);
+		for(Order order:listOrder){
+			System.out.println(order.toString());
+		}
+		
+		listOldOrder = new ArrayList<>();
+		listOrdering = new ArrayList<>();
+		for(Order order:listOrder){
+			OrderState state = order.getState();
+			if(state==OrderState.Livree ||state==OrderState.RemboursementClient){
+				listOldOrder.add(order);				
+			}else{
+				listOrdering.add(order);
+			}
+		}
+		/*
+		Date referenceDate = new Date();			
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(referenceDate); 
+		c.add(Calendar.MONTH, -2);
+		referenceDate= c.getTime();
+		System.out.println(referenceDate.toString());
 		
 		for(Order order:listOrder){
-			Date dateOrder = order.getCreationDate();
-			
-			Date referenceDate = new Date();
-			referenceDate = dateOrder;
-			Calendar c = Calendar.getInstance(); 
-			c.setTime(referenceDate); 
-			c.add(Calendar.MONTH, -2);
-			referenceDate= c.getTime();
-			System.out.println(referenceDate.toString());				
-			
-			if(dateOrder.before(referenceDate)){
-				listOldOrder = new ArrayList<>();
+			Date dateOrder = order.getCreationDate();			
+			if(dateOrder.before(referenceDate)){				
 				listOldOrder.add(order);
-			}else{
-				listOrdering = new ArrayList<>();
+			}else{				
 				listOrdering.add(order);				
 			}			
 		}
 		
-		if(listOrdering.isEmpty()){
+		for(Order order:listOrdering){
+			System.out.println("***************ordering****************" + order.toString());
+		}
+		for(Order order:listOldOrder){
+			System.out.println("***********************oldorder**********************" + order.toString());
+		}
+		
+		*/
+		if(listOrdering.size()==0){
 			messageOrdering = "Vous n'avez pas de commande en cours";
 		}else{
 			messageOrdering = "";
 		}
 		
-		if(listOldOrder.isEmpty()){
+		if(listOldOrder.size()==0){
 			messageOldOrder = "Vous n'avez pas de commande historique";
 		}else{
 			messageOrdering = "";
 		}
+		
+	}
+	
+	public String userModify(){
+		return "/account.xhtml?faces-redirect = true";
 	}
 	
 	
