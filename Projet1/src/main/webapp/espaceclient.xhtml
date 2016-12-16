@@ -15,7 +15,7 @@
 	<h:outputLabel value="- Espace Client -"/>
 	 <h:outputLabel value="Bonjour"/> 
 	<h:outputLabel value="#{espaceClientController.userConnect.firstName}"/> 
-	<h:outputLabel value="#{espaceClientController.userConnect.lastname}"/> 
+	<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/> 
 	<h:commandButton value="Modifier information personnalle"/>
 	<h:outputLabel value="messageInfoPerso"/> 
 
@@ -70,22 +70,45 @@
 	</div>
 	
 	<h:outputLabel value="Suivi de votre commande historique:"/> 
-		<h:outputLabel value="messageOldCommande"/>
-	<div>
-		<h6><h:outputLabel>No. </h:outputLabel>
-			<h:outputLabel>Designation de votre articles </h:outputLabel>
-			<h:outputLabel>Prix unitaire </h:outputLabel>
-			<h:outputLabel>Quantité </h:outputLabel>
-			<h:outputLabel>Prix TTC </h:outputLabel>			
-		</h6>	
-		<p>
-			<h:outputLabel>No. </h:outputLabel>
-			<h:outputLabel>Designation de votre articles </h:outputLabel>
-			<h:outputLabel>Prix unitaire </h:outputLabel>
-			<h:outputLabel>Quantité </h:outputLabel>
-			<h:outputLabel>Prix TTC </h:outputLabel>	
-		</p>
-	</div>
+	<br/>
+	<h:outputLabel value="#{espaceClientController.messageOldOrder}"/>
+	<br/>
+	<h:dataTable var="orderold" value="#{espaceClientController.listOldOrder}" styleClass="order-table"
+	    			headerClass="order-table-header"
+	    			rowClasses="order-table-odd-row,order-table-even-row">		
+	    	<h:column>
+	    		<f:facet name="header">No.</f:facet>
+				<h:outputLabel value="#{orderold.id}"></h:outputLabel>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Designation de votre articles</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+						<li><h:outputText value="#{orderLineOld.item.name}"/><h:outputText value="&#160;" /><h:outputText value="#{orderLineOld.item.reference}"/></li>							
+					</ui:repeat>
+				</ul>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Prix unitaire</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+						<li><h:outputText value="#{orderLineOld.unitPrice}"/></li>							
+					</ui:repeat>
+				</ul>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Quantité</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+						<li><h:outputText value="#{orderLineOld.quantity}"/></li>							
+					</ui:repeat>
+				</ul>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Prix TTC</f:facet>			
+	    	</h:column>
+	    	
+	</h:dataTable>
 	
 	<div>
 		<h:outputLabel value="Gestion addresse:"/>

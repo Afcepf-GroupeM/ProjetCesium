@@ -14,5 +14,5 @@ public interface UserBusApi {
 			String passwordPlaintext, Date birthDate);
 	
 	User getUserByLogin(String login);
-	
+	public User getUserById(int userID);
 }
