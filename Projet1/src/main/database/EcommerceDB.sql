@@ -128,7 +128,7 @@ CREATE TABLE userorder(
 	id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
 	creationdate DATE NOT NULL,
 	amount FLOAT NOT NULL,
-	typepayment ENUM('CarteBleu','MasterCard','Visa','AmericanExpress'),
+	typepayment ENUM('CarteBleue','MasterCard','Visa','AmericanExpress'),
 	orderstate ENUM('EnPreparation','EnAttenteDePaiement','Expediee','Livree'),
 	trackingnumber VARCHAR(40),
 	userid INT UNSIGNED NOT NULL,
