@@ -26,7 +26,7 @@ public class AddressDaoImpl implements AddressDaoApi {
 
 	@Override
 	public List<Address> getAddressesByUserId(int userId) {
-		return entityManager.createQuery("SELECT adr FROM Address adr INNER JOIN adr.user usr WHERE usr.id = :userId", Address.class).setParameter("userId", userId).getResultList();
+		return entityManager.createQuery("SELECT adr FROM Address adr INNER JOIN adr.user usr WHERE usr.id = :userId AND adr.isValid = 1", Address.class).setParameter("userId", userId).getResultList();
 	}
 	
 	@Override
@@ -42,7 +42,8 @@ public class AddressDaoImpl implements AddressDaoApi {
 
 	@Override
 	public Address disableAddress(Address address) {
-		address.setValide(false);
+		address.setBilling(false);
+		address.setValid(false);
 		updateAddress(address);
 		return (address);
 	}

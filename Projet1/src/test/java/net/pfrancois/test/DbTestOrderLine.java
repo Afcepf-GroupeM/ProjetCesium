@@ -86,7 +86,7 @@ public class DbTestOrderLine {
 		address.setZipcode("77777");
 		address.setCountry("Dollars");
 		address.setBilling(true);
-		address.setValide(true);
+		address.setValid(true);
 		address.setUser(user);
 		address = addressDao.createAddress(address);
 		

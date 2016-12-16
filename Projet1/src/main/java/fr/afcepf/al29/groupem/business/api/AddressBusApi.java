@@ -13,6 +13,6 @@ public interface AddressBusApi {
 	List<Address> getAddressesByUserId(int userId);
 	Address getAddressById(int addressId);
 	Address updateAddress(int id, String name, int number, ComplementAddress complement, RoadType roadType, String roadName, String city, String zipcode, String country, boolean isBilling, boolean isValid, User user);
-	Address disableAddress(Address address);
+	Address disableAddress(int addressId);
 	
 }

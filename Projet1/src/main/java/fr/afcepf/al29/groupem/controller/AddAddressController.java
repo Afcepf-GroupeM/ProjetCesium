@@ -2,14 +2,19 @@ package fr.afcepf.al29.groupem.controller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
+
 import org.apache.commons.validator.routines.RegexValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
+import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.Civilite;
 import fr.afcepf.al29.groupem.entities.ComplementAddress;
@@ -40,23 +45,23 @@ public class AddAddressController {
 	
 	@Autowired
 	private AddressBusApi addressBus;
+	@Autowired
+	private UserBusApi userBus;
 	
-	@PostConstruct
-	public void init(){
+	public String init(ComponentSystemEvent event){
 		roadTypeList = RoadType.class.getEnumConstants();
 		complementList = ComplementAddress.class.getEnumConstants();
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+		//Temp pour user, voir session
+		int userId = Integer.parseInt(params.get("userId"));
+		user = userBus.getUserById(userId);
+		
+		return null;
 	}
 	
 	public String action(){
-		//Temporaire le temps d'avoir un utilisateur en session
-		Calendar myCal = Calendar.getInstance();
-		myCal.set(Calendar.YEAR, 1988);
-		myCal.set(Calendar.MONTH, 03);
-		myCal.set(Calendar.DAY_OF_MONTH, 15);
-		Date dateCreation = myCal.getTime();
-		user = new User(Civilite.Mr,"Duck","Picsou","banque@distributeur.fr","0987654321",dateCreation,"lolHash");
-		user.setId(1);
-		
 		RegexValidator nameValidator = new RegexValidator("^[0-9A-Za-z\\s-'éèà]*$", false);
 		RegexValidator numberValidator = new RegexValidator("^\\d+$", false);		
 		RegexValidator stringValidator = new RegexValidator("^[A-Za-z\\s-'éèà]*$", false);
@@ -96,9 +101,8 @@ public class AddAddressController {
 		if(numberValid && roadTypeValid && roadNameValid && cityValid && zipcodeValid && countryValid){
 			int addressNumber = Integer.parseInt(number);
 			
-			Address address = addressBus.createAddress(name, addressNumber, complement, roadType, roadName, city, zipcode, country, billing, isValid, user);
-			resetFields();
-			message = "Adresse créée avec succes!<br/>Id de la nouvelle adresse: " + address.getId();
+			addressBus.createAddress(name, addressNumber, complement, roadType, roadName, city, zipcode, country, billing, isValid, user);
+			return "addressManager?faces-redirect=true";
 		}
 		return null;
 	}

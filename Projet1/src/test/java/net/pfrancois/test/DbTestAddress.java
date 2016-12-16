@@ -55,7 +55,7 @@ public class DbTestAddress {
 		address.setZipcode("77777");
 		address.setCountry("Dollars");
 		address.setBilling(false);
-		address.setValide(true);
+		address.setValid(true);
 		address.setUser(user);
 		
 		System.out.println("Address id avant create: " + address.getId());
@@ -99,13 +99,13 @@ public class DbTestAddress {
 	@Test	//OK
 	public void oldAddress(){
 		Address address = addressDao.getAddressById(1);
-		System.out.println("@@@@@@@@@@@@@@ Validité addresse avant: " + address.isValide() + " @@@@@@@@@@@@");
+		System.out.println("@@@@@@@@@@@@@@ Validité addresse avant: " + address.isValid() + " @@@@@@@@@@@@");
 		
 		address = addressDao.disableAddress(address);
 		
 		address = addressDao.getAddressById(1);
-		System.out.println("@@@@@@@@@@@@@@ Validité addresse après: " + address.isValide() + " @@@@@@@@@@@@");
+		System.out.println("@@@@@@@@@@@@@@ Validité addresse après: " + address.isValid() + " @@@@@@@@@@@@");
 		
-		Assert.assertFalse(address.isValide());
+		Assert.assertFalse(address.isValid());
 	}
 }

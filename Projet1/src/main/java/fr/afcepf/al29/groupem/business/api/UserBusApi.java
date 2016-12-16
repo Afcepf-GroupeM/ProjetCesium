@@ -14,5 +14,5 @@ public interface UserBusApi {
 	User createUser(Civilite civilite, String lastName, String firstName, String email, String phone,
 			String passwordPlaintext, Date birthDate);
 	
-	
+	public User getUserById(int userID);
 }
