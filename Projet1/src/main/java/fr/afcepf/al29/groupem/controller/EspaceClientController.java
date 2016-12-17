@@ -51,7 +51,9 @@ public class EspaceClientController {
 	@Autowired	
 	AddressBusApi addressBusApi;
 	
-	public void init(ComponentSystemEvent e){			
+	public void init(ComponentSystemEvent e){	
+		messageInfoPerson ="";
+		
 		int idUser = 8;
 		userConnect =  userBusApi.getUserById(idUser);
 		messageInfoPerson = "";
@@ -109,6 +111,8 @@ public class EspaceClientController {
 		}else{
 			messageOrdering = "";
 		}
+		
+		messageAddress="";
 		
 	}
 	
