@@ -1,6 +1,7 @@
 package fr.afcepf.al29.groupem.business.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,8 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.afcepf.al29.groupem.business.api.CartBusApi;
 import fr.afcepf.al29.groupem.dao.api.CartDaoApi;
 import fr.afcepf.al29.groupem.dao.api.CartLineDaoApi;
+import fr.afcepf.al29.groupem.dao.api.ItemDaoApi;
 import fr.afcepf.al29.groupem.dao.api.UserDaoApi;
 import fr.afcepf.al29.groupem.entities.Cart;
+import fr.afcepf.al29.groupem.entities.CartLine;
+import fr.afcepf.al29.groupem.entities.Item;
 
 @Transactional
 @Component
@@ -24,6 +28,9 @@ public class CartBusImpl implements CartBusApi {
 	
 	@Autowired
 	UserDaoApi userDao;
+	
+	@Autowired
+	ItemDaoApi itemDao;
 	
 	
 	
@@ -55,6 +62,25 @@ public class CartBusImpl implements CartBusApi {
 	@Override
 	public Cart getCartById(int cartId) {
 		return cartDao.getCartById(cartId);
+	}
+
+	@Override
+	public List<CartLine> getCartLinesByCartId(int cartId) {
+		return cartLineDao.getCartLinesByCartId(cartId);
+	}
+
+	@Override
+	public CartLine createCartLine(int cartId, int itemId, int quantity) {
+		CartLine cartLine = new CartLine();
+		System.out.println("Dans itemDao - CreateCarteLine - cartId: " + cartId);
+		System.out.println("Dans itemDao - CreateCarteLine - itemId: " + itemId);
+		System.out.println("Dans itemDao - CreateCarteLine - quantity: " + quantity);
+		Item item = itemDao.getItemById(itemId);
+		cartLine.setItem(item);
+		cartLine.setQuantity(quantity);
+		cartLine.setUnitPrice(item.getPrice());
+		cartLine.setCart(cartDao.getCartById(cartId));
+		return cartLineDao.createCartLine(cartLine);
 	}
 	
 	

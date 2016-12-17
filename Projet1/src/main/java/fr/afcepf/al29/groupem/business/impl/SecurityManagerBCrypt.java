@@ -15,7 +15,7 @@ public class SecurityManagerBCrypt implements SecurityManagerApi{
 	// Create a salted hash of the password
 	@Override
 	public String hashPassword(String password) {
-		return BCrypt.hashpw("test", BCrypt.gensalt(complexity));
+		return BCrypt.hashpw(password, BCrypt.gensalt(complexity));
 	}
 
 	// Return true if the password and the hash match.
