@@ -2,15 +2,19 @@ package fr.afcepf.al29.groupem.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.mysql.fabric.Response;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
@@ -21,12 +25,13 @@ import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
 import fr.afcepf.al29.groupem.entities.User;
 
+@Scope("session")
 @Component
 @ManagedBean
 public class EspaceClientController {
 	private String messageInfoPerson;
 	private User userConnect;
-	public static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	//public static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
 	private List<Order> listOrder;
 	
@@ -51,10 +56,13 @@ public class EspaceClientController {
 	@Autowired	
 	AddressBusApi addressBusApi;
 	
-	public void init(ComponentSystemEvent e){	
+	public void init(ComponentSystemEvent e){			
+		int idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		System.out.println("------------------------iduser:"+idUser);
+		
 		messageInfoPerson ="";
 		
-		int idUser = 8;
+		//int idUser = 8;
 		userConnect =  userBusApi.getUserById(idUser);
 		messageInfoPerson = "";
 		System.out.println("********************userConnect******************"+userConnect.getfirstName() + " " + userConnect.getlastName());
@@ -117,9 +125,12 @@ public class EspaceClientController {
 	}
 	
 	public String userModify(){
-		return "/account.xhtml?faces-redirect = true";
+		return "/account.jsf?faces-redirect = true";
 	}
 	
+	public String addAddress(){
+		return "/addAddress.jsf?faces-redirect = true";
+	}
 	
 	public String getMessageInfoPerson() {
 		return messageInfoPerson;
@@ -201,16 +212,10 @@ public class EspaceClientController {
 	public void setListAddress(List<Address> listAddress) {
 		this.listAddress = listAddress;
 	}
-
-
 	public String getMessageOldOrder() {
 		return messageOldOrder;
 	}
-
-
 	public void setMessageOldOrder(String messageOldOrder) {
 		this.messageOldOrder = messageOldOrder;
-	}
-	
-	
+	}	
 }
