@@ -194,18 +194,12 @@ public class PanierController {
 
 	//methode qui supprime un article du panier
 	public void removeItem(Item item){
-		for (CartLine cartLine: cartLines){
-			if (cartLine.getItem().equals(item)) {
-				cartLines.remove(cartLine);
-				return;
-			}
-		}
+		
 	}
 	
 	//méthode qui supprime un article du panier en prenant en paramètre l'identifiant de l'article (methode precedente + methode de l'identifiant) 
 	public String removeItemFromCart() {
-//		Item item = itemBus.findItem(getParam("itemId"));
-//		removeItem(item);
+	
 		return null;
 	}
 	

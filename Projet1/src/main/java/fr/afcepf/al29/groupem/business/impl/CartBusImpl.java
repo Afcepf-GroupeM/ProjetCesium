@@ -72,15 +72,23 @@ public class CartBusImpl implements CartBusApi {
 	@Override
 	public CartLine createCartLine(int cartId, int itemId, int quantity) {
 		CartLine cartLine = new CartLine();
-		System.out.println("Dans itemDao - CreateCarteLine - cartId: " + cartId);
-		System.out.println("Dans itemDao - CreateCarteLine - itemId: " + itemId);
-		System.out.println("Dans itemDao - CreateCarteLine - quantity: " + quantity);
 		Item item = itemDao.getItemById(itemId);
 		cartLine.setItem(item);
 		cartLine.setQuantity(quantity);
 		cartLine.setUnitPrice(item.getPrice());
 		cartLine.setCart(cartDao.getCartById(cartId));
 		return cartLineDao.createCartLine(cartLine);
+	}
+
+	@Override
+	public boolean destroyCartLine(CartLine cartLine) {
+		return cartLineDao.deleteCartLineById(cartLine.getId());
+		
+	}
+	
+	@Override
+	public CartLine updateCartLine(CartLine cartLine){
+		return cartLineDao.updateCartLine(cartLine);
 	}
 	
 	
