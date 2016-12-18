@@ -39,5 +39,6 @@ private List<Category> categories;
 		return 0;
 	}
 	
+	//commentaire inutile
 	
 }
