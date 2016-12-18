@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+
+<h:head>
+<title>.: Login :.</title>
+</h:head>
+
+<h:body>
+<h1>Test Login</h1>
+<div>
+ <h:form>
+       Login : <h:inputText value="#{loginController.login}"  /> <br/>
+       Passord : <h:inputSecret value="#{loginController.password}"  /><br/>
+       <h:commandButton value="Connect!" action="#{loginController.loginaction}"/>
+ </h:form>
+ </div>
+ <br/>
+ <div>
+ <h:outputLabel value="#{loginController.errorMessage}"/>
+  <br/>
+ </div>
+ <div>
+ <br/>
+ <br/>
+ Acceder aux pages:<br/>
+ <a href="secret.jsf">Secrete</a><br/><br/><br/>
+ <a href="item-list.jsf">Item list</a><br/><br/>
+ <a href="account.jsf">account</a><br/><br/>
+ 
+ 
+<!--  <pretty:link mappingId="secret">- Secrete (login requiered)</pretty:link><br/>
+ <pretty:link mappingId="item-list"><f:param value="1" />- Item List</pretty:link><br/> -->
+ 
+ 
+ </div>
+
+</h:body>
+
+
+</html>

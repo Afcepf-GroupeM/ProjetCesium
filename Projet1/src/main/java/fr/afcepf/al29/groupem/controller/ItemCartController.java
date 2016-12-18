@@ -57,7 +57,7 @@ public class ItemCartController {
 		totalAmount = 0f;
 		setCart(cartBus.getCartByUserId(idOwnerCart));
 		setCartLines(cartBus.getCartLinesByCartId(cart.getId()));
-		setCartEmpty(cartLines.isEmpty());
+		setIsCartEmpty(cartLines.isEmpty());
 			
 			if(isCartEmpty){
 				setTotalAmount(0f);
@@ -271,11 +271,11 @@ public String addItemToCart() {
 		this.newItemAdded = newItemAdded;
 	}
 
-	public boolean isCartEmpty() {
+	public boolean getIsCartEmpty() {
 		return isCartEmpty;
 	}
 
-	public void setCartEmpty(boolean isCartEmpty) {
+	public void setIsCartEmpty(boolean isCartEmpty) {
 		this.isCartEmpty = isCartEmpty;
 	}
 

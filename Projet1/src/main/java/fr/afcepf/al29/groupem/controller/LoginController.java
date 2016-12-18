@@ -25,7 +25,7 @@ public class LoginController {
 	
 	private String login;
 	private String password;
-	private String errorMessage = "Non connecté";
+	private String errorMessage ="";
 	private User userLogged;	
 	
 	
@@ -47,7 +47,7 @@ public class LoginController {
 			if(!(userBus.checkUserCredential(login, password))){
 				errorMessage = "Nom d'utilisateur et/ou mot de passe invalide(s).";
 			} else {
-				errorMessage = "Identifiants OK";
+				errorMessage = "Connecté!";
 				
 				userLogged = userBus.getUserByLogin(login);
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());
@@ -62,7 +62,7 @@ public class LoginController {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		userLogged = null;
-		errorMessage = "Non connecté.";
+		errorMessage = "";
 		return "logout?faces-redirect=true";
 	}
 	
