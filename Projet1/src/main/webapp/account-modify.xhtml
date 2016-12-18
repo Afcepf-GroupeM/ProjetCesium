@@ -3,7 +3,7 @@
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"	>
 <head>
 <title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Account :: w3layouts</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>				
 </head>
 <body>
+<f:event listener="#{modifyUserController.init}" type="preRenderView" />
   <!--header-->
 	<div class="header">
 		<div class="header-top">
@@ -136,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	<div class="container">
 		<div class="account">
-			<h2 class="account-in">Compte</h2>			
+			<h2 class="account-in">Compte</h2>						
 				<h:form>
 					<div>
 						<span class="civil"><h:outputLabel>*Civilité:</h:outputLabel></span>
@@ -182,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span class="wordVef"><h:outputLabel value="Mot de passe (verification):"/></span>
 						<h:inputSecret value="#{addUserController.password2}"  />
 					</div>					
-					<h:commandButton value="Créer Compte!" action="#{addUserController.action}"/>
+					<h:commandButton value="Mettre à jour!" action="#{addUserController.action}"/>
 					<span class="message"><h:outputLabel type="text" value="#{addUserController.message}"/></span>
 				</h:form>
 				

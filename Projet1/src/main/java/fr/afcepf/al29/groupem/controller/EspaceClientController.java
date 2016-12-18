@@ -125,7 +125,7 @@ public class EspaceClientController {
 	}
 	
 	public String userModify(){
-		return "/account.jsf?faces-redirect = true";
+		return "/account-modify.jsf?faces-redirect = true";
 	}
 	
 	public String addAddress(){
