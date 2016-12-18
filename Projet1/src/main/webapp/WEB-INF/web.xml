@@ -42,6 +42,7 @@
 	<exception-type>javax.faces.application.ViewExpiredException</exception-type>
 	<location>/expired.xhtml</location>
 </error-page>
+<!-- Changé pour expired.xhtml -->
 
 <session-config>
 	<session-timeout>30</session-timeout>
