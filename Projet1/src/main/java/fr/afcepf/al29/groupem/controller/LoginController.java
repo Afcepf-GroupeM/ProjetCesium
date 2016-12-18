@@ -27,7 +27,7 @@ public class LoginController {
 	private String password;
 	private String errorMessage ="";
 	private User userLogged;	
-	
+	private boolean islogged = false;
 	
 	
 	
@@ -49,6 +49,7 @@ public class LoginController {
 			} else {
 				errorMessage = "Connecté!";
 				
+				islogged = true;
 				userLogged = userBus.getUserByLogin(login);
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());
 				
@@ -62,6 +63,7 @@ public class LoginController {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		userLogged = null;
+		islogged = false;
 		errorMessage = "";
 		return "logout?faces-redirect=true";
 	}
@@ -104,6 +106,16 @@ public class LoginController {
 
 	public void setUserLogged(User userLogged) {
 		this.userLogged = userLogged;
+	}
+
+
+	public boolean getIslogged() {
+		return islogged;
+	}
+
+
+	public void setIslogged(boolean islogged) {
+		this.islogged = islogged;
 	}
 
 	

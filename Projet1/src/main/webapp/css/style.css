@@ -43,10 +43,28 @@ h1,h2,h3,h4,h5,h6,label,p{
 	color:#fff;
 	font-size:0.8em;
 	letter-spacing: 1px;
-	padding:1.4em 1em;
+	padding-top:0.2em;
+	margin-right:1em;
 }
 .header-in ul li a:hover{
 	  color: #9fdcda;
+}
+span#userIconMenu{
+	padding:10em 0em;
+}
+span#cartIconMenu{
+	padding:0em 0em;
+}
+span#accountCartMenu{
+	font-size:1.6em;
+}
+span#userLoggedMenu{
+	display:block;
+	text-decoration:none;
+	color:#fff;
+	font-size:1em;
+	letter-spacing: 1px;
+	padding:0.5em 0.1em 0em;
 }
 .cart{
 	vertical-align: middle;

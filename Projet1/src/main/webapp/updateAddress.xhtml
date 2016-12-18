@@ -67,11 +67,43 @@
 						</div>
 						<div class="header-in">
 							<ul class="icon1 sub-icon1">
-								<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
-								<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
-								<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-								<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
-								<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+								<li >
+							<h:link outcome="login" rendered="#{not loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+							<h:link outcome="espaceclient" rendered="#{loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+							</span>
+							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
+							<span id="accountCartMenu">
+								<h:link value="MON COMPTE" outcome="espaceclient" rendered="#{loginController.islogged}">
+									<f:param name="userId" value="#{loginController.userLogged.id}"/>
+								</h:link>
+							</span>
+							<h:form>
+								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
+							</h:form>
+							<span id="userLoggedMenu">
+								<h:outputText value="Bienvenue #{loginController.userLogged.civilite}. " rendered="#{loginController.islogged}"/>
+								<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
+							</span>
+						</li>
+						<li>
+							<h:link outcome="panier">
+								<img src="images/cart_white.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>							
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="MON PANIER" outcome="panier" />
+							</span>
+							<h:link value="VOIR DETAIL" outcome="panier" />
+						</li>
 							</ul>
 						</div>
 						<div class="clearfix"> </div>
