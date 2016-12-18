@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Single :: w3layouts</title>
+<title>Mix Hightech</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container">	
 			<div class="header-top-in">			
 				<div class="logo">
-					<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" " /></a>
+					<a href="index.xhtml"><img src="images/logowhite.png" alt=" " /></a>
 				</div>
 			<div class="header-in">
 					<ul class="icon1 sub-icon1">
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h:link outcome="login" rendered="#{not loginController.islogged}">
 								<img src="images/account.png" class="img-responsive" alt=""/>
 							</h:link>
-							<h:link outcome="espaceclient" rendered="#{loginController.islogged}">
+							<h:link outcome="myaccount" rendered="#{loginController.islogged}">
 								<img src="images/account.png" class="img-responsive" alt=""/>
 							</h:link>
 						</li>
@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</span>
 							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
 							<span id="accountCartMenu">
-								<h:link value="MON COMPTE" outcome="espaceclient" rendered="#{loginController.islogged}" />
+								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
 							</span>
 							<h:form>
 								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
@@ -156,13 +156,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-bottom-in">
 		<div class="container">
 		<div class="header-bottom-on">
-			<p class="wel"><a href="#">Welcome visitor you can login or create an account.</a></p>
+			<p class="wel">
+				<h:link value="Bienvenue invité, loggez vous en cliquant ici." outcome="login" rendered="#{not loginController.islogged}"/>
+				<h:outputText value="Bienvenue #{loginController.userLogged.civilite} " rendered="#{loginController.islogged}"/>
+				<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
+			</p>
 			<div class="header-can">
 				<ul class="social-in">
-						<li><a href="#"><i> </i></a></li>
-						<li><a href="#"><i class="facebook"> </i></a></li>
-						<li><a href="#"><i class="twitter"> </i></a></li>					
-						<li><a href="#"><i class="skype"> </i></a></li>
+						<li><a href="accueil.jsf"><i> </i></a></li>
+						<li><a href="https://fr-fr.facebook.com/"><i class="facebook"> </i></a></li>
+						<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
+						<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
 					</ul>	
 					<!--
 					<div class="down-top">		
