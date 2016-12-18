@@ -70,8 +70,8 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Détails</f:facet>
-				<h:commandLink action="#{detailArticleController.doFindItem}">
-					<h:outputText value="#{it.name}"/>
+				<h:commandLink action="#{itemCartController.doFindItem}">
+					<h:outputText value="Fiche"/>
 					<f:param name = "itemId" value="#{it.id}"/>
 				</h:commandLink>	
 			</h:column>

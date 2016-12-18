@@ -29,6 +29,7 @@ public class CartBusImpl implements CartBusApi {
 	@Autowired
 	UserDaoApi userDao;
 	
+	@Autowired
 	ItemDaoApi itemDao;
 	
 	
@@ -77,6 +78,17 @@ public class CartBusImpl implements CartBusApi {
 		cartLine.setUnitPrice(item.getPrice());
 		cartLine.setCart(cartDao.getCartById(cartId));
 		return cartLineDao.createCartLine(cartLine);
+	}
+
+	@Override
+	public boolean destroyCartLine(CartLine cartLine) {
+		return cartLineDao.deleteCartLineById(cartLine.getId());
+		
+	}
+	
+	@Override
+	public CartLine updateCartLine(CartLine cartLine){
+		return cartLineDao.updateCartLine(cartLine);
 	}
 	
 	

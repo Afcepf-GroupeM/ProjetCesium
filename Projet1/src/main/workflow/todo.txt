@@ -55,3 +55,19 @@ Haiyan:
 
 - OrderLineImpl (Business/Controller/JSF)
 - Ajouter article
+
+
+
+###### Secondaire ######
+
+- empecher creation d'un utilisateur si une adresse email est deja utilisée
+
+
+
+
+
+
+
+
+
+
