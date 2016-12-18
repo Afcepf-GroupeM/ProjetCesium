@@ -40,5 +40,6 @@ private List<Category> categories;
 	}
 	
 	//commentaire inutile
+	//commentaire inutile
 	
 }
