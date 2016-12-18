@@ -40,7 +40,7 @@
 
 <error-page>
 	<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-	<location>/SessionExpired</location>
+	<location>/expired.xhtml</location>
 </error-page>
 
 <session-config>
