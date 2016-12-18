@@ -1290,7 +1290,9 @@ span.word{
 span.wordVef{
 	padding-right: 1em;
 }
-
+span.message{
+	color:red;
+}
 .account div{
 	padding:1em 0;
 }
