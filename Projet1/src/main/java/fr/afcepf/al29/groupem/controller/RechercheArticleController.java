@@ -27,7 +27,7 @@ public class RechercheArticleController {
 	
 	public String doSearch() {
 		items = itemBus.searchItems(keyword);
-		return null;
+		return "recherche?faces-redirect=true";
 	}
 
 
