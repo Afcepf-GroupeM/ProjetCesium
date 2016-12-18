@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <f:event listener="#{espaceClientController.init}" type="preRenderView" />
+<f:event listener="#{addressManagerController.init}" type="preRenderView" />
   <!--header-->
 	<div class="header">
 		<div class="header-top">
@@ -140,18 +141,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	
-		<div class="container">
-			
+		<div class="container">			
 			<div class="myaccount">
 				<h2 class="myaccountprofile"><h:outputLabel value="Bonjour"/> 		
 					<h:outputText value="&#160;" />	
 					<h:outputLabel value="#{espaceClientController.userConnect.firstName}"/> 
 					<h:outputText value="&#160;" />
-					<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/>
-								 	
-				 	<h:commandButton class="btnmyaccount" value="Modifier mon profile" action="#{espaceClientController.userModify}"/>
-					<h:outputLabel value="#{espaceClientController.messageInfoPerson}"/> 
-				</h2>					
+					<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/>	
+					<h:commandButton class="btnmyaccount" padding="padding:0 2px 0px 2px" style="color: #747272" value="Modifier mon profile" action="#{espaceClientController.userModify}"/>
+					<h:outputLabel value="#{espaceClientController.messageInfoPerson}"/>			 	
+				</h2>	
+				 <f:verbatim><hr/></f:verbatim> 		
 			</div>
 			
 			<h2 class=" myaccount">Suivi de votre commande en cours:</h2>				
@@ -245,7 +245,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    	</h:column>	
 				    	 -->	    	
 				</h:dataTable>
-
+				
+			<h2 class="myaccount">Gestion addresse:
+				<h:button outcome="addAddress" value="Ajouter une adresse">
+					<f:param name = "userId" value="#{addressManagerController.currentUser.id}"/>
+				</h:button>
+			</h2>	
+			<br/>						
+				<h:dataTable class="table-account1"  var="adr" value="#{addressManagerController.userAddresses}" rendered="#{not empty addressManagerController.userAddresses}" styleClass="order-table"
+				    			headerClass="order-table-header"
+				    			rowClasses="order-table-odd-row,order-table-even-row">		
+				    	<h:column>
+				    		<f:facet name="header">Nom</f:facet>
+							<h:outputLabel value="#{adr.name}"></h:outputLabel>
+				    	</h:column>
+				    	<h:column>
+							<f:facet name="header">Numéro</f:facet>
+							<h:outputText value="#{adr.number}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Complément</f:facet>
+							<h:outputText value="#{adr.complement}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Type</f:facet>
+							<h:outputText value="#{adr.roadType}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nom Voie</f:facet>
+							<h:outputText value="#{adr.roadName}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ville</f:facet>
+							<h:outputText value="#{adr.city}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Code postal</f:facet>
+							<h:outputText value="#{adr.zipcode}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Pays</f:facet>
+							<h:outputText value="#{adr.country}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Adresse facturation</f:facet>
+							<h:selectBooleanCheckbox value="#{adr.billing}" disabled="true"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Mise à jour</f:facet>
+							<h:button outcome="updateAddress" value="Mettre à jour">
+								<f:param name="addressId" value="#{adr.id}"/>
+								<f:param name="userId" value="#{addressManagerController.currentUser.id}" />
+							</h:button>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Effacer</f:facet>
+							<h:button outcome="addressManager" value="Effacer">
+								<f:param name="addressId" value="#{adr.id}"/>
+							</h:button>	
+						</h:column> 	
+		 </h:dataTable>
+		<br/>
+		<br/>
+		
 		</div>
 		<!---->
 		<div class="footer">

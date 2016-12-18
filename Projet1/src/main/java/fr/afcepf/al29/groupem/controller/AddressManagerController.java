@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
@@ -16,6 +17,7 @@ import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.ComplementAddress;
 import fr.afcepf.al29.groupem.entities.User;
 
+@Scope("session")
 @Component
 @ManagedBean
 public class AddressManagerController {
@@ -29,21 +31,17 @@ public class AddressManagerController {
 	@Autowired
 	private AddressBusApi addressBus;
 	
-	public String init(ComponentSystemEvent event){
+	public void init(ComponentSystemEvent event){
+		int idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-		//TEMP sera sur l'espace client
-		Map<String,Object> userLogged = fc.getExternalContext().getSessionMap();
 		
-		if (!params.isEmpty()){
+		if (params.size() > 0){
 			int addressId = Integer.parseInt(params.get("addressId"));
 			addressBus.disableAddress(addressId);
-			//le paramètre de la map (addressId) est toujours présent donc si on actualise la page ca invalidera une address que l'on aura set à nouveau à valid via un update sur la base
 		}
 		
-		int userId = (Integer) userLogged.get("userid");
-		
-		currentUser = userBus.getUserById(userId);
+		currentUser = userBus.getUserById(idUser);//userId);
 		userAddresses = addressBus.getAddressesByUserId(currentUser.getId());
 		
 		for (Address address : userAddresses){
@@ -60,7 +58,7 @@ public class AddressManagerController {
 			}
 		}
 		
-		return "addressManager?faces-redirect=true";
+		//return null;
 	}
 
 	public String getComplement() {
