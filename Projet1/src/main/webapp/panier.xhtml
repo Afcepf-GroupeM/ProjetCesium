@@ -10,51 +10,55 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Checkout :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--fonts-->
-<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'/>
-<!--//fonts-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
-				<script type="text/javascript">
-					jQuery(document).ready(function($) {
-						$(".scroll").click(function(event){		
-							event.preventDefault();
-							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+	
+<h:head>
+	<title>GroupeM EC - Panier</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<script src="js/jquery.min.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'/>
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+					<script type="text/javascript">
+						jQuery(document).ready(function($) {
+							$(".scroll").click(function(event){		
+								event.preventDefault();
+								$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+							});
 						});
-					});
-				</script>
-<script>$(document).ready(function(c) {
-	$('.alert-close').on('click', function(c){
-		$('.message').fadeOut('slow', function(c){
-	  		$('.message').remove();
-		});
-	});	  
-});
-</script>
-<script>$(document).ready(function(c) {
-	$('.alert-close1').on('click', function(c){
-		$('.message1').fadeOut('slow', function(c){
-	  		$('.message1').remove();
-		});
-	});	  
-});
-</script>				
-</head>
-<body>
+					</script>
+	<script>$(document).ready(function(c) {
+		$('.alert-close').on('click', function(c){
+			$('.message').fadeOut('slow', function(c){
+		  		$('.message').remove();
+			});
+		});	  
+	});
+	</script>
+	<script>$(document).ready(function(c) {
+		$('.alert-close1').on('click', function(c){
+			$('.message1').fadeOut('slow', function(c){
+		  		$('.message1').remove();
+			});
+		});	  
+	});
+	</script>				
+	
+	<style>
+.order-table{border-collapse:collapse;width: 100%;}
+.order-table-header{text-align:center;background:none repeat scroll 0 0 #E5E5E5;border-bottom:1px solid #BBBBBB;padding:16px;}
+.order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
+.order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
+</style>
+	
+	</h:head>
+<h:body>
+<f:event listener="#{itemCartController.initCartDetail}" type="preRenderView" /> 
   <!--header-->
 	<div class="header">
 		<div class="header-top">
@@ -137,14 +141,71 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
+	
+	
+	
+	<!--  Page content -->
 	<div class="container">
+	<h4>Détail de votre panier</h4>
 		<div class="wish-list">
-			<h6><a href="#">Product Name</a>	<a href="#">Unit Price</a>	<a href="#">Stock Status</a></h6>	
-			<p>No products were added to the wishlist</p>
+		<!-- Rendered if Cart is empty -->
+		
+		<h:panelGroup rendered="#{itemCartController.isCartEmpty}">
+			<h6>Le panier est vide... :( </h6><br/>
+			Commencez à ajouter des produits au panier! 
+		</h:panelGroup>
+		
+		<!--  Rendered if Cart if NOT empty -->
+		
+		<h:panelGroup rendered="#{not itemCartController.isCartEmpty}">
+		<h:form>
+			<h:dataTable value="#{itemCartController.cartLines}"  var="line" styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<f:facet name="header">Nom des articles</f:facet>
+					<h:outputText value="#{line.item.name}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Prix unitaire</f:facet>
+					<h:outputText value="#{line.unitPrice}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+					<h:outputText value="#{line.item.stock}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Quantité</f:facet>
+					<h:outputText value="#{line.quantity}"/>
+				</h:column> 
+				<h:column>
+					<f:facet name="header">Prix Total</f:facet>
+					<h:outputText value="#{itemCartController.cartLinesSubtotal[line.id]}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Supprimer</f:facet>
+					<h:commandLink action="#{itemCartController.removeItemFromCart}">
+						<h:outputText value="X"/>
+						<f:param name="itemIdToRemove" value="#{line.item.id}"/>
+					</h:commandLink>	
+					</h:column>
+				</h:dataTable>
+				<br/>
+				<h6>Montant total: <h:outputText value="#{itemCartController.totalAmount}"/>€</h6>
+				<br/>
+				
+				<h:commandButton value="Valider la commande"  action="#"/>
+				</h:form>
+			</h:panelGroup>
+		
 		</div>
 
 	</div>
-		<!---->
+	
+	
+	
+	
+		<!-- End Page content -->
 				<div class="footer">
 			<div class="footer-top">
 				<div class="container">
@@ -239,5 +300,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
 		</div>
-</body>
+</h:body>
 </html>

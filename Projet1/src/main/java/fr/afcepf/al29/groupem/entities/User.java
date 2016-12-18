@@ -79,6 +79,19 @@ public class User {
 		this.phone = phone;
 		this.birthDate = birthDate;
 		this.passwordHash = passwordHash;
+	}		
+
+	public User(int id, String lastName, Civilite civilite, String firstName, String email, String phone,
+			Date birthDate, String passwordHash) {
+		super();
+		this.id = id;
+		this.lastName = lastName;
+		this.civilite = civilite;
+		this.firstName = firstName;
+		this.email = email;
+		this.phone = phone;
+		this.birthDate = birthDate;
+		this.passwordHash = passwordHash;
 	}
 
 

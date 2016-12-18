@@ -3,7 +3,8 @@
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <head>
 <title>.: Espace client :.</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,14 +20,14 @@
 <f:event listener="#{espaceClientController.init}" type="preRenderView" />
  <h:form>
  	<div style="float:left; margin: 0 auto"> 	
-		 <h:outputLabel value="Bonjour"/> 
-		 <h:outputText value="&#160;" />	
+		<h:outputLabel value="Bonjour"/> 		
+		<h:outputText value="&#160;" />	
 		<h:outputLabel value="#{espaceClientController.userConnect.firstName}"/> 
 		<h:outputText value="&#160;" />
 		<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/> 
 		<h:outputText value="&#160;" />		
-		<h:commandButton value="Modifier information personnalle" action="#{espaceClientController.userModify}"/>
-		<h:outputLabel value="messageInfoPerso"/> 
+		<h:commandButton value="Modifier mon profile" action="#{espaceClientController.userModify}"/>
+		<h:outputLabel value="#{espaceClientController.messageInfoPerson}"/> 
 	</div>
 
 	<div style="width: 100%;float: left;">
@@ -122,8 +123,8 @@
 	
 	<div style="width: 100%;float: left;">
 		<h2>Gestion addresse: </h2>	
-		<h:commandButton value="Ajouter une nouvelle adresse"/>
-		<h:outputLabel value="messageAdresse"/>  
+		<h:commandButton value="Ajouter une nouvelle adresse" action="#{espaceClientController.addAddress}"/>
+		<h:outputLabel value="#{espaceClientController.messageAddress}"/>  
 	</div>
 
  </h:form>

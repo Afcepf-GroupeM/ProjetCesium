@@ -6,43 +6,45 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<h:head>Détail de l'article</h:head>
+<h:head>
+<title>.: Detail Item :.</title>
+</h:head>
 
-<body>
-
+<h:body>
+<f:event listener="#{itemCartController.initItemDetail}" type="preRenderView" /> 
 <h:form>
 
 <h:panelGrid columns="2">
 	
 	<h:column>
-		<img src="#{request.contextPath}#{detailArticleController.imagePath}#{detailArticleController.item.id}/1.jpg" height="128" width="128"></img>
+		<img src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg" height="128" width="128"></img>
 	</h:column>
 	
 	<h:column>
 		<h:outputText value="Nom de l'article: "/>
-		<h:outputText value="#{detailArticleController.item.name}"/>
+		<h:outputText value="#{itemCartController.item.name}"/>
 		<br/>
 		<h:outputText value="Description: "/>
-		<h:outputText value="#{detailArticleController.item.description}"/>
+		<h:outputText value="#{itemCartController.item.description}"/>
 		<br/>
 		<h:outputText value="Stock: "/>
-		<h:outputText value="#{detailArticleController.item.stock}"/>
+		<h:outputText value="#{itemCartController.item.stock}"/>
 		<br/>
-		<h:selectOneMenu value="#{detailArticleController.quantity}">
-			<f:selectItems value="#{detailArticleController.quantityList}" />
+		<h:selectOneMenu value="#{itemCartController.quantity}">
+			<f:selectItems value="#{itemCartController.quantityList}" />
 		</h:selectOneMenu>
 		<br/>
 		<h:outputText value="Prix: "/>
-		<h:outputText value="#{detailArticleController.item.price}"/>
+		<h:outputText value="#{itemCartController.item.price}"/>
 		<br/>
 	</h:column>
 
 </h:panelGrid>
-
-	<h:commandLink value="Ajouter au panier" action ="#{panierController.addItemToCart}" >
-	<f:param name = "itemId" value="#{detailArticleController.quantity}"/>
-	<f:param name = "quantity" value="#{detailArticleController.item.id}"/>
-	</h:commandLink>
+	
+	<h:commandButton value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" >
+	<f:param name = "quantity" value="#{itemCartController.quantity}"/>
+	<f:param name = "itemId" value="#{itemCartController.item.id}"/>
+	</h:commandButton>
 </h:form>
-</body>
+</h:body>
 </html>

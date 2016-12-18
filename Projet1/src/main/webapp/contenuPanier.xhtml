@@ -8,18 +8,30 @@
 
 
 <h:head>
-<title>.: Item list :.</title>
+<title>.: Cart details :.</title>
+<style>
+.order-table{border-collapse:collapse;}
+.order-table-header{text-align:center;background:none repeat scroll 0 0 #E5E5E5;border-bottom:1px solid #BBBBBB;padding:16px;}
+.order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
+.order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
+</style>
 </h:head>
 
-<body>
+<h:body>
+
+<f:event listener="#{itemCartController.initCartDetail}" type="preRenderView" /> 
+
+
 
 	<div>
-		<h1>Détail de votre panier</h1>
+		<h1>Détails de votre panier</h1>
 	</div>
 	<div>
-		<h2>Panier Id <h:outputText value="#{panierController.cart.id}"/> - (Printing for debug purpose only)</h2>
+		<h2>Panier Id <h:outputText value="#{itemCartController.cart.id}"/> - (Printing for debug purpose only)</h2>
 		<h:form>
-		<h:dataTable value="#{panierController.cartLines}"  var="line" >
+		<h:dataTable value="#{itemCartController.cartLines}"  var="line" styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
 			<h:column>
 				<f:facet name="header">Nom des articles</f:facet>
 				<h:outputText value="#{line.item.name}"/>
@@ -38,12 +50,12 @@
 			</h:column> 
 			<h:column>
 				<f:facet name="header">Prix Total</f:facet>
-				<h:outputText value="#{panierController.cartLinesSubtotal[line.id]}"/>
+				<h:outputText value="#{itemCartController.cartLinesSubtotal[line.id]}"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Supprimer</f:facet>
-				<h:commandLink action="#{panierController.removeItemFromCart}">
-					<h:outputText value="Supprimer"/>
+				<h:commandLink action="#{itemCartController.removeItemFromCart}">
+					<h:outputText value="X"/>
 					<f:param name="itemIdToRemove" value="#{line.item.id}"/>
 				</h:commandLink>	
 			</h:column>
@@ -51,13 +63,13 @@
 
 		<br/>
 		<div class="zoneButton">
-		Montant total: <h:outputText value="#{panierController.totalAmount}"/>€<br/><br/>
-		<h:commandButton value="Poursuivez votre achat"  action="#"/>
+		Montant total: <h:outputText value="#{itemCartController.totalAmount}"/>€<br/><br/>
+		<h:commandButton value="REtour liste items"  action="item-list?faces-redirect=true"/>
 		<br/>
 		
-		<h:commandButton value="Continuez votre commande"  action="#"/>
+		<h:commandButton value="Valider la commande"  action="#"/>
 		</div>
 	</h:form>
 	</div>
-</body>
+</h:body>
 </html>

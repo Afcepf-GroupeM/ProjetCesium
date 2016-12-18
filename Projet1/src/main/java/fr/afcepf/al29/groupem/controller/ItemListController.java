@@ -2,15 +2,8 @@ package fr.afcepf.al29.groupem.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -67,7 +60,6 @@ public class ItemListController {
 	// - link to other categories
 	// - link to article page
 
-	
 	
 	
 	
