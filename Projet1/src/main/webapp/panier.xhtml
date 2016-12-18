@@ -83,9 +83,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</span>
 							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
 							<span id="accountCartMenu">
-								<h:link value="MON COMPTE" outcome="espaceclient" rendered="#{loginController.islogged}">
-									<f:param name="userId" value="#{loginController.userLogged.id}"/>
-								</h:link>
+								<h:link value="MON COMPTE" outcome="espaceclient" rendered="#{loginController.islogged}" />
 							</span>
 							<h:form>
 								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />

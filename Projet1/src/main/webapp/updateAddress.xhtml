@@ -81,9 +81,7 @@
 							</span>
 							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
 							<span id="accountCartMenu">
-								<h:link value="MON COMPTE" outcome="espaceclient" rendered="#{loginController.islogged}">
-									<f:param name="userId" value="#{loginController.userLogged.id}"/>
-								</h:link>
+								<h:link value="MON COMPTE" outcome="espaceclient" rendered="#{loginController.islogged}" />
 							</span>
 							<h:form>
 								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
@@ -225,7 +223,7 @@
     					</div>
     					<br />
     				 	<h:commandButton value="Mettre à jour" action="#{updateAddressController.action}"/>
-						<h:button outcome="addressManager" value="Annuler" />
+						<h:button outcome="espaceclient" value="Annuler" />
 					</h:form>
 				</div>
 				
