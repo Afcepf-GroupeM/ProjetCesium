@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <f:event listener="#{espaceClientController.init}" type="preRenderView" />
+<f:event listener="#{addressManagerController.init}" type="preRenderView" />
   <!--header-->
 	<div class="header">
 		<div class="header-top">
@@ -206,6 +207,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 		
 			<h2 class="myaccount">Suivi de votre commande historique:</h2>		
+			<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOldOrder}"/>
+			<br/>						
+				<h:dataTable class="table-account1"  var="orderold" value="#{espaceClientController.listOldOrder}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"
+				    			headerClass="order-table-header"
+				    			rowClasses="order-table-odd-row,order-table-even-row">		
+				    	<h:column>
+				    		<f:facet name="header">No.</f:facet>
+							<h:outputLabel value="#{orderold.id}"></h:outputLabel>
+				    	</h:column>
+				    	<h:column>
+				    		<f:facet name="header">Designation de votre articles</f:facet>
+							<ul style="margin: 0">
+								<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+									<li><h:outputText value="#{orderLineOld.item.name}"/><h:outputText value="&#160;" /><h:outputText value="#{orderLineOld.item.reference}"/></li>							
+								</ui:repeat>
+							</ul>
+				    	</h:column>
+				    	<h:column>
+				    		<f:facet name="header">Prix unitaire</f:facet>
+							<ul style="margin: 0">
+								<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+									<li><h:outputText value="#{orderLineOld.unitPrice}"/></li>							
+								</ui:repeat>
+							</ul>
+				    	</h:column>
+				    	<h:column>
+				    		<f:facet name="header">Quantité</f:facet>
+							<ul style="margin: 0">
+								<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+									<li><h:outputText value="#{orderLineOld.quantity}"/></li>							
+								</ui:repeat>
+							</ul>
+				    	</h:column>
+				    	<!-- 
+				    	<h:column>
+				    		<f:facet name="header">Prix TTC</f:facet>			
+				    	</h:column>	
+				    	 -->	    	
+				</h:dataTable>
+				
+			<h2 class="myaccount">Gestion addresse:</h2>		
 			<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOldOrder}"/>
 			<br/>						
 				<h:dataTable class="table-account1"  var="orderold" value="#{espaceClientController.listOldOrder}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"

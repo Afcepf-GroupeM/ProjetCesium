@@ -29,7 +29,7 @@ public class AddressManagerController {
 	@Autowired
 	private AddressBusApi addressBus;
 	
-	public String init(ComponentSystemEvent event){
+	public void init(ComponentSystemEvent event){
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
 		
@@ -55,7 +55,7 @@ public class AddressManagerController {
 			}
 		}
 		
-		return null;
+		//return null;
 	}
 
 	public String getComplement() {
