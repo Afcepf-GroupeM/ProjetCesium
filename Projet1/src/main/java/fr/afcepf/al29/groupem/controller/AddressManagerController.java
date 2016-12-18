@@ -32,13 +32,18 @@ public class AddressManagerController {
 	public String init(ComponentSystemEvent event){
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+		//TEMP sera sur l'espace client
+		Map<String,Object> userLogged = fc.getExternalContext().getSessionMap();
 		
-		if (params.size() > 0){
+		if (!params.isEmpty()){
 			int addressId = Integer.parseInt(params.get("addressId"));
 			addressBus.disableAddress(addressId);
+			//le paramètre de la map (addressId) est toujours présent donc si on actualise la page ca invalidera une address que l'on aura set à nouveau à valid via un update sur la base
 		}
 		
-		currentUser = userBus.getUserById(3);//userId);
+		int userId = (Integer) userLogged.get("userid");
+		
+		currentUser = userBus.getUserById(userId);
 		userAddresses = addressBus.getAddressesByUserId(currentUser.getId());
 		
 		for (Address address : userAddresses){
@@ -55,7 +60,7 @@ public class AddressManagerController {
 			}
 		}
 		
-		return null;
+		return "addressManager?faces-redirect=true";
 	}
 
 	public String getComplement() {

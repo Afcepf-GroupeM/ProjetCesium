@@ -56,7 +56,7 @@ public class EspaceClientController {
 	@Autowired	
 	AddressBusApi addressBusApi;
 	
-	public void init(ComponentSystemEvent e){			
+	public void init(ComponentSystemEvent e){
 		int idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		System.out.println("------------------------iduser:"+idUser);
 		
