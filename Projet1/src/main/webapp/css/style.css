@@ -1419,6 +1419,14 @@ span.message{
 .messagemyaccount{
 	padding:0 0 0 3em;
 }
+.myaccount btnmyaccount{
+color: #747272;
+}
+.myaccountheader{
+	display: inline-block;
+}
+/*
+
 .myaccount input[type="submit"]{	
 	background: linear-gradient(to bottom, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
 	color:#fff;
@@ -1438,6 +1446,7 @@ span.message{
 	 line-height: inherit;
 	  
 }
+
 .myaccount input[type="submit"]:hover{
 	background: rgb(157,218,216);
 	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
@@ -1447,6 +1456,7 @@ span.message{
 	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 }
+*/
 /*--checkout--*/
 .check-out {
   padding: 6em 1em;
