@@ -22,9 +22,9 @@ public class SessionListener implements PhaseListener{
 //			 ADD PAGE WITH LOGIN IN REQUIERED HERE
 			boolean isPageWithLoginInRequiered = (currentPage.lastIndexOf("secret.xhtml") > -1) 
 //												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
-//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
-//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
-//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
+												 || (currentPage.lastIndexOf("addressManager.xhtml") > -1) 
+												 || (currentPage.lastIndexOf("addAddress.xhtml") > -1) 
+												 || (currentPage.lastIndexOf("updateAddress.xhtml") > -1) 
 												 ;
 			
 			HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);

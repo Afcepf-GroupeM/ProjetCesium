@@ -52,7 +52,7 @@ public class EspaceClientController {
 	AddressBusApi addressBusApi;
 	
 	public void init(ComponentSystemEvent e){			
-		int idUser = 8;
+		int idUser = 3;
 		userConnect =  userBusApi.getUserById(idUser);
 		messageInfoPerson = "";
 		System.out.println("********************userConnect******************"+userConnect.getfirstName() + " " + userConnect.getlastName());
