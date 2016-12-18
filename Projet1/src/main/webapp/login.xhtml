@@ -1,46 +1,260 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:pretty="http://ocpsoft.com/prettyfaces">
-
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<title>.: Login :.</title>
+<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Account :: w3layouts</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'/>
+<!--//fonts-->
+<!--
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+  -->
+				<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){		
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+				</script>
+<script>$(document).ready(function(c) {
+	$('.alert-close').on('click', function(c){
+		$('.message').fadeOut('slow', function(c){
+	  		$('.message').remove();
+		});
+	});	  
+});
+</script>
+<script>$(document).ready(function(c) {
+	$('.alert-close1').on('click', function(c){
+		$('.message1').fadeOut('slow', function(c){
+	  		$('.message1').remove();
+		});
+	});	  
+});
+</script>				
+
+<style>
+.login-button{margin:auto;text-align: center;}
+</style>
+
 </h:head>
-
 <h:body>
-<h1>Test Login</h1>
-<div>
- <h:form>
-       Login : <h:inputText value="#{loginController.login}"  /> <br/>
-       Passord : <h:inputSecret value="#{loginController.password}"  /><br/>
-       <h:commandButton value="Connect!" action="#{loginController.loginaction}"/>
- </h:form>
- </div>
- <br/>
- <div>
- <h:outputLabel value="#{loginController.errorMessage}"/>
-  <br/>
- </div>
- <div>
- <br/>
- <br/>
- Acceder aux pages:<br/>
- <a href="secret.jsf">Secrete</a><br/><br/><br/>
- <a href="item-list.jsf">Item list</a><br/><br/>
- <a href="account.jsf">account</a><br/><br/>
- 
- 
-<!--  <pretty:link mappingId="secret">- Secrete (login requiered)</pretty:link><br/>
- <pretty:link mappingId="item-list"><f:param value="1" />- Item List</pretty:link><br/> -->
- 
- 
- </div>
+  <!--header-->
+	<div class="header">
+		<div class="header-top">
+			<div class="container">
+			<div class="header-top-in">			
+				<div class="logo">
+					<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" "/></a>
+				</div>
+				<div class="header-in">
+					<ul class="icon1 sub-icon1">
+							<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
+							<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
+							<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+							<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
+							<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		</div>
+		<div class="header-bottom">
+		<div class="container">
+			<div class="h_menu4">
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+					<li class="active"><a href="accueil.xhtml"><i> </i>Desktops</a></li>
+					<li ><a href="#">Laptops Notebooks</a>
+						<ul class="drop">
+							<li><a href="produits.xhtml">Sony(2)</a></li>
+							<li><a href="produits.xhtml">Android(4)</a></li>
+							<li><a href="produits.xhtml">Apple(7)</a></li>
+							<li><a href="produits.xhtml">Acer(53)</a></li>
+							<li><a href="produits.xhtml">HP(78)</a></li>
+							<li><a href="produits.xhtml">Intel(5)</a></li>
+						</ul>
+						</li> 						
+						<li><a href="produits.xhtml">  Tablets</a></li>            
+						<li><a href="produits.xhtml">Components</a></li>						  				 
+						<li><a href="produits.xhtml">Software</a></li>
+						<li><a href="produits.xhtml">Phones PDAs </a></li>
+						<li><a href="produits.xhtml">  Cameras  </a></li>
+						<li><a href="produits.xhtml">Contact </a></li>
+					
+				</ul>
+				<script type="text/javascript" src="js/nav.js"></script>
+			</div>
+		</div>
+		</div>
+		<div class="header-bottom-in">
+		<div class="container">
+		<div class="header-bottom-on">
+			<p class="wel"><a href="#">Welcome visitor you can login or create an account.</a></p>
+			<div class="header-can">
+				<ul class="social-in">
+						<li><a href="#"><i> </i></a></li>
+						<li><a href="#"><i class="facebook"> </i></a></li>
+						<li><a href="#"><i class="twitter"> </i></a></li>					
+						<li><a href="#"><i class="skype"> </i></a></li>
+					</ul>	
+					<!-- 
+					<div class="down-top">		
+						  <select class="in-drop">
+							  <option value="Dollars" class="in-of">Dollars</option>
+							  <option value="Euro" class="in-of">Euro</option>
+							  <option value="Yen" class="in-of">Yen</option>
+							</select>
+					 </div>
+					 -->
+					<div class="search">
+						<form>
+							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
+							<input type="submit" value=""/>
+						</form>
+					</div>
+					<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="account">
+			<h2 class="account-in">Se connecter</h2>			
+				<h:form>
+					<div>
+						<span class="email"><h:outputLabel>E-mail: </h:outputLabel></span>
+						<h:inputText value="#{loginController.login}"/>
+					</div> 	
+					<div>			
+						<span class="password"><h:outputLabel>Mot de passe: </h:outputLabel></span>
+						<h:inputSecret value="#{loginController.password}"/> 
+					</div>	
+					<span class="message"><h:outputLabel value="#{loginController.errorMessage}"/></span>
+					<br/>		
+					<br/>
+					<div class="login-button">	
+					<h:commandButton value="Se connecter" action="#{loginController.loginaction}"/>
+					</div>	
+				</h:form>
+				
+		</div>
+	</div>
+		<!---->
+				<div class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="col-md-4 footer-in">						
+						<h4><i><img src="images/telorange.png" alt=" " /></i> A VOTRE ECOUTE</h4>
+						<span class="span">Conseil:0673842460 (Service gratuit)</span>						
+						<p>N'hésitez pas à nous appeler pour obtenir un conseil ou vous accompagner dans votre prise de commande.</p>						
+					</div>
+					<div class="col-md-4 footer-in">
+						<h4><i class="cross"><img src="images/emailorange.png" alt=" " /> </i>NEWSLETTER</h4>
+						<p>Inscrivez-vous à notre newsletter et restez informé de l’actualité et des bons plans MixHighTech.</p>
+						<form id="get_email" name="getEmail" action="">
+							<p>
+								<input class="input" type= "text"  name="abonnement" value="Votre adresse e-mail"/>
+								<button class="button" onclick="">OK</button>
+							</p>
+						</form>						
+					</div>
+					<div class="col-md-4 footer-in">
+						<h4><i class="down"><img src="images/morange.png" alt=" " /> </i>SUIVEZ-NOUS!</h4>
+						<p> <a href="https://fr-fr.facebook.com/"><img class="facebook" src="images/facebook.png" alt=" " /></a>
+							<a href="https://twitter.com/"><img class="twitter" src="images/twitter.png" alt=" " /></a>
+							<a href="https://www.skype.com/"><img class="skype" src="images/skype.png" alt=" " /></a>
+							<a href="accueil.jsf"><img class="earth" src="images/earth.png" alt=" " /></a>
+						</p>
+						
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!---->
+			<div class="footer-middle">
+				<div class="container">
+					<div class="footer-middle-in">
+						<h6>About us</h6>
+						<p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Information</h6>
+						<ul>
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Delivery Information</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Terms Conditions</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Customer Service</h6>
+						<ul>
+							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="#">Returns</a></li>
+							<li><a href="#">Site Map</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>My Account</h6>
+						<ul>
+							<li><a href="account.xhtml">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							<li><a href="wishlist.html">Wish List</a></li>
+							<li><a href="#">Newsletter</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Extras</h6>
+						<ul>
+							<li><a href="#">Brands</a></li>
+							<li><a href="#">Gift Vouchers</a></li>
+							<li><a href="#">Affiliates</a></li>
+							<li><a href="#">Specials</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<p class="footer-class">  <a href="http://w3layouts.com/" target="_blank"></a> </p>
+			<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear' 
+					 		};
+							*/
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
+		</div>
 </h:body>
-
-
 </html>

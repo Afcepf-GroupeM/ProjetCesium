@@ -7,47 +7,283 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<h:head>
-		<title>.: Gestionnaire d'adresse :.</title>
+		<title>Mix Hightech</title>
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Custom Theme files -->
+		<!--theme-style-->
+		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+		<!--//theme-style-->
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!--fonts-->
+		<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'/>
+		<!--//fonts-->
+		<!--
+		<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script>
+		-->
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function(c) {
+				$('.alert-close').on('click', function(c){
+					$('.message').fadeOut('slow', function(c){
+	  					$('.message').remove();
+					});
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function(c) {
+				$('.alert-close1').on('click', function(c){
+					$('.message1').fadeOut('slow', function(c){
+	  					$('.message1').remove();
+					});
+				});
+			});
+		</script>				
 	</h:head>
-
+	
 	<h:body>
 		<f:event listener="#{updateAddressController.init}" type="preRenderView" />
-		<h1>.: Gestionnaire d'adresse :.</h1>
-
-		<div>
-			<h:form>
-				<h:panelGrid id="pannelGrid" columns="2" border="1" cellpadding="10" cellspacing="1">
-					<f:facet name="header">
-						<h:outputLabel value="- Mettre à jour une adresse -"/>
-					</f:facet>
-					<h:outputLabel value="Nom:"/> <h:inputText value="#{updateAddressController.name}"  />
-					<h:outputLabel value="Numéro:"/> <h:inputText value="#{updateAddressController.number}"  />
-					<h:outputLabel value="Complément:"/>
-					<h:selectOneMenu value="#{updateAddressController.complement}">
-						<f:selectItem itemValue="#{null}" itemLabel="--select--" />
-						<f:selectItems value="#{updateAddressController.complementList}" />
-					</h:selectOneMenu>
-					<h:outputLabel value="Type de voie:"/>
-					<h:selectOneMenu value="#{updateAddressController.roadType}">
-						<f:selectItems value="#{updateAddressController.roadTypeList}" />
-					</h:selectOneMenu>
-    				<h:outputLabel value="Nom de la voie:"/> <h:inputText value="#{updateAddressController.roadName}" />
-    				<h:outputLabel value="Ville:"/> <h:inputText value="#{updateAddressController.city}" />
-    				<h:outputLabel value="Code postal:"/> <h:inputText value="#{updateAddressController.zipcode}" maxlength="5" />
-    				<h:outputLabel value="Pays:"/> <h:inputText value="#{updateAddressController.country}"  />
-   					<h:outputLabel value="Adresse de facturation:"/> <h:selectBooleanCheckbox value="#{updateAddressController.billing}" />
-					<f:facet name="footer">
-						<h:panelGroup style="text-align:center">
-							<h:commandButton value="Mettre à jour" action="#{updateAddressController.action}"/>
-							<h:button outcome="addressManager" value="Annuler" />
-						</h:panelGroup>
-					</f:facet>
-				</h:panelGrid>
-			</h:form>
+  		<!--header-->
+		<div class="header">
+			<div class="header-top">
+				<div class="container">
+					<div class="header-top-in">			
+						<div class="logo">
+							<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" "/></a>
+						</div>
+						<div class="header-in">
+							<ul class="icon1 sub-icon1">
+								<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
+								<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
+								<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+								<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
+								<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+			<div class="header-bottom">
+				<div class="container">
+					<div class="h_menu4">
+						<a class="toggleMenu" href="#">Menu</a>
+						<ul class="nav">
+							<li class="active"><a href="accueil.xhtml"><i> </i>Desktops</a></li>
+							<li ><a href="#">Laptops Notebooks</a>
+								<ul class="drop">
+									<li><a href="produits.xhtml">Sony(2)</a></li>
+									<li><a href="produits.xhtml">Android(4)</a></li>
+									<li><a href="produits.xhtml">Apple(7)</a></li>
+									<li><a href="produits.xhtml">Acer(53)</a></li>
+									<li><a href="produits.xhtml">HP(78)</a></li>
+									<li><a href="produits.xhtml">Intel(5)</a></li>
+								</ul>
+							</li> 						
+							<li><a href="produits.xhtml">  Tablets</a></li>            
+							<li><a href="produits.xhtml">Components</a></li>						  				 
+							<li><a href="produits.xhtml">Software</a></li>
+							<li><a href="produits.xhtml">Phones PDAs </a></li>
+							<li><a href="produits.xhtml">  Cameras  </a></li>
+							<li><a href="produits.xhtml">Contact </a></li>
+						</ul>
+						<script type="text/javascript" src="js/nav.js"></script>
+					</div>
+				</div>
+			</div>
+			<div class="header-bottom-in">
+				<div class="container">
+					<div class="header-bottom-on">
+						<p class="wel"><a>Welcome #{addAddressController.user.civilite}. #{addAddressController.user.lastName}</a></p>
+						<div class="header-can">
+							<ul class="social-in">
+								<li><a href="#"><i> </i></a></li>
+								<li><a href="#"><i class="facebook"> </i></a></li>
+								<li><a href="#"><i class="twitter"> </i></a></li>					
+								<li><a href="#"><i class="skype"> </i></a></li>
+							</ul>
+							<div class="search">
+								<form>
+									<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
+									<input type="submit" value=""/>
+								</form>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 
-		<div>
-			<h:outputText value="#{updateAddressController.message}"  escape="false"/>
+		<div class="container">
+			<div class="addressForm">
+				<h2 class="titleAddressForm">Mettre à jour une adresse</h2>
+				<div>
+					<h:form>
+						<div>
+							<span id="name">
+								<h:outputLabel value="Nom:"/>
+							</span>
+							<h:inputText value="#{updateAddressController.name}"  />
+						</div>
+						<div>
+							<h:outputLabel value="Numéro:"/>
+							<span id="number" class="mandatory">*</span>
+							<h:inputText value="#{updateAddressController.number}"  />
+						</div>
+					 	<div>
+					 		<span id="complement">
+					 			<h:outputLabel value="Complément:"/>
+					 		</span>
+					 		<h:selectOneMenu value="#{updateAddressController.complement}">
+								<f:selectItem itemValue="#{null}" itemLabel="--select--" />
+								<f:selectItems value="#{updateAddressController.complementList}" />
+							</h:selectOneMenu>
+					 	</div>
+						<div>
+							<h:outputLabel value="Type de voie:"/>
+							<span id="roadType" class="mandatory">*</span>
+							<h:selectOneMenu value="#{updateAddressController.roadType}">
+								<f:selectItems value="#{updateAddressController.roadTypeList}" />
+							</h:selectOneMenu>
+						</div>
+						<div>
+							<h:outputLabel value="Nom de la voie:"/>
+							<span id="roadName" class="mandatory">*</span>
+							<h:inputText value="#{updateAddressController.roadName}" />
+						</div>
+						<div>
+							<h:outputLabel value="Ville:"/>
+							<span id="city" class="mandatory">*</span>
+							<h:inputText value="#{updateAddressController.city}" />
+						</div>
+						<div>
+							<h:outputLabel value="Code postal:"/>
+							<span id="zipcode" class="mandatory">*</span>
+							<h:inputText value="#{updateAddressController.zipcode}" maxlength="5" />
+						</div>
+    				 	<div>
+    				 		<h:outputLabel value="Pays:"/>
+    				 		<span id="country" class="mandatory">*</span>
+    				 		<h:inputText value="#{updateAddressController.country}"  />
+    				 	</div>
+    				 	<div>
+    				 		<span id="isBilling">
+    				 			<h:outputLabel value="Adresse de facturation:"/>
+    				 		</span>
+    				 		<h:selectBooleanCheckbox value="#{updateAddressController.billing}" />
+    				 	</div>
+    				 	<div>
+    						<p class="mandatory">* Champs obligatoire!</p>
+    					</div>
+    					<br />
+    				 	<h:commandButton value="Mettre à jour" action="#{updateAddressController.action}"/>
+						<h:button outcome="addressManager" value="Annuler" />
+					</h:form>
+				</div>
+				
+				<!-- <div>
+					<h:outputText value="#{updateAddressController.message}"  escape="false"/>
+				</div> -->
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="col-md-4 footer-in">						
+						<h4><i><img src="images/telorange.png" alt=" " /></i> A VOTRE ECOUTE</h4>
+						<span class="span">Conseil:0673842460 (Service gratuit)</span>						
+						<p>N'hésitez pas à nous appeler pour obtenir un conseil ou vous accompagner dans votre prise de commande.</p>						
+					</div>
+					<div class="col-md-4 footer-in">
+						<h4><i class="cross"><img src="images/emailorange.png" alt=" " /> </i>NEWSLETTER</h4>
+						<p>Inscrivez-vous à notre newsletter et restez informé de l’actualité et des bons plans MixHighTech.</p>
+						<form id="get_email" name="getEmail" action="">
+							<p>
+								<input class="input" type= "text"  name="abonnement" value="Votre adresse e-mail"/>
+								<button class="button" onclick="">OK</button>
+							</p>
+						</form>						
+					</div>
+					<div class="col-md-4 footer-in">
+						<h4><i class="down"><img src="images/morange.png" alt=" " /> </i>SUIVEZ-NOUS!</h4>
+						<p>
+							<a href="https://fr-fr.facebook.com/"><img class="facebook" src="images/facebook.png" alt=" " /></a>
+							<a href="https://twitter.com/"><img class="twitter" src="images/twitter.png" alt=" " /></a>
+							<a href="https://www.skype.com/"><img class="skype" src="images/skype.png" alt=" " /></a>
+							<a href="accueil.jsf"><img class="earth" src="images/earth.png" alt=" " /></a>
+						</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="footer-middle">
+				<div class="container">
+					<div class="footer-middle-in">
+						<h6>About us</h6>
+						<p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Information</h6>
+						<ul>
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Delivery Information</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Terms Conditions</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Customer Service</h6>
+						<ul>
+							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="#">Returns</a></li>
+							<li><a href="#">Site Map</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>My Account</h6>
+						<ul>
+							<li><a href="account.xhtml">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							<li><a href="wishlist.html">Wish List</a></li>
+							<li><a href="#">Newsletter</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Extras</h6>
+						<ul>
+							<li><a href="#">Brands</a></li>
+							<li><a href="#">Gift Vouchers</a></li>
+							<li><a href="#">Affiliates</a></li>
+							<li><a href="#">Specials</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<p class="footer-class">  <a href="http://w3layouts.com/" target="_blank"></a> </p>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$().UItoTop({ easingType: 'easeOutQuart' });
+				});
+			</script>
+			<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 		</div>
 	</h:body>
 </html>
