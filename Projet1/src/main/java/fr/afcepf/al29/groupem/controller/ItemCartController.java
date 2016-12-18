@@ -141,7 +141,7 @@ public String addItemToCart() {
 			}
 		}
 
-		return "contenuPanier?faces-redirect=true";
+		return "panier?faces-redirect=true";
 	}
 
 	public String removeItemFromCart() {
@@ -176,7 +176,7 @@ public String addItemToCart() {
 	
 	public String doFindItem() {
 		item = itemBus.findItem(getParamId("itemId"));
-		return "detailArticle?faces-redirect=true";
+		return "article?faces-redirect=true";
 				
 		
 	}
