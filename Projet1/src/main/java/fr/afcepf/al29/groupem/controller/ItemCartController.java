@@ -72,6 +72,7 @@ public class ItemCartController {
 	}
 	
 	public void initItemDetail(ComponentSystemEvent c){
+		item = itemBus.findItem(getParamId("itemId"));
 		quantity = "1";
 		int stock = item.getStock();
 		List<String> tabQuantity = new ArrayList<>();

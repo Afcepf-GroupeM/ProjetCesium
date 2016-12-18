@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </head>
 <body>
+<f:event listener="#{itemListController.init}" type="preRenderView" />
   <!--header--> <!-- commentaire inutile -->
 	<div class="header">
 		<div class="header-top">
@@ -75,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-bottom">
 		<div class="container">
 			<div class="h_menu4">
-			<f:event listener="#{itemListController.init}" type="preRenderView" />
+			
 			<h:form>
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
@@ -83,7 +84,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="active"><a href="#" >#{metaCat.name}</a>
 						<ul class="drop">
 							<ui:repeat var="cat" value="#{metaCat.categories}">
-							<li><pretty:link mappingId="item-list"><f:param value="#{cat.id}" /><h:outputText value="#{cat.name}"/></pretty:link></li>
+							<li>
+
+							<h:link value="#{cat.name}" outcome="pageListeArticlesParCategorieAvecBootstrap" >
+								<f:param name="catId"  value="#{cat.id}" />
+							</h:link>
+							
+							
+							</li>
 							</ui:repeat>
 						</ul>
 						</li> 			
@@ -139,8 +147,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<img src="#{request.contextPath}#{itemListController.imagePath}#{it.id}/1.jpg" />
 								<div class="top-content">
 									<h5>#{it.name}</h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">VOIR DETAIL</a>
+									<div class="white">								
+										<h:link value="Voir détail" outcome="article" styleClass="hvr-shutter-in-vertical hvr-shutter-in-vertical2" >
+											<f:param name="itemId"  value="#{it.id}" />
+										</h:link>
+										 
+										
 										<p class="dollar"><span>€</span>#{it.price}</p>
 										<div class="clearfix"></div>
 									</div>
