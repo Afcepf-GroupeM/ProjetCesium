@@ -79,8 +79,7 @@ public class ModifyUserController {
 	
 	//@PostConstruct
 	public void init(ComponentSystemEvent event){
-		System.out.println(message+" " +firstName + " " +lastName + " " + formattedDate +" " + email + " " + phone +" ");
-		message ="";
+		System.out.println("-------------dans init----------" +message+" " +firstName + " " +lastName + " " + formattedDate +" " + email + " " + phone +" ");		
 		formattedDate = null;
 		userConnect = null;
 		idUser=0;
@@ -103,7 +102,7 @@ public class ModifyUserController {
 			//modification profile:pre-remplir des champs:
 			idUser= (int) sessionMap.get("userid");
 			userConnect = userBus.getUserById(idUser);
-			System.out.println("userconnect:"+userConnect.toString());
+			System.out.println("-------------------dans init:---------------userconnect:"+userConnect.toString());
 			civilite = userConnect.getCivilite();
 			firstName = userConnect.getfirstName();
 			lastName = userConnect.getlastName();
@@ -120,14 +119,13 @@ public class ModifyUserController {
 		    
 			email = userConnect.getEmail();
 			phone = userConnect.getphone();
-			System.out.println("******************email*******" + email);		
+			System.out.println("***********dans init:*******email*******" + email);		
 	}
 	
 	
 	public String action(){	
-			//faire modification de base de donnée:
-			System.out.println("---------iduser dans action modification" + idUser);
-			System.out.println("---------iduser dans action modification" + userConnect.toString());			
+		//faire modification de base de donnée:			
+		System.out.println("---------dans action---avant verification------" + userConnect.toString());			
 		
 		message ="";
 		EmailValidator emailValidator = EmailValidator.getInstance();
@@ -170,12 +168,12 @@ public class ModifyUserController {
 				System.out.println("ERREUR - Parsing birthDate in AddUserController - action()" + e.getMessage());
 			}		
 			
-				//faire modification de base de donnée:
-				System.out.println("---------iduser dans action modification" + idUser);
-				System.out.println("---------iduser dans action modification" + userConnect.toString());	
+				//faire modification de base de donnée:				
+				System.out.println("---------dans action---after verification-----------/" + message+"/ " +firstName + "/" +lastName + "/ " + formattedDate +"/ " + email + "/ " + phone +"/ "+formattedDate.toString()+"/ "+password1 );	
 				User user = userBus.updateUser(idUser,lastName,civilite,firstName,email,phone,formattedDate,password1);
+				System.out.println("-------------dans action-----after modification-----------"+user.toString());
 				resetFields();
-				message = "Utilisateur modifié avec succes!<br/>Id du nouvel utilisateur: " + user.getId();				
+				message = "Utilisateur modifié avec succes!" +"  " + "Id de l'utilisateur: " + user.getId();				
 			}
 
 		return null;		
