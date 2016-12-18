@@ -15,4 +15,7 @@ public interface UserBusApi {
 	
 	User getUserByLogin(String login);
 	public User getUserById(int userID);
+
+	public User updateUser(int idUser, String lastName, Civilite civilite, String firstName, String email, String phone,
+			Date formattedDate, String password1);
 }

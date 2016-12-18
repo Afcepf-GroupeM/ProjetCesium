@@ -62,6 +62,24 @@ public class UserBusImpl implements UserBusApi{
 		User user = userDao.getUserByEmail(login);
 		return user;
 	}
+
+	@Override
+	public User updateUser(int idUser, String lastName, Civilite civilite, String firstName, String email, String phone,
+			Date formattedDate, String passwordPlaintext) {
+		User userConnect = new User();
+		userConnect.setlastName(lastName);
+		userConnect.setfirstName(firstName);
+		userConnect.setCivilite(civilite);
+		userConnect.setBirthDate(formattedDate);
+		userConnect.setEmail(email);
+		userConnect.setphone(phone);
+		userConnect.setpasswordHash(secMan.hashPassword(passwordPlaintext));
+		
+		User usermodified =userDao.updateUser(userConnect);
+		return usermodified;
+	}	
+
+
 	
 	
 
