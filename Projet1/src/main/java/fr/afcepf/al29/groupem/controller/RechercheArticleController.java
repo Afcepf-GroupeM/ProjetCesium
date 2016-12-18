@@ -22,6 +22,8 @@ public class RechercheArticleController {
 	private List<Item> items;
 	private String keyword;
 	
+	private String imagePath = "/images/items/";
+	
 	
 	public String doSearch() {
 		items = itemBus.searchItems(keyword);
@@ -56,6 +58,16 @@ public class RechercheArticleController {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 	

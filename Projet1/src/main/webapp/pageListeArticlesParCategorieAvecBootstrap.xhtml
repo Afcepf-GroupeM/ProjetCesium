@@ -1,0 +1,260 @@
+<!DOCTYPE   html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">  <!-- Important pour les balises prettylink -->
+<head>
+<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Products :: w3layouts</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'/>
+<!--//fonts-->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+				<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){		
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+				</script>
+<script>$(document).ready(function(c) {
+	$('.alert-close').on('click', function(c){
+		$('.message').fadeOut('slow', function(c){
+	  		$('.message').remove();
+		});
+	});	  
+});
+</script>
+<script>$(document).ready(function(c) {
+	$('.alert-close1').on('click', function(c){
+		$('.message1').fadeOut('slow', function(c){
+	  		$('.message1').remove();
+		});
+	});	  
+});
+</script>
+</head>
+<body>
+<f:event listener="#{itemListController.init}" type="preRenderView" />
+  <!--header--> <!-- commentaire inutile -->
+	<div class="header">
+		<div class="header-top">
+			<div class="container">	
+			<div class="header-top-in">			
+				<div class="logo">
+					<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" " /></a>
+				</div>
+				<div class="header-in">
+					<ul class="icon1 sub-icon1">
+							<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
+							<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
+							<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+							<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
+							<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		</div>
+		<div class="header-bottom">
+		<div class="container">
+			<div class="h_menu4">
+			
+			<h:form>
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+					<li class="active"><a href="#" >#{metaCat.name}</a>
+						<ul class="drop">
+							<ui:repeat var="cat" value="#{metaCat.categories}">
+							<li>
+
+							<h:link value="#{cat.name}" outcome="pageListeArticlesParCategorieAvecBootstrap" >
+								<f:param name="catId"  value="#{cat.id}" />
+							</h:link>
+							
+							
+							</li>
+							</ui:repeat>
+						</ul>
+						</li> 			
+				</ui:repeat>	
+				</ul>
+				<script type="text/javascript" src="js/nav.js"></script>
+				</h:form>
+			</div>
+		</div>
+		</div>
+		<div class="header-bottom-in">
+		<div class="container">
+		<div class="header-bottom-on">
+			<p class="wel"><a href="#">Welcome visitor you can login or create an account.</a></p>
+			<div class="header-can">
+				<ul class="social-in">
+						<li><a href="accueil.jsf"><i> </i></a></li>
+						<li><a href="https://fr-fr.facebook.com/"><i class="facebook"> </i></a></li>
+						<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
+						<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
+					</ul>	
+					<!--
+					<div class="down-top">		
+						  <select class="in-drop">
+							  <option value="Dollars" class="in-of">Dollars</option>
+							  <option value="Euro" class="in-of">Euro</option>
+							  <option value="Yen" class="in-of">Yen</option>
+							</select>
+					 </div>
+					 -->
+					<div>
+						<h:form>
+							<h:inputText value="#{rechercheArticleController.keyword}"/>
+							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+						</h:form>
+					</div>
+					<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		</div>
+		</div>
+	</div>
+	
+		<div class="container">
+			<div class="products">
+					<h2 class=" products-in">ARTICLES POUR LA CATEGORIE <h:outputText value="#{itemListController.chosenCategory.name}" /> </h2>
+					<h:form>
+					<div class=" top-products">
+					<ui:repeat var="it" value="#{itemListController.chosenCategory.items}">
+						<div class="col-md-3 md-col">
+							<div class="col-md">
+								<img src="#{request.contextPath}#{itemListController.imagePath}#{it.id}/1.jpg" />
+								<div class="top-content">
+									<h5>#{it.name}</h5>
+									<div class="white">								
+										<h:link value="Voir détail" outcome="article" styleClass="hvr-shutter-in-vertical hvr-shutter-in-vertical2" >
+											<f:param name="itemId"  value="#{it.id}" />
+										</h:link>
+										 
+										
+										<p class="dollar"><span>€</span>#{it.price}</p>
+										<div class="clearfix"></div>
+									</div>
+								</div>							
+							</div>
+						</div>
+						</ui:repeat>
+						</div>
+						</h:form>
+						</div>
+						</div>
+		<!---->
+		<div class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="col-md-4 footer-in">						
+						<h4><i><img src="images/telorange.png" alt=" " /></i> A VOTRE ECOUTE</h4>
+						<span class="span">Conseil:0673842460 (Service gratuit)</span>						
+						<p>N'hésitez pas à nous appeler pour obtenir un conseil ou vous accompagner dans votre prise de commande.</p>						
+					</div>
+					<div class="col-md-4 footer-in">
+						<h4><i class="cross"><img src="images/emailorange.png" alt=" " /> </i>NEWSLETTER</h4>
+						<p>Inscrivez-vous à notre newsletter et restez informé de l’actualité et des bons plans MixHighTech.</p>
+						<form id="get_email" name="getEmail" action="">
+							<p>
+								<input class="input" type= "text"  name="abonnement" value="Votre adresse e-mail"/>
+								<button class="button" onclick="">OK</button>
+							</p>
+						</form>						
+					</div>
+					<div class="col-md-4 footer-in">
+						<h4><i class="down"><img src="images/morange.png" alt=" " /> </i>SUIVEZ-NOUS!</h4>
+						<p> <a href="https://fr-fr.facebook.com/"><img class="facebook" src="images/facebook.png" alt=" " /></a>
+							<a href="https://twitter.com/"><img class="twitter" src="images/twitter.png" alt=" " /></a>
+							<a href="https://www.skype.com/"><img class="skype" src="images/skype.png" alt=" " /></a>
+							<a href="accueil.jsf"><img class="earth" src="images/earth.png" alt=" " /></a>
+						</p>
+						
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!---->
+			<div class="footer-middle">
+				<div class="container">
+					<div class="footer-middle-in">
+						<h6>A propos de nous</h6>
+						<p>Mix Hightech est une entreprise spécialisée dans la vente de matériels informatiques.</p>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Informations</h6>
+						<ul>
+							<li><a href="#">Livraison</a></li>
+							<li><a href="#">Conditions Générales</a></li>
+							<li><a href="#">Vie Privée</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Service Client</h6>
+						<ul>
+							<li><a href="contact.html">Contactez-Nous</a></li>
+							<li><a href="#">Retours</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Mon Compte</h6>
+						<ul>
+							<li><a href="account.xhtml">Mon Compte</a></li>
+							<li><a href="#">HIstorique Des Commandes</a></li>
+							<li><a href="wishlist.html">Wish List</a></li>
+							<li><a href="#">Newsletter</a></li>
+						</ul>
+					</div>
+					<div class="footer-middle-in">
+						<h6>Aide</h6>
+						<ul>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Aide</a></li>
+							<li><a href="#">Dépannage</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<p class="footer-class">  <a href="http://w3layouts.com/" target="_blank"></a> </p>
+			<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear' 
+					 		};
+							*/
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+				
+		</div>
+</body>
+</html>

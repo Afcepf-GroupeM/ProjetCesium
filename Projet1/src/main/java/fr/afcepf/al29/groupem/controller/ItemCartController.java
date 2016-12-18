@@ -39,7 +39,7 @@ public class ItemCartController {
 	private String imagePath = "/images/items/";
 	
 	
-	private int idOwnerCart = 1 ;    // For testing pupose, we set the user to id=1;
+	private int idOwnerCart = 8 ;    // For testing pupose, we set the user to id=1;
 	
 	private Cart cart;
 	private List<CartLine> cartLines;
@@ -72,6 +72,7 @@ public class ItemCartController {
 	}
 	
 	public void initItemDetail(ComponentSystemEvent c){
+		item = itemBus.findItem(getParamId("itemId"));
 		quantity = "1";
 		int stock = item.getStock();
 		List<String> tabQuantity = new ArrayList<>();

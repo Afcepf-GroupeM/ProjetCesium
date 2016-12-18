@@ -47,7 +47,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 	margin-right:1em;
 }
 .header-in ul li a:hover{
-	  color: #9fdcda;
+	  color: #30aff3;
 }
 span#userIconMenu{
 	padding:10em 0em;
@@ -201,15 +201,15 @@ ul.icon1{
 	color: #fafafa;
 }
 .icon1 ul {
-	width:250px;
+	width:200px;
 	margin: 20px 0 0 0;
 	opacity: 0;
 	visibility: hidden;
 	position: absolute;
-	top:70px;
+	top:60px;
 	z-index: 1;
-	right: -100px;
-	background: #ffffff;
+	right: -50px;
+	background: #fb5e33;
 	-webkit-transition: all .2s ease-in-out;
 	-moz-transition: all .2s ease-in-out;
 	-ms-transition: all .2s ease-in-out;
@@ -283,6 +283,12 @@ ul.icon1{
 	display:inline-block;
 	vertical-align:middle;
 }
+.sub-icon1 li ul a:account{
+	color:#f54922;
+	background:#f54922;
+	border-radius:50px;
+}
+
 .cart_box{
 	margin-bottom:1em;
 	border-bottom:1px solid #E0E0E0;
@@ -1280,10 +1286,14 @@ h2.account-in:after{
 	vertical-align: middle;
 }
 .account span{
-	font-size:1.1em;
+	font-size:1.2em;
 	padding-right: 1.85em;
 }
-
+.login span{
+	font-size:1.2em;
+	padding-right: 1.85em;
+	color:blue;
+}
 span.civil {
 	padding-right: 8.6em;
 }
@@ -1317,6 +1327,20 @@ span.message{
 .account input[type="text"],.account textarea,.account input[type="password"]{
 	padding:0.7em;
 	width:60%;
+	background:none;
+	border: 1px solid #D1D1D1;
+	border-radius:10px;
+	-webkit-border-radius: 10px;
+	-o-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	outline:none;
+	color:#464646;
+	font-size:1em;	
+}
+.input input[type="text"],.input textarea,.input input[type="password"]{
+	padding:0.7em;
+	width:40%;
 	background:none;
 	border: 1px solid #D1D1D1;
 	border-radius:10px;

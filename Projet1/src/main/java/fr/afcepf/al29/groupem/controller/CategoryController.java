@@ -30,7 +30,7 @@ private List<Category> categories;
 	public String ItemGetByCategory() {
 		category = categoryBus.findCategory(getParamId("categoryId"));
 		items = category.getItems();
-		return "items.displayed";
+		return null;
 	}
 
 
@@ -39,5 +39,7 @@ private List<Category> categories;
 		return 0;
 	}
 	
+	//commentaire inutile
+	//commentaire inutile
 	
 }
