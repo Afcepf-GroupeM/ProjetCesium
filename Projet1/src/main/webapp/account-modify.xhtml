@@ -141,50 +141,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h:form>
 					<div>
 						<span class="civil"><h:outputLabel>*Civilité:</h:outputLabel></span>
-						<h:selectOneMenu value="#{addUserController.civilite}">
-							<f:selectItems value="#{addUserController.listeCivilite}" />
+						<h:selectOneMenu value="#{modifyUserController.civilite}">
+							<f:selectItems value="#{modifyUserController.listeCivilite}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
 						<span class="namefirst"><h:outputLabel>*Nom:</h:outputLabel></span>
-						<h:inputText type="text" value="#{addUserController.lastName}"/>
+						<h:inputText type="text" value="#{modifyUserController.lastName}"/>
 					</div> 	
 					<div>			
 						<span class="name-in"><h:outputLabel class="name-in">*Prénom:</h:outputLabel></span>
-						<h:inputText type="text" value="#{addUserController.firstName}"/> 
+						<h:inputText type="text" value="#{modifyUserController.firstName}"/> 
 					</div>	
 					<div>			
 						<span class="naissance"><h:outputLabel>*Date de Naissance:</h:outputLabel></span>
 						<h:panelGroup>
-					    	<h:selectOneMenu value="#{addUserController.birthDay}">
-								<f:selectItems value="#{addUserController.dayList}" />
+					    	<h:selectOneMenu value="#{modifyUserController.birthDay}">
+								<f:selectItems value="#{modifyUserController.dayList}" />
 							</h:selectOneMenu>
-							<h:selectOneMenu value="#{addUserController.birthMonth}">
-								<f:selectItems value="#{addUserController.monthList}" />
+							<h:selectOneMenu value="#{modifyUserController.birthMonth}">
+								<f:selectItems value="#{modifyUserController.monthList}" />
 							</h:selectOneMenu>
-							<h:selectOneMenu value="#{addUserController.birthYear}">
-								<f:selectItems value="#{addUserController.yearList}" />
+							<h:selectOneMenu value="#{modifyUserController.birthYear}">
+								<f:selectItems value="#{modifyUserController.yearList}" />
 							</h:selectOneMenu>
 	   					 </h:panelGroup> 
 					</div>	
 					<div> 	
 						<span class="tel"><h:outputLabel value="*Téléphone:"/></span>
-						<h:inputText value="#{addUserController.phone}" maxlength="10" />
+						<h:inputText value="#{modifyUserController.phone}" maxlength="10" />
 					</div>		
 					<div> 	
 						<span class="mail"><h:outputLabel value="Email"/></span>
-						<h:inputText value="#{addUserController.email}"  /> 
+						<h:inputText value="#{modifyUserController.email}"  /> 
 					</div>
 					<div> 
 						<span class="word"><h:outputLabel value="Mot de passe:"/></span>
-						 <h:inputSecret value="#{addUserController.password1}"  />
+						 <h:inputSecret value="#{modifyUserController.password1}"  />
 					</div>
 					<div> 
 						<span class="wordVef"><h:outputLabel value="Mot de passe (verification):"/></span>
-						<h:inputSecret value="#{addUserController.password2}"  />
+						<h:inputSecret value="#{modifyUserController.password2}"  />
 					</div>					
-					<h:commandButton value="Mettre à jour!" action="#{addUserController.action}"/>
-					<span class="message"><h:outputLabel type="text" value="#{addUserController.message}"/></span>
+					<h:commandButton value="Mettre à jour!" action="#{modifyUserController.action}"/>
+					<span class="message"><h:outputLabel type="text" value="#{modifyUserController.message}"/></span>
 				</h:form>
 				
 		</div>

@@ -67,6 +67,7 @@ public class UserBusImpl implements UserBusApi{
 	public User updateUser(int idUser, String lastName, Civilite civilite, String firstName, String email, String phone,
 			Date formattedDate, String passwordPlaintext) {
 		User userConnect = new User();
+		userConnect.setId(idUser);
 		userConnect.setlastName(lastName);
 		userConnect.setfirstName(firstName);
 		userConnect.setCivilite(civilite);
@@ -76,6 +77,7 @@ public class UserBusImpl implements UserBusApi{
 		userConnect.setpasswordHash(secMan.hashPassword(passwordPlaintext));
 		
 		User usermodified =userDao.updateUser(userConnect);
+		System.out.println("**************dans userbus*******after update*********"+usermodified.toString());
 		return usermodified;
 	}	
 
