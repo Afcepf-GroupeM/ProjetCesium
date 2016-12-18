@@ -23,6 +23,8 @@ public class SessionListener implements PhaseListener{
 			boolean isPageWithLoginInRequiered = (currentPage.lastIndexOf("secret.xhtml") > -1)
 												 || (currentPage.lastIndexOf("espaceclient.jsf") > -1)
 												 || (currentPage.lastIndexOf("account-modify.jsf") > -1)
+												 || (currentPage.lastIndexOf("userprofile.jsf") > -1)
+												 || (currentPage.lastIndexOf("logout.jsf") > -1)
 //												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
 //												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
 //												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
