@@ -174,19 +174,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2 class="account-in">Se connecter</h2>			
 				<h:form>
 					<div>
-						<span class="email"><h:outputLabel>E-mail: </h:outputLabel></span>
+						<span id="email"><h:outputLabel>E-mail: </h:outputLabel></span>
 						<h:inputText value="#{loginController.login}"/>
 					</div> 	
 					<div>			
-						<span class="password"><h:outputLabel>Mot de passe: </h:outputLabel></span>
+						<span id="password"><h:outputLabel>Mot de passe: </h:outputLabel></span>
 						<h:inputSecret value="#{loginController.password}"/> 
 					</div>	
 					<span class="message"><h:outputLabel value="#{loginController.errorMessage}"/></span>
 					<br/>		
-					<br/>
-					<div class="login-button">	
-					<h:commandButton value="Se connecter" action="#{loginController.loginaction}"/>
-					</div>	
+					<br/>	
+					<h:commandButton id="login-button" value="Se connecter" action="#{loginController.loginaction}"/>	
 				</h:form>
 				
 		</div>

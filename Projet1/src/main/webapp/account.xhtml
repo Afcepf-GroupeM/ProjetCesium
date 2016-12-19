@@ -170,21 +170,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2 class="account-in">Créer un compte</h2>			
 				<h:form>
 					<div>
-						<span class="civil"><h:outputLabel>*Civilité:</h:outputLabel></span>
+						<h:outputLabel value="Civilité:"/>
+						<span id="civil" class="mandatory">*</span>
 						<h:selectOneMenu value="#{addUserController.civilite}">
 							<f:selectItems value="#{addUserController.listeCivilite}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
-						<span class="namefirst"><h:outputLabel>*Nom:</h:outputLabel></span>
+						<h:outputLabel value="Nom:" />
+						<span id="namefirst" class="mandatory">*</span>
 						<h:inputText type="text" value="#{addUserController.lastName}"/>
 					</div> 	
-					<div>			
-						<span class="name-in"><h:outputLabel class="name-in">*Prénom:</h:outputLabel></span>
+					<div>
+						<h:outputLabel value="Prénom:" />
+						<span id="name-in" class="mandatory">*</span>
 						<h:inputText type="text" value="#{addUserController.firstName}"/> 
 					</div>	
-					<div>			
-						<span class="naissance"><h:outputLabel>*Date de Naissance:</h:outputLabel></span>
+					<div>
+						<h:outputLabel value="Date de Naissance:" />
+						<span id="naissance" class="mandatory">*</span>
 						<h:panelGroup>
 					    	<h:selectOneMenu value="#{addUserController.birthDay}">
 								<f:selectItems value="#{addUserController.dayList}" />
@@ -197,22 +201,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h:selectOneMenu>
 	   					 </h:panelGroup> 
 					</div>	
-					<div> 	
-						<span class="tel"><h:outputLabel value="*Téléphone:"/></span>
+					<div>
+						<h:outputLabel value="Téléphone:"/>
+						<span id="tel" class="mandatory">*</span>
 						<h:inputText value="#{addUserController.phone}" maxlength="10" />
 					</div>		
-					<div> 	
-						<span class="mail"><h:outputLabel value="Email"/></span>
+					<div>
+						<h:outputLabel value="Email:"/>
+						<span id="mail" class="mandatory">*</span>
 						<h:inputText value="#{addUserController.email}"  /> 
 					</div>
-					<div> 
-						<span class="word"><h:outputLabel value="Mot de passe:"/></span>
+					<div>
+						<h:outputLabel value="Mot de passe:"/>
+						<span id="word" class="mandatory">*</span>
 						 <h:inputSecret value="#{addUserController.password1}"  />
 					</div>
-					<div> 
-						<span class="wordVef"><h:outputLabel value="Mot de passe (verification):"/></span>
+					<div>
+						<h:outputLabel value="Mot de passe (verification):"/>
+						<span id="wordVef" class="mandatory">*</span>
 						<h:inputSecret value="#{addUserController.password2}"  />
-					</div>					
+					</div>
+					<div>
+    					<p class="mandatory">* Champs obligatoire!</p>
+    				</div>
+    				<br />				
 					<h:commandButton value="Créer Compte!" action="#{addUserController.action}"/>
 					<span class="message"><h:outputLabel type="text" value="#{addUserController.message}"/></span>
 				</h:form>

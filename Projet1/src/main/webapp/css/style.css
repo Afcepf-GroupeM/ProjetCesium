@@ -1305,11 +1305,23 @@ ul.social {
 	padding:0.8em 0 ;
 }
 
+/*--login--*/
+span#email{
+	padding-right:5em;
+}
+span#password{
+	padding-right:2em;
+}
+account#login-button{
+	padding-right:1000em;
+}
+
 /*--account--*/
 h2.account-in{
 	color:#747272;
 	font-size:1.3em;
 	padding:0 0em 2em;
+	text-align: center;
 }
 h2.account-in:after{ 
 	content: "";
@@ -1328,28 +1340,28 @@ h2.account-in:after{
 	padding-right: 1.85em;
 	color:blue;
 }
-span.civil {
-	padding-right: 8.6em;
+span#civil {
+	padding-right: 8.7em;
 }
-span.namefirst {
-	padding-right: 9.6em;
+span#namefirst {
+	padding-right: 9.3em;
 }
-span.name-in {
-	padding-right: 8.4em;
+span#name-in {
+	padding-right: 8.1em;
 }
-span.naissance {
-	padding-right: 3.9em;
+span#naissance {
+	padding-right: 4.4em;
 }
-span.tel {
-	padding-right: 7.4em;
+span#tel {
+	padding-right: 7.3em;
 }
- span.mail{
-	padding-right: 9.9em;
+ span#mail{
+	padding-right: 9em;
 }
-span.word{
-	padding-right: 6.4em;
+span#word{
+	padding-right: 6em;
 }
-span.wordVef{
+span#wordVef{
 	padding-right: 1em;
 }
 span.message{
@@ -1409,7 +1421,7 @@ span.message{
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
-	  margin: 0 0 0 7em;
+	  margin: 0 0 0 13em;
 }
 .account input[type="submit"]:hover{
 	background: rgb(157,218,216);
@@ -1466,28 +1478,6 @@ span.message{
 }
 
 /*--add/update address--*/
-h2.titleAddressForm{
-	color:#747272;
-	font-size:1.3em;
-	padding:0 0em 2em;
-	text-align: center;
-}
-/*h2.actionAddressForm::before{ 
-	content: "";
-	background: url(../images/line.png)0px 0px;
-	width: 92%;
-	height: 10px;
-	display: inline-block;
-	vertical-align: middle;
-}
-h2.actionAddressForm::after{ 
-	content: "";
-	background: url(../images/line.png)0px 0px;
-	width: 92%;
-	height: 10px;
-	display: inline-block;
-	vertical-align: middle;
-}*/
 .addressForm span{
 	font-size:1.1em;
 	/*padding-right: 1.85em;*/
@@ -1566,7 +1556,7 @@ span#isBilling{
 	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 }
-/*.addressForm input[type="submit"]{
+.addressForm input[type="submit"]{
 	background: rgb(252,94,53);
 	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
@@ -1595,7 +1585,37 @@ span#isBilling{
 	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
-}*/
+}
+.addressForm input[type="button"]{
+	background: rgb(252,94,53);
+	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
+	background: -webkit-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -o-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -ms-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: linear-gradient(to bottom, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	color:#fff;
+	font-size:1.1em;
+	border:none;
+	outline:none;
+	border-radius: 5px;
+	font-weight: 600;
+	padding:0.5em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	  margin: 0 1em 0 3em;
+}
+.addressForm input[type="button"]:hover{
+	background: rgb(157,218,216);
+	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(52%,rgba(157,218,216,1)), color-stop(100%,rgba(119,168,164,1)));
+	background: -webkit-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+}
 .addressForm{
 	padding: 4em 1em;
 }

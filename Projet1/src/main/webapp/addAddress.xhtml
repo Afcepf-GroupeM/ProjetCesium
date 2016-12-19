@@ -162,7 +162,7 @@
 		
 		<div class="container">
 			<div class="addressForm">
-				<h2 class="titleAddressForm">Ajouter une adresse</h2>
+				<h2 class="account-in">Ajouter une adresse</h2>
 				<div>
 					<h:form>
 						<div>
@@ -222,8 +222,8 @@
     						<p class="mandatory">* Champs obligatoire!</p>
     					</div>
     					<br />
-    					<h:commandButton class="btnAddress" value="Ajouter" action="#{addAddressController.action}"/>
-						<h:button class="btnAddress" outcome="myaccount" value="Annuler" />
+    					<h:commandButton value="Ajouter" action="#{addAddressController.action}"/>
+						<h:button outcome="myaccount" value="Annuler" />
 						<span class="message"><h:outputLabel type="text" value="#{addAddressController.message}"/></span>
 					</h:form>
 				</div>

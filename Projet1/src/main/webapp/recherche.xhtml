@@ -182,7 +182,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="top-content">
 									<h5>#{item.name}</h5>
 									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">VOIR DETAIL</a>
+										<h:link value="Voir détail" outcome="article" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">
+											<f:param name="itemId"  value="#{item.id}" />
+										</h:link>
 										<p class="dollar"><span>€</span>#{item.price}</p>
 										<div class="clearfix"></div>
 									</div>
