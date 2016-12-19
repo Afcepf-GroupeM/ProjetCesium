@@ -66,6 +66,7 @@ public class AddUserController {
 	}
 	
 	public String action(){
+		String returnAddress = null;
 		message ="";
 		EmailValidator emailValidator = EmailValidator.getInstance();
 		RegexValidator nameValidator = new RegexValidator("^[a-zA-Z \\-\\.\\']*$",false);
@@ -107,9 +108,10 @@ public class AddUserController {
 			}
 			User user = userBus.createUser(civilite, lastName, firstName, email, phone, password1,formattedDate );
 			resetFields();
+			returnAddress = "inscription-ok";
 			message = "Utilisateur créé avec succes!" +"  " + "Id du nouvel utilisateur: " + user.getId();
 		}	
-		return null;		
+		return returnAddress;		
 	}
 	
 	public void resetFields(){

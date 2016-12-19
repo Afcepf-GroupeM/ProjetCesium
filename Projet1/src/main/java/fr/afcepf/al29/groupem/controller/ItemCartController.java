@@ -166,6 +166,12 @@ public String addItemToCart() {
 		return null;
 	}
 	
+	
+	public String validateOrder(){
+		
+		return "order-validated?faces-redirect=true";
+	}
+	
 
 	
 	protected String getParam(String param) {
