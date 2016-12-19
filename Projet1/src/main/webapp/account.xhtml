@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<title>Mix Hightech</title>
+<title>.: GroupeM EC - Creer un compte :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>				
 </h:head>
 <h:body>
+<f:event listener="#{itemListController.init}" type="preRenderView" />
   <!--header-->
 	<div class="header">
 		<div class="header-top">
@@ -105,38 +106,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-bottom">
 		<div class="container">
 			<div class="h_menu4">
+				<h:form>
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
-					<li class="active"><a href="accueil.xhtml"><i> </i>Desktops</a></li>
-					<li ><a href="#">Laptops Notebooks</a>
+				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+					<li class="active"><a href="#" >#{metaCat.name}</a>
 						<ul class="drop">
-							<li><a href="produits.xhtml">Sony(2)</a></li>
-							<li><a href="produits.xhtml">Android(4)</a></li>
-							<li><a href="produits.xhtml">Apple(7)</a></li>
-							<li><a href="produits.xhtml">Acer(53)</a></li>
-							<li><a href="produits.xhtml">HP(78)</a></li>
-							<li><a href="produits.xhtml">Intel(5)</a></li>
+							<ui:repeat var="cat" value="#{metaCat.categories}">
+							<li>
+
+							<h:link value="#{cat.name}" outcome="categorie" >
+								<f:param name="catId"  value="#{cat.id}" />
+							</h:link>
+							
+							
+							</li>
+							</ui:repeat>
 						</ul>
-					</li> 						
-					<li><a href="produits.xhtml">  Tablets</a></li>            
-					<li><a href="produits.xhtml">Components</a></li>						  				 
-					<li><a href="produits.xhtml">Software</a></li>
-					<li><a href="produits.xhtml">Phones PDAs </a></li>
-					<li><a href="produits.xhtml">  Cameras  </a></li>
-					<li><a href="produits.xhtml">Contact </a></li>					
+						</li> 			
+				</ui:repeat>	
 				</ul>
 				<script type="text/javascript" src="js/nav.js"></script>
+				</h:form>
 			</div>
 		</div>
 		</div>
 		<div class="header-bottom-in">
 		<div class="container">
 		<div class="header-bottom-on">
-			<p class="wel">
-				<h:link value="Bienvenue invité, loggez vous en cliquant ici." outcome="login" rendered="#{not loginController.islogged}"/>
-				<h:outputText value="Bienvenue #{loginController.userLogged.civilite} " rendered="#{loginController.islogged}"/>
-				<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
-			</p>
+			
 			<div class="header-can">
 				<ul class="social-in">
 						<li><a href="accueil.jsf"><i> </i></a></li>
@@ -153,11 +151,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</select>
 					 </div>
 					 -->
-					<div class="search">
-						<form>
-							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
-							<input type="submit" value=""/>
-						</form>
+					<div>
+						<h:form>
+							<h:inputText value="#{rechercheArticleController.keyword}"/>
+							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+						</h:form>
 					</div>
 					<div class="clearfix"> </div>
 			</div>
@@ -169,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	<div class="container">
 		<div class="account">
-			<h2 class="account-in">Compte</h2>			
+			<h2 class="account-in">Créer un compte</h2>			
 				<h:form>
 					<div>
 						<span class="civil"><h:outputLabel>*Civilité:</h:outputLabel></span>

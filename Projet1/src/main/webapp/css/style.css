@@ -1445,7 +1445,6 @@ span.message{
 	 font-family: inherit;
 	 line-height: inherit;
 }
-
 .myaccount input[type="submit"]:hover{
 	background: rgb(157,218,216);
 	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);

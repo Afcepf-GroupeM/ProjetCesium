@@ -1,13 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE   html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-
 <head>
-<title>Mix Hightech</title>
+
+<meta http-equiv="refresh" content="5;url=index.xhtml" />
+<title>.: GroupeM EC - Session expirée :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -33,6 +39,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					});
 				</script>
+<!--slider-script-->
+		<script src="js/responsiveslides.min.js"></script>
+			<script>
+				$(function () {
+				  $("#slider1").responsiveSlides({
+					auto: true,
+					speed: 500,
+					namespace: "callbacks",
+					pager: true,
+				  });
+				});
+			</script>
+<!--//slider-script-->
 <script>$(document).ready(function(c) {
 	$('.alert-close').on('click', function(c){
 		$('.message').fadeOut('slow', function(c){
@@ -49,11 +68,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>
-</head>
 
+<style>
+.cadre-logout{margin: 70px auto; width: 40%;}
+
+
+</style>
+</head>
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
-  <!--header--> <!-- commentaire inutile -->
+  <!--header-->
 	<div class="header">
 		<div class="header-top">
 			<div class="container">	
@@ -130,17 +154,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 				<script type="text/javascript" src="js/nav.js"></script>
 				</h:form>
+				
 			</div>
 		</div>
 		</div>
 		<div class="header-bottom-in">
-		<div class="container">
-		<div class="header-bottom-on">
-			<p class="wel">
-				<h:link value="Bienvenue invité, loggez vous en cliquant ici." outcome="login" rendered="#{not loginController.islogged}"/>
-				<h:outputText value="Bienvenue #{loginController.userLogged.civilite} " rendered="#{loginController.islogged}"/>
-				<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
-			</p>
+			<div class="container">
+			<div class="header-bottom-on">
+			
 			<div class="header-can">
 				<ul class="social-in">
 						<li><a href="accueil.jsf"><i> </i></a></li>
@@ -150,19 +171,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>	
 					<!--
 					<div class="down-top">		
-						  <select class="in-drop">
+							<select class="in-drop">
 							  <option value="Dollars" class="in-of">Dollars</option>
 							  <option value="Euro" class="in-of">Euro</option>
 							  <option value="Yen" class="in-of">Yen</option>
 							</select>
 					 </div>
-					 -->
+					   -->
 					<div>
 						<h:form>
 							<h:inputText value="#{rechercheArticleController.keyword}"/>
 							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
 						</h:form>
 					</div>
+
 					<div class="clearfix"> </div>
 			</div>
 			<div class="clearfix"></div>
@@ -170,41 +192,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
+	<div class="banner-mat">
+				<div class="cadre-logout">
+			<h2>Votre session à expiré.</h2>
+			<p>Vous avez été inactif pendant plus de 30 minutes.<br/><br/>Vous serez redirigé automatiquement vers la page d'accueil dans 5 secondes.</p>
+			</div>
+		</div>
 	
-	<f:event listener="#{itemCartController.initItemDetail}" type="preRenderView" /> 
-	<h:form>
 		
-		<h:panelGrid columns="2">
-			<h:column>
-				<img src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg" height="128" width="128"></img>
-			</h:column>
-			<h:column>
-				<h:outputText value="Nom de l'article: "/>
-				<h:outputText value="#{itemCartController.item.name}"/>
-				<br/>
-				<h:outputText value="Description: "/>
-				<h:outputText value="#{itemCartController.item.description}"/>
-				<br/>
-				<h:outputText value="Stock: "/>
-				<h:outputText value="#{itemCartController.item.stock}"/>
-				<br/>
-				<h:selectOneMenu value="#{itemCartController.quantity}">
-					<f:selectItems value="#{itemCartController.quantityList}" />
-				</h:selectOneMenu>
-				<br/>
-				<h:outputText value="Prix: "/>
-				<h:outputText value="#{itemCartController.item.price}"/>
-				<br/>
-				</h:column>
-			</h:panelGrid>
-
-			<h:commandButton value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" >
-				<f:param name = "quantity" value="#{itemCartController.quantity}"/>
-				<f:param name = "itemId" value="#{itemCartController.item.id}"/>
-			</h:commandButton>
-		</h:form>
-		
-		<div class="footer">
+		<!---->
+				<div class="footer">
 			<div class="footer-top">
 				<div class="container">
 					<div class="col-md-4 footer-in">						
@@ -298,5 +295,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
 		</div>
-	</h:body>
+</body>
 </html>

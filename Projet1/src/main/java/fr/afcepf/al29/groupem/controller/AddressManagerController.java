@@ -39,7 +39,7 @@ public class AddressManagerController {
 		if (!params.isEmpty()){
 			int addressId = Integer.parseInt(params.get("addressId"));
 			addressBus.disableAddress(addressId);
-			//le paramètre de la map (addressId) est toujours présent donc si on actualise la page ca invalidera une address que l'on aura set à nouveau à valid via un update sur la base
+			//l'id de l'adresse est toujours attribué, si on réactualise la page après avoir réactiver une adresse avec un update dans la base, elle sera de nouveau désactivé.
 		}
 		
 		int userId = (Integer) userLogged.get("userid");
