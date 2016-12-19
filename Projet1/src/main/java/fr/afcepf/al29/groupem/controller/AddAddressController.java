@@ -26,7 +26,7 @@ public class AddAddressController {
 	
 	private String name;
 	private String number;
-	private ComplementAddress complement;
+	private ComplementAddress complement = null;
 	private ComplementAddress[] complementList;
 	private RoadType roadType;
 	private RoadType[] roadTypeList;
@@ -74,7 +74,7 @@ public class AddAddressController {
 				complementValid = true;
 			}
 		}
-		if (complement.equals(null)){
+		if (complement == null){
 			complementValid = true;
 		}
 		

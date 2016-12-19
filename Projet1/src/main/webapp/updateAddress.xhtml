@@ -161,7 +161,7 @@
 
 		<div class="container">
 			<div class="addressForm">
-				<h2 class="titleAddressForm">Mettre à jour une adresse</h2>
+				<h2 class="account-in">Mettre à jour une adresse</h2>
 				<div>
 					<h:form>
 						<div>
@@ -221,8 +221,8 @@
     						<p class="mandatory">* Champs obligatoire!</p>
     					</div>
     					<br />
-    				 	<h:commandButton class="btnAddress" value="Mettre à jour" action="#{updateAddressController.action}"/>
-						<h:button class="btnAddress" outcome="myaccount" value="Annuler" />
+    				 	<h:commandButton value="Mettre à jour" action="#{updateAddressController.action}"/>
+						<h:button outcome="myaccount" value="Annuler" />
 						<span class="message"><h:outputLabel type="text" value="#{updateAddressController.message}"/></span>
 					</h:form>
 				</div>

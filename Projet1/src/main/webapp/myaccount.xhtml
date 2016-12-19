@@ -166,8 +166,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">			
 		<div class="myaccount">
 			<h2 class="myaccountprofile">
-				<h:outputLabel value="Bonjour #{espaceClientController.userConnect.firstName}"/>
-				<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/>		 	
+				<h:outputLabel value="Bonjour #{espaceClientController.userConnect.civilite}. #{espaceClientController.userConnect.lastName}" /> 	
 			</h2>
 			<h:form>	
 				<h:commandButton value="Modifier mon profile" action="#{espaceClientController.userModify}"/>
