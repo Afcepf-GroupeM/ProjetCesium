@@ -226,14 +226,11 @@
     						<p class="mandatory">* Champs obligatoire!</p>
     					</div>
     					<br />
-    				 	<h:commandButton value="Mettre à jour" action="#{updateAddressController.action}"/>
-						<h:button outcome="espaceclient" value="Annuler" />
+    				 	<h:commandButton class="btnAddress" value="Mettre à jour" action="#{updateAddressController.action}"/>
+						<h:button class="btnAddress" outcome="myaccount" value="Annuler" />
+						<span class="message"><h:outputLabel type="text" value="#{updateAddressController.message}"/></span>
 					</h:form>
 				</div>
-				
-				<!-- <div>
-					<h:outputText value="#{updateAddressController.message}"  escape="false"/>
-				</div> -->
 			</div>
 		</div>
 		

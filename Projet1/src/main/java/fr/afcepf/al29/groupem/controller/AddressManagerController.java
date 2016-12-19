@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
@@ -16,6 +17,7 @@ import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.ComplementAddress;
 import fr.afcepf.al29.groupem.entities.User;
 
+@Scope("session")
 @Component
 @ManagedBean
 public class AddressManagerController {
@@ -29,10 +31,9 @@ public class AddressManagerController {
 	@Autowired
 	private AddressBusApi addressBus;
 	
-	public String init(ComponentSystemEvent event){
+	public void init(ComponentSystemEvent event){
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-		//TEMP sera sur l'espace client
 		Map<String,Object> userLogged = fc.getExternalContext().getSessionMap();
 		
 		if (!params.isEmpty()){
@@ -59,8 +60,6 @@ public class AddressManagerController {
 				}
 			}
 		}
-		
-		return "addressManager?faces-redirect=true";
 	}
 
 	public String getComplement() {

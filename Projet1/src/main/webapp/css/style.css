@@ -650,7 +650,6 @@ a.toggleMenu{
 /*---table----*/
 .table-account1 {
     width: 100%;
-    margin-bottom: 20px;
     border:2px solid darkorange;
     border-collapse:collapse;
 }
@@ -1445,8 +1444,8 @@ span.message{
 	 cursor: pointer;
 	 font-family: inherit;
 	 line-height: inherit;
-	  
 }
+
 .myaccount input[type="submit"]:hover{
 	background: rgb(157,218,216);
 	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
@@ -1536,7 +1535,7 @@ span#isBilling{
 	color:#464646;
 	font-size:1em;	
 }
-.addressForm input[type="button"]{
+.btnAddress{
 	background: rgb(252,94,53);
 	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
@@ -1557,7 +1556,7 @@ span#isBilling{
 	-o-transition: 0.5s all;
 	  margin: 0 0 0 1em;
 }
-.addressForm input[type="button"]:hover{
+.btnAddress:hover{
 	background: rgb(157,218,216);
 	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(52%,rgba(157,218,216,1)), color-stop(100%,rgba(119,168,164,1)));
@@ -1566,7 +1565,7 @@ span#isBilling{
 	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 }
-.addressForm input[type="submit"]{
+/*.addressForm input[type="submit"]{
 	background: rgb(252,94,53);
 	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
@@ -1595,7 +1594,7 @@ span#isBilling{
 	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
-}
+}*/
 .addressForm{
 	padding: 4em 1em;
 }
