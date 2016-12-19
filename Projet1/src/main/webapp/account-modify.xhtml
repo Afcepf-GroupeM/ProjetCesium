@@ -167,24 +167,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	<div class="container">
 		<div class="account">
-			<h2 class="account-in">Compte</h2>						
+			<h2 class="account-in">
+				<h:outputLabel value="Mise à jour des informations de #{modifyUserController.civilite}. #{modifyUserController.lastName}"/>
+			</h2>						
 				<h:form>
 					<div>
-						<span class="civil"><h:outputLabel>*Civilité:</h:outputLabel></span>
+						<h:outputLabel value="Civilité:"/>
+						<span id="civil" class="mandatory">*</span>
 						<h:selectOneMenu value="#{modifyUserController.civilite}">
 							<f:selectItems value="#{modifyUserController.listeCivilite}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
-						<span class="namefirst"><h:outputLabel>*Nom:</h:outputLabel></span>
+						<h:outputLabel value="Nom:" />
+						<span id="namefirst" class="mandatory">*</span>
 						<h:inputText type="text" value="#{modifyUserController.lastName}"/>
 					</div> 	
-					<div>			
-						<span class="name-in"><h:outputLabel class="name-in">*Prénom:</h:outputLabel></span>
+					<div>
+						<h:outputLabel value="Prénom:" />		
+						<span id="name-in" class="mandatory">*</span>
 						<h:inputText type="text" value="#{modifyUserController.firstName}"/> 
 					</div>	
-					<div>			
-						<span class="naissance"><h:outputLabel>*Date de Naissance:</h:outputLabel></span>
+					<div>
+						<h:outputLabel value="Date de Naissance:" />		
+						<span id="naissance" class="mandatory">*</span>
 						<h:panelGroup>
 					    	<h:selectOneMenu value="#{modifyUserController.birthDay}">
 								<f:selectItems value="#{modifyUserController.dayList}" />
@@ -197,22 +203,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h:selectOneMenu>
 	   					 </h:panelGroup> 
 					</div>	
-					<div> 	
-						<span class="tel"><h:outputLabel value="*Téléphone:"/></span>
+					<div>
+						<h:outputLabel value="Téléphone:"/>
+						<span id="tel" class ="mandatory">*</span>
 						<h:inputText value="#{modifyUserController.phone}" maxlength="10" />
 					</div>		
-					<div> 	
-						<span class="mail"><h:outputLabel value="Email"/></span>
-						<h:inputText value="#{modifyUserController.email}"  /> 
+					<div>
+						<h:outputLabel value="Email:"/>
+						<span id="mail" class="mandatory">*</span>
+						<h:inputText value="#{modifyUserController.email}" disabled="true" /> 
 					</div>
-					<div> 
-						<span class="word"><h:outputLabel value="Mot de passe:"/></span>
+					<div>
+						<h:outputLabel value="Mot de passe:"/>
+						<span id="word" class="mandatory">*</span>
 						 <h:inputSecret value="#{modifyUserController.password1}"  />
 					</div>
-					<div> 
-						<span class="wordVef"><h:outputLabel value="Mot de passe (verification):"/></span>
+					<div>
+						<h:outputLabel value="Mot de passe (verification):"/>
+						<span id="wordVef" class="mandatory">*</span>
 						<h:inputSecret value="#{modifyUserController.password2}"  />
-					</div>					
+					</div>
+					<div>
+    					<p class="mandatory">* Champs obligatoire!</p>
+    				</div>			
 					<h:commandButton value="Mettre à jour!" action="#{modifyUserController.action}"/>
 					<span class="message"><h:outputLabel type="text" value="#{modifyUserController.message}"/></span>
 				</h:form>

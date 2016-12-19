@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
@@ -23,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import fr.afcepf.al29.groupem.business.api.SecurityManagerApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Civilite;
 import fr.afcepf.al29.groupem.entities.User;
@@ -54,7 +52,7 @@ public class ModifyUserController {
 	
 	private Date formattedDate;
 	private String valueButton;
-	private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+	private Map<String, Object> sessionMap;
 	private int idUser;
 	private User userConnect;
 
@@ -79,7 +77,7 @@ public class ModifyUserController {
 	
 	//@PostConstruct
 	public void init(ComponentSystemEvent event){
-		System.out.println("-------------dans init----------" +message+" " +firstName + " " +lastName + " " + formattedDate +" " + email + " " + phone +" ");		
+		sessionMap =  FacesContext.getCurrentInstance().getExternalContext().getSessionMap();		
 		formattedDate = null;
 		userConnect = null;
 		idUser=0;
@@ -102,7 +100,6 @@ public class ModifyUserController {
 			//modification profile:pre-remplir des champs:
 			idUser= (int) sessionMap.get("userid");
 			userConnect = userBus.getUserById(idUser);
-			System.out.println("-------------------dans init:---------------userconnect:"+userConnect.toString());
 			civilite = userConnect.getCivilite();
 			firstName = userConnect.getfirstName();
 			lastName = userConnect.getlastName();
@@ -111,21 +108,16 @@ public class ModifyUserController {
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(formattedDate);
 		    birthYear = Integer.toString(cal.get(Calendar.YEAR));
-		    System.out.println("---------------birthYear:"+birthYear);
 		    birthMonth = Integer.toString(cal.get(Calendar.MONTH)+1);  // Note: zero based!
-		    System.out.println("---------------birthM:"+birthMonth);
 		    birthDay = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-		    System.out.println("---------------birthD:"+birthDay);
 		    
 			email = userConnect.getEmail();
-			phone = userConnect.getphone();
-			System.out.println("***********dans init:*******email*******" + email);		
+			phone = userConnect.getphone();	
 	}
 	
 	
 	public String action(){	
-		//faire modification de base de donnée:			
-		System.out.println("---------dans action---avant verification------" + userConnect.toString());			
+		//faire modification de base de donnée:
 		
 		message ="";
 		EmailValidator emailValidator = EmailValidator.getInstance();
@@ -168,15 +160,13 @@ public class ModifyUserController {
 				System.out.println("ERREUR - Parsing birthDate in AddUserController - action()" + e.getMessage());
 			}		
 			
-				//faire modification de base de donnée:				
-				System.out.println("---------dans action---after verification-----------/" + message+"/ " +firstName + "/" +lastName + "/ " + formattedDate +"/ " + email + "/ " + phone +"/ "+formattedDate.toString()+"/ "+password1 );	
+				//faire modification de base de donnée:					
 				User user = userBus.updateUser(idUser,lastName,civilite,firstName,email,phone,formattedDate,password1);
-				System.out.println("-------------dans action-----after modification-----------"+user.toString());
 				resetFields();
 				message = "Utilisateur modifié avec succes!" +"  " + "Id de l'utilisateur: " + user.getId();				
 			}
 
-		return null;		
+		return "myaccount?faces-redirect=true";		
 	}
 	
 	public void resetFields(){
