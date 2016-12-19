@@ -39,7 +39,7 @@ public class ItemCartController {
 	private String imagePath = "/images/items/";
 	
 	
-	private int idOwnerCart = 8 ;    // For testing pupose, we set the user to id=1;
+	private int idOwnerCart ;  
 	
 	private Cart cart;
 	private List<CartLine> cartLines;
@@ -54,6 +54,7 @@ public class ItemCartController {
 	
 	
 	public void initCartDetail(ComponentSystemEvent c1){
+		idOwnerCart = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		totalAmount = 0f;
 		setCart(cartBus.getCartByUserId(idOwnerCart));
 		setCartLines(cartBus.getCartLinesByCartId(cart.getId()));
