@@ -220,15 +220,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h4><h:outputText value="#{itemCartController.item.name}"/></h4>
 							<div class="para-grid">
 								<span  class="add-to"><h:outputText value="#{itemCartController.item.price}"/> €</span>
-								
-									<h:commandLink value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" styleClass="hvr-shutter-in-vertical cart-to" >
-										<f:param name = "quantity" value="#{itemCartController.quantity}"/>
-										<f:param name = "itemId" value="#{itemCartController.item.id}"/>
-									</h:commandLink>
-								<!-- <a href="#" class="hvr-shutter-in-vertical cart-to">Ajouter au panier</a>	 -->
-											
-								<span  class="add-to"><h:outputText value="#{itemCartController.item.price}"/> €</span>
-									
 									
 									<h:link value="Se connecter pour ajouter au panier" outcome="login" styleClass="hvr-shutter-in-vertical cart-to" rendered="#{not loginController.islogged}" />
 									<h:commandLink value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" styleClass="hvr-shutter-in-vertical cart-to" rendered="#{loginController.islogged}" >

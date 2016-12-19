@@ -166,14 +166,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">			
 		<div class="myaccount">
 			<h2 class="myaccountprofile">
-				<h:outputLabel value="Bonjour #{espaceClientController.userConnect.firstName} "/> 
-				<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/>
-				<br />
-				<h:outputLabel value="#{espaceClientController.messageInfoPerson}"/>			 	
+				<h:outputLabel value="Bonjour #{espaceClientController.userConnect.firstName}"/>
+				<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/>		 	
 			</h2>
 			<h:form>	
 				<h:commandButton value="Modifier mon profile" action="#{espaceClientController.userModify}"/>
-			</h:form>	
+			</h:form>
+			<br />
+			<h:outputLabel value="#{espaceClientController.messageInfoPerson}"/>
 		</div>
 		
 		<h2 class=" myaccount">Suivi de votre commande en cours:</h2>				
@@ -268,9 +268,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    	 -->	    	
 		</h:dataTable>
 		
-		<h2 class="myaccount">Gestion addresse:</h2>	
-		<br/>
-		<h:outputText class="messagemyaccount" value="Vous n'avez pas enregistré d'adresse." rendered="#{empty addressManagerController.userAddresses}"/>
+		<h2 class="myaccount">Gestionnaire d'adresse:</h2>
+		<br />
+		<h:outputLabel class="messagemyaccount" value="Vous n'avez pas enregistré d'adresse." rendered="#{empty addressManagerController.userAddresses}"/>
 		<h:dataTable class="table-account1"  var="adr" value="#{addressManagerController.userAddresses}" rendered="#{not empty addressManagerController.userAddresses}" styleClass="order-table"
 			headerClass="order-table-header"
 			rowClasses="order-table-odd-row,order-table-even-row">		

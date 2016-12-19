@@ -25,7 +25,7 @@ public class SessionListener implements PhaseListener{
 												 || (currentPage.lastIndexOf("espaceclient.jsf") > -1)
 												 || (currentPage.lastIndexOf("account-modify.jsf") > -1)
 												 || (currentPage.lastIndexOf("myaccount.jsf") > -1)
-												 || (currentPage.lastIndexOf("logout.xhtml") > -1)
+//												 || (currentPage.lastIndexOf("logout.xhtml") > -1)
 												 || (currentPage.lastIndexOf("addressManager.xhtml") > -1) 
 												 || (currentPage.lastIndexOf("addAddress.xhtml") > -1) 
 												 || (currentPage.lastIndexOf("updateAddress.xhtml") > -1) 
