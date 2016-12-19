@@ -96,6 +96,11 @@ public class ItemCartController {
 	
 	
 public String addItemToCart() {
+		idOwnerCart = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		setCart(cartBus.getCartByUserId(idOwnerCart));
+		setCartLines(cartBus.getCartLinesByCartId(cart.getId()));
+		setIsCartEmpty(cartLines.isEmpty());
+	
 			
 		String idNewItemString;
 		String quantityNewItemString;
@@ -126,6 +131,7 @@ public String addItemToCart() {
 			setCart(cartBus.getCartByUserId(idOwnerCart));
 			int cartId = cart.getId();
 			boolean itemAlreadyInCart = false;
+			if(!isCartEmpty){
 			for (CartLine cartLine : cart.getCartLines()){
 				if(cartLine.getItem().getId() == idNewItem){
 					cartLine.setQuantity(cartLine.getQuantity() + quantityNewItem);
@@ -134,6 +140,7 @@ public String addItemToCart() {
 					cartLinesSubtotal.put(cartLine.getId(), subtotal);
 					itemAlreadyInCart = true;
 				}
+			}
 			}
 			if(!itemAlreadyInCart){			
 				CartLine newCartline = cartBus.createCartLine(cartId, idNewItem, quantityNewItem);

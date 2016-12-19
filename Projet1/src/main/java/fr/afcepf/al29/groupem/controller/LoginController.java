@@ -52,8 +52,7 @@ public class LoginController {
 				islogged = true;
 				userLogged = userBus.getUserByLogin(login);
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());
-				
-				
+				returnPage = "index?faces-redirect=true";		
 			}	
 		}
 		return returnPage;
