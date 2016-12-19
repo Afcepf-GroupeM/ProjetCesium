@@ -71,6 +71,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <style>
 .cadre-logout{margin: 70px auto; width: 40%;}
 
+.order-table{border-collapse:collapse;width: 100%;}
+.order-table-header{text-align:center;background:none repeat scroll 0 0 #E5E5E5;border-bottom:1px solid #BBBBBB;padding:16px;}
+.order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
+.order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
 
 </style>
 </head>
@@ -194,8 +198,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="banner-mat">
 				<div class="cadre-logout">
-			<h2>Commande validée!</h2>
-			<p>Veuillez trouver le recapitulatif de votre commande ci dessous:</p>
+			<h2>Commande validée!</h2><br/>
+			<h2>Veuillez trouver le recapitulatif de votre commande ci dessous:</h2><br/>
 			<h4>Commande numero: <h:outputText value="#{orderController.order.id}"/>.</h4>
 			
 			<h:dataTable value="#{orderController.orderLines}"  var="line" styleClass="order-table"
@@ -215,8 +219,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h:outputText value="#{line.quantity}"/>
 				</h:column> 
 				</h:dataTable>
+				<br/><br/>
 				
-				<h4>Montant total: <h:outputText value="#{orderController.order.amount}"/>€</h4><br />
+				<h4>Montant total: <h:outputText value="#{orderController.order.amount}"/>€</h4><br /><br/>
 				<h4>Type de paiement: <h:outputText value="#{orderController.order.typePayment}"/></h4><br />
 				<h4>Date de commande: <h:outputText value="#{orderController.order.creationDate}"/></h4><br />
 				<h4>Etat: <h:outputText value="#{orderController.order.state}"/></h4><br />
