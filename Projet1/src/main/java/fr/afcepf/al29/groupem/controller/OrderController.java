@@ -9,7 +9,9 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ValueChangeEvent;
 
+import org.apache.commons.validator.routines.RegexValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +39,22 @@ public class OrderController {
 	private List<CartLine> cartLines;
 	private int idOwnerOrder;
 	
+	private List<Address> addresses;
+	private List<Address> billingAddresses;
+	
+	private Address addressBillingChosen;
+	private Address addressShippingChosen;
+	private String addressShippingChosenId;
+	private String addressBillingChosenId;
+	
+	private String cardNumber;
+	private String cardMonth;
+	private String cardYear;
+	private String cardCVV;
+	private String errorCardNumber;
+	private String errorCardDate;
+	private String errorCardCVV;
+	
 	
 	@Autowired
 	private OrderBusApi orderBus;
@@ -51,9 +69,29 @@ public class OrderController {
 	private AddressBusApi addressBus;
 	
 	
+	public void initAddressChoice(ComponentSystemEvent c2){
+		idOwnerOrder = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		addresses = addressBus.getAddressesByUserId(idOwnerOrder);
+		billingAddresses = new ArrayList<>();
+		for (Address address : addresses) {
+			if(address.isBilling()){
+				billingAddresses.add(address);
+			}
+		}
+	}
+
+		
+		
+	public void initPayment(ComponentSystemEvent c3){
+		
+		
+	}
+		
+	
+	
+	
 	public void initOrderValidate(ComponentSystemEvent c){
 		idOwnerOrder = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
-//		int cartId = getParamId("cartid");
 		int cartId = cartBus.getCartByUserId(idOwnerOrder).getId();
 		cart = cartBus.getCartById(cartId);
 		cartLines = cartBus.getCartLinesByCartId(cartId);
@@ -74,11 +112,8 @@ public class OrderController {
 		order.setUser(userBus.getUserById(idOwnerOrder));
 		order.setTypePayment(TypePayment.MasterCard);
 		
-		List<Address> addresses = addressBus.getAddressesByUserId(idOwnerOrder);
-		Iterator<Address> iter = addresses.iterator();
-		Address address = iter.next();
-		order.setAdresseFacturation(address);
-		order.setAdresseLivraison(address);
+		order.setAdresseFacturation(addressBillingChosen);
+		order.setAdresseLivraison(addressShippingChosen);
 		
 		order = orderBus.createOrder(order);
 		
@@ -104,6 +139,25 @@ public class OrderController {
 		
 	}
 	
+	
+	public String validateAddresses(){
+		return "payment?faces-redirect=true";
+	}
+	
+	
+	public String validatePayment(){
+		String returnAddress = null;
+		RegexValidator cardValidator = new RegexValidator("[0-9]{16}");
+		RegexValidator monthValidator = new RegexValidator("[0][1-9]|[1][0-2]");
+		RegexValidator yearValidator = new RegexValidator("");
+		RegexValidator cvvValidator = new RegexValidator("");
+		
+		
+		
+		
+		
+		return "order-validated?faces-redirect=true";
+	}
 	
 	
 	protected String getParam(String param) {
@@ -227,6 +281,154 @@ public class OrderController {
 
 	public void setAddressBus(AddressBusApi addressBus) {
 		this.addressBus = addressBus;
+	}
+
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+
+	public List<Address> getBillingAddresses() {
+		return billingAddresses;
+	}
+
+
+	public void setBillingAddresses(List<Address> billingAddresses) {
+		this.billingAddresses = billingAddresses;
+	}
+
+
+	public Address getAddressBillingChosen() {
+		return addressBillingChosen;
+	}
+
+
+	public void setAddressBillingChosen(Address addressBillingChosen) {
+		this.addressBillingChosen = addressBillingChosen;
+	}
+
+
+	public Address getAddressShippingChosen() {
+		return addressShippingChosen;
+	}
+
+
+	public void setAddressShippingChosen(Address addressShippingChosen) {
+		this.addressShippingChosen = addressShippingChosen;
+	}
+
+
+
+	public String getAddressShippingChosenId() {
+		return addressShippingChosenId;
+	}
+
+
+
+	public void setAddressShippingChosenId(String addressShippingChosenId) {
+		this.addressShippingChosenId = addressShippingChosenId;
+	}
+
+
+
+	public String getAddressBillingChosenId() {
+		return addressBillingChosenId;
+	}
+
+
+
+	public void setAddressBillingChosenId(String addressBillingChosenId) {
+		this.addressBillingChosenId = addressBillingChosenId;
+	}
+
+
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+
+
+	public String getCardMonth() {
+		return cardMonth;
+	}
+
+
+
+	public void setCardMonth(String cardMonth) {
+		this.cardMonth = cardMonth;
+	}
+
+
+
+	public String getCardYear() {
+		return cardYear;
+	}
+
+
+
+	public void setCardYear(String cardYear) {
+		this.cardYear = cardYear;
+	}
+
+
+
+	public String getCardCVV() {
+		return cardCVV;
+	}
+
+
+
+	public void setCardCVV(String cardCVV) {
+		this.cardCVV = cardCVV;
+	}
+
+
+
+	public String getErrorCardNumber() {
+		return errorCardNumber;
+	}
+
+
+
+	public void setErrorCardNumber(String errorCardNumber) {
+		this.errorCardNumber = errorCardNumber;
+	}
+
+
+
+	public String getErrorCardDate() {
+		return errorCardDate;
+	}
+
+
+
+	public void setErrorCardDate(String errorCardDate) {
+		this.errorCardDate = errorCardDate;
+	}
+
+
+
+	public String getErrorCardCVV() {
+		return errorCardCVV;
+	}
+
+
+
+	public void setErrorCardCVV(String errorCardCVV) {
+		this.errorCardCVV = errorCardCVV;
 	}
 	
 	

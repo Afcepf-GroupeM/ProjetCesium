@@ -167,9 +167,9 @@ public String addItemToCart() {
 	}
 	
 	
-	public String validateOrder(){
+	public String validateCart(){
 		
-		return "order-validated?faces-redirect=true";
+		return "address-choice?faces-redirect=true";
 	}
 	
 
