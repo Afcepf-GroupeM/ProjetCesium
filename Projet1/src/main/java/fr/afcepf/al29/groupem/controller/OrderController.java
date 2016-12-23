@@ -13,6 +13,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.validator.routines.RegexValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
@@ -28,6 +29,7 @@ import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
 import fr.afcepf.al29.groupem.entities.TypePayment;
 
+@Scope("session")
 @Component
 @ManagedBean
 public class OrderController {
@@ -54,6 +56,8 @@ public class OrderController {
 	private String errorCardNumber;
 	private String errorCardDate;
 	private String errorCardCVV;
+	
+	private String cardTypeChosen;
 	
 	
 	@Autowired
@@ -112,6 +116,9 @@ public class OrderController {
 		order.setUser(userBus.getUserById(idOwnerOrder));
 		order.setTypePayment(TypePayment.MasterCard);
 		
+		addressBillingChosen = addressBus.getAddressById(Integer.parseInt(addressBillingChosenId));
+		addressShippingChosen = addressBus.getAddressById(Integer.parseInt(addressShippingChosenId));
+		
 		order.setAdresseFacturation(addressBillingChosen);
 		order.setAdresseLivraison(addressShippingChosen);
 		
@@ -146,18 +153,58 @@ public class OrderController {
 	
 	
 	public String validatePayment(){
+		errorCardCVV = "";
+		errorCardDate = "";
+		errorCardNumber = "";
 		String returnAddress = null;
 		RegexValidator cardValidator = new RegexValidator("[0-9]{16}");
 		RegexValidator monthValidator = new RegexValidator("[0][1-9]|[1][0-2]");
-		RegexValidator yearValidator = new RegexValidator("");
-		RegexValidator cvvValidator = new RegexValidator("");
+		RegexValidator yearValidator = new RegexValidator("[0-9]{2}");
+		RegexValidator cvvValidator = new RegexValidator("[0-9]{3}");
 		
+		boolean isCardValid = cardValidator.isValid(cardNumber) && checkLuhn(cardNumber);
+		boolean isDateValid = monthValidator.isValid(cardMonth) && yearValidator.isValid(cardYear);
+		boolean isCvvValid = cvvValidator.isValid(cardCVV);
 		
+		if(!isCardValid){
+			errorCardNumber = "Numero de carte invalide.";
+		}
+		if(!isDateValid){
+			errorCardDate = "Date d'expiration invalide.";
+		}
+		if(!isCvvValid){
+			errorCardCVV = "Cryptogramme invalide.";
+		}
 		
-		
-		
-		return "order-validated?faces-redirect=true";
+		if(isCardValid && isDateValid && isCvvValid){
+			returnAddress = "order-validated?faces-redirect=true";
+		} else {
+			returnAddress = null;
+		}
+		return returnAddress;
 	}
+	
+	
+	public boolean checkLuhn(String cardNumber)
+    {
+            int sum = 0;
+            boolean alternate = false;
+            for (int i = cardNumber.length() - 1; i >= 0; i--)
+            {
+                    int n = Integer.parseInt(cardNumber.substring(i, i + 1));
+                    if (alternate)
+                    {
+                            n *= 2;
+                            if (n > 9)
+                            {
+                                    n = (n % 10) + 1;
+                            }
+                    }
+                    sum += n;
+                    alternate = !alternate;
+            }
+            return (sum % 10 == 0);
+    }
 	
 	
 	protected String getParam(String param) {
@@ -429,6 +476,18 @@ public class OrderController {
 
 	public void setErrorCardCVV(String errorCardCVV) {
 		this.errorCardCVV = errorCardCVV;
+	}
+
+
+
+	public String getCardTypeChosen() {
+		return cardTypeChosen;
+	}
+
+
+
+	public void setCardTypeChosen(String cardTypeChosen) {
+		this.cardTypeChosen = cardTypeChosen;
 	}
 	
 	
