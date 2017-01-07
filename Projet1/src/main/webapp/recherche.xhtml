@@ -171,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class=" top-products">
 					<h:panelGroup rendered="#{empty rechercheArticleController.items}">
 						<h3>Aucun resultat.</h3>
-						<p>Aucun resultat n'a été trouvé pour votre recherche <b>"<h:outputText value="#{rechercheArticleController.keyword}"/>"</b>.<br/>
+						<p>Aucun resultat n'a été trouvé pour votre recherche <b>"<h:outputText value="#{rechercheArticleController.keywordSearched}"/>"</b>.<br/>
 						Veuillez rééssayer en élargissant votre recherche, en utilisant d'autres termes.</p>
 					</h:panelGroup>
 					<h:panelGroup rendered="#{not empty rechercheArticleController.items}">

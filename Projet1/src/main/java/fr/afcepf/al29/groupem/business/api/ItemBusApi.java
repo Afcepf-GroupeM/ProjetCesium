@@ -9,6 +9,7 @@ public interface ItemBusApi {
 	Item createItem(Item item);
 	Item getItemById(int itemId);
 	Item updateItem(Item item);
+	Item upadateItemQuantity(Item item);
 	boolean deleteItem(Item item);
 	
 	List<Item> getItemsByCategory (int categoryId);

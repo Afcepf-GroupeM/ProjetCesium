@@ -18,12 +18,14 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
 import fr.afcepf.al29.groupem.business.api.CartBusApi;
+import fr.afcepf.al29.groupem.business.api.ItemBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.Carrier;
 import fr.afcepf.al29.groupem.entities.Cart;
 import fr.afcepf.al29.groupem.entities.CartLine;
+import fr.afcepf.al29.groupem.entities.Item;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
@@ -71,6 +73,9 @@ public class OrderController {
 	
 	@Autowired
 	private AddressBusApi addressBus;
+	
+	@Autowired
+	private ItemBusApi itemBus;
 	
 	
 	public void initAddressChoice(ComponentSystemEvent c2){
@@ -134,6 +139,9 @@ public class OrderController {
 			orderL.setItem(cartLine.getItem());
 			orderL = orderBus.createOrderLine(orderL);
 			orderLines.add(orderL);
+			Item itemModified = cartLine.getItem();
+			itemModified.setStock(itemModified.getStock() - cartLine.getQuantity());
+			itemBus.updateItem(itemModified);
 			totalAmount += cartLine.getQuantity() * cartLine.getUnitPrice();
 		}
 		order.setOrderLines(orderLines);
@@ -185,25 +193,21 @@ public class OrderController {
 	}
 	
 	
-	public boolean checkLuhn(String cardNumber)
-    {
-            int sum = 0;
-            boolean alternate = false;
-            for (int i = cardNumber.length() - 1; i >= 0; i--)
-            {
-                    int n = Integer.parseInt(cardNumber.substring(i, i + 1));
-                    if (alternate)
-                    {
-                            n *= 2;
-                            if (n > 9)
-                            {
-                                    n = (n % 10) + 1;
-                            }
-                    }
-                    sum += n;
-                    alternate = !alternate;
+	public boolean checkLuhn(String cardNumber){
+		int sum = 0;
+        boolean alternate = false;
+        for (int i = cardNumber.length() - 1; i >= 0; i--){
+        	int n = Integer.parseInt(cardNumber.substring(i, i + 1));
+            if (alternate){
+            	n *= 2;
+                if (n > 9){
+                	n = (n % 10) + 1;
+                }
             }
-            return (sum % 10 == 0);
+            sum += n;
+            alternate = !alternate;
+        }
+        return (sum % 10 == 0);
     }
 	
 	

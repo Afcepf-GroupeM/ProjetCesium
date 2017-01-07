@@ -10,6 +10,7 @@ public interface ItemDaoApi {
 	Item createItem(Item item);
 	Item getItemById(int itemId);
 	Item updateItem(Item item);
+	Item updateItemQuantity(Item item);
 	boolean deleteItem(Item item);
 	
 	List<Item> getItemsByCategory (int categoryId);

@@ -38,6 +38,7 @@ public class ItemCartController {
 	
 	private String imagePath = "/images/items/";
 	
+	private String messageIncorrectCart = "";
 	
 	private int idOwnerCart ;  
 	
@@ -49,6 +50,7 @@ public class ItemCartController {
 	private HashMap<Integer, Float> cartLinesSubtotal = new HashMap<>();
 	int idNewItem;
 	int quantityNewItem;
+	
 	
 	
 	
@@ -168,8 +170,21 @@ public String addItemToCart() {
 	
 	
 	public String validateCart(){
+		String returnPage = "address-choice?faces-redirect=true";
+		int lineInError = 1;
+		for (CartLine cartLine : cartLines) {
+			Item itemToCheck = cartLine.getItem();
+			Item itemInDB = itemBus.getItemById(itemToCheck.getId());
+			if(itemInDB.getStock() < cartLine.getQuantity()){
+				messageIncorrectCart += "Erreur ligne " + lineInError 
+										+ " : Il ne reste que " + itemInDB.getStock() + " " + itemInDB.getName() +" disponible(s)."
+										+ " Vous en avez choisi " + (cartLine.getQuantity() - itemInDB.getStock()) + " de trop!\n";
+				lineInError++;
+				returnPage = null;
+			}
+		}
 		
-		return "address-choice?faces-redirect=true";
+		return returnPage;
 	}
 	
 
@@ -332,6 +347,18 @@ public String addItemToCart() {
 
 	public void setIdOwnerCart(int idOwnerCart) {
 		this.idOwnerCart = idOwnerCart;
+	}
+
+	public String getMessageIncorrectCart() {
+		return messageIncorrectCart;
+	}
+
+	public void setMessageIncorrectCart(String messageIncorrectCart) {
+		this.messageIncorrectCart = messageIncorrectCart;
+	}
+
+	public void setCartEmpty(boolean isCartEmpty) {
+		this.isCartEmpty = isCartEmpty;
 	}
 	
 	

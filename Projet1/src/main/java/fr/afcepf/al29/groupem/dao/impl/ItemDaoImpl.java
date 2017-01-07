@@ -76,4 +76,10 @@ public class ItemDaoImpl implements ItemDaoApi {
 		return item;
 	}
 
+	@Override
+	public Item updateItemQuantity(Item item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -210,11 +210,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					
 					<div>
 						<p:outputPanel>
-						<div style="visibility: hidden;">
+						<div><!--  style="visibility: hidden;"> -->
 						<p:selectOneRadio id="selectCardType" value="#{orderController.cardTypeChosen}" layout="custom" >
-							<f:selectItem itemValue="1" itemLabel=""/>
-							<f:selectItem itemValue="2" itemLabel=""/>
-							<f:selectItem itemValue="3" itemLabel=""/>
+							<f:selectItem itemValue="0" itemLabel="visa"/>
+							<f:selectItem itemValue="1" itemLabel="mastercard"/>
+							<f:selectItem itemValue="2" itemLabel="amex"/>
 						</p:selectOneRadio>
 					</div>
 
