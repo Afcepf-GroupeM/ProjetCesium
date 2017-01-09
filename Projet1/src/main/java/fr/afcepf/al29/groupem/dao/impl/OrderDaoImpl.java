@@ -1,6 +1,7 @@
 package fr.afcepf.al29.groupem.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -60,8 +61,17 @@ public class OrderDaoImpl implements OrderDaoApi{
 	@Override
 	public List<Order> getOrdersByState(OrderState state) {
 		List<Order> listOrders = new ArrayList<>();
-		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.orderstate = :state", Order.class)
+		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.state = :state", Order.class)
 				 .setParameter("state", state)
+				 .getResultList();
+		return listOrders;
+	}
+
+	@Override
+	public List<Order> getOrdersSince(Date date) {
+		List<Order> listOrders = new ArrayList<>();
+		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.creationDate > :date", Order.class)
+				 .setParameter("date", date)
 				 .getResultList();
 		return listOrders;
 	}

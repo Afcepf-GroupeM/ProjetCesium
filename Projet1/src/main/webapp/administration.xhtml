@@ -8,6 +8,7 @@
 <h:head>
 	<title>.: Mix HighTech - Administration :.</title>
 	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
 </h:head>
 
 <h:body>
@@ -21,29 +22,41 @@
 	
 	
 	<div id="leftcolumn">
-		<div class="menuItem">Gestion utilisateurs</div>
-		<div class="menuItem">Gestion items</div>
-		<div class="menuItem">Gestion commandes</div>
-		<div class="menuItem">Gestion catégories</div>
+		<div class="menuItem"><a href="admin-users.xhtml">Gestion utilisateurs</a></div>
+		<div class="menuItem"><a href="admin-cats.xhtml">Gestion catégories</a></div>
+		<div class="menuItem"><a href="admin-items.xhtml">Gestion items</a></div>
+		<div class="menuItem"><a href="admin-orders.xhtml">Gestion commandes</a></div>
+		<div class="menuItem"><a href="admin-coupons.xhtml">Gestion promos</a></div>
 	</div> <!-- End leftcolumn -->
 	
 	
 	<div id="content">
-		<div>
-			<h2>Statistiques commerciales</h2>
-			Commandes aujourd'hui: <br/>
-			Chiffre d'affaire aujourd'hui: <br/>
-			Commandes ce mois ci: <br/>
-			Chiffre d'affaire ce mois ci: <br />
-			Commandes totales <br />
-			Chiffre d'affaire total: <br/>
-		</div>
-		<div>
+		
+		<div class="ordersToPrepare">
 			<h2>Commandes à préparer</h2>
-			-- afficher ici commande validées a changer de statut --
+			<h6>- Affichage des 5 premiers -</h6>
+			<h:dataTable value="#{administrationController.ordersToPrepare}"  var="order" style="border:solid gray 1px;width:100%;">
+    			
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{order.id}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Utilisateur</f:facet>
+					<h:outputText value="#{order.user.email}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ville de livraison</f:facet>
+					<h:outputText value="#{order.adresseLivraison.city}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Modification</f:facet>
+					<h:outputText value="Lien vers detail"/>
+				</h:column>
+			</h:dataTable>
 			</div>
 			
-			<div>
+			<div class="itemsLowStock">
 			<h2>Avertissement stock (5 et moins)</h2>
 			<h6>- Affichage des 5 premiers -</h6>
 			<h:dataTable value="#{administrationController.itemsLowStock}"  var="item" style="border:solid gray 1px;width:100%;">
@@ -66,10 +79,29 @@
 				</h:column>
 				</h:dataTable>
 		</div>
+		
+		
+		<div class="stats">
+			<h2>Statistiques commerciales</h2>
+			<span class="statBox">
+				Commandes aujourd'hui : <h:outputText value="#{administrationController.ordersToday}"/> <br/>
+				Chiffre d'affaire aujourd'hui : <h:outputText value="#{administrationController.caToday}"/><br/>
+			</span>
+			<span class="statBox">
+				Commandes ce mois ci : <h:outputText value="#{administrationController.ordersMonth}"/><br/>
+				Chiffre d'affaire ce mois ci : <h:outputText value="#{administrationController.caMonth}"/><br />
+			</span>
+			<span class="statBox">
+				Commandes totales : <h:outputText value="#{administrationController.ordersTotal}"/><br />
+				Chiffre d'affaire total : <h:outputText value="#{administrationController.caTotal}"/><br/>
+			</span>
+		</div>
+		
+		
 	</div> <!-- End content -->
 	
 	<div id="footer">
-		<span><h6>Administrateur loggué: _LOGIN_ADMIN_</h6></span>
+		<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
 	</div>
 </div> <!-- End wrapper -->
 

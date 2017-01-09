@@ -1,6 +1,8 @@
 package fr.afcepf.al29.groupem.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import fr.afcepf.al29.groupem.business.api.ItemBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.entities.Item;
 import fr.afcepf.al29.groupem.entities.Order;
+import fr.afcepf.al29.groupem.entities.OrderState;
 
 @Component
 @ManagedBean
@@ -39,14 +42,47 @@ public class AdministrationController {
 	
 	
 	public void initAdmin(ComponentSystemEvent c){
+		
+		// Get the first 5 items with stock below 6
 		itemsLowStock = new ArrayList<>();
 		List<Item> itemsStockLessThanSix = itemBus.getItemsByStockLessthan(6);
-		int i = 0;
-		Iterator<Item> it = itemsStockLessThanSix.iterator();
-		while (it.hasNext() && i < 5) {
-			itemsLowStock.add(it.next());
-			i++;
+		int iItem = 0;
+		Iterator<Item> itItem = itemsStockLessThanSix.iterator();
+		while (itItem.hasNext() && iItem < 5) {
+			itemsLowStock.add(itItem.next());
+			iItem++;
 		}
+		
+		// Get the first 5 orders with state "EnPreparation"
+		ordersToPrepare = new ArrayList<>();
+		List<Order> ordersToPrepareAll = orderBus.getOrdersByState(OrderState.EnPreparation);
+		int iOrder = 0;
+		Iterator<Order> itOrder = ordersToPrepareAll.iterator();
+		while (itOrder.hasNext() && iOrder < 5) {
+			ordersToPrepare.add(itOrder.next());
+			iOrder++;
+		}
+		
+		// Get the numbrer of orders and total amount since 24h
+		Calendar date = Calendar.getInstance();
+		date.add(Calendar.DAY_OF_MONTH, -1);
+		ordersToday = orderBus.getNumberOfOrdersSince(date.getTime());
+		caToday = orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date.getTime()));
+		
+		
+		// Get the numbrer of orders and total amount since last month
+		Calendar date2 = Calendar.getInstance();
+		date2.add(Calendar.MONTH, -1);
+		ordersMonth = orderBus.getNumberOfOrdersSince(date2.getTime());
+		caMonth = orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date2.getTime()));
+			
+		
+		// Get the numbrer of orders and total amount since 24h
+		Calendar date3 = Calendar.getInstance();
+		date3.add(Calendar.YEAR, -25);
+		ordersTotal = orderBus.getNumberOfOrdersSince(date3.getTime());
+		caTotal = orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date3.getTime()));
+		
 		
 	}
 
