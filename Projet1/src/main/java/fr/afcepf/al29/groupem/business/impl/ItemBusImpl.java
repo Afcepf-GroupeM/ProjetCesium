@@ -71,6 +71,11 @@ public class ItemBusImpl implements ItemBusApi {
 		return null;
 	}
 
+	@Override
+	public List<Item> getItemsByStockLessthan(int stock) {
+		return itemDao.getItemsByStockLessThan(stock);
+	}
+
 	
 	
 	

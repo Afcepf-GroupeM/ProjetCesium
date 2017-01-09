@@ -82,4 +82,14 @@ public class ItemDaoImpl implements ItemDaoApi {
 		return null;
 	}
 
+	@Override
+	public List<Item> getItemsByStockLessThan(int stock) {
+		List<Item> listItems = new ArrayList<>();
+		listItems = entityManager.createQuery("SELECT itm FROM Item itm WHERE itm.stock < :stock", Item.class)
+								 .setParameter("stock", stock)
+								 .getResultList();
+		return listItems;
+		
+	}
+
 }

@@ -18,5 +18,7 @@ public interface ItemDaoApi {
 	List<Item> searchItems(String keyword);
 	
 	Item findItem(int itemId);
+	
+	List<Item> getItemsByStockLessThan(int stock);
 
 }

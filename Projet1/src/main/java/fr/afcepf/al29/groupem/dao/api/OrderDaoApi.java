@@ -3,6 +3,7 @@ package fr.afcepf.al29.groupem.dao.api;
 import java.util.List;
 
 import fr.afcepf.al29.groupem.entities.Order;
+import fr.afcepf.al29.groupem.entities.OrderState;
 
 public interface OrderDaoApi {
 	
@@ -12,6 +13,8 @@ public interface OrderDaoApi {
 	boolean destroyOrder(Order order);
 	
 	List<Order> getOrderByUserId(int userId);
+	
+	List<Order> getOrdersByState(OrderState state);
 	
 	
 

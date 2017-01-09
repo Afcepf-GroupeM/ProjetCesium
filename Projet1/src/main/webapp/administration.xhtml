@@ -1,0 +1,77 @@
+<!DOCTYPE    html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+	<title>.: Mix HighTech - Administration :.</title>
+	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
+<div id="wrapper">
+	<div id="header">
+		<h1>.: Mix HighTech - Administration :.</h1>
+	</div>
+	
+	
+	
+	
+	<div id="leftcolumn">
+		<div class="menuItem">Gestion utilisateurs</div>
+		<div class="menuItem">Gestion items</div>
+		<div class="menuItem">Gestion commandes</div>
+		<div class="menuItem">Gestion catégories</div>
+	</div> <!-- End leftcolumn -->
+	
+	
+	<div id="content">
+		<div>
+			<h2>Statistiques commerciales</h2>
+			Commandes aujourd'hui: <br/>
+			Chiffre d'affaire aujourd'hui: <br/>
+			Commandes ce mois ci: <br/>
+			Chiffre d'affaire ce mois ci: <br />
+			Commandes totales <br />
+			Chiffre d'affaire total: <br/>
+		</div>
+		<div>
+			<h2>Commandes à préparer</h2>
+			-- afficher ici commande validées a changer de statut --
+			</div>
+			
+			<div>
+			<h2>Avertissement stock (5 et moins)</h2>
+			<h6>- Affichage des 5 premiers -</h6>
+			<h:dataTable value="#{administrationController.itemsLowStock}"  var="item" style="border:solid gray 1px;width:100%;">
+    			
+				<h:column>
+					<f:facet name="header">Article</f:facet>
+					<h:outputText value="#{item.name}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Catégorie</f:facet>
+					<h:outputText value="#{item.category.name}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+					<h:outputText value="#{item.stock}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Modification</f:facet>
+					<h:outputText value="Lien vers detail"/>
+				</h:column>
+				</h:dataTable>
+		</div>
+	</div> <!-- End content -->
+	
+	<div id="footer">
+		<span><h6>Administrateur loggué: _LOGIN_ADMIN_</h6></span>
+	</div>
+</div> <!-- End wrapper -->
+
+</h:body>
+</html>

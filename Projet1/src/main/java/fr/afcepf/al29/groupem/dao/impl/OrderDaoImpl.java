@@ -1,6 +1,7 @@
 package fr.afcepf.al29.groupem.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.al29.groupem.dao.api.OrderDaoApi;
 import fr.afcepf.al29.groupem.entities.Order;
+import fr.afcepf.al29.groupem.entities.OrderState;
 
 
 @Transactional
@@ -52,6 +54,15 @@ public class OrderDaoImpl implements OrderDaoApi{
 		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.user.id = :userid", Order.class)
 								 .setParameter("userid", userId)
 								 .getResultList();
+		return listOrders;
+	}
+
+	@Override
+	public List<Order> getOrdersByState(OrderState state) {
+		List<Order> listOrders = new ArrayList<>();
+		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.orderstate = :state", Order.class)
+				 .setParameter("state", state)
+				 .getResultList();
 		return listOrders;
 	}
 	
