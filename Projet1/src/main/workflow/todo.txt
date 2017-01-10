@@ -18,7 +18,7 @@ Guillaume:
 
 Philippe:
 ---------
-- réévaluation fiche article (Controller/JSF)
+- review (DAO/Business/Controller/JSF
 
 
 Haiyan:
