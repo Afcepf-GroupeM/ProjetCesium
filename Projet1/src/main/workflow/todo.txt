@@ -22,7 +22,7 @@ Philippe:
 
 Haiyan:
 -------
-- espace client (Controller/JSF)
+- 
 	
 
 
