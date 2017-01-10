@@ -11,7 +11,8 @@ Guillaume:
 ----------
 
 - ajouter cadre DEMO pour ajouter numero de carte bancaire valide fictif et valider la commande
-- 
+- Finir Categories
+- Admin Users
 
 
 
@@ -22,7 +23,11 @@ Philippe:
 
 Haiyan:
 -------
-- espace client (Controller/JSF)
+- Admin Items
+
+Charline:
+---------
+- Admin Commandes
 	
 
 
@@ -46,6 +51,8 @@ Creation nouvel utilisateur:
 
 - Modification profil:
 	- mot de passe non obligatoire pour modifier d'autres elements (si des éléments sont vides, on ne les change pas)
+	- retour sur la mauvaise page
+	- probleme de date de naissance?
 
 
 - Ajout adresse:
@@ -67,6 +74,7 @@ Creation nouvel utilisateur:
 
 
 - Creation espace Administration
+
 	
 	
 
@@ -89,6 +97,7 @@ Creation nouvel utilisateur:
 - Carrier (DAO) (P)
 
 - IHM Account
+- espace client (Controller/JSF)
 
 
 
