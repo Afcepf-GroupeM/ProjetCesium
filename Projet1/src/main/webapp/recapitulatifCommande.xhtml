@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>Récapitulatif de votre commande</h:head>
+
+<body>
+
+	<div>
+		<span>Récapitulatif de votre commande</span>
+	</div>
+
+	<div>
+		<h:form>
+		<h:dataTable value="#{commandeController.orderLines}"  var="orderLine" >
+			<h:column>
+				<f:facet name="header">Nom des articles</f:facet>
+				<h:outputText value="#{cartLine.item.name}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Prix unitaire</f:facet>
+				<h:outputText value="#{orderLine.item.price}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Stock</f:facet>
+				<h:outputText value="#{cartLine.item.stock}"/>
+			</h:column>
+			<!-- <h:column>
+				<f:facet name="header">Quantité</f:facet>
+				<h:outputText value="#{cartLine.quantity}"/>
+			</h:column> -->
+			<!--  <h:column>
+				<f:facet name="header">Prix Total</f:facet>
+				<h:outputText value="#{cartLine.subTotal}"/>
+			</h:column>-->
+			<h:column>
+				<f:facet name="header">Supprimer</f:facet>
+				<h:commandLink action="#{ajoutArticlePanierController.removeItemFromCart}">
+					<h:outputText value="Suppression"/>
+					<f:param name="itemId" value="#{cartLine.item.id}"/>
+				</h:commandLink>	
+			</h:column>
+		</h:dataTable>
+
+	
+	</h:form>
+	</div>
+</body>
+</html>

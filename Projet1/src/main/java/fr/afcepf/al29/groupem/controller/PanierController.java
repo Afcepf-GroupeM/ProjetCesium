@@ -44,7 +44,7 @@ public class PanierController {
 	
 	
 	
-	@PostConstruct
+	//@PostConstruct
 	public void init() {
 	
 //	Checking if we are trying to add a new item in the cart
