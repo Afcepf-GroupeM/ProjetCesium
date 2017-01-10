@@ -61,7 +61,7 @@
 					</h:commandLink>
 				</h:column>
 				<h:column headerClass="MCatDataGCol3">
-					<f:facet name="header">Nb Catégorie</f:facet>
+					<f:facet name="header">Nb Catégories</f:facet>
 					<h:outputText value="#{adminCatController.metaMap[meta.id]}"/>
 				</h:column>
 			</h:dataTable>
@@ -82,6 +82,10 @@
 				<h:column headerClass="CatDataGCol2">
 					<f:facet name="header">Nom</f:facet>
 					<h:outputText value="#{cat.name}"/>
+				</h:column>
+				<h:column headerClass="CatDataGCol3">
+					<f:facet name="header">Nb Articles</f:facet>
+					<h:outputText value="#{adminCatController.catMap[cat.id]}"/>
 				</h:column>
 			</h:dataTable>
 		</div>
