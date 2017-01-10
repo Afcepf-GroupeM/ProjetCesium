@@ -68,8 +68,8 @@ public class CategoryBusImpl implements CategoryBusApi {
 
 	@Override
 	public MetaCategory createMetaCategory(MetaCategory metaCategory) {
-		// TODO Auto-generated method stub
-		return null;
+		MetaCategory metaCat = catDao.createMetaCategory(metaCategory);
+		return metaCat;
 	}
 
 	@Override

@@ -70,6 +70,13 @@ public class AdminCatController {
 	
 	public String addMetaCat(){
 	    
+	    if(newMetaCatName.isEmpty()){
+	        messageAddMetaCat = "Merci d'entrer un nom";
+	    }
+	    MetaCategory metCat = new MetaCategory();
+	    
+	    metCat.setName(newMetaCatName);
+	    catBus.createMetaCategory(metCat);
 	    messageAddMetaCat = "MetaCategorie ajoutée! (debug)";
 	    return null;
 	}
