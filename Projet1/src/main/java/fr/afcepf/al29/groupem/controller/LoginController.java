@@ -1,11 +1,9 @@
 package fr.afcepf.al29.groupem.controller;
 
-import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -27,9 +25,9 @@ public class LoginController {
 	
 	private String login;
 	private String password;
-	private String errorMessage = "Non connecté";
+	private String errorMessage ="";
 	private User userLogged;	
-	
+	private boolean islogged = false;
 	
 	
 	
@@ -49,12 +47,12 @@ public class LoginController {
 			if(!(userBus.checkUserCredential(login, password))){
 				errorMessage = "Nom d'utilisateur et/ou mot de passe invalide(s).";
 			} else {
-				errorMessage = "Identifiants OK";
+				errorMessage = "Connecté!";
 				
+				islogged = true;
 				userLogged = userBus.getUserByLogin(login);
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());
-				
-				
+				returnPage = "index?faces-redirect=true";		
 			}	
 		}
 		return returnPage;
@@ -64,7 +62,8 @@ public class LoginController {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		userLogged = null;
-		errorMessage = "Non connecté.";
+		islogged = false;
+		errorMessage = "";
 		return "logout?faces-redirect=true";
 	}
 	
@@ -106,6 +105,16 @@ public class LoginController {
 
 	public void setUserLogged(User userLogged) {
 		this.userLogged = userLogged;
+	}
+
+
+	public boolean getIslogged() {
+		return islogged;
+	}
+
+
+	public void setIslogged(boolean islogged) {
+		this.islogged = islogged;
 	}
 
 	

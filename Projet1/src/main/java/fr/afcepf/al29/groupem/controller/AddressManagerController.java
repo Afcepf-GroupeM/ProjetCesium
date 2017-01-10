@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
@@ -16,6 +17,7 @@ import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.ComplementAddress;
 import fr.afcepf.al29.groupem.entities.User;
 
+@Scope("session")
 @Component
 @ManagedBean
 public class AddressManagerController {
@@ -29,16 +31,20 @@ public class AddressManagerController {
 	@Autowired
 	private AddressBusApi addressBus;
 	
-	public String init(ComponentSystemEvent event){
+	public void init(ComponentSystemEvent event){
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+		Map<String,Object> userLogged = fc.getExternalContext().getSessionMap();
 		
-		if (params.size() > 0){
+		if (!params.isEmpty()){
 			int addressId = Integer.parseInt(params.get("addressId"));
 			addressBus.disableAddress(addressId);
+			//l'id de l'adresse est toujours attribué, si on réactualise la page après avoir réactiver une adresse avec un update dans la base, elle sera de nouveau désactivé.
 		}
 		
-		currentUser = userBus.getUserById(3);//userId);
+		int userId = (Integer) userLogged.get("userid");
+		
+		currentUser = userBus.getUserById(userId);
 		userAddresses = addressBus.getAddressesByUserId(currentUser.getId());
 		
 		for (Address address : userAddresses){
@@ -54,8 +60,6 @@ public class AddressManagerController {
 				}
 			}
 		}
-		
-		return null;
 	}
 
 	public String getComplement() {

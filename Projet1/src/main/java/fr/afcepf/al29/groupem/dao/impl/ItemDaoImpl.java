@@ -51,7 +51,7 @@ public class ItemDaoImpl implements ItemDaoApi {
 	@Override
 	public List<Item> getItemsByCategory(int categoryId) {
 		List<Item> listItems = new ArrayList<>();
-		listItems = entityManager.createQuery("SELECT itm FROM item itm WHERE itm.categoryid = :catid", Item.class)
+		listItems = entityManager.createQuery("SELECT itm FROM Item itm WHERE itm.category.id = :catid", Item.class)
 								 .setParameter("catid", categoryId)
 								 .getResultList();
 		return listItems;
@@ -74,6 +74,22 @@ public class ItemDaoImpl implements ItemDaoApi {
 	public Item findItem(int itemId) {
 		Item item = entityManager.find(Item.class, itemId);
 		return item;
+	}
+
+	@Override
+	public Item updateItemQuantity(Item item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Item> getItemsByStockLessThan(int stock) {
+		List<Item> listItems = new ArrayList<>();
+		listItems = entityManager.createQuery("SELECT itm FROM Item itm WHERE itm.stock < :stock", Item.class)
+								 .setParameter("stock", stock)
+								 .getResultList();
+		return listItems;
+		
 	}
 
 }

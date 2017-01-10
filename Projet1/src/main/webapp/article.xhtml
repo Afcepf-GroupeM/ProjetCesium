@@ -10,8 +10,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Single :: w3layouts</title>
+<h:head>
+<title>.: GroupeM EC - Article :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -71,23 +71,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>
-</head>
-<body>
+</h:head>
+<h:body>
+<f:event listener="#{itemCartController.initItemDetail}" type="preRenderView" /> 
   <!--header-->
 	<div class="header">
 		<div class="header-top">
 			<div class="container">	
 			<div class="header-top-in">			
 				<div class="logo">
-					<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" " /></a>
+					<a href="index.xhtml"><img src="images/logowhite.png" alt=" " /></a>
 				</div>
 			<div class="header-in">
 					<ul class="icon1 sub-icon1">
-							<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
-							<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
-							<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-							<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
-							<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+						<li >
+							<h:link outcome="login" rendered="#{not loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+							<h:link outcome="myaccount" rendered="#{loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+							</span>
+							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
+							<span id="accountCartMenu">
+								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
+							</span>
+							<h:form>
+								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
+							</h:form>
+							<span id="userLoggedMenu">
+								<h:outputText value="Bienvenue #{loginController.userLogged.civilite}. " rendered="#{loginController.islogged}"/>
+								<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
+							</span>
+						</li>
+						<li>
+							<h:link outcome="panier">
+								<img src="images/cart_white.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>							
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="MON PANIER" outcome="panier" />
+							</span>
+							<h:link value="VOIR DETAIL" outcome="panier" />
+						</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -97,41 +128,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-bottom">
 		<div class="container">
 			<div class="h_menu4">
+				<h:form>
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
-					<li class="active"><a href="accueil.xhtml"><i> </i>Desktops</a></li>
-					<li ><a href="#" >Laptops Notebooks</a>
+				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+					<li class="active"><a href="#" >#{metaCat.name}</a>
 						<ul class="drop">
-							<li><a href="produits.xhtml">Sony(2)</a></li>
-							<li><a href="produits.xhtml">Android(4)</a></li>
-							<li><a href="produits.xhtml">Apple(7)</a></li>
-							<li><a href="produits.xhtml">Acer(53)</a></li>
-							<li><a href="produits.xhtml">HP(78)</a></li>
-							<li><a href="produits.xhtml">Intel(5)</a></li>
+							<ui:repeat var="cat" value="#{metaCat.categories}">
+							<li>
+
+							<h:link value="#{cat.name}" outcome="categorie" >
+								<f:param name="catId"  value="#{cat.id}" />
+							</h:link>
+							
+							
+							</li>
+							</ui:repeat>
 						</ul>
-						</li> 						
-						<li><a href="produits.xhtml" >  Tablets</a></li>            
-						<li><a href="produits.xhtml" >Components</a></li>						  				 
-						<li><a href="produits.xhtml" >Software</a></li>
-						<li><a href="produits.xhtml" >Phones PDAs </a></li>
-						<li><a href="produits.xhtml" >  Cameras  </a></li>
-						<li><a href="produits.xhtml" >Contact </a></li>
-					
+						</li> 			
+				</ui:repeat>	
 				</ul>
 				<script type="text/javascript" src="js/nav.js"></script>
+				</h:form>
 			</div>
 		</div>
 		</div>
 		<div class="header-bottom-in">
 		<div class="container">
 		<div class="header-bottom-on">
-			<p class="wel"><a href="#">Welcome visitor you can login or create an account.</a></p>
+			
 			<div class="header-can">
 				<ul class="social-in">
-						<li><a href="#"><i> </i></a></li>
-						<li><a href="#"><i class="facebook"> </i></a></li>
-						<li><a href="#"><i class="twitter"> </i></a></li>					
-						<li><a href="#"><i class="skype"> </i></a></li>
+						<li><a href="accueil.jsf"><i> </i></a></li>
+						<li><a href="https://fr-fr.facebook.com/"><i class="facebook"> </i></a></li>
+						<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
+						<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
 					</ul>	
 					<!--
 					<div class="down-top">		
@@ -142,11 +173,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</select>
 					 </div>
 					 -->
-					<div class="search">
-						<form>
-							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
-							<input type="submit" value=""/>
-						</form>
+					<div>
+						<h:form>
+							<h:inputText value="#{rechercheArticleController.keyword}"/>
+							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+						</h:form>
 					</div>
 					<div class="clearfix"> </div>
 			</div>
@@ -162,12 +193,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-5 single-top">	
 						<ul id="etalage">
 							<li>
-								<a href="optionallink.html">
-									<img class="etalage_thumb_image img-responsive" src="images/si1.jpg" alt="" />
-									<img class="etalage_source_image img-responsive" src="images/si1.jpg" alt="" />
-								</a>
+								
+									<img class="etalage_thumb_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg" alt="" height="128" width="128"/>
+									<img class="etalage_source_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg" alt="" height="128" width="128"/>
+							
 							</li>
-							<li>
+							<!-- <li>
 								<img class="etalage_thumb_image img-responsive" src="images/si2.jpg" alt="" />
 								<img class="etalage_source_image img-responsive" src="images/si2.jpg" alt="" />
 							</li>
@@ -178,145 +209,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						    <li>
 								<img class="etalage_thumb_image img-responsive" src="images/si1.jpg"  alt="" />
 								<img class="etalage_source_image img-responsive" src="images/si1.jpg" alt="" />
-							</li>
+							</li> -->
 						</ul>
 
 					</div>	
+					
 					<div class="col-md-7 single-top-in">
+					<h:form>
 						<div class="single-para">
-							<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
+							<h4><h:outputText value="#{itemCartController.item.name}"/></h4>
 							<div class="para-grid">
-								<span  class="add-to">$32.8</span>
-								<a href="#" class="hvr-shutter-in-vertical cart-to">Add to Cart</a>					
+								<span  class="add-to"><h:outputText value="#{itemCartController.item.price}"/> €</span>
+									
+									<h:link value="Se connecter pour ajouter au panier" outcome="login" styleClass="hvr-shutter-in-vertical cart-to" rendered="#{not loginController.islogged}" />
+									<h:commandLink value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" styleClass="hvr-shutter-in-vertical cart-to" rendered="#{loginController.islogged}" >
+										<f:param name = "quantity" value="#{itemCartController.quantity}"/>
+										<f:param name = "itemId" value="#{itemCartController.item.id}"/>
+									</h:commandLink>
+								<!-- <a href="#" class="hvr-shutter-in-vertical cart-to">Ajouter au panier</a>	 -->
+											
 								<div class="clearfix"></div>
 							 </div>
-							<h5>100 items in stock</h5>
+							<h5><h:outputText value="#{itemCartController.item.stock}" /> produit<h:outputText value="s" rendered="#{itemCartController.item.stock gt 1}"/> en stock</h5>
 							<div class="available">
-								<h6>Available Options :</h6>
+								<h6>Options :</h6>
 								<ul>
-									<li>Color:
-										<select>
-										<option>Silver</option>
-										<option>Black</option>
-										<option>Dark Black</option>
-										<option>Red</option>
-									</select></li>
-								<li>Size:<select>
-									<option>Large</option>
-									<option>Medium</option>
-									<option>small</option>
-									<option>Large</option>
-									<option>small</option>
-								</select></li>
-								<li>Quality:<select>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select></li>
+									<li>Quantité
+										<h:selectOneMenu value="#{itemCartController.quantity}">
+										<f:selectItems value="#{itemCartController.quantityList}" />
+										</h:selectOneMenu>
+									</li>
 							</ul>
 						</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							
-								<a href="#" class="hvr-shutter-in-vertical ">More details</a>
+							<p><h:outputText value="#{itemCartController.item.description}"/></p>
 							
 						</div>
+						</h:form>	
 					</div>
 				<div class="clearfix"> </div>
-				<div class="content-top-in">
-						<div class="col-md-4 top-single">
-							<div class="col-md">
-								<img  src="images/pic8.jpg" alt="" />	
-								<div class="top-content">
-									<h5>Mascot Kitty - White</h5>
-									<div class="white">
-										<a href="#" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>0</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-4 top-single">
-							<div class="col-md">
-								<img  src="images/pic9.jpg" alt="" />	
-								<div class="top-content">
-									<h5>Mascot Kitty - White</h5>
-									<div class="white">
-										<a href="#" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>0</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						<div class="col-md-4 top-single-in">
-							<div class="col-md">
-								<img  src="images/pic10.jpg" alt="" />	
-								<div class="top-content">
-									<h5>Mascot Kitty - White</h5>
-									<div class="white">
-										<a href="#" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD TO CART</a>
-										<p class="dollar"><span class="in-dollar">$</span><span>2</span><span>0</span></p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						
-					<div class="clearfix"></div>
-					</div>
+
 				</div>
-				<div class="col-md-3">
-					<div class="single-bottom">
-						<h4>Categories</h4>
-						<ul>
-						<li><a href="#"><i> </i>Fusce feugiat</a></li>
-						<li><a href="#"><i> </i>Mascot Kitty</a></li>
-						<li><a href="#"><i> </i>Fusce feugiat</a></li>
-						<li><a href="#"><i> </i>Mascot Kitty</a></li>
-						<li><a href="#"><i> </i>Fusce feugiat</a></li>
-						</ul>
-					</div>
-					<div class="single-bottom">
-						<h4>Product Categories</h4>
-						<ul>
-						<li><a href="#"><i> </i>feugiat(5)</a></li>
-						<li><a href="#"><i> </i>Fusce (4)</a></li>
-						<li><a href="#"><i> </i> feugiat (4)</a></li>
-						<li><a href="#"><i> </i>Fusce (4)</a></li>
-						<li><a href="#"><i> </i> feugiat(2)</a></li>
-						</ul>
-					</div>
-					<div class="single-bottom">
-						<h4>Product Categories</h4>
-							<div class="product">
-								<img class="img-responsive fashion" src="images/st1.jpg" alt=""/>
-							<div class="grid-product">
-								<a href="#" class="elit">Consectetuer adipiscing elit</a>
-								<span class="price price-in"><small>$500.00</small> $400.00</span>
-							</div>
-							<div class="clearfix"> </div>
-							</div>
-							<div class="product">
-								<img class="img-responsive fashion" src="images/st2.jpg" alt=""/>
-							<div class="grid-product">
-								<a href="#" class="elit">Consectetuer adipiscing elit</a>
-								<span class="price price-in"><small>$500.00</small> $400.00</span>
-							</div>
-							<div class="clearfix"> </div>
-							</div>
-							<div class="product">
-								<img class="img-responsive fashion" src="images/st3.jpg" alt=""/>
-							<div class="grid-product">
-								<a href="#" class="elit">Consectetuer adipiscing elit</a>
-								<span class="price price-in"><small>$500.00</small> $400.00</span>
-							</div>
-							<div class="clearfix"> </div>
-							</div>
-				</div>
-				</div>
+			
 				<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -415,5 +348,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
 		</div>
-</body>
+</h:body>
 </html>

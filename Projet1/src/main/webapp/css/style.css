@@ -43,10 +43,28 @@ h1,h2,h3,h4,h5,h6,label,p{
 	color:#fff;
 	font-size:0.8em;
 	letter-spacing: 1px;
-	padding:1.4em 1em;
+	padding-top:0.2em;
+	margin-right:1em;
 }
 .header-in ul li a:hover{
-	  color: #9fdcda;
+	  color: #30aff3;
+}
+span#userIconMenu{
+	padding:10em 0em;
+}
+span#cartIconMenu{
+	padding:0em 0em;
+}
+span#accountCartMenu{
+	font-size:1.6em;
+}
+span#userLoggedMenu{
+	display:block;
+	text-decoration:none;
+	color:#fff;
+	font-size:1em;
+	letter-spacing: 1px;
+	padding:0.5em 0.1em 0em;
 }
 .cart{
 	vertical-align: middle;
@@ -183,15 +201,15 @@ ul.icon1{
 	color: #fafafa;
 }
 .icon1 ul {
-	width:250px;
+	width:200px;
 	margin: 20px 0 0 0;
 	opacity: 0;
 	visibility: hidden;
 	position: absolute;
-	top:70px;
+	top:60px;
 	z-index: 1;
-	right: -100px;
-	background: #ffffff;
+	right: -50px;
+	background: #fb5e33;
 	-webkit-transition: all .2s ease-in-out;
 	-moz-transition: all .2s ease-in-out;
 	-ms-transition: all .2s ease-in-out;
@@ -265,6 +283,12 @@ ul.icon1{
 	display:inline-block;
 	vertical-align:middle;
 }
+.sub-icon1 li ul a:account{
+	color:#f54922;
+	background:#f54922;
+	border-radius:50px;
+}
+
 .cart_box{
 	margin-bottom:1em;
 	border-bottom:1px solid #E0E0E0;
@@ -623,6 +647,29 @@ a.toggleMenu{
 	width:100%;
 }
 }
+/*---table----*/
+.table-account1 {
+    width: 100%;
+    border:2px solid darkorange;
+    border-collapse:collapse;
+}
+.table-account2 {
+    width: 100%;
+    margin-bottom: 20px;
+    border:2px solid darkorange;
+    border-collapse:collapse;
+}
+.table-account1 > thead > tr > th,
+.table-account1 > tbody > tr > th,
+.table-account1 > tfoot > tr > th,
+.table-account1 > thead > tr > td,
+.table-account1 > tbody > tr > td,
+.table-account1 > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid darkorange;
+}
 /*--- slider-css --*/
 .slider {
 	position: relative;
@@ -930,6 +977,16 @@ h2.products-in{
 	font-size:1.3em;
 	padding:0 1em 2em;
 }
+h2.myaccount{
+	color:#747272;
+	font-size:1.3em;
+	padding:2em 1em 0em;
+}
+h2.myaccountprofile{
+	color:#fb5e33;
+	font-size:1.3em;
+	padding:2em 1em 0em 0em;
+}
 h2.products-in:after{ 
 	content: "";
 	background: url(../images/line.png)0px 0px;
@@ -1226,10 +1283,10 @@ ul.social {
 }
 /*--wish--*/
 .wish-list {
-  width: 31%;
-  margin: 7em 1em;
+  width: 60%;
+  margin: 7em auto;
   border:1px solid #A6A5A5;
-  text-align:center;
+  text-align:left;
 }
 .wish-list h6{
 	font-size:1.2em;
@@ -1247,11 +1304,24 @@ ul.social {
 	color:#000;
 	padding:0.8em 0 ;
 }
+
+/*--login--*/
+span#email{
+	padding-right:5em;
+}
+span#password{
+	padding-right:2em;
+}
+account#login-button{
+	padding-right:1000em;
+}
+
 /*--account--*/
 h2.account-in{
 	color:#747272;
 	font-size:1.3em;
 	padding:0 0em 2em;
+	text-align: center;
 }
 h2.account-in:after{ 
 	content: "";
@@ -1262,41 +1332,61 @@ h2.account-in:after{
 	vertical-align: middle;
 }
 .account span{
-	font-size:1.1em;
+	font-size:1.2em;
 	padding-right: 1.85em;
 }
-
-span.civil {
-	padding-right: 8.6em;
+.login span{
+	font-size:1.2em;
+	padding-right: 1.85em;
+	color:blue;
 }
-span.namefirst {
-	padding-right: 9.6em;
+span#civil {
+	padding-right: 8.7em;
 }
-span.name-in {
-	padding-right: 8.4em;
+span#namefirst {
+	padding-right: 9.3em;
 }
-span.naissance {
-	padding-right: 3.9em;
+span#name-in {
+	padding-right: 8.1em;
 }
-span.tel {
-	padding-right: 7.4em;
+span#naissance {
+	padding-right: 4.4em;
 }
- span.mail{
-	padding-right: 9.9em;
+span#tel {
+	padding-right: 7.3em;
 }
-span.word{
-	padding-right: 6.4em;
+ span#mail{
+	padding-right: 9em;
 }
-span.wordVef{
+span#word{
+	padding-right: 6em;
+}
+span#wordVef{
 	padding-right: 1em;
 }
-
+span.message{
+	color:red;
+}
 .account div{
 	padding:1em 0;
 }
 .account input[type="text"],.account textarea,.account input[type="password"]{
 	padding:0.7em;
 	width:60%;
+	background:none;
+	border: 1px solid #D1D1D1;
+	border-radius:10px;
+	-webkit-border-radius: 10px;
+	-o-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	outline:none;
+	color:#464646;
+	font-size:1em;	
+}
+.input input[type="text"],.input textarea,.input input[type="password"]{
+	padding:0.7em;
+	width:40%;
 	background:none;
 	border: 1px solid #D1D1D1;
 	border-radius:10px;
@@ -1331,7 +1421,7 @@ span.wordVef{
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
-	  margin: 0 0 0 7em;
+	  margin: 0 0 0 13em;
 }
 .account input[type="submit"]:hover{
 	background: rgb(157,218,216);
@@ -1345,6 +1435,191 @@ span.wordVef{
 .account{
 	padding: 4em 1em;
 }
+
+/*---myaccount----*/
+.messagemyaccount{
+	padding:0 0 0 3em;
+}
+.myaccount input[type="submit"]{	
+	background: linear-gradient(to bottom, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	color:#fff;
+	font-size:0.9em;
+	border:none;
+	outline:none;
+	border-radius: 4px;
+	font-weight: 500;
+	padding:0.5em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	 margin: 0 0 0 2em;
+	 cursor: pointer;
+	 font-family: inherit;
+	 line-height: inherit;
+	 float:right;
+}
+.myaccount input[type="submit"]:hover{
+	background: rgb(157,218,216);
+	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(52%,rgba(157,218,216,1)), color-stop(100%,rgba(119,168,164,1)));
+	background: -webkit-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+}
+
+
+/*--mandatory input--*/
+.mandatory{
+	color: red;
+	font-size: 0.8em;
+	font-style: italic
+}
+
+/*--add/update address--*/
+.addressForm span{
+	font-size:1.1em;
+	/*padding-right: 1.85em;*/
+}
+span#name {
+	padding-right: 9.1em;
+}
+span#number {
+	padding-right: 7.4em;
+}
+span#complement {
+	padding-right: 5.5em;
+}
+span#roadType {
+	padding-right: 5.6em;
+}
+span#roadName {
+	padding-right: 4.7em;
+}
+span#city {
+	padding-right: 8.8em;
+}
+span#zipcode{
+	padding-right: 5.8em;
+}
+span#country{
+	padding-right: 8.7em;
+}
+span#isBilling{
+	padding-right: 1.1em;
+}
+.addressForm div{
+	padding:1em 0;
+}
+.addressForm input[type="text"]{
+	padding:0.7em;
+	width:60%;
+	background:none;
+	border: 1px solid #D1D1D1;
+	border-radius:10px;
+	-webkit-border-radius: 10px;
+	-o-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	outline:none;
+	color:#464646;
+	font-size:1em;	
+}
+.btnAddress{
+	background: rgb(252,94,53);
+	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
+	background: -webkit-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -o-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -ms-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: linear-gradient(to bottom, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	color:#fff;
+	font-size:1.1em;
+	border:none;
+	outline:none;
+	border-radius: 5px;
+	font-weight: 600;
+	padding:0.5em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	  margin: 0 0 0 1em;
+}
+.btnAddress:hover{
+	background: rgb(157,218,216);
+	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(52%,rgba(157,218,216,1)), color-stop(100%,rgba(119,168,164,1)));
+	background: -webkit-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+}
+.addressForm input[type="submit"]{
+	background: rgb(252,94,53);
+	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
+	background: -webkit-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -o-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -ms-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: linear-gradient(to bottom, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	color:#fff;
+	font-size:1.1em;
+	border:none;
+	outline:none;
+	border-radius: 5px;
+	font-weight: 600;
+	padding:0.5em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	  margin: 0 1em 0 11.6em;
+}
+.addressForm input[type="submit"]:hover{
+	background: rgb(157,218,216);
+	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(52%,rgba(157,218,216,1)), color-stop(100%,rgba(119,168,164,1)));
+	background: -webkit-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+}
+.addressForm input[type="button"]{
+	background: rgb(252,94,53);
+	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
+	background: -webkit-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -o-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -ms-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: linear-gradient(to bottom, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	color:#fff;
+	font-size:1.1em;
+	border:none;
+	outline:none;
+	border-radius: 5px;
+	font-weight: 600;
+	padding:0.5em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	  margin: 0 1em 0 3em;
+}
+.addressForm input[type="button"]:hover{
+	background: rgb(157,218,216);
+	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(52%,rgba(157,218,216,1)), color-stop(100%,rgba(119,168,164,1)));
+	background: -webkit-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+}
+.addressForm{
+	padding: 4em 1em;
+}
+
 /*--checkout--*/
 .check-out {
   padding: 6em 1em;
@@ -1590,7 +1865,7 @@ h3.future:after ,h2.products-in:after{
   padding: 3em 0 0;
 }
 .wish-list {
-  width: 40%;
+  width: 60%;
 }
 .single-top-in {
   width: 51%;
@@ -1665,7 +1940,7 @@ h3.future:after,h2.products-in:after,h2.contact-in:after ,h2.account-in:after{
   padding: 7em 0 0;
 }
 .wish-list {
-  width: 49%;
+  width: 60%;
 }
 .single-top,.single-top-in {
   float:left;

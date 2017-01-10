@@ -20,12 +20,23 @@ public class SessionListener implements PhaseListener{
 			 
 		
 //			 ADD PAGE WITH LOGIN IN REQUIERED HERE
-			boolean isPageWithLoginInRequiered = (currentPage.lastIndexOf("secret.xhtml") > -1) 
-//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
-//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
-//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
-//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
+			boolean isPageWithLoginInRequiered = (currentPage.lastIndexOf("panier.xhtml") > -1)
+												 || (currentPage.lastIndexOf("panier.jsf") > -1) 
+												 || (currentPage.lastIndexOf("espaceclient.jsf") > -1)
+												 || (currentPage.lastIndexOf("account-modify.jsf") > -1)
+												 || (currentPage.lastIndexOf("myaccount.jsf") > -1)
+												 || (currentPage.lastIndexOf("payment.jsf") > -1)
+//												 || (currentPage.lastIndexOf("logout.xhtml") > -1)
+												 || (currentPage.lastIndexOf("addressManager.xhtml") > -1) 
+												 || (currentPage.lastIndexOf("addAddress.xhtml") > -1) 
+												 || (currentPage.lastIndexOf("updateAddress.xhtml") > -1) 
+												 || (currentPage.lastIndexOf("updateAddress.xhtml") > -1) 
 												 ;
+			
+			
+//												 || (currentPage.lastIndexOf("page.xhtml") > -1) 
+			
+			
 			
 			HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
 			NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
@@ -35,13 +46,13 @@ public class SessionListener implements PhaseListener{
 			
 			if(isPageWithLoginInRequiered){
 				if(session==null){
-					nh.handleNavigation(facesContextOriginal, null, "session-expired");
+					nh.handleNavigation(facesContextOriginal, null, "please-login");
 				} else {
 					Object currentUser = session.getAttribute("userid");
 					if (!(currentUser == null || currentUser == "")) {
 						nh.handleNavigation(facesContextOriginal, null, null);
 					} else{
-						nh.handleNavigation(facesContextOriginal, null, "error-needtobeconnected.xhtml");				
+						nh.handleNavigation(facesContextOriginal, null, "please-login");				
 					}
 				}			
 			} else {

@@ -29,7 +29,7 @@ public class UpdateAddressController {
 	
 	private String name;
 	private String number;
-	private ComplementAddress complement;
+	private ComplementAddress complement = null;
 	private ComplementAddress[] complementList;
 	private RoadType roadType;
 	private RoadType[] roadTypeList;
@@ -46,21 +46,21 @@ public class UpdateAddressController {
 	@Autowired
 	private UserBusApi userBus;
 	
-	public String init(ComponentSystemEvent event){
+	public void init(ComponentSystemEvent event){
 		roadTypeList = RoadType.class.getEnumConstants();
 		complementList = ComplementAddress.class.getEnumConstants();
 		
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-		//Temp pour user, voir session
-		int userId = Integer.parseInt(params.get("userId"));
+		Map<String,Object> userLogged = fc.getExternalContext().getSessionMap();
+		
 		int addressId = Integer.parseInt(params.get("addressId"));
+		int userId = (Integer) userLogged.get("userid");
+		
 		user = userBus.getUserById(userId);
 		address = addressBus.getAddressById(addressId);
 		
 		initFields(address);
-		
-		return null;
 	}
 	
 	public String action(){		
@@ -81,6 +81,9 @@ public class UpdateAddressController {
 			if (ca.equals(complement)){
 				complementValid = true;
 			}
+		}
+		if (complement == null){
+			complementValid = true;
 		}
 		
 		boolean roadTypeValid = false;
@@ -105,7 +108,7 @@ public class UpdateAddressController {
 			id = address.getId();
 			
 			addressBus.updateAddress(id, name, addressNumber, complement, roadType, roadName, city, zipcode, country, billing, isValid, user);
-			return "addressManager?faces-redirect=true";
+			return "myaccount?faces-redirect=true";
 		}
 		return null;
 	}

@@ -138,13 +138,16 @@ public class DetailArticleController {
 
 
 
-	public Integer getQuantity() {
+
+
+	public int getQuantity() {
 		return quantity;
 	}
 
 
 
-	public void setQuantity(Integer quantity) {
+
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
@@ -161,7 +164,7 @@ public class DetailArticleController {
 	public void setQuantityList(List<Integer> quantityList) {
 		this.quantityList = quantityList;
 	}
-	
+
 	
 	
 	

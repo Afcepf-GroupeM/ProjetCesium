@@ -13,4 +13,6 @@ public interface CartBusApi {
 	Cart getCartByUserId(int userId);
 	List<CartLine> getCartLinesByCartId(int CartId);
 	CartLine createCartLine(int cartId, int itemId, int quantity);
+	boolean destroyCartLine(CartLine cartLine);
+	CartLine updateCartLine(CartLine cartLine);
 }

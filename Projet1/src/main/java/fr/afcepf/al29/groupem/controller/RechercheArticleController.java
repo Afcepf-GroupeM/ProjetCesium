@@ -21,13 +21,16 @@ public class RechercheArticleController {
 	
 	private List<Item> items;
 	private String keyword;
+	private String keywordSearched;
 	
 	private String imagePath = "/images/items/";
 	
 	
 	public String doSearch() {
 		items = itemBus.searchItems(keyword);
-		return null;
+		keywordSearched = keyword;
+		keyword ="";
+		return "recherche?faces-redirect=true";
 	}
 
 
@@ -69,6 +72,18 @@ public class RechercheArticleController {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+
+
+	public String getKeywordSearched() {
+		return keywordSearched;
+	}
+
+
+	public void setKeywordSearched(String keywordSearched) {
+		this.keywordSearched = keywordSearched;
+	}
+	
+	
 	
 	
 	
