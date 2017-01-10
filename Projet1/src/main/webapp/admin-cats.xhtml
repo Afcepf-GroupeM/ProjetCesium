@@ -4,100 +4,154 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-	
+
 <h:head>
 	<title>.: Mix HighTech - Administration - Catégories :.</title>
 	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans"
+		rel="stylesheet" />
 </h:head>
 
 <h:body>
-<f:event listener="#{adminCatController.initAdminCat}" type="preRenderView" />
-<div id="wrapper">
-	<div id="header">
-		<h1>.: Mix HighTech - Administration - Catégories :.</h1>
-	</div>
-	
-	
-	
-	
-	<div id="leftcolumn">
-	<div class="menuItem"><a href="administration.xhtml">Retour dashboard</a></div><br/>
-		<div class="menuItem"><a href="admin-users.xhtml">Gestion utilisateurs</a></div>
-		<div class="menuItem"><a href="admin-cats.xhtml">Gestion catégories</a></div>
-		<div class="menuItem"><a href="admin-items.xhtml">Gestion items</a></div>
-		<div class="menuItem"><a href="admin-orders.xhtml">Gestion commandes</a></div>
-		<div class="menuItem"><a href="admin-coupons.xhtml">Gestion promos</a></div>
-	</div> <!-- End leftcolumn -->
-	
-	
-	<div id="content">
-	
-	<div class="quickActions">
-		<h2>Actions rapides</h2>
-		<span class="quickActionsbutton">Ajouter une<br/>Méta-catégorie</span>
-		<span class="quickActionsbutton">Ajouter une<br/>Catégorie</span>
-	</div>
-	<hr />
-	
-	<div class="listMetaAndCat">
-		<h2>Liste des Méta-Catégories</h2>
-		<h6>- Cliquer sur une Méta pour afficher les Catégories -</h6>
-		<div class="listMetaCat">
-		<h4>Méta-Catégories</h4>
-		<h:form>
-			<h:dataTable value="#{adminCatController.listMetaCategory}"  var="meta" 
-			headerClass="MCatDataGHeader"
-			styleClass="MCatDataGClass"
-			rowClasses="MCatDataGRowEven,MCatDataGRowOdd">
-				<h:column headerClass="MCatDataGCol1">
-					<f:facet name="header">Id</f:facet>
-					<h:outputText value="#{meta.id}"/>
-				</h:column>
-				<h:column headerClass="MCatDataGCol2">
-					<f:facet name="header">Nom</f:facet>
-					<h:commandLink value="#{meta.name}" action ="#{adminCatController.printCategories}">
-						<f:param name = "idMetaCat" value="#{meta.id}"/>
-					</h:commandLink>
-				</h:column>
-				<h:column headerClass="MCatDataGCol3">
-					<f:facet name="header">Nb Catégories</f:facet>
-					<h:outputText value="#{adminCatController.metaMap[meta.id]}"/>
-				</h:column>
-			</h:dataTable>
-			</h:form>
+	<f:event listener="#{adminCatController.initAdminCat}"
+		type="preRenderView" />
+	<div id="wrapper">
+		<div id="header">
+			<h1>.: Mix HighTech - Administration - Catégories :.</h1>
 		</div>
-		
-		<div class="listCat">
-		<h4><h:outputText value="Catégories dans #{adminCatController.metaCatChosen.name}" rendered="#{adminCatController.hasOneMetaCatBeenChosen}"/></h4>
-		<h:outputText value="- Choisir une méta-catégorie -" rendered="#{not adminCatController.hasOneMetaCatBeenChosen}"/>
-		<h:dataTable value="#{adminCatController.listCategory}"  var="cat" rendered="#{adminCatController.hasOneMetaCatBeenChosen}"
-			headerClass="CatDataGHeader"
-			styleClass="CatDataGClass"
-			rowClasses="CatDataGRowEven,CatDataGRowOdd">
-				<h:column headerClass="CatDataGCol1">
-					<f:facet name="header">Id</f:facet>
-					<h:outputText value="#{cat.id}"/>
-				</h:column>
-				<h:column headerClass="CatDataGCol2">
-					<f:facet name="header">Nom</f:facet>
-					<h:outputText value="#{cat.name}"/>
-				</h:column>
-				<h:column headerClass="CatDataGCol3">
-					<f:facet name="header">Nb Articles</f:facet>
-					<h:outputText value="#{adminCatController.catMap[cat.id]}"/>
-				</h:column>
-			</h:dataTable>
+
+
+
+
+		<div id="leftcolumn">
+			<div class="menuItem">
+				<a href="administration.xhtml">Retour dashboard</a>
+			</div>
+			<br />
+			<div class="menuItem">
+				<a href="admin-users.xhtml">Gestion utilisateurs</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-cats.xhtml">Gestion catégories</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-items.xhtml">Gestion items</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-orders.xhtml">Gestion commandes</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-coupons.xhtml">Gestion promos</a>
+			</div>
 		</div>
+		<!-- End leftcolumn -->
+
+
+		<div id="content">
+
+			<div class="listMetaAndCat">
+				<h2>Liste des Méta-Catégories</h2>
+				<h6>- Cliquer sur une Méta pour afficher les Catégories -</h6>
+				<div class="listMetaCat">
+					<h4>Méta-Catégories</h4>
+					<h:form>
+						<h:dataTable value="#{adminCatController.listMetaCategory}"
+							var="meta" headerClass="MCatDataGHeader"
+							styleClass="MCatDataGClass"
+							rowClasses="MCatDataGRowEven,MCatDataGRowOdd">
+							<h:column headerClass="MCatDataGCol1">
+								<f:facet name="header">Id</f:facet>
+								<h:outputText value="#{meta.id}" />
+							</h:column>
+							<h:column headerClass="MCatDataGCol2">
+								<f:facet name="header">Nom</f:facet>
+								<h:commandLink value="#{meta.name}"
+									action="#{adminCatController.printCategories}">
+									<f:param name="idMetaCat" value="#{meta.id}" />
+								</h:commandLink>
+							</h:column>
+							<h:column headerClass="MCatDataGCol3">
+								<f:facet name="header">Nb Catégories</f:facet>
+								<h:outputText value="#{adminCatController.metaMap[meta.id]}" />
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</div>
+
+				<div class="listCat">
+					<h4>
+						<h:outputText
+							value="Catégories dans #{adminCatController.metaCatChosen.name}"
+							rendered="#{adminCatController.hasOneMetaCatBeenChosen}" />
+					</h4>
+					<h:outputText value="- Choisir une méta-catégorie -"
+						rendered="#{not adminCatController.hasOneMetaCatBeenChosen}" />
+					<h:dataTable value="#{adminCatController.listCategory}" var="cat"
+						rendered="#{adminCatController.hasOneMetaCatBeenChosen}"
+						headerClass="CatDataGHeader" styleClass="CatDataGClass"
+						rowClasses="CatDataGRowEven,CatDataGRowOdd">
+						<h:column headerClass="CatDataGCol1">
+							<f:facet name="header">Id</f:facet>
+							<h:outputText value="#{cat.id}" />
+						</h:column>
+						<h:column headerClass="CatDataGCol2">
+							<f:facet name="header">Nom</f:facet>
+							<h:outputText value="#{cat.name}" />
+						</h:column>
+						<h:column headerClass="CatDataGCol3">
+							<f:facet name="header">Nb Articles</f:facet>
+							<h:outputText value="#{adminCatController.catMap[cat.id]}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+
+			<hr />
+			
+			<div class="quickActions">
+				<h2>Actions rapides</h2>
+				<div class="addMetaCategory">
+					<h4>Ajouter une Méta-Catégorie</h4>
+					<h:form>
+					<h:panelGrid columns="2" cellspacing="10">
+						<h:inputText value="#{adminCatController.newMetaCatName}"/>
+						<h:commandButton value="Creer" action="#{adminCatController.addMetaCat}"/>
+					</h:panelGrid>
+					</h:form>
+					<div class="addMessage">
+						<h:outputText value="#{adminCatController.messageAddMetaCat}" />
+					</div>
+				</div>
+				<div class="addCategory">
+					<h4>Ajouter une Catégorie</h4>
+					<h:form>
+					<h:panelGrid columns="2" cellspacing="10">
+						<h:outputText value="Meta Catégorie parente: "/>
+						<h:selectOneMenu value="#{adminCatController.idMetaCatNewCat}">
+							<f:selectItems value="#{adminCatController.listMetaCategory}" var="metacat" 
+							itemLabel="#{metacat.name}" itemValue="#{metacat.id}" />
+						</h:selectOneMenu>
+						<h:inputText value="#{adminCatController.newCatName}"/>
+						<h:commandButton value="Creer" action="#{adminCatController.addCat}"/>
+					</h:panelGrid>
+					</h:form>
+					<div class="addMessage">
+						<h:outputText value="#{adminCatController.messageAddCat}" />
+					</div>
+				</div>
+			</div>
+			<hr />
+
+
+
 		</div>
-		
-		
-	</div> <!-- End content -->
-	
-	<div id="footer">
-		<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
+		<!-- End content -->
+
+		<div id="footer">
+			<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
+		</div>
 	</div>
-</div> <!-- End wrapper -->
+	<!-- End wrapper -->
 
 </h:body>
 </html>

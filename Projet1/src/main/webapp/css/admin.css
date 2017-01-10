@@ -3,6 +3,7 @@ body, html{
 	font-family: 'PT Sans', sans-serif;
 	height: 100%;
 	padding: 0;
+	font-size: 14px;
 }
 
 
@@ -138,8 +139,10 @@ h1 {
 
 
 .quickActions {
+	clear:both;
 	width: 100%;
 	margin-bottom: 40px;
+	padding: 1px;
 }
 
 hr {
@@ -154,8 +157,14 @@ hr {
 	margin-bottom: 10px;
 }
 
+.quickActions h4 {
+	color:#f24f00;
+	margin-bottom: 10px;
+	text-align: center;
+}
 
-.quickActionsbutton{
+
+/* .quickActionsbutton{
 	
 	font-weight:bold;
 	text-align:center;
@@ -166,16 +175,16 @@ hr {
 	width: 150px;
 	padding: 5px;
 	margin-right: 20px;  
-}
+} */
 
-.quickActionsbutton:hover{
+/* .quickActionsbutton:hover{
 	background-color: #fff;
 	color:#f24f00;
-}
+} */
 
 
 .listMetaAndCat {
-	width: 100%
+	width: 100%;
 }
 
 .listMetaAndCat h2 {
@@ -204,7 +213,7 @@ hr {
 	width: 400px;
 	float: left;
 	/* margin-left: 20px; */
-	border-left: solid gray 1px;
+	border-left: solid #e8e8e8 1px;
 	min-height: 180px;
 	padding-left: 30px;
 	padding-bottom: 50px;
@@ -284,6 +293,32 @@ hr {
 
 .CatDataGRowOdd{
 	background-color: #fff;
+}
+
+.addMetaCategory{
+	border:solid #e8e8e8 1px;
+	float:left;
+	width: 40%;
+	padding-left:20px;
+	height: 170px;
+}
+
+.addCategory{
+	border:solid #e8e8e8 1px;
+	float:left;
+	width: 50%;
+	padding-left:20px;
+	height: 170px;
+}
+
+.addMessage {
+	color: green;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	
 }
 
 

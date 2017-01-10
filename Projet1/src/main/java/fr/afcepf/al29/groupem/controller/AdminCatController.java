@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -17,6 +18,7 @@ import fr.afcepf.al29.groupem.entities.MetaCategory;
 
 @ManagedBean
 @Component
+@SessionScoped
 public class AdminCatController {
 	
 	
@@ -26,6 +28,14 @@ public class AdminCatController {
 	private boolean hasOneMetaCatBeenChosen = false;
 	private HashMap<Integer, Integer> metaMap = new HashMap<>();
 	private HashMap<Integer, Integer> catMap = new HashMap<>();
+	
+	
+	private String newMetaCatName;
+	private String newCatName;
+	private String idMetaCatNewCat;
+	
+	private String messageAddMetaCat;
+	private String messageAddCat;
 	
 	
 	@Autowired
@@ -56,6 +66,20 @@ public class AdminCatController {
 		
 		return null;
 	}
+	
+	
+	public String addMetaCat(){
+	    
+	    messageAddMetaCat = "MetaCategorie ajoutée! (debug)";
+	    return null;
+	}
+	
+	public String addCat(){
+        
+	    messageAddCat = "Categorie ajoutée! (debug)";
+        return null;
+    }
+	
 	
 	protected String getParam(String param) {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -119,6 +143,77 @@ public class AdminCatController {
 	public void setCatMap(HashMap<Integer, Integer> catMap) {
 		this.catMap = catMap;
 	}
+
+    /**
+     * @return the newMetaCatName
+     */
+    public String getNewMetaCatName() {
+        return newMetaCatName;
+    }
+
+    /**
+     * @param paramNewMetaCatName the newMetaCatName to set
+     */
+    public void setNewMetaCatName(String paramNewMetaCatName) {
+        newMetaCatName = paramNewMetaCatName;
+    }
+
+    /**
+     * @return the newCatName
+     */
+    public String getNewCatName() {
+        return newCatName;
+    }
+
+    /**
+     * @param paramNewCatName the newCatName to set
+     */
+    public void setNewCatName(String paramNewCatName) {
+        newCatName = paramNewCatName;
+    }
+
+    /**
+     * @return the idMetaCatNewCat
+     */
+    public String getIdMetaCatNewCat() {
+        return idMetaCatNewCat;
+    }
+
+    /**
+     * @param paramIdMetaCatNewCat the idMetaCatNewCat to set
+     */
+    public void setIdMetaCatNewCat(String paramIdMetaCatNewCat) {
+        idMetaCatNewCat = paramIdMetaCatNewCat;
+    }
+
+    /**
+     * @return the messageAddMetaCat
+     */
+    public String getMessageAddMetaCat() {
+        return messageAddMetaCat;
+    }
+
+    /**
+     * @param paramMessageAddMetaCat the messageAddMetaCat to set
+     */
+    public void setMessageAddMetaCat(String paramMessageAddMetaCat) {
+        messageAddMetaCat = paramMessageAddMetaCat;
+    }
+
+    /**
+     * @return the messageAddCat
+     */
+    public String getMessageAddCat() {
+        return messageAddCat;
+    }
+
+    /**
+     * @param paramMessageAddCat the messageAddCat to set
+     */
+    public void setMessageAddCat(String paramMessageAddCat) {
+        messageAddCat = paramMessageAddCat;
+    }
+	
 	
 	
 	
