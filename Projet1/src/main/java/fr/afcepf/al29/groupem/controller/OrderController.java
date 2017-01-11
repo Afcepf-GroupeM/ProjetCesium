@@ -2,6 +2,7 @@ package fr.afcepf.al29.groupem.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +61,7 @@ public class OrderController {
 	private String errorCardCVV;
 	
 	private String cardTypeChosen;
+	private List<String> idTypePayment;
 	
 	
 	@Autowired
@@ -92,6 +94,10 @@ public class OrderController {
 		
 		
 	public void initPayment(ComponentSystemEvent c3){
+		idTypePayment = new ArrayList<>();
+		idTypePayment.add("0"); // Visa
+		idTypePayment.add("1"); // Mastercard
+		idTypePayment.add("2"); // Amex
 		
 		
 	}
@@ -493,6 +499,42 @@ public class OrderController {
 	public void setCardTypeChosen(String cardTypeChosen) {
 		this.cardTypeChosen = cardTypeChosen;
 	}
+
+
+
+    /**
+     * @return the idTypePayment
+     */
+    public List<String> getIdTypePayment() {
+        return idTypePayment;
+    }
+
+
+
+    /**
+     * @param paramIdTypePayment the idTypePayment to set
+     */
+    public void setIdTypePayment(List<String> paramIdTypePayment) {
+        idTypePayment = paramIdTypePayment;
+    }
+
+
+
+    /**
+     * @return the itemBus
+     */
+    public ItemBusApi getItemBus() {
+        return itemBus;
+    }
+
+
+
+    /**
+     * @param paramItemBus the itemBus to set
+     */
+    public void setItemBus(ItemBusApi paramItemBus) {
+        itemBus = paramItemBus;
+    }
 	
 	
 	

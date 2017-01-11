@@ -11,8 +11,8 @@ Guillaume:
 ----------
 
 - ajouter cadre DEMO pour ajouter numero de carte bancaire valide fictif et valider la commande
-- Finir Categories
-- Admin Users
+- OK Finir Categories
+- OK Admin Users
 
 
 

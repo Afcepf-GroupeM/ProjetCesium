@@ -82,7 +82,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</head>
 	<body>
 		<f:event listener="#{itemListController.init}" type="preRenderView" />
-
+		<f:event listener="#{orderController.initPayment}" type="preRenderView" />
 		<!--header-->
 		<div class="header">
 			<div class="header-top">
@@ -210,38 +210,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					
 					<div>
 						<p:outputPanel>
-						<div><!--  style="visibility: hidden;"> -->
+						
 						<p:selectOneRadio id="selectCardType" value="#{orderController.cardTypeChosen}" layout="custom" >
-							<f:selectItem itemValue="0" itemLabel="visa"/>
-							<f:selectItem itemValue="1" itemLabel="mastercard"/>
-							<f:selectItem itemValue="2" itemLabel="amex"/>
+							<f:selectItems value="#{orderController.idTypePayment}"
+										   var="id" itemValue="#{id}" />
 						</p:selectOneRadio>
-					</div>
+						
+						<h:panelGrid columns="3" cellpadding="5">
+							<p:radioButton id="visa" for="selectCardType" itemIndex="0"/>
+							<p:radioButton id="mastercard" for="selectCardType" itemIndex="1"/>
+							<p:radioButton id="amex" for="selectCardType" itemIndex="2"/>
+							
+							<p:graphicImage value="images/visa.png" />
+							<p:graphicImage value="images/mastercard.png" />
+							<p:graphicImage value="images/amex.png" />
+						</h:panelGrid>
+					
 
-							<p:panelGrid cellpadding="20" cellspacing="20" >
-								<p:row>
-									<p:column style="text-align: center;">
-										<p:radioButton for="selectCardType" itemIndex="0"  />
-									</p:column>
-									<p:column style="text-align: center;">
-										<p:radioButton for="selectCardType" itemIndex="1" />
-									</p:column>
-									<p:column style="text-align: center;">
-										<p:radioButton for="selectCardType" itemIndex="2"  />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="text-align: center;">
-										<p:graphicImage value="images/visa.png" />
-									</p:column>
-									<p:column style="text-align: center;">
-										<p:graphicImage value="images/mastercard.png" />
-									</p:column>
-									<p:column style="text-align: center;">
-										<p:graphicImage value="images/amex.png" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
+							<!-- 
+							
+							A voir:
+							http://balusc.omnifaces.org/2015/10/custom-layout-with-hselectoneradio-in.html 
+							
+							-->
+							
+							
+							
+							
 							<p:panelGrid cellpadding="20" cellspacing="20" >	
 								<p:row >
 									<p:column >
