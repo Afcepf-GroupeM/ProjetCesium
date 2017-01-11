@@ -73,7 +73,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </h:head>
 <h:body>
-<f:event listener="#{itemCartController.initItemDetail}" type="preRenderView" /> 
+<f:event listener="#{itemCartController.initItemDetail}" type="preRenderView" />
+<f:event listener="#{reviewController.initInArticleSheet}" type="preRenderView" />
   <!--header-->
 	<div class="header">
 		<div class="header-top">
@@ -246,6 +247,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						</h:form>	
 					</div>
+					<hr>
+					<h:button outcome="addReview" value="Ajouter un commentaire" rendered="#{loginController.islogged}">
+						<f:param name="itemId" value="#{itemCartController.item.id}"/>
+					</h:button>
+					<h:dataTable />
 				<div class="clearfix"> </div>
 
 				</div>
