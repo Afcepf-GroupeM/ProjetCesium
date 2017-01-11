@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>Recherche d'articles</h:head>
+
+<body>
+
+<h:form>
+	<fieldset>
+		<legend>Recherche :</legend>
+		<span>recherche :</span>
+		<h:inputText value="#{rechercheArticleController.keyword}"/>
+		<h:commandLink action="#{rechercheArticleController.doSearch}"  value="valider" />
+	</fieldset>
+
+	<fieldset>
+	
+			
+			
+			
+		<legend>Résultat de recherche</legend>
+		
+		<img src="#{request.contextPath}#{rechercheArticleController.imagePath}#{rechercheArticleController.item.id}/1.jpg" height="128" width="128"></img>
+		<h:dataTable value="#{rechercheArticleController.items}"  var="item">
+			
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				<h:outputLabel value="#{item.name}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+				<h:outputLabel value="#{item.description}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Prix</f:facet>
+				<h:outputLabel value="#{item.price}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Stock</f:facet>
+				<h:outputLabel value="#{item.stock}"/>
+			</h:column>
+		
+		
+		</h:dataTable>
+	
+	
+	
+	</fieldset>
+
+
+
+
+</h:form>
+
+</body>
+</html>

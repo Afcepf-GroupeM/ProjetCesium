@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -18,7 +20,7 @@ import fr.afcepf.al29.groupem.entities.MetaCategory;
 
 @ManagedBean
 @Component
-@SessionScoped
+@RequestScoped
 public class AdminCatController {
 	
 	
@@ -61,22 +63,44 @@ public class AdminCatController {
 		for (Category category : listCategory) {
 			catMap.put(category.getId(), catBus.numberOfItemsInCat(category.getId()));
 		}
-		
 		hasOneMetaCatBeenChosen = true;
-		
 		return null;
 	}
 	
 	
 	public String addMetaCat(){
 	    
-	    messageAddMetaCat = "MetaCategorie ajoutée! (debug)";
+	    if(newMetaCatName.isEmpty()){
+	        messageAddMetaCat = "Erreur: nom vide.";
+	    } else {
+	        MetaCategory metCat = new MetaCategory();
+	        metCat.setName(newMetaCatName);
+	        metCat = catBus.createMetaCategory(metCat);
+	        if(metCat.getId() != null){
+	            messageAddMetaCat = "MetaCategorie ajoutée!";
+	        } else {
+	            messageAddMetaCat = "/!\\ Erreur lors de l'ajout.";
+	        }
+	    }
+	    newCatName = "";
 	    return null;
 	}
 	
 	public String addCat(){
-        
-	    messageAddCat = "Categorie ajoutée! (debug)";
+	    if(newCatName.isEmpty()){
+	        messageAddCat = "Erreur: nom vide.";
+	    } else {
+	        Category cat = new Category();
+	        cat.setName(newCatName);
+	        cat.setMetaCategory(catBus.getMetaCategoryById(Integer.valueOf(idMetaCatNewCat)));
+	        cat = catBus.createCategory(cat);
+	        if(cat.getId() != null){
+	            messageAddCat = "Catégorie ajoutée!";
+	        } else {
+	            messageAddCat = "/!\\ Erreur lors de l'ajout.";
+	        }
+	    }
+	    newCatName = "";
         return null;
     }
 	
