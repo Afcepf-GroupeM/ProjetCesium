@@ -4,44 +4,127 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-	
+
 <h:head>
 	<title>.: Mix HighTech - Administration - Utilisateurs :.</title>
 	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans"
+		rel="stylesheet" />
 </h:head>
 
 <h:body>
-<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
-<div id="wrapper">
-	<div id="header">
-		<h1>.: Mix HighTech - Administration - Utilisateurs :.</h1>
+	<f:event listener="#{adminUserController.initAdminUser}"
+		type="preRenderView" />
+	<div id="wrapper">
+		<div id="header">
+			<h1>.: Mix HighTech - Administration - Utilisateurs :.</h1>
+		</div>
+
+
+
+
+		<div id="leftcolumn">
+			<div class="menuItem">
+				<a href="administration.xhtml">Retour dashboard</a>
+			</div>
+			<br />
+			<div class="menuItem">
+				<a href="admin-users.xhtml">Gestion utilisateurs</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-cats.xhtml">Gestion catégories</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-items.xhtml">Gestion items</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-orders.xhtml">Gestion commandes</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-coupons.xhtml">Gestion promos</a>
+			</div>
+		</div>
+		<!-- End leftcolumn -->
+
+
+		<div id="content">
+			<div class="adminSearchUsers">
+				<h2>Rechercher un utilisateur:</h2>
+				<div class="adminSearchForm">
+					<h:form>
+					<h:panelGrid columns="4" cellpadding="10">
+					<h:outputText value="Rechercher par: "/>
+					<h:selectOneMenu value="#{adminUserController.searchType}">
+						<f:selectItems var="st" value="#{adminUserController.searchTypeArray}"
+									   itemValue="#{st}"
+									   itemLabel="#{adminUserController.searchTypeMap[st]}"/>
+					</h:selectOneMenu>
+					<h:inputText value="#{adminUserController.searchInput}"/>
+					<h:commandButton value="Rechercher" action="#{adminUserController.searchUsers}"/>
+					</h:panelGrid>
+					</h:form>
+				</div>
+				<div class="adminSearchResult">
+					<div class="#{adminUserController.adminSearchMessageErrorClass}">
+					<h:outputText value="#{adminUserController.messageErrorSearch}" 
+								  rendered="#{adminUserController.firstSearchDone}"
+								  styleClass="#{adminUserController.adminSearchMessageErrorClass}"/>		  
+					</div>	
+					<h:dataTable value="#{adminUserController.pagesOfSearchResults[adminUserController.pageToPrint]}"
+							var="user" headerClass=""
+							styleClass="adminSearchResultTab"
+							rowClasses="adminSearchResultTabRow"
+							rendered="#{not empty adminUserController.searchResult}">
+						<h:column>
+							<f:facet name="header">id</f:facet>
+							<h:outputText value="#{user.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Email</f:facet>
+							<h:outputText value="#{user.email}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nom</f:facet>
+							<h:outputText value="#{user.lastName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Prénom</f:facet>
+							<h:outputText value="#{user.firstName}" />
+						</h:column>
+					</h:dataTable>
+					<div class="adminUserPageNumTitle">
+					<h:outputText value="Page #{adminUserController.pageToPrint}" 
+								  rendered="#{adminUserController.pageToPrint ne 0 and empty adminUserController.messageErrorSearch}"
+								  />
+					</div>
+				</div>
+				
+				<div class="adminUserChangePageMenu">
+					<h:form>
+						<ui:repeat value="#{adminUserController.numberOfPagesOfResults}" var="page" >
+							<h:commandLink value="#{page}" action="#{adminUserController.changePage}" 
+										   rendered="#{empty adminUserController.messageErrorSearch}">
+								<f:param name="pageNumber" value="#{page}" />
+							</h:commandLink>
+							<h:outputText value="   "/>
+						</ui:repeat>
+					</h:form>
+				</div>
+			</div>
+
+
+
+
+
+
+		</div>
+		<!-- End content -->
+
+		<div id="footer">
+			<span><h6>Administrateur loggué: _LOGIN_ADMIN_</h6></span>
+		</div>
 	</div>
-	
-	
-	
-	
-	<div id="leftcolumn">
-		<div class="menuItem"><a href="administration.xhtml">Retour dashboard</a></div><br/>
-		<div class="menuItem"><a href="admin-users.xhtml">Gestion utilisateurs</a></div>
-		<div class="menuItem"><a href="admin-cats.xhtml">Gestion catégories</a></div>
-		<div class="menuItem"><a href="admin-items.xhtml">Gestion items</a></div>
-		<div class="menuItem"><a href="admin-orders.xhtml">Gestion commandes</a></div>
-		<div class="menuItem"><a href="admin-coupons.xhtml">Gestion promos</a></div>
-	</div> <!-- End leftcolumn -->
-	
-	
-	<div id="content">
-		
-		
-		
-		
-	</div> <!-- End content -->
-	
-	<div id="footer">
-		<span><h6>Administrateur loggué: _LOGIN_ADMIN_</h6></span>
-	</div>
-</div> <!-- End wrapper -->
+	<!-- End wrapper -->
 
 </h:body>
 </html>

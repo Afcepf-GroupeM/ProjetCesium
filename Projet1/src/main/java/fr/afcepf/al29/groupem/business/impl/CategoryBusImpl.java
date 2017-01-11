@@ -44,8 +44,8 @@ public class CategoryBusImpl implements CategoryBusApi {
 
 	@Override
 	public Category createCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+		Category cat = catDao.createCategory(category);
+		return cat;
 	}
 
 	@Override
