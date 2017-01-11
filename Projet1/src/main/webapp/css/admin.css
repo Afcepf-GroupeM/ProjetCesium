@@ -321,6 +321,75 @@ hr {
 	
 }
 
+.adminSearchUsers {
+	width: 100%;
+}
 
+.adminSearchUsers h2{
+	color:#f24f00;
+	margin-bottom: 5px;
+}
+
+.adminSearchForm {
+	width: 100%;
+}
+
+.adminSearchErrorMessage {
+	color: red;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin-left: 140px;
+}
+
+.adminSearchNotFoundMessage {
+	color: black;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+
+.adminSearchResult {
+	/* text-align: center; */
+}
+
+.adminSearchResultTab {
+	width: 650px;
+	margin: 0 auto ;
+}
+
+
+tr:hover.adminSearchResultTabRow {
+	background-color: #dae9fe;
+}
+
+.adminSearchNothingFoundMessage {
+	font-weight: bold;
+	text-align: center;
+}
+
+.adminUserPageNumTitle {
+	text-align: center;
+	font-weight: bold;
+	margin-top: 20px;
+	font-variant: small-caps;
+}
+
+.adminUserChangePageMenu {
+	text-align: center;
+	margin-top: 13px;
+}
+
+.adminUserChangePageMenu a {
+	font-weight : bold;
+	color:#404040;
+	text-decoration: none;
+}
+
+.adminUserChangePageMenu a:hover {
+	color:#f24f00;
+}
 
 }
