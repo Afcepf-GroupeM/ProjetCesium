@@ -10,6 +10,7 @@ public interface ItemDaoApi {
 	Item createItem(Item item);
 	Item getItemById(int itemId);
 	Item updateItem(Item item);
+	Item updateItemQuantity(Item item);
 	boolean deleteItem(Item item);
 	
 	List<Item> getItemsByCategory (int categoryId);
@@ -17,5 +18,7 @@ public interface ItemDaoApi {
 	List<Item> searchItems(String keyword);
 	
 	Item findItem(int itemId);
+	
+	List<Item> getItemsByStockLessThan(int stock);
 
 }

@@ -19,12 +19,15 @@
 	</fieldset>
 
 	<fieldset>
+	
+			
+			
+			
 		<legend>Résultat de recherche</legend>
+		
+		<img src="#{request.contextPath}#{rechercheArticleController.imagePath}#{rechercheArticleController.item.id}/1.jpg" height="128" width="128"></img>
 		<h:dataTable value="#{rechercheArticleController.items}"  var="item">
-			<h:column>
-				<f:facet name="header">Photo</f:facet>
-				<img src="#{request.contextPath}#{rechercheArticleController.imagePath}#{item.id}/1.jpg" height="128" width="128"></img>
-			</h:column>
+			
 			<h:column>
 				<f:facet name="header">Nom</f:facet>
 				<h:outputLabel value="#{item.name}"/>

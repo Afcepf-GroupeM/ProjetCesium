@@ -12,7 +12,7 @@
 	</listener>
   
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.xhtml</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -40,8 +40,9 @@
 
 <error-page>
 	<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-	<location>/SessionExpired</location>
+	<location>/expired.xhtml</location>
 </error-page>
+<!-- Changé pour expired.xhtml -->
 
 <session-config>
 	<session-timeout>30</session-timeout>

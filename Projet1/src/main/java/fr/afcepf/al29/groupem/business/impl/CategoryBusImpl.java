@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.CategoryBusApi;
 import fr.afcepf.al29.groupem.dao.api.CategoryDaoApi;
+import fr.afcepf.al29.groupem.dao.api.ItemDaoApi;
 import fr.afcepf.al29.groupem.entities.Category;
+import fr.afcepf.al29.groupem.entities.Item;
 import fr.afcepf.al29.groupem.entities.MetaCategory;
 
 @Transactional
@@ -18,6 +20,9 @@ public class CategoryBusImpl implements CategoryBusApi {
 	
 	@Autowired
 	CategoryDaoApi catDao;
+	
+	@Autowired
+	ItemDaoApi itemDao;
 	
 
 	@Override
@@ -28,7 +33,7 @@ public class CategoryBusImpl implements CategoryBusApi {
 	@Override
 	public MetaCategory getMetaCategoryById(int metaCategoryId) {
 		
-		return null;
+		return catDao.getMetaCategoryById(metaCategoryId);
 	}
 
 	@Override
@@ -39,8 +44,8 @@ public class CategoryBusImpl implements CategoryBusApi {
 
 	@Override
 	public Category createCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+		Category cat = catDao.createCategory(category);
+		return cat;
 	}
 
 	@Override
@@ -57,14 +62,14 @@ public class CategoryBusImpl implements CategoryBusApi {
 
 	@Override
 	public List<Category> getCategoryByMetaId(int metaCategoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return catDao.getCategoryByMetaId(metaCategoryId);
 	}
 
 	@Override
 	public MetaCategory createMetaCategory(MetaCategory metaCategory) {
-		// TODO Auto-generated method stub
-		return null;
+		MetaCategory metaCat = catDao.createMetaCategory(metaCategory);
+		return metaCat;
 	}
 
 	@Override
@@ -83,6 +88,18 @@ public class CategoryBusImpl implements CategoryBusApi {
 	public Category findCategory(int categoryId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public int numberOfCategoriesInMeta(int idMetaCat){
+		List<Category> listCat = catDao.getCategoryByMetaId(idMetaCat);
+		return listCat.size();
+	}
+	
+	@Override
+	public int numberOfItemsInCat(int idCategory){
+		List<Item> itemList = itemDao.getItemsByCategory(idCategory);
+		return itemList.size();
 	}
 
 	

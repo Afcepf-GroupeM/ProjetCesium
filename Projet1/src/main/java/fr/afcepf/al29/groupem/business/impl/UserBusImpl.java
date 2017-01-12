@@ -1,6 +1,8 @@
 package fr.afcepf.al29.groupem.business.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -80,6 +82,34 @@ public class UserBusImpl implements UserBusApi{
 		System.out.println("**************dans userbus*******after update*********"+usermodified.toString());
 		return usermodified;
 	}	
+	
+	@Override
+	public List<User> searchUsers(String input, String searchType){
+	    List<User> listUsers = new ArrayList<>();	    
+	    switch (searchType) {
+        case "1": //search By ID
+            User user = userDao.getUserById(Integer.valueOf(input));
+            if(user != null){
+                listUsers.add(user);
+            }
+            break;
+        case "2": //search By email
+            User user2 = userDao.getUserByEmail(input);
+            if(user2 != null){
+                listUsers.add(user2);
+            }
+            break;
+        case "3": //search By lastName
+            listUsers = userDao.getUsersByLastname(input);
+            break;
+        case "4": //search By firtsName
+            listUsers = userDao.getUsersByFirstname(input);
+            break;
+        default:
+            break;
+        }
+	    return listUsers;
+	}
 
 
 	

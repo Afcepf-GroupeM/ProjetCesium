@@ -27,6 +27,7 @@ private List<Category> categories;
 	private CategoryBusApi categoryBus;
 	
 	
+	
 	public String ItemGetByCategory() {
 		category = categoryBus.findCategory(getParamId("categoryId"));
 		items = category.getItems();
@@ -38,6 +39,60 @@ private List<Category> categories;
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	public Category getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+	public Item getItem() {
+		return item;
+	}
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+
+	public CategoryBusApi getCategoryBus() {
+		return categoryBus;
+	}
+
+
+	public void setCategoryBus(CategoryBusApi categoryBus) {
+		this.categoryBus = categoryBus;
+	}
+	
+	
+	
+	
 	
 	//commentaire inutile
 	//commentaire inutile

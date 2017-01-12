@@ -1,12 +1,18 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE   html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <head>
-<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Products :: w3layouts</title>
+
+<title>.: GroupeM EC - Commande validée! :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -32,6 +38,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					});
 				</script>
+<!--slider-script-->
+		<script src="js/responsiveslides.min.js"></script>
+			<script>
+				$(function () {
+				  $("#slider1").responsiveSlides({
+					auto: true,
+					speed: 500,
+					namespace: "callbacks",
+					pager: true,
+				  });
+				});
+			</script>
+<!--//slider-script-->
 <script>$(document).ready(function(c) {
 	$('.alert-close').on('click', function(c){
 		$('.message').fadeOut('slow', function(c){
@@ -48,23 +67,65 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>
+
+<style>
+.cadre-logout{margin: 70px auto; width: 40%;}
+
+.order-table{border-collapse:collapse;width: 100%;}
+.order-table-header{text-align:center;background:none repeat scroll 0 0 #E5E5E5;border-bottom:1px solid #BBBBBB;padding:16px;}
+.order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
+.order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
+
+</style>
 </head>
 <body>
-  <!--header--> 
+<f:event listener="#{itemListController.init}" type="preRenderView" />
+<f:event listener="#{orderController.initAddressChoice}" type="preRenderView" />
+  <!--header-->
 	<div class="header">
 		<div class="header-top">
 			<div class="container">	
 			<div class="header-top-in">			
 				<div class="logo">
-					<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" " /></a>
+					<a href="index.xhtml"><img src="images/logowhite.png" alt=" " /></a>
 				</div>
 				<div class="header-in">
 					<ul class="icon1 sub-icon1">
-							<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
-							<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
-							<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-							<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
-							<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+						<li >
+							<h:link outcome="login" rendered="#{not loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+							<h:link outcome="myaccount" rendered="#{loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+							</span>
+							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
+							<span id="accountCartMenu">
+								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
+							</span>
+							<h:form>
+								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
+							</h:form>
+							<span id="userLoggedMenu">
+								<h:outputText value="Bienvenue #{loginController.userLogged.civilite}. " rendered="#{loginController.islogged}"/>
+								<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
+							</span>
+						</li>
+						<li>
+							<h:link outcome="panier">
+								<img src="images/cart_white.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>							
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="MON PANIER" outcome="panier" />
+							</span>
+							<h:link value="VOIR DETAIL" outcome="panier" />
+						</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -74,35 +135,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-bottom">
 		<div class="container">
 			<div class="h_menu4">
+			
+			<h:form>
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
-					<li ><a href="accueil.xhtml"><i> </i>Desktops</a></li>
-					<li class="active"><a href="#" >Laptops Notebooks</a>
+				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+					<li class="active"><a href="#" >#{metaCat.name}</a>
 						<ul class="drop">
-							<li><a href="produits.xhtml">Sony(2)</a></li>
-							<li><a href="produits.xhtml">Android(4)</a></li>
-							<li><a href="produits.xhtml">Apple(7)</a></li>
-							<li><a href="produits.xhtml">Acer(53)</a></li>
-							<li><a href="produits.xhtml">HP(78)</a></li>
-							<li><a href="produits.xhtml">Intel(5)</a></li>
+							<ui:repeat var="cat" value="#{metaCat.categories}">
+							<li>
+
+							<h:link value="#{cat.name}" outcome="categorie" >
+								<f:param name="catId"  value="#{cat.id}" />
+							</h:link>
+							
+							
+							</li>
+							</ui:repeat>
 						</ul>
-						</li> 						
-						<li><a href="produits.xhtml" >  Tablets</a></li>            
-						<li><a href="produits.xhtml" >Components</a></li>						  				 
-						<li><a href="produits.xhtml" >Software</a></li>
-						<li><a href="produits.xhtml" >Phones PDAs </a></li>
-						<li><a href="produits.xhtml" >  Cameras  </a></li>
-						<li><a href="produits.xhtml" >Contact </a></li>
-					
+						</li> 			
+				</ui:repeat>	
 				</ul>
 				<script type="text/javascript" src="js/nav.js"></script>
+				</h:form>
+				
 			</div>
 		</div>
 		</div>
 		<div class="header-bottom-in">
-		<div class="container">
-		<div class="header-bottom-on">
-			<p class="wel"><a href="#">Welcome visitor you can login or create an account.</a></p>
+			<div class="container">
+			<div class="header-bottom-on">
+			
 			<div class="header-can">
 				<ul class="social-in">
 						<li><a href="accueil.jsf"><i> </i></a></li>
@@ -112,19 +175,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>	
 					<!--
 					<div class="down-top">		
-						  <select class="in-drop">
+							<select class="in-drop">
 							  <option value="Dollars" class="in-of">Dollars</option>
 							  <option value="Euro" class="in-of">Euro</option>
 							  <option value="Yen" class="in-of">Yen</option>
 							</select>
 					 </div>
-					 -->
+					   -->
 					<div>
 						<h:form>
 							<h:inputText value="#{rechercheArticleController.keyword}"/>
 							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
 						</h:form>
 					</div>
+
 					<div class="clearfix"> </div>
 			</div>
 			<div class="clearfix"></div>
@@ -132,33 +196,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
+	<div class="banner-mat">
+				<div class="cadre-logout">
+				
+				<h2>Choix d'adresses:</h2>
+				<h:form>
+				<div>
+				<br/><br/>
+					<div><h4>Adresse de livraison:</h4>
+					<br/>
+							<h:selectOneRadio value="#{orderController.addressShippingChosenId}" layout="pageDirection">						            
+						            <f:selectItems itemValue="#{address.id}" value="#{orderController.addresses}" var="address" itemLabel="#{address.name} - #{address.number}#{address.complement} #{address.roadType} #{address.roadName} - #{address.zipcode} #{address.city} #{address.country}" />					           
+						    </h:selectOneRadio>
+					</div>
+					<br/><br/>
+					<div><h4>Adresse de facturation:</h4>
+					<br/>
+							<h:selectOneRadio value="#{orderController.addressBillingChosenId}" layout="pageDirection">						            
+						            <f:selectItems itemValue="#{addressbill.id}" value="#{orderController.billingAddresses}" var="addressbill" itemLabel="#{addressbill.name} - #{addressbill.number}#{addressbill.complement} #{addressbill.roadType} #{addressbill.roadName} - #{addressbill.zipcode} #{addressbill.city} #{addressbill.country}" />					           
+						    </h:selectOneRadio>					
+					</div>
+
+				</div>
+				<h:commandButton value="Passer au paiement" action="#{orderController.validateAddresses}"/>
+				</h:form>
+			
+			</div>	
+		</div>
 	
-		<div class="container">
-			<div class="products">
-					<h2 class=" products-in">RESULTATS DE VOTRE RECHERCHE</h2>
-					<h:form>
-					<div class=" top-products">
-					<ui:repeat var="item" value="#{rechercheArticleController.items}">
-						<div class="col-md-3 md-col">
-							<div class="col-md">
-								<img src="#{request.contextPath}#{rechercheArticleController.imagePath}#{item.id}/1.jpg" />
-								<div class="top-content">
-									<h5>#{item.name}</h5>
-									<div class="white">
-										<a href="article.xhtml" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">VOIR DETAIL</a>
-										<p class="dollar"><span>€</span>#{item.price}</p>
-										<div class="clearfix"></div>
-									</div>
-								</div>							
-							</div>
-						</div>
-						</ui:repeat>
-						</div>
-						</h:form>
-						</div>
-						</div>
+		
 		<!---->
-		<div class="footer">
+				<div class="footer">
 			<div class="footer-top">
 				<div class="container">
 					<div class="col-md-4 footer-in">						
@@ -192,39 +260,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="footer-middle">
 				<div class="container">
 					<div class="footer-middle-in">
-						<h6>A propos de nous</h6>
-						<p>Mix Hightech est une entreprise spécialisée dans la vente de matériels informatiques.</p>
+						<h6>About us</h6>
+						<p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Informations</h6>
+						<h6>Information</h6>
 						<ul>
-							<li><a href="#">Livraison</a></li>
-							<li><a href="#">Conditions Générales</a></li>
-							<li><a href="#">Vie Privée</a></li>
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Delivery Information</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Terms Conditions</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Service Client</h6>
+						<h6>Customer Service</h6>
 						<ul>
-							<li><a href="contact.html">Contactez-Nous</a></li>
-							<li><a href="#">Retours</a></li>
+							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="#">Returns</a></li>
+							<li><a href="#">Site Map</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Mon Compte</h6>
+						<h6>My Account</h6>
 						<ul>
-							<li><a href="account.xhtml">Mon Compte</a></li>
-							<li><a href="#">HIstorique Des Commandes</a></li>
+							<li><a href="account.xhtml">My Account</a></li>
+							<li><a href="#">Order History</a></li>
 							<li><a href="wishlist.html">Wish List</a></li>
 							<li><a href="#">Newsletter</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Aide</h6>
+						<h6>Extras</h6>
 						<ul>
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">Aide</a></li>
-							<li><a href="#">Dépannage</a></li>
+							<li><a href="#">Brands</a></li>
+							<li><a href="#">Gift Vouchers</a></li>
+							<li><a href="#">Affiliates</a></li>
+							<li><a href="#">Specials</a></li>
 						</ul>
 					</div>
 					<div class="clearfix"></div>
@@ -247,7 +318,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					</script>
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-				
+
 		</div>
 </body>
 </html>

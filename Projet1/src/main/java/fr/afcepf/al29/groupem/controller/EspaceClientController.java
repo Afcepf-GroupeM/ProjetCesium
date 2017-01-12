@@ -1,20 +1,14 @@
 package fr.afcepf.al29.groupem.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
-import javax.servlet.http.HttpSession;
-
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.mysql.fabric.Response;
 
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
@@ -31,7 +25,6 @@ import fr.afcepf.al29.groupem.entities.User;
 public class EspaceClientController {
 	private String messageInfoPerson;
 	private User userConnect;
-	//public static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
 	private List<Order> listOrder;
 	
@@ -58,14 +51,11 @@ public class EspaceClientController {
 	
 	public void init(ComponentSystemEvent e){
 		int idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
-		System.out.println("------------------------iduser:"+idUser);
 		
 		messageInfoPerson ="";
 		
-		//int idUser = 8;
 		userConnect =  userBusApi.getUserById(idUser);
 		messageInfoPerson = "";
-		System.out.println("********************userConnect******************"+userConnect.getfirstName() + " " + userConnect.getlastName());
 		
 		listOrder = new ArrayList<>();
 		listOrder = orderBusApi.getOrderByUserId(idUser);
@@ -83,31 +73,7 @@ public class EspaceClientController {
 				listOrdering.add(order);
 			}
 		}
-		/*
-		Date referenceDate = new Date();			
-		Calendar c = Calendar.getInstance(); 
-		c.setTime(referenceDate); 
-		c.add(Calendar.MONTH, -2);
-		referenceDate= c.getTime();
-		System.out.println(referenceDate.toString());
 		
-		for(Order order:listOrder){
-			Date dateOrder = order.getCreationDate();			
-			if(dateOrder.before(referenceDate)){				
-				listOldOrder.add(order);
-			}else{				
-				listOrdering.add(order);				
-			}			
-		}
-		
-		for(Order order:listOrdering){
-			System.out.println("***************ordering****************" + order.toString());
-		}
-		for(Order order:listOldOrder){
-			System.out.println("***********************oldorder**********************" + order.toString());
-		}
-		
-		*/
 		if(listOrdering.size()==0){
 			messageOrdering = "Vous n'avez pas de commande en cours";
 		}else{
@@ -126,10 +92,6 @@ public class EspaceClientController {
 	
 	public String userModify(){
 		return "/account-modify.jsf?faces-redirect = true";
-	}
-	
-	public String addAddress(){
-		return "/addAddress.jsf?faces-redirect = true";
 	}
 	
 	public String getMessageInfoPerson() {

@@ -38,8 +38,9 @@ public class ItemCartController {
 	
 	private String imagePath = "/images/items/";
 	
+	private String messageIncorrectCart = "";
 	
-	private int idOwnerCart = 8 ;    // For testing pupose, we set the user to id=1;
+	private int idOwnerCart ;  
 	
 	private Cart cart;
 	private List<CartLine> cartLines;
@@ -53,7 +54,9 @@ public class ItemCartController {
 	
 	
 	
+	
 	public void initCartDetail(ComponentSystemEvent c1){
+		idOwnerCart = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		totalAmount = 0f;
 		setCart(cartBus.getCartByUserId(idOwnerCart));
 		setCartLines(cartBus.getCartLinesByCartId(cart.getId()));
@@ -72,6 +75,7 @@ public class ItemCartController {
 	}
 	
 	public void initItemDetail(ComponentSystemEvent c){
+		item = itemBus.findItem(getParamId("itemId"));
 		quantity = "1";
 		int stock = item.getStock();
 		List<String> tabQuantity = new ArrayList<>();
@@ -94,6 +98,11 @@ public class ItemCartController {
 	
 	
 public String addItemToCart() {
+		idOwnerCart = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		setCart(cartBus.getCartByUserId(idOwnerCart));
+		setCartLines(cartBus.getCartLinesByCartId(cart.getId()));
+		setIsCartEmpty(cartLines.isEmpty());
+	
 			
 		String idNewItemString;
 		String quantityNewItemString;
@@ -124,6 +133,7 @@ public String addItemToCart() {
 			setCart(cartBus.getCartByUserId(idOwnerCart));
 			int cartId = cart.getId();
 			boolean itemAlreadyInCart = false;
+			if(!isCartEmpty){
 			for (CartLine cartLine : cart.getCartLines()){
 				if(cartLine.getItem().getId() == idNewItem){
 					cartLine.setQuantity(cartLine.getQuantity() + quantityNewItem);
@@ -132,6 +142,7 @@ public String addItemToCart() {
 					cartLinesSubtotal.put(cartLine.getId(), subtotal);
 					itemAlreadyInCart = true;
 				}
+			}
 			}
 			if(!itemAlreadyInCart){			
 				CartLine newCartline = cartBus.createCartLine(cartId, idNewItem, quantityNewItem);
@@ -155,6 +166,25 @@ public String addItemToCart() {
 			}
 		}
 		return null;
+	}
+	
+	
+	public String validateCart(){
+		String returnPage = "address-choice?faces-redirect=true";
+		int lineInError = 1;
+		for (CartLine cartLine : cartLines) {
+			Item itemToCheck = cartLine.getItem();
+			Item itemInDB = itemBus.getItemById(itemToCheck.getId());
+			if(itemInDB.getStock() < cartLine.getQuantity()){
+				messageIncorrectCart += "Erreur ligne " + lineInError 
+										+ " : Il ne reste que " + itemInDB.getStock() + " " + itemInDB.getName() +" disponible(s)."
+										+ " Vous en avez choisi " + (cartLine.getQuantity() - itemInDB.getStock()) + " de trop!\n";
+				lineInError++;
+				returnPage = null;
+			}
+		}
+		
+		return returnPage;
 	}
 	
 
@@ -317,6 +347,18 @@ public String addItemToCart() {
 
 	public void setIdOwnerCart(int idOwnerCart) {
 		this.idOwnerCart = idOwnerCart;
+	}
+
+	public String getMessageIncorrectCart() {
+		return messageIncorrectCart;
+	}
+
+	public void setMessageIncorrectCart(String messageIncorrectCart) {
+		this.messageIncorrectCart = messageIncorrectCart;
+	}
+
+	public void setCartEmpty(boolean isCartEmpty) {
+		this.isCartEmpty = isCartEmpty;
 	}
 	
 	

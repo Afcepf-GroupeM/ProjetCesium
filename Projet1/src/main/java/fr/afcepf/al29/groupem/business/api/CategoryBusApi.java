@@ -21,6 +21,8 @@ public interface CategoryBusApi {
 	List<MetaCategory> getAllMetaCategory();
 	
 	Category findCategory(int categoryId);
+	int numberOfCategoriesInMeta(int idMetaCat);
+	int numberOfItemsInCat(int idCategory);
 	
 	
 }

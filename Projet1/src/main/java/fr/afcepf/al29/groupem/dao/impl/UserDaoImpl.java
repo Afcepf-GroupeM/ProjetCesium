@@ -1,5 +1,8 @@
 package fr.afcepf.al29.groupem.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
@@ -49,8 +52,24 @@ public class UserDaoImpl implements UserDaoApi {
 		User user = null;
 		try {
 			user = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.email = :useremail",User.class).setParameter("useremail", email).getSingleResult();
-		} catch (Exception e) {} // Catches exception if email doesn't exists. Mandatory with getSingleResult
+		} catch (Exception e) {} // Catches exception if email doesn't exists. Mandatory with getSingleResult. Return null
 		return user;
 	}
+	
+	@Override
+	public List<User> getUsersByLastname(String name){
+	    List<User> listUsers = new ArrayList<>();
+	    listUsers = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.lastName LIKE :lastname",User.class).setParameter("lastname", '%'+name+'%').getResultList();
+        return listUsers;
+	}
+
+    @Override
+    public List<User> getUsersByFirstname(String firstname) {
+        List<User> listUsers = new ArrayList<>();
+        listUsers = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.firstName LIKE :firstname",User.class).setParameter("firstname", '%'+firstname+'%').getResultList();
+        return listUsers;
+    }
+	
+	
 
 }

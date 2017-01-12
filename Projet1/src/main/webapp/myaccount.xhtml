@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <head>
-<title>Bonfire a Ecommerce Category Flat Bootstarp Responsive Website Template | Products :: w3layouts</title>
+<title>.: GroupeM EC - Espace client :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -51,27 +51,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <f:event listener="#{espaceClientController.init}" type="preRenderView" />
+<f:event listener="#{addressManagerController.init}" type="preRenderView" />
   <!--header-->
 	<div class="header">
 		<div class="header-top">
 			<div class="container">	
 			<div class="header-top-in">			
 				<div class="logo">
-					<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" " /></a>
+					<a href="index.xhtml"><img src="images/logowhite.png" alt=" " /></a>
 				</div>
 				<div class="header-in">
 					<ul class="icon1 sub-icon1">
-							<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
-							<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>BIENVENUE</span></a>
-								<ul class="drop1">
-									<li><a class="account" href="login.jsf"><span>SE CONNECTER</span></a></li>
-									<li><a  class="account" href="myaccount.jsf">GERER MON COMPTE</a></li>
-									<li><a  class="account" href="logout.jsf">DECONNECTER</a></li>
-								</ul>								
-							</li>	
-							<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-							<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
-							<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+						<li >
+							<h:link outcome="login" rendered="#{not loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+							<h:link outcome="myaccount" rendered="#{loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+							</span>
+							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
+							<span id="accountCartMenu">
+								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
+							</span>
+							<h:form>
+								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
+							</h:form>
+							<span id="userLoggedMenu">
+								<h:outputText value="Bienvenue #{loginController.userLogged.civilite}. " rendered="#{loginController.islogged}"/>
+								<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
+							</span>
+						</li>
+						<li>
+							<h:link outcome="panier">
+								<img src="images/cart_white.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>							
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="MON PANIER" outcome="panier" />
+							</span>
+							<h:link value="VOIR DETAIL" outcome="panier" />
+						</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -83,24 +108,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="h_menu4">
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
-					<li ><a href="accueil.xhtml"><i> </i>Desktops</a></li>
-					<li class="active"><a href="#" >Laptops Notebooks</a>
+					<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+					<li class="active"><a href="#" >#{metaCat.name}</a>
 						<ul class="drop">
-							<li><a href="produits.xhtml">Sony(2)</a></li>
-							<li><a href="produits.xhtml">Android(4)</a></li>
-							<li><a href="produits.xhtml">Apple(7)</a></li>
-							<li><a href="produits.xhtml">Acer(53)</a></li>
-							<li><a href="produits.xhtml">HP(78)</a></li>
-							<li><a href="produits.xhtml">Intel(5)</a></li>
+							<ui:repeat var="cat" value="#{metaCat.categories}">
+							<li>
+
+							<h:link value="#{cat.name}" outcome="categorie" >
+								<f:param name="catId"  value="#{cat.id}" />
+							</h:link>
+							
+							
+							</li>
+							</ui:repeat>
 						</ul>
-						</li> 						
-						<li><a href="produits.xhtml" >  Tablets</a></li>            
-						<li><a href="produits.xhtml" >Components</a></li>						  				 
-						<li><a href="produits.xhtml" >Software</a></li>
-						<li><a href="produits.xhtml" >Phones PDAs </a></li>
-						<li><a href="produits.xhtml" >  Cameras  </a></li>
-						<li><a href="produits.xhtml" >Contact </a></li>
-					
+						</li> 			
+				</ui:repeat>
 				</ul>
 				<script type="text/javascript" src="js/nav.js"></script>
 			</div>
@@ -109,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-bottom-in">
 		<div class="container">
 		<div class="header-bottom-on">
-			<p class="wel"><a href="#">Welcome visitor you can login or create an account.</a></p>
+			
 			<div class="header-can">
 				<ul class="social-in">
 						<li><a href="accueil.jsf"><i> </i></a></li>
@@ -126,11 +149,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</select>
 					 </div>
 					 -->
-					<div class="search">
-						<form>
-							<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
-							<input type="submit" value=""/>
-						</form>
+					<div>
+						<h:form>
+							<h:inputText value="#{rechercheArticleController.keyword}"/>
+							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+						</h:form>
 					</div>
 					<div class="clearfix"> </div>
 			</div>
@@ -140,112 +163,170 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	
-		<div class="container">
-			
-			<div class="myaccount">
-				<h2 class="myaccountprofile"><h:outputLabel value="Bonjour"/> 		
-					<h:outputText value="&#160;" />	
-					<h:outputLabel value="#{espaceClientController.userConnect.firstName}"/> 
-					<h:outputText value="&#160;" />
-					<h:outputLabel value="#{espaceClientController.userConnect.lastName}"/>
-								 	
-				 	<h:commandButton class="btnmyaccount" value="Modifier mon profile" action="#{espaceClientController.userModify}"/>
-					<h:outputLabel value="#{espaceClientController.messageInfoPerson}"/> 
-				</h2>					
-			</div>
-			
-			<h2 class=" myaccount">Suivi de votre commande en cours:</h2>				
-			<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOrdering}"/>
-			<br/>				
-				<h:dataTable class="table-account1" var="order" value="#{espaceClientController.listOrdering}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"
-	    			headerClass="order-table-header"
-	    			rowClasses="order-table-odd-row,order-table-even-row">		
-			    	<h:column>
-			    		<f:facet name="header">No.</f:facet>
-						<h:outputLabel value="#{order.id}"></h:outputLabel>
-			    	</h:column>
-			    	<h:column>
-			    		<f:facet name="header">Designation de votre articles</f:facet>
-						<ul style="margin: 0">
-							<ui:repeat var="orderLine" value="#{order.orderLines}">
-								<li><h:outputText value="#{orderLine.item.name}"/><h:outputText value="&#160;" /><h:outputText value="#{orderLine.item.reference}"/></li>							
-							</ui:repeat>
-						</ul>
-						
-			    	</h:column>
-			    	<h:column>
-			    		<f:facet name="header">Prix unitaire</f:facet>
-						<ul style="margin: 0">
-							<ui:repeat var="orderLine" value="#{order.orderLines}">
-								<li><h:outputText value="#{orderLine.unitPrice}"/></li>							
-							</ui:repeat>
-						</ul>
-			    	</h:column>
-			    	<h:column>
-			    		<f:facet name="header">Quantité</f:facet>
-						<ul style="margin: 0">
-							<ui:repeat var="orderLine" value="#{order.orderLines}">
-								<li><h:outputText value="#{orderLine.quantity}"/></li>							
-							</ui:repeat>
-						</ul>
-			    	</h:column>
-			    	<!--
-			    	<h:column>
-			    		<h6><f:facet name="header">Prix TTC</f:facet></h6>			
-			    	</h:column>
-			    	  -->
-			    	<h:column>
-			    		<f:facet name="header">Status</f:facet>
-			    		<h:outputLabel value="#{order.state}"></h:outputLabel>
-			    	</h:column>
-			    	<h:column>
-			    		<f:facet name="header">No. Suivi</f:facet>	
-			    		<h:outputLabel value="#{order.trackingNumber}"></h:outputLabel>	
-			    	</h:column>    	
-			</h:dataTable>			
-			
+	<div class="container">			
+		<div class="myaccount">
+			<h2 class="myaccountprofile">
+				<h:outputLabel value="Bonjour #{espaceClientController.userConnect.civilite}. #{espaceClientController.userConnect.lastName}" /> 	
+			</h2>
+			<h:form>	
+				<h:commandButton value="Modifier mon profil" action="#{espaceClientController.userModify}"/>
+			</h:form>
+			<br />
+			<h:outputLabel value="#{espaceClientController.messageInfoPerson}"/>
+		</div>
 		
-			<h2 class="myaccount">Suivi de votre commande historique:</h2>		
-			<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOldOrder}"/>
-			<br/>						
-				<h:dataTable class="table-account1"  var="orderold" value="#{espaceClientController.listOldOrder}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"
-				    			headerClass="order-table-header"
-				    			rowClasses="order-table-odd-row,order-table-even-row">		
-				    	<h:column>
-				    		<f:facet name="header">No.</f:facet>
-							<h:outputLabel value="#{orderold.id}"></h:outputLabel>
-				    	</h:column>
-				    	<h:column>
-				    		<f:facet name="header">Designation de votre articles</f:facet>
-							<ul style="margin: 0">
-								<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
-									<li><h:outputText value="#{orderLineOld.item.name}"/><h:outputText value="&#160;" /><h:outputText value="#{orderLineOld.item.reference}"/></li>							
-								</ui:repeat>
-							</ul>
-				    	</h:column>
-				    	<h:column>
-				    		<f:facet name="header">Prix unitaire</f:facet>
-							<ul style="margin: 0">
-								<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
-									<li><h:outputText value="#{orderLineOld.unitPrice}"/></li>							
-								</ui:repeat>
-							</ul>
-				    	</h:column>
-				    	<h:column>
-				    		<f:facet name="header">Quantité</f:facet>
-							<ul style="margin: 0">
-								<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
-									<li><h:outputText value="#{orderLineOld.quantity}"/></li>							
-								</ui:repeat>
-							</ul>
-				    	</h:column>
-				    	<!-- 
-				    	<h:column>
-				    		<f:facet name="header">Prix TTC</f:facet>			
-				    	</h:column>	
-				    	 -->	    	
-				</h:dataTable>
-
+		<h2 class=" myaccount">Suivi de votre commande en cours:</h2>				
+		<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOrdering}"/>
+		<br/>				
+			<h:dataTable class="table-account1" var="order" value="#{espaceClientController.listOrdering}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">		
+		    	<h:column>
+		    		<f:facet name="header">No.</f:facet>
+					<h:outputLabel value="#{order.id}"></h:outputLabel>
+		    	</h:column>
+		    	<h:column>
+		    		<f:facet name="header">Designation de votre articles</f:facet>
+					<ul style="margin: 0">
+						<ui:repeat var="orderLine" value="#{order.orderLines}">
+							<li><h:outputText value="#{orderLine.item.name}"/><h:outputText value="&#160;" /><h:outputText value="#{orderLine.item.reference}"/></li>							
+						</ui:repeat>
+					</ul>
+					
+		    	</h:column>
+		    	<h:column>
+		    		<f:facet name="header">Prix unitaire</f:facet>
+					<ul style="margin: 0">
+						<ui:repeat var="orderLine" value="#{order.orderLines}">
+							<li><h:outputText value="#{orderLine.unitPrice}"/></li>							
+						</ui:repeat>
+					</ul>
+		    	</h:column>
+		    	<h:column>
+		    		<f:facet name="header">Quantité</f:facet>
+					<ul style="margin: 0">
+						<ui:repeat var="orderLine" value="#{order.orderLines}">
+							<li><h:outputText value="#{orderLine.quantity}"/></li>							
+						</ui:repeat>
+					</ul>
+		    	</h:column>
+		    	<!--
+		    	<h:column>
+		    		<h6><f:facet name="header">Prix TTC</f:facet></h6>			
+		    	</h:column>
+		    	  -->
+		    	<h:column>
+		    		<f:facet name="header">Status</f:facet>
+		    		<h:outputLabel value="#{order.state}"></h:outputLabel>
+		    	</h:column>
+		    	<h:column>
+		    		<f:facet name="header">No. Suivi</f:facet>	
+		    		<h:outputLabel value="#{order.trackingNumber}"></h:outputLabel>	
+		    	</h:column>    	
+		</h:dataTable>			
+		
+	
+		<h2 class="myaccount">Suivi de votre commande historique:</h2>		
+		<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOldOrder}"/>
+		<br/>						
+		<h:dataTable class="table-account1"  var="orderold" value="#{espaceClientController.listOldOrder}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"
+			headerClass="order-table-header"
+			rowClasses="order-table-odd-row,order-table-even-row">		
+	    	<h:column>
+	    		<f:facet name="header">No.</f:facet>
+				<h:outputLabel value="#{orderold.id}"></h:outputLabel>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Designation de votre articles</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+						<li><h:outputText value="#{orderLineOld.item.name}"/><h:outputText value="&#160;" /><h:outputText value="#{orderLineOld.item.reference}"/></li>							
+					</ui:repeat>
+				</ul>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Prix unitaire</f:facet>
+				<ul style="margin: 0">
+					<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+						<li><h:outputText value="#{orderLineOld.unitPrice}"/></li>							
+					</ui:repeat>
+					</ul>
+		    	</h:column>
+		    	<h:column>
+		    		<f:facet name="header">Quantité</f:facet>
+					<ul style="margin: 0">
+						<ui:repeat var="orderLineOld" value="#{orderold.orderLines}">
+							<li><h:outputText value="#{orderLineOld.quantity}"/></li>							
+						</ui:repeat>
+					</ul>
+		    	</h:column>
+		    	<!-- 
+		    	<h:column>
+		    		<f:facet name="header">Prix TTC</f:facet>			
+		    	</h:column>	
+		    	 -->	    	
+		</h:dataTable>
+		
+		<h2 class="myaccount">Gestionnaire d'adresse:</h2>
+		<br />
+		<h:outputLabel class="messagemyaccount" value="Vous n'avez pas enregistré d'adresse." rendered="#{empty addressManagerController.userAddresses}"/>
+		<h:dataTable class="table-account1"  var="adr" value="#{addressManagerController.userAddresses}" rendered="#{not empty addressManagerController.userAddresses}" styleClass="order-table"
+			headerClass="order-table-header"
+			rowClasses="order-table-odd-row,order-table-even-row">		
+		   	<h:column>
+		   		<f:facet name="header">Nom</f:facet>
+				<h:outputLabel value="#{adr.name}"></h:outputLabel>
+		   	</h:column>
+		   	<h:column>
+				<f:facet name="header">Numéro</f:facet>
+				<h:outputText value="#{adr.number}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Complément</f:facet>
+				<h:outputText value="#{adr.complement}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Type</f:facet>
+				<h:outputText value="#{adr.roadType}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nom Voie</f:facet>
+				<h:outputText value="#{adr.roadName}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ville</f:facet>
+				<h:outputText value="#{adr.city}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Code postal</f:facet>
+				<h:outputText value="#{adr.zipcode}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Pays</f:facet>
+				<h:outputText value="#{adr.country}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Adresse facturation</f:facet>
+				<h:selectBooleanCheckbox value="#{adr.billing}" disabled="true"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Mise à jour</f:facet>
+				<h:button class="btnAddress" outcome="updateAddress" value="Mettre à jour">
+					<f:param name="addressId" value="#{adr.id}"/>
+				</h:button>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Effacer</f:facet>
+				<h:button class="btnAddress" outcome="myaccount" value="Effacer">
+					<f:param name="addressId" value="#{adr.id}"/>
+				</h:button>	
+			</h:column> 	
+		</h:dataTable>
+		<br />
+		<h:button class="btnAddress" outcome="addAddress" value="Ajouter une adresse" />
+		<br/>
+		<br/>
+		
 		</div>
 		<!---->
 		<div class="footer">

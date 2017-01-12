@@ -2,7 +2,10 @@ package fr.afcepf.al29.groupem.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,6 +42,7 @@ public class ItemListController {
 	public void init(ComponentSystemEvent e){
 		listMetaCategory = new ArrayList<>();
 		listMetaCategory = catBus.getAllMetaCategory();
+		idCatToPrint = getParamId("catId");
 		
 		if(idCatToPrint == 0){
 			idCatToPrint = 1;
@@ -59,8 +63,28 @@ public class ItemListController {
 	// - manage multiple pages
 	// - link to other categories
 	// - link to article page
-
 	
+
+	protected String getParam(String param) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+		String result = map.get(param);
+		
+		return result;
+	}
+	
+	protected Integer getParamId(String param) {
+		Integer result; 
+		
+		try {
+			result = Integer.valueOf(getParam(param));
+		} catch (NumberFormatException e) {
+			result = 0;
+		}
+		
+		return result;
+		
+	}
 	
 	
 

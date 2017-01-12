@@ -9,24 +9,73 @@
 
 Guillaume:
 ----------
-- Panier (CartBusImpl/Controller/JSF)
-- lignePanier (CartLineImpl/Controller/JSF)
+
+- ajouter cadre DEMO pour ajouter numero de carte bancaire valide fictif et valider la commande
+- OK Finir Categories
+- OK Admin Users
 
 
 
 Philippe:
 ---------
-- réévaluation fiche article (Controller/JSF)
+- review (DAO/Business/Controller/JSF
 
 
 Haiyan:
 -------
-- espace client (Controller/JSF)
+- Admin Items
+
+Charline:
+---------
+- Admin Commandes
 	
 
 
+###### A faire ######
+
+Site en général: 
+	- verifier les boutons reseaux sociaux
+	- OK A tester - champ de recherche a reinitialiser au chargement de la page
+	- format des photos des articles deformées
+	- revoir le CSS des boutons, harmoniser, et couleur plus coherentes
+	
+	
+Creation nouvel utilisateur:	
+	- OK A tester - empecher creation d'un utilisateur si une adresse email est deja utilisée
 
 
+- Formulaire de login:
+	- remettre a zero les champs de formulaire de login si login en erreur, qu'on quitte la page et qu'on y retourne
+	- controller qu'un utilisateur deja loggué ne puisse pas acceder a la page (affiche "deja loggué, au lieu du formulaire")
+
+
+- Modification profil:
+	- mot de passe non obligatoire pour modifier d'autres elements (si des éléments sont vides, on ne les change pas)
+	- retour sur la mauvaise page
+	- probleme de date de naissance?
+
+
+- Ajout adresse:
+	- Message d'erreur mal formaté (<br/> apparait au lieu de saut de ligne correct)
+	- Les messages d'erreur devraient s'afficher en face de chaque champ incorrect plutot que tout en bas de la page
+
+- Choix des adresses (validation commandes):
+	- mise ne page des adresses et des boutons radio
+	- validation de la commande uniquement si les adresses ont été selectionnées
+
+- Validation paiement:
+	- debugguer choix du type de carte bancaire
+
+- Validation commande:
+	- OK A tester - modification du stock d'item lors de la validation de la commande
+	
+- Validation du panier:
+	- OK A tester -  verifier le stock d'item avant validation
+
+
+- Creation espace Administration
+
+	
 	
 
 ###### Fait ######
@@ -37,6 +86,9 @@ Haiyan:
 - Gestionnaire de session (G)
 - Fichier BAT installation de la DB (G)
 - BAT d'installation de la base de données (G)
+- Panier (CartBusImpl/Controller/JSF)
+- lignePanier (CartLineImpl/Controller/JSF)
+
 
 - AddressManager (DAO/Business/Controller/JSF) (P)
 - Cart (DAO) (P)
@@ -45,26 +97,14 @@ Haiyan:
 - Carrier (DAO) (P)
 
 - IHM Account
+- espace client (Controller/JSF)
+
+
+
+
 	
-
-
 	
 	
-	
-###### A faire ######
-
-- OrderLineImpl (Business/Controller/JSF)
-- Ajouter article
-
-
-
-###### Secondaire ######
-
-- empecher creation d'un utilisateur si une adresse email est deja utilisée
-
-
-
-
 
 
 

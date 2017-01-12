@@ -37,6 +37,9 @@ public class ItemBusImpl implements ItemBusApi {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
 
 	@Override
 	public boolean deleteItem(Item item) {
@@ -60,6 +63,17 @@ public class ItemBusImpl implements ItemBusApi {
 	public Item findItem(int itemId) {
 		
 		return itemDao.findItem(itemId);
+	}
+
+	@Override
+	public Item upadateItemQuantity(Item item) {
+		
+		return null;
+	}
+
+	@Override
+	public List<Item> getItemsByStockLessthan(int stock) {
+		return itemDao.getItemsByStockLessThan(stock);
 	}
 
 	

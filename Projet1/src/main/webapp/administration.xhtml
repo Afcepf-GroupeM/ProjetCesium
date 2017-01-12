@@ -1,0 +1,109 @@
+<!DOCTYPE    html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+	<title>.: Mix HighTech - Administration :.</title>
+	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
+</h:head>
+
+<h:body>
+<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
+<div id="wrapper">
+	<div id="header">
+		<h1>.: Mix HighTech - Administration :.</h1>
+	</div>
+	
+	
+	
+	
+	<div id="leftcolumn">
+		<div class="menuItem"><a href="admin-users.xhtml">Gestion utilisateurs</a></div>
+		<div class="menuItem"><a href="admin-cats.xhtml">Gestion catégories</a></div>
+		<div class="menuItem"><a href="admin-items.xhtml">Gestion items</a></div>
+		<div class="menuItem"><a href="admin-orders.xhtml">Gestion commandes</a></div>
+		<div class="menuItem"><a href="admin-coupons.xhtml">Gestion promos</a></div>
+	</div> <!-- End leftcolumn -->
+	
+	
+	<div id="content">
+		
+		<div class="ordersToPrepare">
+			<h2>Commandes à préparer</h2>
+			<h6>- Affichage des 5 premiers -</h6>
+			<h:dataTable value="#{administrationController.ordersToPrepare}"  var="order" style="border:solid gray 1px;width:100%;">
+    			
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{order.id}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Utilisateur</f:facet>
+					<h:outputText value="#{order.user.email}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ville de livraison</f:facet>
+					<h:outputText value="#{order.adresseLivraison.city}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Modification</f:facet>
+					<h:outputText value="Lien vers detail"/>
+				</h:column>
+			</h:dataTable>
+			</div>
+			
+			<div class="itemsLowStock">
+			<h2>Avertissement stock (5 et moins)</h2>
+			<h6>- Affichage des 5 premiers -</h6>
+			<h:dataTable value="#{administrationController.itemsLowStock}"  var="item" style="border:solid gray 1px;width:100%;">
+    			
+				<h:column>
+					<f:facet name="header">Article</f:facet>
+					<h:outputText value="#{item.name}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Catégorie</f:facet>
+					<h:outputText value="#{item.category.name}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+					<h:outputText value="#{item.stock}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Modification</f:facet>
+					<h:outputText value="Lien vers detail"/>
+				</h:column>
+				</h:dataTable>
+		</div>
+		
+		
+		<div class="stats">
+			<h2>Statistiques commerciales</h2>
+			<span class="statBox">
+				Commandes aujourd'hui : <h:outputText value="#{administrationController.ordersToday}"/> <br/>
+				Chiffre d'affaire aujourd'hui : <h:outputText value="#{administrationController.caToday}"/><br/>
+			</span>
+			<span class="statBox">
+				Commandes ce mois ci : <h:outputText value="#{administrationController.ordersMonth}"/><br/>
+				Chiffre d'affaire ce mois ci : <h:outputText value="#{administrationController.caMonth}"/><br />
+			</span>
+			<span class="statBox">
+				Commandes totales : <h:outputText value="#{administrationController.ordersTotal}"/><br />
+				Chiffre d'affaire total : <h:outputText value="#{administrationController.caTotal}"/><br/>
+			</span>
+		</div>
+		
+		
+	</div> <!-- End content -->
+	
+	<div id="footer">
+		<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
+	</div>
+</div> <!-- End wrapper -->
+
+</h:body>
+</html>

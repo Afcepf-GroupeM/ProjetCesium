@@ -7,7 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<h:head>
-		<title>Mix Hightech</title>
+		<title>.: GroupeM EC - Ajout d'une adresse :.</title>
 		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="js/jquery.min.js"></script>
@@ -57,21 +57,52 @@
 	
 	<h:body>
 		<f:event listener="#{addAddressController.init}" type="preRenderView" />
+		<f:event listener="#{itemListController.init}" type="preRenderView" />
   		<!--header-->
 		<div class="header">
 			<div class="header-top">
 				<div class="container">
 					<div class="header-top-in">			
 						<div class="logo">
-							<a href="accueil.xhtml"><img src="images/logowhite.png" alt=" "/></a>
+							<a href="index.xhtml"><img src="images/logowhite.png" alt=" "/></a>
 						</div>
 						<div class="header-in">
 							<ul class="icon1 sub-icon1">
-								<li ><a href="account.jsf"><img src="images/account.png" class="img-responsive" alt=""/></a></li>							
-								<li ><a href="account.jsf"><h4>MON COMPTE</h4><span>SE CONNECTER</span></a></li>	
-								<li><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-								<li ><a href="panier.jsf"><img src="images/cart_white.png" class="img-responsive" alt=""/></a></li>							
-								<li ><a href="panier.jsf" ><h4>MON PANIER</h4><span>VOIR DETAIL</span></a></li>							
+								<li >
+							<h:link outcome="login" rendered="#{not loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+							<h:link outcome="myaccount" rendered="#{loginController.islogged}">
+								<img src="images/account.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+							</span>
+							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
+							<span id="accountCartMenu">
+								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
+							</span>
+							<h:form>
+								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
+							</h:form>
+							<span id="userLoggedMenu">
+								<h:outputText value="Bienvenue #{loginController.userLogged.civilite}. " rendered="#{loginController.islogged}"/>
+								<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
+							</span>
+						</li>
+						<li>
+							<h:link outcome="panier">
+								<img src="images/cart_white.png" class="img-responsive" alt=""/>
+							</h:link>
+						</li>							
+						<li>
+							<span id="accountCartMenu">
+								<h:link value="MON PANIER" outcome="panier" />
+							</span>
+							<h:link value="VOIR DETAIL" outcome="panier" />
+						</li>
 							</ul>
 						</div>
 						<div class="clearfix"> </div>
@@ -83,23 +114,22 @@
 					<div class="h_menu4">
 						<a class="toggleMenu" href="#">Menu</a>
 						<ul class="nav">
-							<li class="active"><a href="accueil.xhtml"><i> </i>Desktops</a></li>
-							<li ><a href="#">Laptops Notebooks</a>
-								<ul class="drop">
-									<li><a href="produits.xhtml">Sony(2)</a></li>
-									<li><a href="produits.xhtml">Android(4)</a></li>
-									<li><a href="produits.xhtml">Apple(7)</a></li>
-									<li><a href="produits.xhtml">Acer(53)</a></li>
-									<li><a href="produits.xhtml">HP(78)</a></li>
-									<li><a href="produits.xhtml">Intel(5)</a></li>
-								</ul>
-							</li> 						
-							<li><a href="produits.xhtml">  Tablets</a></li>            
-							<li><a href="produits.xhtml">Components</a></li>						  				 
-							<li><a href="produits.xhtml">Software</a></li>
-							<li><a href="produits.xhtml">Phones PDAs </a></li>
-							<li><a href="produits.xhtml">  Cameras  </a></li>
-							<li><a href="produits.xhtml">Contact </a></li>
+							<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+								<li class="active"><a href="#" >#{metaCat.name}</a>
+									<ul class="drop">
+										<ui:repeat var="cat" value="#{metaCat.categories}">
+										<li>
+
+										<h:link value="#{cat.name}" outcome="categorie" >
+											<f:param name="catId"  value="#{cat.id}" />
+										</h:link>
+							
+							
+										</li>
+										</ui:repeat>
+									</ul>
+								</li> 			
+						</ui:repeat>
 						</ul>
 						<script type="text/javascript" src="js/nav.js"></script>
 					</div>
@@ -108,20 +138,20 @@
 			<div class="header-bottom-in">
 				<div class="container">
 					<div class="header-bottom-on">
-						<p class="wel"><a>Welcome #{addAddressController.user.civilite}. #{addAddressController.user.lastName}</a></p>
+						
 						<div class="header-can">
 							<ul class="social-in">
-								<li><a href="#"><i> </i></a></li>
-								<li><a href="#"><i class="facebook"> </i></a></li>
-								<li><a href="#"><i class="twitter"> </i></a></li>					
-								<li><a href="#"><i class="skype"> </i></a></li>
+								<li><a href="accueil.jsf"><i> </i></a></li>
+								<li><a href="https://fr-fr.facebook.com/"><i class="facebook"> </i></a></li>
+								<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
+								<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
 							</ul>
-							<div class="search">
-								<form>
-									<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"/>
-									<input type="submit" value=""/>
-								</form>
-							</div>
+							<div>
+						<h:form>
+							<h:inputText value="#{rechercheArticleController.keyword}"/>
+							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+						</h:form>
+					</div>
 							<div class="clearfix"> </div>
 						</div>
 						<div class="clearfix"></div>
@@ -132,7 +162,7 @@
 		
 		<div class="container">
 			<div class="addressForm">
-				<h2 class="titleAddressForm">Ajouter une adresse</h2>
+				<h2 class="account-in">Ajouter une adresse</h2>
 				<div>
 					<h:form>
 						<div>
@@ -193,13 +223,10 @@
     					</div>
     					<br />
     					<h:commandButton value="Ajouter" action="#{addAddressController.action}"/>
-						<h:button outcome="addressManager" value="Annuler" />
+						<h:button outcome="myaccount" value="Annuler" />
+						<span class="message"><h:outputLabel type="text" value="#{addAddressController.message}"/></span>
 					</h:form>
 				</div>
-
-				<!-- <div>
-					<h:outputText value="#{addAddressController.message}"  escape="false"/>
-				</div> -->
 			</div>
 		</div>
 		

@@ -26,7 +26,7 @@ public class AddAddressController {
 	
 	private String name;
 	private String number;
-	private ComplementAddress complement;
+	private ComplementAddress complement = null;
 	private ComplementAddress[] complementList;
 	private RoadType roadType;
 	private RoadType[] roadTypeList;
@@ -43,17 +43,16 @@ public class AddAddressController {
 	@Autowired
 	private UserBusApi userBus;
 	
-	public String init(ComponentSystemEvent event){
+	public void init(ComponentSystemEvent event){
 		roadTypeList = RoadType.class.getEnumConstants();
 		complementList = ComplementAddress.class.getEnumConstants();
 		
 		FacesContext fc = FacesContext.getCurrentInstance();
-		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-		//Temp pour user, voir session
-		int userId = Integer.parseInt(params.get("userId"));
-		user = userBus.getUserById(userId);
+		Map<String,Object> userLogged = fc.getExternalContext().getSessionMap();
 		
-		return null;
+		int userId = (Integer) userLogged.get("userid");
+		user = userBus.getUserById(userId);
+		resetFields();
 	}
 	
 	public String action(){
@@ -74,6 +73,9 @@ public class AddAddressController {
 			if (ca.equals(complement)){
 				complementValid = true;
 			}
+		}
+		if (complement == null){
+			complementValid = true;
 		}
 		
 		boolean roadTypeValid = false;
@@ -97,7 +99,7 @@ public class AddAddressController {
 			int addressNumber = Integer.parseInt(number);
 			
 			addressBus.createAddress(name, addressNumber, complement, roadType, roadName, city, zipcode, country, billing, isValid, user);
-			return "addressManager?faces-redirect=true";
+			return "myaccount?faces-redirect=true";
 		}
 		return null;
 	}

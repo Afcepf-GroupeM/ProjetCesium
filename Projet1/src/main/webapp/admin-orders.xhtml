@@ -1,0 +1,47 @@
+<!DOCTYPE    html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+	<title>.: Mix HighTech - Administration - Commandes :.</title>
+	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
+</h:head>
+
+<h:body>
+<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
+<div id="wrapper">
+	<div id="header">
+		<h1>.: Mix HighTech - Administration - Commandes :.</h1>
+	</div>
+	
+	
+	
+	
+	<div id="leftcolumn">
+	<div class="menuItem"><a href="administration.xhtml">Retour dashboard</a></div><br/>
+		<div class="menuItem"><a href="admin-users.xhtml">Gestion utilisateurs</a></div>
+		<div class="menuItem"><a href="admin-cats.xhtml">Gestion catégories</a></div>
+		<div class="menuItem"><a href="admin-items.xhtml">Gestion items</a></div>
+		<div class="menuItem"><a href="admin-orders.xhtml">Gestion commandes</a></div>
+		<div class="menuItem"><a href="admin-coupons.xhtml">Gestion promos</a></div>
+	</div> <!-- End leftcolumn -->
+	
+	
+	<div id="content">
+		
+		
+		
+		
+	</div> <!-- End content -->
+	
+	<div id="footer">
+		<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
+	</div>
+</div> <!-- End wrapper -->
+
+</h:body>
+</html>

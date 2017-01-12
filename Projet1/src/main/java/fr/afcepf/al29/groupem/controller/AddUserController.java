@@ -66,6 +66,7 @@ public class AddUserController {
 	}
 	
 	public String action(){
+		String returnAddress = null;
 		message ="";
 		EmailValidator emailValidator = EmailValidator.getInstance();
 		RegexValidator nameValidator = new RegexValidator("^[a-zA-Z \\-\\.\\']*$",false);
@@ -85,18 +86,27 @@ public class AddUserController {
 		boolean firstNameValid = nameValidator.isValid(firstName) && (!firstName.isEmpty());
 		boolean passwordValid = password1.equals(password2) && (!password1.isEmpty());
 		boolean emailValid = emailValidator.isValid(email);
+		boolean emailNotAlreadySubcribed = true;
 		boolean birthDateValid = dateValidator.isValid(birthDate, "ddMMyyy");
 		boolean phoneValid = phoneValidator.isValid(phone);
 		
 		if(!civiliteValid){message += "Civilité invalide<br/>";}
 		if(!lastNameValid){message += "Nom invalide<br/>";}
 		if(!firstNameValid){message += "Prénom invalide<br/>";}
-		if(!emailValid){message += "Email invalide<br/>";}
+		
+		if(!emailValid){message += "Email invalide<br/>";
+		} else{
+			if(userBus.getUserByLogin(email) != null){
+				emailNotAlreadySubcribed = false;
+				message += "Email déja utilisé<br/>";
+				}
+			}
+		
 		if(!birthDateValid){message += "Date de naissance invalide<br/>";}
 		if(!phoneValid){message += "Téléphone invalide<br/>";}
 		if(!passwordValid){message += "Les mots de passe ne correspondent pas ou sont vides.<br/>";}
 			
-		if(lastNameValid && firstNameValid && passwordValid && emailValid && birthDateValid && phoneValid){
+		if(lastNameValid && firstNameValid && passwordValid && emailValid && emailNotAlreadySubcribed && birthDateValid && phoneValid){
 			DateFormat dateFormater = new SimpleDateFormat("ddMMyyyy"); 
 			
 			Date formattedDate = null;
@@ -107,9 +117,10 @@ public class AddUserController {
 			}
 			User user = userBus.createUser(civilite, lastName, firstName, email, phone, password1,formattedDate );
 			resetFields();
+			returnAddress = "inscription-ok";
 			message = "Utilisateur créé avec succes!" +"  " + "Id du nouvel utilisateur: " + user.getId();
 		}	
-		return null;		
+		return returnAddress;		
 	}
 	
 	public void resetFields(){
