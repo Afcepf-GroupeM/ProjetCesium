@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.ItemBusApi;
+import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.business.api.ReviewBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Item;
@@ -31,7 +32,7 @@ public class ReviewController {
 	private User user;
 	private Item item;
 	
-	private String message;
+	private String errorMessage;
 	
 	@Autowired
 	private ReviewBusApi reviewBus;
@@ -39,6 +40,8 @@ public class ReviewController {
 	private UserBusApi userBus;
 	@Autowired
 	private ItemBusApi itemBus;
+	@Autowired
+	private OrderBusApi orderBus;
 	
 	public void initInArticleSheet(){
 		
@@ -64,21 +67,22 @@ public class ReviewController {
 	
 	public String createReview(){
 		RegexValidator ratingValidator = new RegexValidator("^([0-4]\\.[05])|([0-4],[05])|([0-5])$", false);
-		RegexValidator commentValidator = new RegexValidator("^[A-Za-z\\s-'éèà]*$", false);
+		RegexValidator commentValidator = new RegexValidator("^[A-Za-z\\s_-'éèàù,!\\.?:;\\*\\+\\]*$", false);//voir quoi controler!!!
 		
 		boolean ratingValid = ratingValidator.isValid(rating) && (!rating.isEmpty());
 		boolean commentValid = commentValidator.isValid(comment) && (!comment.isEmpty());
 		
-		message = "";
-		if(!ratingValid){message += "La note attribuée au produit est invalide!<br/>";}
-		if(!commentValid){message += "le commentaire contient un ou plusieurs charactères invalides!<br/>";}
+		errorMessage = "";
+		if(!ratingValid){errorMessage += "La note attribuée au produit est invalide!<br/>";}
+		if(!commentValid){errorMessage += "le commentaire contient un ou plusieurs charactères invalides!<br/>";}
 		
 		if(ratingValid && commentValid){
 			float ratingNumber = Float.parseFloat(rating);
 			Date creationDate = new Date();
 			
 			reviewBus.createReview(ratingNumber, comment, creationDate, item, user);
-			return "article.jsf?itemId=" + item.getId() + "?faces-redirect=true";
+			
+			return "article?faces-redirect=true&itemId=" + item.getId();
 		}
 		
 		return null;
@@ -137,12 +141,12 @@ public class ReviewController {
 		this.item = item;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 	
 }
