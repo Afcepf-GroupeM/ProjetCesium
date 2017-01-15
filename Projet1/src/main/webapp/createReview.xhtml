@@ -73,9 +73,138 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </h:head>
 	<h:body>
-		<f:event listener="#{itemListController.init}" type="preRenderView" />
-		<f:event listener="" />
+		<f:event listener="#{reviewController.init}" type="preRenderView"/>
+		<!--header-->
+		<div class="header">
+			<div class="header-top">
+				<div class="container">
+				<div class="header-top-in">			
+					<div class="logo">
+						<a href="index.xhtml"><img src="images/logowhite.png" alt=" "/></a>
+					</div>
+					<div class="header-in">
+						<ul class="icon1 sub-icon1">
+							<li >
+								<h:link outcome="login" rendered="#{not loginController.islogged}">
+									<img src="images/account.png" class="img-responsive" alt=""/>
+								</h:link>
+								<h:link outcome="myaccount" rendered="#{loginController.islogged}">
+									<img src="images/account.png" class="img-responsive" alt=""/>
+								</h:link>
+							</li>
+							<li>
+								<span id="accountCartMenu">
+									<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+								</span>
+								<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
+								<span id="accountCartMenu">
+									<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
+								</span>
+								<h:form>
+									<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
+								</h:form>
+								<span id="userLoggedMenu">
+									<h:outputText value="Bienvenue #{loginController.userLogged.civilite}. " rendered="#{loginController.islogged}"/>
+									<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
+								</span>
+							</li>
+							<li>
+								<h:link outcome="panier">
+									<img src="images/cart_white.png" class="img-responsive" alt=""/>
+								</h:link>
+							</li>							
+							<li>
+								<span id="accountCartMenu">
+									<h:link value="MON PANIER" outcome="panier" />
+								</span>
+								<h:link value="VOIR DETAIL" outcome="panier" />
+							</li>
+						</ul>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				</div>
+			</div>
+			<div class="header-bottom">
+			<div class="container">
+				<h:form>
+					<a class="toggleMenu" href="#">Menu</a>
+					<ul class="nav">
+					<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
+						<li class="active"><a href="#" >#{metaCat.name}</a>
+							<ul class="drop">
+								<ui:repeat var="cat" value="#{metaCat.categories}">
+								<li>
+	
+								<h:link value="#{cat.name}" outcome="categorie" >
+									<f:param name="catId"  value="#{cat.id}" />
+								</h:link>
+								
+								
+								</li>
+								</ui:repeat>
+							</ul>
+							</li> 						 			
+					</ui:repeat>	
+					</ul>
+					<script type="text/javascript" src="js/nav.js"></script>
+					</h:form>
+				</div>
+			</div>
+			</div>
+			<div class="header-bottom-in">
+			<div class="container">
+			<div class="header-bottom-on">
+							
+				<div class="header-can">
+					<ul class="social-in">
+							<li><a href="accueil.jsf"><i> </i></a></li>
+							<li><a href="https://fr-fr.facebook.com/"><i class="facebook"> </i></a></li>
+							<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
+							<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
+						</ul>	
+						<!-- 
+						<div class="down-top">		
+							  <select class="in-drop">
+								  <option value="Dollars" class="in-of">Dollars</option>
+								  <option value="Euro" class="in-of">Euro</option>
+								  <option value="Yen" class="in-of">Yen</option>
+								</select>
+						 </div>
+						 -->
+						<div>
+							<h:form>
+								<h:inputText value="#{rechercheArticleController.keyword}"/>
+								<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+							</h:form>
+						</div>
+						<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			</div>
+			</div>
 		
+		
+			<div class="container">
+				<div class="account">
+					<h2 class="account-in">Poster un nouveau commentaire pour: <h:outputText value="#{reviewController.item.name}"/></h2>			
+						<h:form>
+							<div>
+								<h:outputLabel>Evaluation: </h:outputLabel>
+								<h:inputText value="#{reviewController.rating}"/>
+							</div> 	
+							<div>			
+								<h:outputLabel>Commentaire: </h:outputLabel>
+								<h:inputTextarea value="#{reviewController.comment}"/> 
+							</div>	
+							<span class="message"><h:outputLabel value="#{reviewController.errorMessage}"/></span>
+							<br/>		
+							<br/>	
+							<h:commandButton value="Poster" action="#{reviewController.createReview}"/>	
+						</h:form>	
+				</div>
+			</div>
 		
 		<!---->
 		<div class="footer">
