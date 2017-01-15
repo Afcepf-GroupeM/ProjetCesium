@@ -6,6 +6,7 @@ import java.util.List;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
+import fr.afcepf.al29.groupem.entities.User;
 
 public interface OrderBusApi {
 
@@ -22,5 +23,7 @@ public interface OrderBusApi {
 	
 	int getNumberOfOrdersSince(Date date);
 	List<Order> getOrdersSince(Date date);
+	
+	List<Order> searchOrders(String paramInput, String paramSearchType);
 
 }
