@@ -35,5 +35,8 @@ Entities liés:
 IHM todo:
 	login.xhtml
 		aligner inputText et boutton
+
+**************************************************************************************
+Admin-items.xhtml
 	
 	

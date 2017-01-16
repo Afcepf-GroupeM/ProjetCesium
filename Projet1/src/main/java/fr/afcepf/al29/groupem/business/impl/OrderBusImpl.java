@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.business.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import fr.afcepf.al29.groupem.dao.api.OrderLineDaoApi;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
+import fr.afcepf.al29.groupem.entities.User;
 
 @Transactional
 @Component
@@ -80,7 +82,27 @@ public class OrderBusImpl implements OrderBusApi{
 	public List<Order> getOrdersSince(Date date) {
 		return orderDao.getOrdersSince(date);
 	}
+
+	@Override
+	public List<Order> searchOrders(String input, String searchType) {
+		
+		List<Order> listOrders = new ArrayList<>();	    
+	    switch (searchType) {
+        case "1": //search By trackingNumber
+            Order order = orderDao.getOrderByTrackingNumber(input);
+            if(order != null){
+                listOrders.add(order);
+            }
+            break;
+        case "2": //search By state
+        	listOrders = orderDao.getOrderByState(input);
+            break;
+       
+	    }
+	    return listOrders;
+	}
+	}
 	
 
 
-}
+

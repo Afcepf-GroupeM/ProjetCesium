@@ -19,7 +19,8 @@ public interface OrderDaoApi {
 	
 	List<Order> getOrdersSince(Date date);
 	
-	
+	Order getOrderByTrackingNumber(String trackingNumber);
 
+	List<Order> getOrderByState(String state);
 
 }

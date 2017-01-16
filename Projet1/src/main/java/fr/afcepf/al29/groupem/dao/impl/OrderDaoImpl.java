@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.afcepf.al29.groupem.dao.api.OrderDaoApi;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderState;
+import fr.afcepf.al29.groupem.entities.User;
 
 
 @Transactional
@@ -72,6 +73,24 @@ public class OrderDaoImpl implements OrderDaoApi{
 		List<Order> listOrders = new ArrayList<>();
 		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.creationDate > :date", Order.class)
 				 .setParameter("date", date)
+				 .getResultList();
+		return listOrders;
+	}
+
+	@Override
+	public Order getOrderByTrackingNumber(String trackingNumber) {
+		Order order = null;
+		try {
+			order = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.trackingNumber = :ordertrackingnumber",Order.class).setParameter("ordertrackingnumber", trackingNumber).getSingleResult();
+		} catch (Exception e) {} // Catches exception if email doesn't exists. Mandatory with getSingleResult. Return null
+		return order;
+	}
+
+	@Override
+	public List<Order> getOrderByState(String state) {
+		List<Order> listOrders = new ArrayList<>();
+		listOrders = entityManager.createQuery("SELECT ord FROM Order ord WHERE ord.state = :state", Order.class)
+				 .setParameter("state",state)
 				 .getResultList();
 		return listOrders;
 	}
