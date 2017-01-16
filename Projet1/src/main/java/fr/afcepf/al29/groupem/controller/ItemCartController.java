@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -56,6 +57,7 @@ public class ItemCartController {
 	
 	
 	public void initCartDetail(ComponentSystemEvent c1){
+    
 		idOwnerCart = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		totalAmount = 0f;
 		setCart(cartBus.getCartByUserId(idOwnerCart));

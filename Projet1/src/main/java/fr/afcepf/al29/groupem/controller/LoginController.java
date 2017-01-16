@@ -1,6 +1,8 @@
 package fr.afcepf.al29.groupem.controller;
 
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
@@ -17,17 +19,18 @@ import fr.afcepf.al29.groupem.entities.User;
 @Scope("session")
 @Component
 @ManagedBean
-public class LoginController {
+public class LoginController implements Serializable{
 	
 	
-	//  implements Serializable
-//	private static final long serialVersionUID = 100042L;
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String login;
 	private String password;
 	private String errorMessage ="";
 	private User userLogged;	
 	private boolean islogged = false;
+	private String uuid;
 	
 	
 	
@@ -116,6 +119,38 @@ public class LoginController {
 	public void setIslogged(boolean islogged) {
 		this.islogged = islogged;
 	}
+
+
+    /**
+     * @return the uuid
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+
+    /**
+     * @param paramUuid the uuid to set
+     */
+    public void setUuid(String paramUuid) {
+        uuid = paramUuid;
+    }
+
+
+    /**
+     * @return the userBus
+     */
+    public UserBusApi getUserBus() {
+        return userBus;
+    }
+
+
+    /**
+     * @param paramUserBus the userBus to set
+     */
+    public void setUserBus(UserBusApi paramUserBus) {
+        userBus = paramUserBus;
+    }
 
 	
 
