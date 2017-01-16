@@ -195,7 +195,10 @@ public class OrderController {
 		} else {
 			returnAddress = null;
 		}
-		return returnAddress;
+		
+		
+//		return returnAddress;  by pass payement validation
+		return "order-validated?faces-redirect=true"; 
 	}
 	
 	
