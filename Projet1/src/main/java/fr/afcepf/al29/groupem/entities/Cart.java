@@ -39,6 +39,9 @@ public class Cart {
 	private List<CartLine> cartLines;
 	
 	
+    @Column(name="sessionid")
+    private String sessionId;
+	
 
 
 	public int getId() {
@@ -139,6 +142,20 @@ public class Cart {
 	public String toString() {
 		return "Cart [id=" + id + ", creationDate=" + creationDate + ", user=" + user + "]";
 	}
+
+    /**
+     * @return the sessionId
+     */
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * @param paramSessionId the sessionId to set
+     */
+    public void setSessionId(String paramSessionId) {
+        sessionId = paramSessionId;
+    }
 	
 	
 

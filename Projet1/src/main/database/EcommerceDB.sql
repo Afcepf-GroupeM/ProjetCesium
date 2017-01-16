@@ -89,7 +89,7 @@ CREATE TABLE cart(
 	id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
 	creationdate DATE NOT NULL,
 	userid INT UNSIGNED,
-	sessionid INT UNSIGNED,
+	sessionid VARCHAR(255),
 	PRIMARY KEY (id)
 );
 

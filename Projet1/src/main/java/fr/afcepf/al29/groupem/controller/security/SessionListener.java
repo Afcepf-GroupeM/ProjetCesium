@@ -20,9 +20,7 @@ public class SessionListener implements PhaseListener{
 			 
 		
 //			 ADD PAGE WITH LOGIN IN REQUIERED HERE
-			boolean isPageWithLoginInRequiered = (currentPage.lastIndexOf("panier.xhtml") > -1)
-												 || (currentPage.lastIndexOf("panier.jsf") > -1) 
-												 || (currentPage.lastIndexOf("espaceclient.jsf") > -1)
+			boolean isPageWithLoginInRequiered = (currentPage.lastIndexOf("espaceclient.jsf") > -1)
 												 || (currentPage.lastIndexOf("account-modify.jsf") > -1)
 												 || (currentPage.lastIndexOf("myaccount.jsf") > -1)
 												 || (currentPage.lastIndexOf("payment.jsf") > -1)

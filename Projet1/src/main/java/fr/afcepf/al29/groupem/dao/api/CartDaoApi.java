@@ -9,5 +9,6 @@ public interface CartDaoApi {
 	Cart getCartById(int cartId);
 	boolean destroyCartById(int cartId);
 	Cart getCartByUserId(int userId);
+    Cart getCartBySessionId(String paramSessionId);
 
 }

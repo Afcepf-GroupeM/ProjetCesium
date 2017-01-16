@@ -91,7 +91,19 @@ public class CartBusImpl implements CartBusApi {
 		return cartLineDao.updateCartLine(cartLine);
 	}
 	
-	
+	@Override
+	public Cart getCartBySessionId(String sessionId) {
+    
+	    Cart cart = cartDao.getCartBySessionId(sessionId);
+        if(cart == null){
+            Cart newCart = new Cart();
+            newCart.setSessionId(sessionId);
+            newCart.setCreationDate(new Date());
+            cart = createCart(newCart);
+        }
+        return cart;
+
+	}
 	
 	
 	
