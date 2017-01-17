@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 public class SessionListener implements PhaseListener{
 
 
-	private static final long serialVersionUID = -9141102809722263950L;
+	private static final long serialVersionUID = 1L;
 
 		public void afterPhase(PhaseEvent event) {
 		 

@@ -11,9 +11,8 @@ Guillaume:
 ----------
 
 - ajouter cadre DEMO pour ajouter numero de carte bancaire valide fictif et valider la commande
-- OK Finir Categories
-- OK Admin Users
-
+- login admin
+- 
 
 
 Philippe:
@@ -38,10 +37,6 @@ Site en général:
 	- OK A tester - champ de recherche a reinitialiser au chargement de la page
 	- format des photos des articles deformées
 	- revoir le CSS des boutons, harmoniser, et couleur plus coherentes
-	
-	
-Creation nouvel utilisateur:	
-	- OK A tester - empecher creation d'un utilisateur si une adresse email est deja utilisée
 
 
 - Formulaire de login:
@@ -65,12 +60,6 @@ Creation nouvel utilisateur:
 
 - Validation paiement:
 	- debugguer choix du type de carte bancaire
-
-- Validation commande:
-	- OK A tester - modification du stock d'item lors de la validation de la commande
-	
-- Validation du panier:
-	- OK A tester -  verifier le stock d'item avant validation
 
 
 - Creation espace Administration
