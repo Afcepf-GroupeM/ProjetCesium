@@ -39,6 +39,7 @@
 					<h:commandButton value="Ajouter un nouveau item" action="#{adminItemsController.ajouterUnItem}"/>
 				</h:form>
 			</div>
+	<!--	
 			<h2>Modifier un item:</h2>
 			<div  class="modifierAjouterItem">				
 				<h:form>
@@ -58,8 +59,8 @@
 					<h:outputText value="#{adminItemsController.messageErrorSearchItem}" 
 								  rendered="#{adminItemsController.firstSearchDone}"
 								  styleClass="#{adminItemsController.adminSearchMessageErrorClass}"/>		  
-					</div>	
-					<h:dataTable value="#{adminItemsController.pagesOfSearchResults[adminItemsController.pageToPrint]}"
+				</div>	
+				<h:dataTable value="#{adminItemsController.pagesOfSearchResults[adminItemsController.pageToPrint]}"
 							var="item" headerClass=""
 							styleClass="adminSearchResultTab"
 							rowClasses="adminSearchResultTabRow"
@@ -88,13 +89,14 @@
 							<f:facet name="header">Categorie</f:facet>
 							<h:outputText value="#{item.categorie}" />
 						</h:column>
-					</h:dataTable>
-					<div class="adminUserPageNumTitle">
+				</h:dataTable>
+				<div class="adminUserPageNumTitle">
 					<h:outputText value="Page #{adminItemsController.pageToPrint}" 
 								  rendered="#{adminItemsController.pageToPrint ne 0 and empty adminItemsController.messageErrorSearch}"
 								  />
-				</div>
+				</div>		
 			</div>
+	  -->
 			<div class="adminItemChangePageMenu">
 					<h:form>
 						<ui:repeat value="#{adminItemsController.numberOfPagesOfResults}" var="page" >
@@ -105,8 +107,8 @@
 							<h:outputText value="   "/>
 						</ui:repeat>
 					</h:form>
-				</div>
-		</div>
+			</div>
+	</div>
 		
 		
 		

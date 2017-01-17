@@ -38,5 +38,28 @@ IHM todo:
 
 **************************************************************************************
 Admin-items.xhtml
+	searchType: type à rechercher choisi
+	searchTypeArray: liste d'items, résultat de recherche
+	searchItemInput: txt input de reference d'item
+	messageErrorSearchItem: message d'erreur quand rien est trouvé pour la recherche.
+	pagesOfSearchResults	
+	pageToPrint: outputText
 	
 	
+	méthod: ajouterUnItem() pour touner à la page de ajouterItem;
+			searchItems() pour faire la recherche;
+			modifierUnArticle() pour modifier l'article choisi.
+			
+Admin-ajouterUnItem.xhtml
+	name
+	reference
+	listeMetaCatogorie
+	metaCatogorie
+	listeCatogorie
+	catogorie
+	price
+	typeMoney
+	listeMoney
+	quantity
+	urlImage		
+	message
