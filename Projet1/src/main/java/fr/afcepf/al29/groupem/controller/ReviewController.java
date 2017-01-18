@@ -1,9 +1,5 @@
 package fr.afcepf.al29.groupem.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -32,6 +28,7 @@ public class ReviewController {
 	private User user;
 	private Item item;
 	
+	private boolean hasOrdered;
 	private String errorMessage;
 	
 	@Autowired
@@ -61,22 +58,23 @@ public class ReviewController {
 		
 		item = itemBus.getItemById(itemId);
 		user = userBus.getUserById(userId);
+		hasOrdered = orderBus.hasOrderedItem(item.getId(), user.getId());
+		System.out.println("@@@@@@@@@@@@@ Ordered? " + hasOrdered);
 				
 		resetFields();
 	}
 	
 	public String createReview(){
 		RegexValidator ratingValidator = new RegexValidator("^([0-4]\\.[05])|([0-4],[05])|([0-5])$", false);
-		RegexValidator commentValidator = new RegexValidator("^[A-Za-z\\s_-'éèàù,!\\.?:;\\*\\+\\]*$", false);//voir quoi controler!!!
 		
 		boolean ratingValid = ratingValidator.isValid(rating) && (!rating.isEmpty());
-		boolean commentValid = commentValidator.isValid(comment) && (!comment.isEmpty());
 		
 		errorMessage = "";
 		if(!ratingValid){errorMessage += "La note attribuée au produit est invalide!<br/>";}
-		if(!commentValid){errorMessage += "le commentaire contient un ou plusieurs charactères invalides!<br/>";}
 		
-		if(ratingValid && commentValid){
+		if(ratingValid){
+			rating = rating.replace(",", ".");
+			
 			float ratingNumber = Float.parseFloat(rating);
 			Date creationDate = new Date();
 			
@@ -147,6 +145,14 @@ public class ReviewController {
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	public boolean isHasOrdered() {
+		return hasOrdered;
+	}
+
+	public void setHasOrdered(boolean hasOrdered) {
+		this.hasOrdered = hasOrdered;
 	}
 	
 }

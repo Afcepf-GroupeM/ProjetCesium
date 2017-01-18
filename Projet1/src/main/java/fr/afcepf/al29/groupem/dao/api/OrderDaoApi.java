@@ -19,7 +19,6 @@ public interface OrderDaoApi {
 	
 	List<Order> getOrdersSince(Date date);
 	
-	
-
+	Integer hasOrderedItem(int itemId, int userId);
 
 }

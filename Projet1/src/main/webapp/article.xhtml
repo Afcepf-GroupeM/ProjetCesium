@@ -251,7 +251,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h:button outcome="createReview" value="Ajouter un commentaire" rendered="#{loginController.islogged}">
 						<f:param name="itemId" value="#{itemCartController.item.id}"/>
 					</h:button>
+					<h:button outcome="reviews" value="Afficher tous les commentaires">
+						<f:param name="itemId" value="#{itemCartController.item.id}"/>
+					</h:button>
 					
+					<div>
+						<!-- liste commentaires -->
+					</div>
 				<div class="clearfix"> </div>
 
 				</div>

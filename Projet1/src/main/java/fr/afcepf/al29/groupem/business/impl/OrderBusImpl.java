@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.business.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -79,6 +80,36 @@ public class OrderBusImpl implements OrderBusApi{
 	@Override
 	public List<Order> getOrdersSince(Date date) {
 		return orderDao.getOrdersSince(date);
+	}
+
+	@Override
+	public boolean hasOrderedItem(int itemId, int userId) {
+		boolean hasOrderedItem = false;
+		/*List<Order> userOrders;
+		List<OrderLine> orderLines;
+		List<Integer> ordersId = new ArrayList<Integer>();
+		
+		userOrders = orderDao.getOrderByUserId(userId);		
+		orderLines = orderLineDao.getOrderLinesByItemId(itemId);
+		
+		for (Order o : userOrders){
+			ordersId.add(o.getId());
+		}
+		
+		for (OrderLine ol : orderLines){
+			hasOrderedItem = ordersId.contains(ol.getOrder().getId());
+			
+			if (hasOrderedItem){
+				break;
+			}
+		}*/
+		Integer idItemOrdered = orderDao.hasOrderedItem(itemId, userId);
+		System.out.println("@@@@@@@@@@@@ idItemOrdered = " + idItemOrdered);
+		if (idItemOrdered != 0){
+			hasOrderedItem = true;
+		}
+		
+		return hasOrderedItem;
 	}
 	
 

@@ -75,8 +75,10 @@ public class OrderDaoImpl implements OrderDaoApi{
 				 .getResultList();
 		return listOrders;
 	}
-	
-	
-	
+
+	@Override
+	public Integer hasOrderedItem(int itemId, int userId) {
+		return entityManager.createQuery("SELECT olA.id FROM OrderLine olA INNER JOIN olA.order o INNER JOIN o.user usr, OrderLine olB INNER JOIN olB.item it WHERE it.id = :itemId AND usr.id = :userId").setParameter("itemId", itemId).setParameter("userId", userId).getFirstResult();
+	}
 
 }

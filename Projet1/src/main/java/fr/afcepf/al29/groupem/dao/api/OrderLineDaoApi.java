@@ -8,6 +8,7 @@ public interface OrderLineDaoApi {
 
 	OrderLine createOrderLine(OrderLine orderLine);
 	List<OrderLine> getOrderLinesByOrderId(int orderId);
+	List<OrderLine> getOrderLinesByItemId(int itemId);
 	OrderLine getOrderLineById(int orderLineId);
 	OrderLine updateOrderLine(OrderLine orderLine);
 	boolean deleteOrderLineById(int orderLineId);

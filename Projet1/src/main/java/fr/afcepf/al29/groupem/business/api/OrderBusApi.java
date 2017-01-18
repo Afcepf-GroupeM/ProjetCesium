@@ -22,5 +22,7 @@ public interface OrderBusApi {
 	
 	int getNumberOfOrdersSince(Date date);
 	List<Order> getOrdersSince(Date date);
+	
+	boolean hasOrderedItem(int itemId, int userId);
 
 }
