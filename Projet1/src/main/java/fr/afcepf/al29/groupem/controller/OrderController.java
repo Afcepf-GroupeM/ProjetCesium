@@ -3,7 +3,6 @@ package fr.afcepf.al29.groupem.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -11,7 +10,6 @@ import java.util.Random;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.validator.routines.RegexValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,14 +117,14 @@ public class OrderController {
 		cart = cartBus.getCartById(cartId);
 		cartLines = cartBus.getCartLinesByCartId(cartId);
 		order = new Order();
+		order.setAmount(getOrderAmount(cart));
 		
 		Carrier carrier = new Carrier();
-		float totalAmount = 0f;
+		
 		carrier.setId(1);
 		carrier.setName("UPS");
 		carrier.setTrackingUrl("http://www.ups.fr/tracking");
 		order.setCarrier(carrier);
-		order.setAmount(totalAmount);
 		order.setCreationDate(new Date());
 		OrderState orderState = OrderState.EnPreparation;
 		order.setState(orderState);
@@ -158,6 +156,7 @@ public class OrderController {
 		order.setAdresseFacturation(addressBillingChosen);
 		order.setAdresseLivraison(addressShippingChosen);
 		
+		
 		order = orderBus.createOrder(order);
 		
 		orderLines = new ArrayList<>();
@@ -173,10 +172,9 @@ public class OrderController {
 			Item itemModified = cartLine.getItem();
 			itemModified.setStock(itemModified.getStock() - cartLine.getQuantity());
 			itemBus.updateItem(itemModified);
-			totalAmount += cartLine.getQuantity() * cartLine.getUnitPrice();
 		}
 		order.setOrderLines(orderLines);
-		order.setAmount(totalAmount);
+		
 		
 		for (CartLine cartLine : cartLines) {
 			cartBus.destroyCartLine(cartLine);
@@ -279,6 +277,16 @@ public class OrderController {
 	    }
 	    cardTypeChosen = String.valueOf(rand.nextInt(3));
 	    return null;
+	}
+	
+	
+	public Float getOrderAmount(Cart cart) {
+	    float totalAmount = 0f;
+	    List<CartLine> cartLines = cartBus.getCartLinesByCartId(cart.getId());
+	    for (CartLine paramCartLine : cartLines) {
+	        totalAmount += paramCartLine.getQuantity() * paramCartLine.getUnitPrice();
+        }
+	    return totalAmount;
 	}
 
 

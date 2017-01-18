@@ -10,9 +10,8 @@
 Guillaume:
 ----------
 
-- ajouter cadre DEMO pour ajouter numero de carte bancaire valide fictif et valider la commande
-- login admin
-- 
+
+- login admin (Pause pour le moment pour travailler facilement sur l'administration)
 
 
 Philippe:
