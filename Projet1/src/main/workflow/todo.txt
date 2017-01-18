@@ -33,7 +33,6 @@ Charline:
 
 Site en général: 
 	- verifier les boutons reseaux sociaux
-	- OK A tester - champ de recherche a reinitialiser au chargement de la page
 	- format des photos des articles deformées
 	- revoir le CSS des boutons, harmoniser, et couleur plus coherentes
 
@@ -54,14 +53,13 @@ Site en général:
 	- Les messages d'erreur devraient s'afficher en face de chaque champ incorrect plutot que tout en bas de la page
 
 - Choix des adresses (validation commandes):
-	- mise ne page des adresses et des boutons radio
-	- validation de la commande uniquement si les adresses ont été selectionnées
+	- SECONDAIRE mise ne page des adresses et des boutons radio
+
 
 - Validation paiement:
-	- debugguer choix du type de carte bancaire
+	- SECONDAIRE mise en page et ameliorations visuelles
 
 
-- Creation espace Administration
 
 	
 	

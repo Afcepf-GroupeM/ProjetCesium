@@ -58,6 +58,8 @@ public class OrderController {
 	private String errorCardNumber;
 	private String errorCardDate;
 	private String errorCardCVV;
+	private String errorBillingAddress;
+	private String errorShippingAddress;
 	
 	private String cardTypeChosen;
 	private List<String> idTypePayment;
@@ -103,8 +105,6 @@ public class OrderController {
 		labelTypePayment.put("0", "Visa");
 		labelTypePayment.put("1", "Master Card");
 		labelTypePayment.put("2", "American Express");
-		
-		
 		
 	}
 		
@@ -185,7 +185,24 @@ public class OrderController {
 	
 	
 	public String validateAddresses(){
-		return "payment?faces-redirect=true";
+	    String returnAddress = null;
+	    
+	    if(addressBillingChosenId.isEmpty()) {
+	        errorBillingAddress = "Choisir une adresse de facturation";
+	    } else {
+	        errorBillingAddress = "";
+	    }
+	    if(addressShippingChosenId.isEmpty()) {
+            errorShippingAddress = "Choisir une adresse de livraison";
+        }else {
+            errorShippingAddress = "";
+        }
+	    if(!addressShippingChosenId.isEmpty() && !addressBillingChosenId.isEmpty()) {
+	        returnAddress = "payment?faces-redirect=true";
+	    }
+	    
+	    
+		return returnAddress;
 	}
 	
 	
@@ -609,6 +626,42 @@ public class OrderController {
      */
     public void setLabelTypePayment(HashMap<String, String> paramLabelTypePayment) {
         labelTypePayment = paramLabelTypePayment;
+    }
+
+
+
+    /**
+     * @return the errorBillingAddress
+     */
+    public String getErrorBillingAddress() {
+        return errorBillingAddress;
+    }
+
+
+
+    /**
+     * @param paramErrorBillingAddress the errorBillingAddress to set
+     */
+    public void setErrorBillingAddress(String paramErrorBillingAddress) {
+        errorBillingAddress = paramErrorBillingAddress;
+    }
+
+
+
+    /**
+     * @return the errorShippingAddress
+     */
+    public String getErrorShippingAddress() {
+        return errorShippingAddress;
+    }
+
+
+
+    /**
+     * @param paramErrorShippingAddress the errorShippingAddress to set
+     */
+    public void setErrorShippingAddress(String paramErrorShippingAddress) {
+        errorShippingAddress = paramErrorShippingAddress;
     }
 	
 	
