@@ -22,5 +22,7 @@ public interface OrderDaoApi {
 	Order getOrderByTrackingNumber(String trackingNumber);
 
 	List<Order> getOrderByState(String state);
+	
+	List<Order> getAll();
 
 }

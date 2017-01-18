@@ -106,29 +106,12 @@
 			
 			
 			<div class="adminSearchUsers">
-			<h2>Liste des commandes selon leur statut:</h2>
-			<div class="adminSearchForm">
-					<h:form>
-					<h:panelGrid columns="7" cellpadding="10">
-					<h:outputText value="Choix du statut: " />
-					<h:selectOneMenu value="#{adminOrderController.orderstate}">
-							<f:selectItems value="#{adminOrderController.listeOrderState}" />
-						</h:selectOneMenu>
-					<h:commandButton value="Valider" action="#{adminOrderController.searchOrders}"/>
-					</h:panelGrid>
-					</h:form>
-				</div>
-				<div class="adminSearchResult">
-					<div class="#{adminOrderController.adminSearchMessageErrorClass}">
-					<h:outputText value="#{adminOrderController.messageErrorSearch}" 
-								  rendered="#{adminOrderController.firstSearchDone}"
-								  styleClass="#{adminOrderController.adminSearchMessageErrorClass}"/>		  
-					</div>	
-					<h:dataTable value="#{adminOrderController.pagesOfSearchResults[adminOrderController.pageToPrint]}"
+			<h2>Liste des commandes:</h2>
+			
+					<h:dataTable paginator="true" rows="10" value="#{adminOrderController.orders}"
 							var="order" headerClass=""
 							styleClass="adminSearchResultTab"
-							rowClasses="adminSearchResultTabRow"
-							rendered="#{not empty adminOrderController.searchResult}">
+							rowClasses="adminSearchResultTabRow">
 						<h:column>
 							<f:facet name="header">Numéro</f:facet>
 							<h:outputText value="#{order.trackingNumber}" />
@@ -158,25 +141,11 @@
 							<h:outputText value="#{order.state}" />
 						</h:column>
 					</h:dataTable>
-					<div class="adminUserPageNumTitle">
-					<h:outputText value="Page #{adminOrderController.pageToPrint}" 
-								  rendered="#{adminOrderController.pageToPrint ne 0 and empty adminOrderController.messageErrorSearch}"
-								  />
+					
 					</div>
-				</div>
 				
-				<div class="adminUserChangePageMenu">
-					<h:form>
-						<ui:repeat value="#{adminOrderController.numberOfPagesOfResults}" var="page" >
-							<h:commandLink value="#{page}" action="#{adminOrderController.changePage}" 
-										   rendered="#{empty adminOrderController.messageErrorSearch}">
-								<f:param name="pageNumber" value="#{page}" />
-							</h:commandLink>
-							<h:outputText value="   "/>
-						</ui:repeat>
-					</h:form>
-				</div>
-			</div>
+				
+				
 		
 		
 		
