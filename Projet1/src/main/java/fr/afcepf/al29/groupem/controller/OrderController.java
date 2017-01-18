@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -62,6 +63,7 @@ public class OrderController {
 	
 	private String cardTypeChosen;
 	private List<String> idTypePayment;
+	private HashMap<String, String> labelTypePayment;
 	
 	
 	@Autowired
@@ -99,6 +101,12 @@ public class OrderController {
 		idTypePayment.add("1"); // Mastercard
 		idTypePayment.add("2"); // Amex
 		
+		labelTypePayment = new HashMap<>();
+		labelTypePayment.put("0", "Visa");
+		labelTypePayment.put("1", "Master Card");
+		labelTypePayment.put("2", "American Express");
+		
+		
 		
 	}
 		
@@ -125,7 +133,24 @@ public class OrderController {
 		order.setTrackingNumber("ABC1234567489");
 		
 		order.setUser(userBus.getUserById(idOwnerOrder));
-		order.setTypePayment(TypePayment.MasterCard);
+		
+		TypePayment typePayment = null;
+		
+		switch (cardTypeChosen) {
+        case "0":
+            typePayment = TypePayment.Visa;
+            break;
+        case "1":
+            typePayment = TypePayment.MasterCard;
+            break;
+        case "2":
+            typePayment = TypePayment.AmericanExpress;
+            break;
+        default:
+            break;
+        }
+		
+		order.setTypePayment(typePayment);
 		
 		addressBillingChosen = addressBus.getAddressById(Integer.parseInt(addressBillingChosenId));
 		addressShippingChosen = addressBus.getAddressById(Integer.parseInt(addressShippingChosenId));
@@ -195,7 +220,10 @@ public class OrderController {
 		} else {
 			returnAddress = null;
 		}
-		return returnAddress;
+		
+		
+		return returnAddress;   
+//		return "order-validated?faces-redirect=true"; // by pass payement validation
 	}
 	
 	
@@ -230,6 +258,27 @@ public class OrderController {
 		
 		return result;
 		
+	}
+	
+	
+	public String demoFillFields() {
+	    String[] month = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+	    String[] card = {"4716653949676335","4916164152576186","4024007156307968","4532286725151165","4024007185853529","4024007118560977","4929147839867222","4916910893700091","4532378203387609","4539276159659679","4485216286589740","4532072977138294","4716398053510181","4024007157622886","4716751650805877","4485708588672521","4796881650675641","4485795803262402","4485410993604658","4496083796073681","4916837581323508","4532846756964396","4532844311543037","4929258699227140","4024007105842917","4985371269593733","4716969673119130","4485095267705230","4024007177947776","4024007120689319","4916528819162376","4916679465533624","4532426430025839","4532440018831831","4253895303760481","4024007162015464","4539461588904843","4556767923722098","4556596653836954","4024007116929174","4532120399549430","4532106711886295","4716771901300767","4756352081168646","4578470492263388","4024007125411990","4929972226293231","4532755538500032","4532578668636180","4024007150985801","4556229123369824","4716865200903568","4532432703982045","4024007144256962","4716728178186238","4556711300120161","4485257322300973","4485172424803065","4532656734312000","4716255069430673","4929406069517927","4539515636195405","4024007168438884","4916248777668666","4539355194735114","4916496989615211","4532346568181842","4916234299393488","4024007122406308","4539389615045753","4485530315136947","4532360250920482","4024007153539746","4449111138961079","4797729102900886","4716356578532056","4929620058286449","4024007113978513","4024007144074688","4916129837195496","4024007130307928","4556416922396005","4929310424112434","4916543501450484","4556028301990033","4556691083942637","4475791780946515","4916973491605419","4716860808477693","4929936346138196","4916889934292773","4916907748455558","4539895232471446","4024007165640359","4532869699958804","4817312582635482","4532136942681389","4556646196024079","4556245608209400","4929638289008291"};
+	    Random rand = new Random();
+	    cardNumber = card[rand.nextInt(100 - 1 + 1)];
+	    cardMonth = month[rand.nextInt((12 - 1 + 1))];
+	    cardYear = String.valueOf(rand.nextInt(16 - 10 +1) + 10);
+	    int cvvRand = rand.nextInt(999 - 1 +1) + 1;
+	    cardCVV = String.valueOf(cvvRand);
+	    if(cvvRand < 100) {
+	        if(cvvRand < 10){
+	            cardCVV = "00" + cardCVV;
+	        } else {
+	            cardCVV = "0" + cardCVV;
+	        }
+	    }
+	    cardTypeChosen = String.valueOf(rand.nextInt(3));
+	    return null;
 	}
 
 
@@ -534,6 +583,24 @@ public class OrderController {
      */
     public void setItemBus(ItemBusApi paramItemBus) {
         itemBus = paramItemBus;
+    }
+
+
+
+    /**
+     * @return the labelTypePayment
+     */
+    public HashMap<String, String> getLabelTypePayment() {
+        return labelTypePayment;
+    }
+
+
+
+    /**
+     * @param paramLabelTypePayment the labelTypePayment to set
+     */
+    public void setLabelTypePayment(HashMap<String, String> paramLabelTypePayment) {
+        labelTypePayment = paramLabelTypePayment;
     }
 	
 	

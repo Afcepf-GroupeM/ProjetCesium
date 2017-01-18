@@ -22,7 +22,9 @@ public interface OrderBusApi {
 	
 	int getNumberOfOrdersSince(Date date);
 	List<Order> getOrdersSince(Date date);
-	
+
+	List<Order> searchOrders(String paramInput, String paramSearchType);
+
 	boolean hasOrderedItem(int itemId, int userId);
 
 }

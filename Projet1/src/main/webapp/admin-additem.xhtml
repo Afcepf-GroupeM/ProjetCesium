@@ -1,0 +1,95 @@
+<!DOCTYPE    html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+	<title>.: Mix HighTech - Administration - Produits :.</title>
+	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
+</h:head>
+
+<h:body>
+<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
+<div id="wrapper">
+	<div id="header">
+		<h1>.: Mix HighTech - Administration - Produits :.</h1>
+	</div>
+	
+	
+	
+	
+	<div id="leftcolumn">
+	<div class="menuItem"><a href="administration.xhtml">Retour dashboard</a></div><br/>
+		<div class="menuItem"><a href="admin-users.xhtml">Gestion utilisateurs</a></div>
+		<div class="menuItem"><a href="admin-cats.xhtml">Gestion catégories</a></div>
+		<div class="menuItem"><a href="admin-items.xhtml">Gestion items</a></div>
+		<div class="menuItem"><a href="admin-orders.xhtml">Gestion commandes</a></div>
+		<div class="menuItem"><a href="admin-coupons.xhtml">Gestion promos</a></div>
+	</div> <!-- End leftcolumn -->
+	
+	
+	<div id="content">
+		<div class="adminAjouterItem">
+			<h2>Ajouter un nouveau item:</h2>
+			<div class="addItem">
+				<h:form>
+					<div>
+						<span id="nameItem" class="mandatory">*</span>
+						<h:outputLabel value="Nom:" />						
+						<h:inputText type="text" value="#{adminAddItemController.name}"/>
+					</div>
+					<div>
+						<span id="referenceItem" class="mandatory">*</span>
+						<h:outputLabel value="Référence:" />						
+						<h:inputText type="text" value="#{adminAddItemController.reference}"/>
+					</div>
+					<div>
+						<span id="metacategorieItem" class="mandatory">*</span>
+						<h:outputLabel value="Méta-Categorie:"/>						
+						<h:selectOneMenu value="#{adminAddItemController.metaCategorie}">
+							<f:selectItems value="#{adminAddItemController.listeMetaCatogorie}" />
+						</h:selectOneMenu>
+					</div>
+					<div>
+						<span id="categorieItem" class="mandatory">*</span>
+						<h:outputLabel value="Categorie:"/>						
+						<h:selectOneMenu value="#{adminAddItemController.categorie}">
+							<f:selectItems value="#{adminAddItemController.listeCatogorie}" />
+						</h:selectOneMenu>
+					</div>
+					<div>
+						<span id="priceItem" class="mandatory">*</span>
+						<h:outputLabel value="Prix:" />						
+						<h:inputText type="text" value="#{adminAddItemController.price}"/>
+						<h:selectOneMenu value="#{adminAddItemController.typeMoney}">
+							<f:selectItems value="#{adminAddItemController.listeMoney}" />
+						</h:selectOneMenu>
+					</div>
+					<div>
+						<span id="quantityItem" class="mandatory">*</span>
+						<h:outputLabel value="Quantité:" />						
+						<h:inputText type="text" value="#{adminAddItemController.quantity}"/>
+					</div>
+					<div>
+						<span id="imageItem" class="mandatory">*</span>
+						<h:outputLabel value="Choisir un Image:" />						
+						<h:inputText type="text" value="#{adminAddItemController.urlImage}"/>
+						<h:commandButton value="importer" action="#{adminAddItemController.importerUnImage}"></h:commandButton>
+						<img src="urlImage" class="img-responsive" alt=""/>						
+					</div>
+					<h:commandButton value="Ajouter" action="#{adminAddItemController.ajouterUnItem}"/>
+				</h:form>
+			</div>			
+		</div>		
+	</div> <!-- End content -->
+	
+	<div id="footer">
+		<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
+	</div>
+</div> <!-- End wrapper -->
+
+</h:body>
+</html>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.dao.api.CartDaoApi;
 import fr.afcepf.al29.groupem.entities.Cart;
+import fr.afcepf.al29.groupem.entities.Order;
 
 @Transactional
 @Component
@@ -38,4 +39,15 @@ public class CartDaoImpl implements CartDaoApi {
 	public Cart getCartByUserId(int userId) {
 		return entityManager.createQuery("SELECT MAX(c) FROM Cart c INNER JOIN c.user usr WHERE usr.id = :userId", Cart.class).setParameter("userId", userId).getSingleResult();
 	}
+	
+	@Override
+	public Cart getCartBySessionId(String sessionId) {
+	    Cart cart = null; 
+	    try {
+	      cart = entityManager.createQuery("SELECT c FROM Cart c WHERE c.sessionId = :sessionId", Cart.class).setParameter("sessionId", sessionId).getSingleResult(); 
+	    } catch (Exception e) {}
+	    return cart;
+	}
+	
 }
+

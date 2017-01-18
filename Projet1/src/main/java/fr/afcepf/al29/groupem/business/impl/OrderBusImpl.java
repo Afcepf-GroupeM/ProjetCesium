@@ -14,6 +14,7 @@ import fr.afcepf.al29.groupem.dao.api.OrderLineDaoApi;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
+import fr.afcepf.al29.groupem.entities.User;
 
 @Transactional
 @Component
@@ -82,6 +83,19 @@ public class OrderBusImpl implements OrderBusApi{
 		return orderDao.getOrdersSince(date);
 	}
 
+	//search By trackingNumber
+	@Override
+	public List<Order> searchOrders(String input, String searchType) {
+		
+		List<Order> listOrders = new ArrayList<>();	    
+        Order order = orderDao.getOrderByTrackingNumber(input);
+        if(order != null){
+                listOrders.add(order);
+            }
+           
+	    return listOrders;
+	}
+
 	@Override
 	public boolean hasOrderedItem(int itemId, int userId) {
 		boolean hasOrderedItem = false;
@@ -112,6 +126,8 @@ public class OrderBusImpl implements OrderBusApi{
 		return hasOrderedItem;
 	}
 	
-
-
 }
+	
+
+
+
