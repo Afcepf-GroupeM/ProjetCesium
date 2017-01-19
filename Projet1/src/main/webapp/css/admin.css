@@ -392,4 +392,19 @@ tr:hover.adminSearchResultTabRow {
 	color:#f24f00;
 }
 
+.adminCouponErrorMessage {
+	font-weight: bold;
+	color : red;
+	font-size: 12px;
+}
+
+.adminCouponTabTitle {
+	font-weight: bold;
+}
+
+.adminCouponCatSelector {
+	margin-bottom: 5px;
+	width: 150px;
+}
+
 }

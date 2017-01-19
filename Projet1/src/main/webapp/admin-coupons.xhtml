@@ -4,44 +4,120 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-	
+
 <h:head>
 	<title>.: Mix HighTech - Administration - Promos :.</title>
 	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans"
+		rel="stylesheet" />
 </h:head>
 
 <h:body>
-<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
-<div id="wrapper">
-	<div id="header">
-		<h1>.: Mix HighTech - Administration - Promos :.</h1>
+	<f:event listener="#{adminCouponController.initAdminCoupon}"
+		type="preRenderView" />
+	<div id="wrapper">
+		<div id="header">
+			<h1>.: Mix HighTech - Administration - Promos :.</h1>
+		</div>
+
+
+
+
+		<div id="leftcolumn">
+			<div class="menuItem">
+				<a href="administration.xhtml">Retour dashboard</a>
+			</div>
+			<br />
+			<div class="menuItem">
+				<a href="admin-users.xhtml">Gestion utilisateurs</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-cats.xhtml">Gestion catégories</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-items.xhtml">Gestion items</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-orders.xhtml">Gestion commandes</a>
+			</div>
+			<div class="menuItem">
+				<a href="admin-coupons.xhtml">Gestion promos</a>
+			</div>
+		</div>
+		<!-- End leftcolumn -->
+
+
+		<div id="content">
+			<div class="adminAddCoupon">
+				<h2>Ajouter un coupon:</h2>
+				<h:form>
+
+					<h:panelGrid columns="3" cellpadding="1" cellspacing="2">
+						
+						<h:outputLabel value="Méta-Catégorie" styleClass="adminCouponTabTitle"/>
+						<h:outputLabel value="Catégorie" styleClass="adminCouponTabTitle"/>
+						<h:outputLabel value=" "/>
+						
+						<h:selectOneMenu
+							value="#{adminCouponController.metaCategoryChosenId}"
+							styleClass="adminCouponCatSelector">
+							<f:selectItems
+								value="#{adminCouponController.listMetaCategories}" var="meta"
+								itemLabel="#{meta.name}" itemValue="#{meta.id}" />
+							<f:ajax listener="#{adminCouponController.ajaxChangeMeta}"
+								render="catSelector" />
+						</h:selectOneMenu>						
+						<h:selectOneMenu id="catSelector"
+							value="#{adminCouponController.categoryChosenId}"
+							styleClass="adminCouponCatSelector">
+							<f:selectItems value="#{adminCouponController.listCategories}"
+								var="cat" itemLabel="#{cat.name}" itemValue="#{cat.id}" />
+						</h:selectOneMenu>
+						<h:outputLabel value=" "/>
+						
+						<h:outputLabel value="Code du coupon: "/>
+						<h:inputText value="#{adminCouponController.codeCoupon}" />
+						<h:outputLabel value="#{adminCouponController.errorMessageCodeCoupon}" styleClass="adminCouponErrorMessage"/>
+						
+						<h:outputLabel value="Pourcentage de remise: "/>
+						<h:inputText value="#{adminCouponController.rebate}" />
+						<h:outputLabel value="#{adminCouponController.errorMessageRebate}" styleClass="adminCouponErrorMessage"/>
+						
+						<h:outputLabel value="Date de début (JJ/MM/AAAA): "/>
+						<h:inputText size="10" value="#{adminCouponController.startDateString}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageStartDate}"/>
+						
+						<h:outputLabel value="Date de fin (JJ/MM/AAAA): "/>
+						<h:inputText size="10" value="#{adminCouponController.endDateString}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageEndDate}"/>
+						
+						<h:outputLabel value="Description: "/>
+						<h:inputTextarea rows="3" value="#{adminCouponController.description}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageDescription}"/>
+						
+						
+						
+						<h:commandButton value="Créer le coupon" action="#{adminCouponController.createCoupon}"/>
+						<h:outputLabel value="#{adminCouponController.resultCreation}"/>
+			
+		
+					</h:panelGrid>
+
+				</h:form>
+			</div>
+
+
+
+
+
+		</div>
+		<!-- End content -->
+
+		<div id="footer">
+			<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
+		</div>
 	</div>
-	
-	
-	
-	
-	<div id="leftcolumn">
-	<div class="menuItem"><a href="administration.xhtml">Retour dashboard</a></div><br/>
-		<div class="menuItem"><a href="admin-users.xhtml">Gestion utilisateurs</a></div>
-		<div class="menuItem"><a href="admin-cats.xhtml">Gestion catégories</a></div>
-		<div class="menuItem"><a href="admin-items.xhtml">Gestion items</a></div>
-		<div class="menuItem"><a href="admin-orders.xhtml">Gestion commandes</a></div>
-		<div class="menuItem"><a href="admin-coupons.xhtml">Gestion promos</a></div>
-	</div> <!-- End leftcolumn -->
-	
-	
-	<div id="content">
-		
-		
-		
-		
-	</div> <!-- End content -->
-	
-	<div id="footer">
-		<span><h5>Administrateur loggué: _LOGIN_ADMIN_</h5></span>
-	</div>
-</div> <!-- End wrapper -->
+	<!-- End wrapper -->
 
 </h:body>
 </html>

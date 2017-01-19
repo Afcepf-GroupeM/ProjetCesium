@@ -76,6 +76,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 .order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
 .order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
 
+.error {
+	color: red;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -208,13 +212,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h:selectOneRadio value="#{orderController.addressShippingChosenId}" layout="pageDirection">						            
 						            <f:selectItems itemValue="#{address.id}" value="#{orderController.addresses}" var="address" itemLabel="#{address.name} - #{address.number}#{address.complement} #{address.roadType} #{address.roadName} - #{address.zipcode} #{address.city} #{address.country}" />					           
 						    </h:selectOneRadio>
+						    <h:outputText value="#{orderController.errorShippingAddress}" styleClass="error"/>
 					</div>
 					<br/><br/>
 					<div><h4>Adresse de facturation:</h4>
 					<br/>
 							<h:selectOneRadio value="#{orderController.addressBillingChosenId}" layout="pageDirection">						            
 						            <f:selectItems itemValue="#{addressbill.id}" value="#{orderController.billingAddresses}" var="addressbill" itemLabel="#{addressbill.name} - #{addressbill.number}#{addressbill.complement} #{addressbill.roadType} #{addressbill.roadName} - #{addressbill.zipcode} #{addressbill.city} #{addressbill.country}" />					           
-						    </h:selectOneRadio>					
+						    </h:selectOneRadio>
+						    <h:outputText value="#{orderController.errorBillingAddress}" styleClass="error"/>			
 					</div>
 
 				</div>

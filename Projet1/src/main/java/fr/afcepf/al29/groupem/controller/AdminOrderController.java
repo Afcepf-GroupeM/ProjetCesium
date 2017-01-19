@@ -9,15 +9,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
-import org.apache.commons.validator.routines.EmailValidator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
-import fr.afcepf.al29.groupem.business.api.UserBusApi;
+
 import fr.afcepf.al29.groupem.entities.Order;
-import fr.afcepf.al29.groupem.entities.OrderState;
-import fr.afcepf.al29.groupem.entities.User;
+
 
 @ManagedBean
 @Component
@@ -41,8 +40,7 @@ public class AdminOrderController {
 	    private HashMap<Integer, List<Order>> pagesOfSearchResults = new HashMap<>();
 	    private List<Integer> numberOfPagesOfResults;
 	    
-	    private OrderState orderstate;
-	    private OrderState [] listeOrderState;
+	   private List<Order> orders;
 	    
 	    @Autowired
 	    private OrderBusApi orderBus;
@@ -50,7 +48,15 @@ public class AdminOrderController {
 	    
 	    public void initAdminOrder(ComponentSystemEvent c) {
 	    	
-	    	listeOrderState = OrderState.class.getEnumConstants();
+	    	orders = new ArrayList<>();
+	    	orders = orderBus.getAll();
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	//listeOrderState = OrderState.class.getEnumConstants();
 	    	
 //	        searchTypeArray = new ArrayList<>();
 //	        searchTypeArray.add("1");
@@ -59,11 +65,10 @@ public class AdminOrderController {
 //	        searchTypeMap.put("1", "Numero");
 //	        searchTypeMap.put("2", "Etat");
 //	        
-	        
-	        
-	        
-	    
+	          
 	    }
+	    
+	    
 	    
 	  //search By trackingNumber
 	    public String searchOrders() {
@@ -225,21 +230,19 @@ public class AdminOrderController {
 			this.orderBus = orderBus;
 		}
 
-		public OrderState getOrderstate() {
-			return orderstate;
+
+
+		public List<Order> getOrders() {
+			return orders;
 		}
 
-		public void setOrderstate(OrderState orderstate) {
-			this.orderstate = orderstate;
+
+
+		public void setOrders(List<Order> orders) {
+			this.orders = orders;
 		}
 
-		public OrderState[] getListeOrderState() {
-			return listeOrderState;
-		}
-
-		public void setListeOrderState(OrderState[] listeOrderState) {
-			this.listeOrderState = listeOrderState;
-		}
+		
 	    
 	    
 	    
