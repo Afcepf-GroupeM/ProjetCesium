@@ -3,6 +3,8 @@ package fr.afcepf.al29.groupem.controller;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -26,6 +28,12 @@ public class AdminAddItemController {
 	private int quantity;
 	private String urlImage;
 	private String message;
+	
+	public void init(ComponentSystemEvent e){
+		int idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		System.out.println("****************************idUser = "+idUser);
+	}
+	
 	public String getName() {
 		return name;
 	}

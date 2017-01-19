@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class AdminItemsController {
 	private int idUser;
 	public String ajouterUnItem(){
-		return "/admin_addItem.jsf?faces-redirect = true";
+		return "/admin-additem.jsf?faces-redirect = true";
 	} 
 	
 	public void init(ComponentSystemEvent e){

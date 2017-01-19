@@ -12,7 +12,7 @@
 </h:head>
 
 <h:body>
-<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
+<f:event listener="#{adminAddItemController.init}" type="preRenderView" />
 <div id="wrapper">
 	<div id="header">
 		<h1>.: Mix HighTech - Administration - Produits :.</h1>
@@ -57,7 +57,7 @@
 						<span id="categorieItem" class="mandatory">*</span>
 						<h:outputLabel value="Categorie:"/>						
 						<h:selectOneMenu value="#{adminAddItemController.categorie}">
-							<f:selectItems value="#{adminAddItemController.listeCatogorie}" />
+							<f:selectItems value="#{adminAddItemController.listeCategorie}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
