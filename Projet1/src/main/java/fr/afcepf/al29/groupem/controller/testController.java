@@ -32,6 +32,7 @@ public class testController {
         FacesContext fContext = FacesContext.getCurrentInstance();
         ExternalContext extContext = fContext.getExternalContext();
         HttpSession session = (HttpSession) extContext.getSession(false); //false return null if session doesn't exists
+        sessionUuid = session.getId();
         
         userId = String.valueOf(extContext.getSessionMap().get("userid"));
         sessionUuid = session.getId();

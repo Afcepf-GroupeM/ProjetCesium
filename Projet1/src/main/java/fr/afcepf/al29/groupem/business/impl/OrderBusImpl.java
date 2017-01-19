@@ -83,22 +83,16 @@ public class OrderBusImpl implements OrderBusApi{
 		return orderDao.getOrdersSince(date);
 	}
 
+	//search By trackingNumber
 	@Override
 	public List<Order> searchOrders(String input, String searchType) {
 		
 		List<Order> listOrders = new ArrayList<>();	    
-	    switch (searchType) {
-        case "1": //search By trackingNumber
-            Order order = orderDao.getOrderByTrackingNumber(input);
-            if(order != null){
+        Order order = orderDao.getOrderByTrackingNumber(input);
+        if(order != null){
                 listOrders.add(order);
             }
-            break;
-        case "2": //search By state
-        	listOrders = orderDao.getOrderByState(input);
-            break;
-       
-	    }
+           
 	    return listOrders;
 	}
 	}

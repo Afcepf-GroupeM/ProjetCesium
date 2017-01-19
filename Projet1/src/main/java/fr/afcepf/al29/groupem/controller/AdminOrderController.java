@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Order;
+import fr.afcepf.al29.groupem.entities.OrderState;
 import fr.afcepf.al29.groupem.entities.User;
 
 @ManagedBean
@@ -40,29 +41,34 @@ public class AdminOrderController {
 	    private HashMap<Integer, List<Order>> pagesOfSearchResults = new HashMap<>();
 	    private List<Integer> numberOfPagesOfResults;
 	    
+	    private OrderState orderstate;
+	    private OrderState [] listeOrderState;
+	    
 	    @Autowired
 	    private OrderBusApi orderBus;
 	    
 	    
 	    public void initAdminOrder(ComponentSystemEvent c) {
-	        searchTypeArray = new ArrayList<>();
-	        searchTypeArray.add("1");
-	        searchTypeArray.add("2");
-	        searchTypeMap = new HashMap<>();
-	        searchTypeMap.put("1", "Numero");
-	        searchTypeMap.put("2", "Etat");
-	        
+	    	
+	    	listeOrderState = OrderState.class.getEnumConstants();
+	    	
+//	        searchTypeArray = new ArrayList<>();
+//	        searchTypeArray.add("1");
+//	        searchTypeArray.add("2");
+//	        searchTypeMap = new HashMap<>();
+//	        searchTypeMap.put("1", "Numero");
+//	        searchTypeMap.put("2", "Etat");
+//	        
 	        
 	        
 	        
 	    
 	    }
 	    
+	  //search By trackingNumber
 	    public String searchOrders() {
 	        firstSearchDone = true;
 	        boolean isInputValid = false;
-	        switch (searchType) {
-	        case "1": //search By trackingNumber
 	            try { 
 	                String searchInput;
 	                isInputValid = true;
@@ -73,15 +79,6 @@ public class AdminOrderController {
 	                messageErrorSearch = "Numéro de commande invalide.";
 	                adminSearchMessageErrorClass = "adminSearchErrorMessage";
 	            }           
-	            break;
-	        case "2": //search By state
-	        	isInputValid = !searchInput.isEmpty();
-	            messageErrorSearch = "Champ vide.";
-	            adminSearchMessageErrorClass = "adminSearchErrorMessage";
-	            break;
-	        default:
-	            break;
-	        }       
 	        if(isInputValid){
 	            messageErrorSearch = "";
 	            searchResult = orderBus.searchOrders(searchInput, searchType);
@@ -226,6 +223,22 @@ public class AdminOrderController {
 
 		public void setOrderBus(OrderBusApi orderBus) {
 			this.orderBus = orderBus;
+		}
+
+		public OrderState getOrderstate() {
+			return orderstate;
+		}
+
+		public void setOrderstate(OrderState orderstate) {
+			this.orderstate = orderstate;
+		}
+
+		public OrderState[] getListeOrderState() {
+			return listeOrderState;
+		}
+
+		public void setListeOrderState(OrderState[] listeOrderState) {
+			this.listeOrderState = listeOrderState;
 		}
 	    
 	    

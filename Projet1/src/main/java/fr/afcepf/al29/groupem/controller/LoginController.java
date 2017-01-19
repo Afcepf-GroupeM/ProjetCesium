@@ -30,7 +30,6 @@ public class LoginController implements Serializable{
 	private String errorMessage ="";
 	private User userLogged;	
 	private boolean islogged = false;
-	private String uuid;
 	
 	
 	
@@ -120,21 +119,6 @@ public class LoginController implements Serializable{
 		this.islogged = islogged;
 	}
 
-
-    /**
-     * @return the uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-
-    /**
-     * @param paramUuid the uuid to set
-     */
-    public void setUuid(String paramUuid) {
-        uuid = paramUuid;
-    }
 
 
     /**

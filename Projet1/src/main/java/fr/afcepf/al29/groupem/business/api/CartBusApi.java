@@ -15,4 +15,5 @@ public interface CartBusApi {
 	CartLine createCartLine(int cartId, int itemId, int quantity);
 	boolean destroyCartLine(CartLine cartLine);
 	CartLine updateCartLine(CartLine cartLine);
+    Cart getCartBySessionId(String paramSessionId);
 }
