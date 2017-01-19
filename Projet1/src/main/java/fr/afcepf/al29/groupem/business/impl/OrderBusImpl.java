@@ -99,28 +99,18 @@ public class OrderBusImpl implements OrderBusApi{
 	@Override
 	public boolean hasOrderedItem(int itemId, int userId) {
 		boolean hasOrderedItem = false;
-		/*List<Order> userOrders;
-		List<OrderLine> orderLines;
-		List<Integer> ordersId = new ArrayList<Integer>();
+		List<Integer> orderIdsByUser;
+		List<Integer> orderIdsInOrderLinesByItemId;
 		
-		userOrders = orderDao.getOrderByUserId(userId);		
-		orderLines = orderLineDao.getOrderLinesByItemId(itemId);
+		orderIdsByUser = orderDao.getOrderIdsByUserId(userId);		
+		orderIdsInOrderLinesByItemId = orderLineDao.getOrderIdsInOrderLinesByItemId(itemId);
 		
-		for (Order o : userOrders){
-			ordersId.add(o.getId());
-		}
-		
-		for (OrderLine ol : orderLines){
-			hasOrderedItem = ordersId.contains(ol.getOrder().getId());
+		for (Integer orderId : orderIdsInOrderLinesByItemId){
+			hasOrderedItem = orderIdsByUser.contains(orderId);
 			
 			if (hasOrderedItem){
 				break;
 			}
-		}*/
-		Integer idItemOrdered = orderDao.hasOrderedItem(itemId, userId);
-		System.out.println("@@@@@@@@@@@@ idItemOrdered = " + idItemOrdered);
-		if (idItemOrdered != 0){
-			hasOrderedItem = true;
 		}
 		
 		return hasOrderedItem;

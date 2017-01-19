@@ -311,15 +311,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</h:column>
 			<h:column>
 				<f:facet name="header">Mise à jour</f:facet>
-				<h:button class="btnAddress" outcome="updateAddress" value="Mettre à jour">
-					<f:param name="addressId" value="#{adr.id}"/>
-				</h:button>
+				<h:form>
+					<h:commandButton class="btnAddress" action="#{addressManagerController.updateAddress}" value="Mettre à jour">
+						<f:param name="addressId" value="#{adr.id}"/>
+					</h:commandButton>
+				</h:form>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Effacer</f:facet>
-				<h:button class="btnAddress" outcome="myaccount" value="Effacer">
-					<f:param name="addressId" value="#{adr.id}"/>
-				</h:button>	
+				<h:form>
+					<h:commandButton class="btnAddress" action="#{addressManagerController.deleteAddress}" value="Effacer">
+						<f:param name="addressId" value="#{adr.id}"/>
+					</h:commandButton>
+				</h:form>	
 			</h:column> 	
 		</h:dataTable>
 		<br />

@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<title>.: GroupeM EC - Rédaction d'un commentaire :.</title>
+<title><h:outputText value=".: GroupeM EC - #{reviewController.stringActionReview} d'un commentaire :." /></title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -188,7 +188,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			<div class="container">
 				<div class="account">
-					<h2 class="account-in">Poster un nouveau commentaire pour: <h:outputText value="#{reviewController.item.name}"/></h2>			
+					<h2 class="account-in">
+						<h:outputText value="#{reviewController.stringActionReview} d'un commentaire pour: #{reviewController.item.name}" />
+					</h2>			
 						<h:form>
 							<div>
 								<h:outputLabel>Evaluation: </h:outputLabel>
@@ -201,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="message"><h:outputLabel value="#{reviewController.errorMessage}"/></span>
 							<br/>		
 							<br/>	
-							<h:commandButton value="Poster" action="#{reviewController.createReview}"/>	
+							<h:commandButton value="Poster" action="#{reviewController.actionReview}"/>	
 						</h:form>	
 				</div>
 			</div>

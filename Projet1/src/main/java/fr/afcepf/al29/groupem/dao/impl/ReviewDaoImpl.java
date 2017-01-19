@@ -26,7 +26,7 @@ public class ReviewDaoImpl implements ReviewDaoApi{
 
 	@Override
 	public List<Review> getLastFiveReviewsByItemId(int itemId) {
-		return entityManager.createQuery("SELECT r from Review r INNER JOIN r.item i WHERE i.id = :itemId ORDER BY r.creationDate DESC LIMIT 5", Review.class).setParameter("itemId", itemId).getResultList();
+		return entityManager.createQuery("SELECT r from Review r INNER JOIN r.item i WHERE i.id = :itemId ORDER BY r.creationDate DESC, r.id DESC", Review.class).setParameter("itemId", itemId).setMaxResults(5).getResultList();
 	}
 
 	@Override

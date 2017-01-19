@@ -2,7 +2,6 @@ package fr.afcepf.al29.groupem.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.afcepf.al29.groupem.dao.api.OrderDaoApi;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderState;
-import fr.afcepf.al29.groupem.entities.User;
 
 
 @Transactional
@@ -58,6 +56,12 @@ public class OrderDaoImpl implements OrderDaoApi{
 								 .getResultList();
 		return listOrders;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getOrderIdsByUserId(int userId) {
+		return entityManager.createQuery("SELECT ord.id FROM Order ord WHERE ord.user.id = :userid").setParameter("userid", userId).getResultList();
+	}
 
 	@Override
 	public List<Order> getOrdersByState(OrderState state) {
@@ -92,11 +96,6 @@ public class OrderDaoImpl implements OrderDaoApi{
 				 .setParameter("state",state)
 				 .getResultList();
 		return listOrders;
-	}
-	
-	@Override
-	public Integer hasOrderedItem(int itemId, int userId) {
-		return entityManager.createQuery("SELECT olA.id FROM OrderLine olA INNER JOIN olA.order o INNER JOIN o.user usr, OrderLine olB INNER JOIN olB.item it WHERE it.id = :itemId AND usr.id = :userId").setParameter("itemId", itemId).setParameter("userId", userId).getFirstResult();
 	}
 
 }

@@ -15,6 +15,8 @@ public interface OrderDaoApi {
 	
 	List<Order> getOrderByUserId(int userId);
 	
+	List<Integer> getOrderIdsByUserId(int userId);
+	
 	List<Order> getOrdersByState(OrderState state);
 	
 	List<Order> getOrdersSince(Date date);
@@ -22,7 +24,5 @@ public interface OrderDaoApi {
 	Order getOrderByTrackingNumber(String trackingNumber);
 
 	List<Order> getOrderByState(String state);
-	
-	Integer hasOrderedItem(int itemId, int userId);
 
 }
