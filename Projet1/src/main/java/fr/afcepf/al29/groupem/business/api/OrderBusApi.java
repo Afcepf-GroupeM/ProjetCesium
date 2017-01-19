@@ -25,5 +25,7 @@ public interface OrderBusApi {
 	List<Order> getOrdersSince(Date date);
 	
 	List<Order> searchOrders(String paramInput, String paramSearchType);
+	
+	List<Order>getAll();
 
 }

@@ -95,6 +95,19 @@ public class OrderBusImpl implements OrderBusApi{
            
 	    return listOrders;
 	}
+
+	@Override
+	public List<Order> getAll() {
+		List<Order> retour = null;
+		try{
+			retour = orderDao.getAll();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			System.out.println("la liste de commandes est vide");
+		}
+		return retour;
+	}
 	}
 	
 
