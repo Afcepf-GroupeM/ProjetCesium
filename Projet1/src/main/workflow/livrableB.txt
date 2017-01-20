@@ -1,0 +1,26 @@
+Service Web 1 - Banque [REST]
+	- numero carte
+	- date validité
+	- cryptogramme
+	- nom (et prenom?)
+	- montant
+	
+	-> Paiement decliné
+	-> Paiement accepté
+	
+	
+	
+Service Web 2 - Logistique [REST]
+
+	#validation-transport-commande
+		- option livraison (normale/rapide...)
+		- adresse de livraison
+		- nombre d'articles
+		
+		-> numero tracking
+	
+	
+	#suivi-transport
+		- numero de tracking
+		
+		-> renvoie les informations de transport

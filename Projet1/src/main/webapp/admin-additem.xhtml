@@ -49,24 +49,21 @@
 					<div>
 						<span id="metacategorieItem" class="mandatory">*</span>
 						<h:outputLabel value="Méta-Categorie:"/>						
-						<h:selectOneMenu value="#{adminAddItemController.metaCategorie}">
-							<f:selectItems value="#{adminAddItemController.listeMetaCatogorie}" />
+						<h:selectOneMenu value="#{adminAddItemController.metaCategory}">
+							<f:selectItems value="#{adminAddItemController.listeMetaCategory}" var="metacat" itemLabel="#{metacat.name}" itemValue="#{metacat}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
 						<span id="categorieItem" class="mandatory">*</span>
 						<h:outputLabel value="Categorie:"/>						
-						<h:selectOneMenu value="#{adminAddItemController.categorie}">
-							<f:selectItems value="#{adminAddItemController.listeCategorie}" />
+						<h:selectOneMenu value="#{adminAddItemController.category}">
+							<f:selectItems value="#{adminAddItemController.listeCategory}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
 						<span id="priceItem" class="mandatory">*</span>
 						<h:outputLabel value="Prix:" />						
-						<h:inputText type="text" value="#{adminAddItemController.price}"/>
-						<h:selectOneMenu value="#{adminAddItemController.typeMoney}">
-							<f:selectItems value="#{adminAddItemController.listeMoney}" />
-						</h:selectOneMenu>
+						<h:inputText type="text" value="#{adminAddItemController.price}"/>						
 					</div>
 					<div>
 						<span id="quantityItem" class="mandatory">*</span>
