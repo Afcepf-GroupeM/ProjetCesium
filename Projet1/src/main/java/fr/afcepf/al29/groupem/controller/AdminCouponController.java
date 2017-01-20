@@ -1,5 +1,8 @@
 package fr.afcepf.al29.groupem.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -77,6 +80,7 @@ public class AdminCouponController {
     
     
     public String createCoupon() {
+        resultCreation = "";
         RegexValidator couponValidator = new RegexValidator("([0-9A-Za-z])\\w+" , true);
         RegexValidator rebateValidator = new RegexValidator("(100)|([1-9]?[0-9])", false);
         isCouponCodeValid = couponValidator.isValid(codeCoupon);
@@ -98,17 +102,63 @@ public class AdminCouponController {
             errorMessageRebate = "";
         }
         
-        if(description.isEmpty()){
+        boolean isDescriptionEmpty = description.isEmpty();
+        
+        if(isDescriptionEmpty){
             errorMessageDescription = "La description est vide.";
         } else {
             errorMessageDescription = "";
         }
         
-        RegexValidator dateRegexValidator = new RegexValidator("REGEX DATE JJ/MM/AAAA",false);
+        RegexValidator dateRegexValidator = new RegexValidator("([0-3][0-9])[/]([0-1][0-9])[/]([0-9]{4})",false);
         DateValidator dateValidator = DateValidator.getInstance();
+        
+        boolean isStartDateInputValid = dateRegexValidator.isValid(startDateString);
         boolean isStartDateValid = dateValidator.isValid(startDateString, "dd/MM/yyy");
+        if(!isStartDateInputValid){
+            errorMessageStartDate = "Format de date invalide.";
+        } else {
+            if(!isStartDateValid){
+                errorMessageStartDate = "Date invalide (cette date n'existe pas).";
+            } else {
+                errorMessageStartDate = "";
+            }              
+        }
         
-        
+        boolean isEndDateInputValid = dateRegexValidator.isValid(endDateString);
+        boolean isEndDateValid = dateValidator.isValid(endDateString, "dd/MM/yyy");
+        if(!isEndDateInputValid){
+            errorMessageEndDate = "Format de date invalide.";
+        } else {
+            if(!isEndDateValid){
+                errorMessageEndDate = "Date invalide (cette date n'existe pas).";
+            } else {
+                errorMessageEndDate = "";
+            }              
+        }
+
+        if(isEndDateValid && !isDescriptionEmpty && isStartDateValid && isRebateValid && isCouponCodeValid){
+            Coupon coupon = new Coupon();
+            coupon.setCategory(catBus.getCategoryById(Integer.parseInt(categoryChosenId)));
+            coupon.setCode(codeCoupon);
+            coupon.setRebate(Float.parseFloat(rebate));
+            DateFormat dateFormater = new SimpleDateFormat("dd/MM/yyy");         
+            try {
+                startDate = dateFormater.parse(startDateString);
+                endDate = dateFormater.parse(endDateString);
+            } catch (ParseException e) {
+                System.out.println("ERREUR - Parsing start/end Date in AdminCouponController - createCoupon()" + e.getMessage());
+            }
+            coupon.setStartDate(startDate);
+            coupon.setEndDate(endDate);
+            coupon.setDescription(description);
+            coupon.setImagePath("url_image");
+            
+            coupon = couponBus.createCoupon(coupon);
+            resultCreation = "Coupon \" " + codeCoupon +" \" créé. Id: " + coupon.getId() + ".";
+            
+            
+        }        
         return null;
     }
     

@@ -398,6 +398,12 @@ tr:hover.adminSearchResultTabRow {
 	font-size: 12px;
 }
 
+.adminCouponResultMessage {
+	font-weight: bold;
+	color : green;
+	font-size: 12px;
+}
+
 .adminCouponTabTitle {
 	font-weight: bold;
 }

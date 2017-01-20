@@ -85,25 +85,30 @@
 						
 						<h:outputLabel value="Date de début (JJ/MM/AAAA): "/>
 						<h:inputText size="10" value="#{adminCouponController.startDateString}"/>
-						<h:outputLabel value="#{adminCouponController.errorMessageStartDate}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageStartDate}" styleClass="adminCouponErrorMessage"/>
 						
 						<h:outputLabel value="Date de fin (JJ/MM/AAAA): "/>
 						<h:inputText size="10" value="#{adminCouponController.endDateString}"/>
-						<h:outputLabel value="#{adminCouponController.errorMessageEndDate}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageEndDate}" styleClass="adminCouponErrorMessage"/>
 						
 						<h:outputLabel value="Description: "/>
 						<h:inputTextarea rows="3" value="#{adminCouponController.description}"/>
-						<h:outputLabel value="#{adminCouponController.errorMessageDescription}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageDescription}" styleClass="adminCouponErrorMessage"/>
 						
 						
 						
 						<h:commandButton value="Créer le coupon" action="#{adminCouponController.createCoupon}"/>
-						<h:outputLabel value="#{adminCouponController.resultCreation}"/>
+						<h:outputLabel value="#{adminCouponController.resultCreation}" styleClass="adminCouponResultMessage"/>
 			
 		
 					</h:panelGrid>
 
 				</h:form>
+			</div>
+			<hr />
+			
+			<div class="adminSearchCoupon">
+				<h2>Rechercher un coupon:</h2>
 			</div>
 
 
