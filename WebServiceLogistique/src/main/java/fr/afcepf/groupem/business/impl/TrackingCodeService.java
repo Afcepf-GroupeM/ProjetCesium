@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.groupem.business.api.ITrackingCodeService;
-import fr.afcepf.groupem.dao.api.ILivraisonDao;
 import fr.afcepf.groupem.dao.api.ITransporteurDao;
 import fr.afcepf.groupem.entities.Transporteur;
 
@@ -15,9 +14,6 @@ import fr.afcepf.groupem.entities.Transporteur;
 @Transactional
 public class TrackingCodeService implements ITrackingCodeService {
 	
-	
-	@Autowired
-	ILivraisonDao livraisonDao;
 	
 	@Autowired
 	ITransporteurDao transporteurDao;
@@ -40,9 +36,5 @@ public class TrackingCodeService implements ITrackingCodeService {
 		return trackingCodeGenerated;
 	}
 
-	@Override
-	public Transporteur getTransporteurByTrackingCode(String trackingCode) {
-		return transporteurDao.getTransporteurByTrackingCode(trackingCode);
-	}
 
 }

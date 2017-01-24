@@ -1,16 +1,18 @@
-package fr.afcepf.groupem.dao.api;
+package fr.afcepf.groupem.business.api;
+
 
 import java.util.List;
 
 import fr.afcepf.groupem.entities.Statut;
 import fr.afcepf.groupem.entities.StatutLine;
 
-public interface IStatutDao {
+public interface IStatutBus {
+	
 	
 	Statut getStatutByLivraisonId(int idLivraison);
 	List<StatutLine> getStatutLinesByStatutId(int idStatut);
 	Statut createStatut(Statut statut);
-	StatutLine createStatutLine(StatutLine statutLine);
+	Statut addStatutLine(Statut statut, StatutLine statutLine);
 	
 	
 
