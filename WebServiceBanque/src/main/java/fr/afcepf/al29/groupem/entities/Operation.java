@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Operation {
-
     
     private Integer id;
 
@@ -48,8 +47,5 @@ public class Operation {
 	public void setDateOp(Date dateOp) {
 		this.dateOp = dateOp;
 	}
-
-    
-
 
 }
