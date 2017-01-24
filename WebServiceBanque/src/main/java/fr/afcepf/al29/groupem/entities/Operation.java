@@ -1,25 +1,25 @@
 package fr.afcepf.al29.groupem.entities;
 
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 
 public class Operation {
 
-   
+
     public Operation() {
     }
 
-   
     private Integer id;
 
-  
+
     private String label;
 
-   
+
     private BigDecimal amount;
 
-    
+
     private Date dateOp;
 
 
