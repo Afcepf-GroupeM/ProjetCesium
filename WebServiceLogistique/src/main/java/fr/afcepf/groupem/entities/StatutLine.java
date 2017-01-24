@@ -29,6 +29,20 @@ public class StatutLine {
 	public void setDetailsUpdate(String detailsUpdate) {
 		this.detailsUpdate = detailsUpdate;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getIdstatut() {
+		return idstatut;
+	}
+	public void setIdstatut(int idstatut) {
+		this.idstatut = idstatut;
+	}
+	
+	
 	
 	
 
