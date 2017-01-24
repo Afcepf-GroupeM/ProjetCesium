@@ -4,23 +4,33 @@ package fr.afcepf.al29.groupem.entities;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="account")
 public class Account {
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-
-    private String typeCompte;
 
     private String description;
 
     private BigDecimal balance;
-
+    @Column
+	@Enumerated(EnumType.STRING)
     private Enum typeCarte;
   
-    private Integer numberCarte;
+    private String numberCard;
 
-    private Integer crytogram;
+    private String crytogram;
 
-    private static BigDecimal MONTANT_OPDEBITER;
+    private static BigDecimal MONTANT_OPDEBIT;
 
     private Date dateExpiredCarte;
 
@@ -47,15 +57,7 @@ public class Account {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getTypeCompte() {
-		return typeCompte;
-	}
-
-	public void setTypeCompte(String typeCompte) {
-		this.typeCompte = typeCompte;
-	}
+	}	
 
 	public String getDescription() {
 		return description;
@@ -71,30 +73,30 @@ public class Account {
 
 	public void setTypeCarte(Enum typeCarte) {
 		this.typeCarte = typeCarte;
+	}	
+
+	public String getNumberCard() {
+		return numberCard;
 	}
 
-	public Integer getNumberCarte() {
-		return numberCarte;
+	public void setNumberCard(String numberCard) {
+		this.numberCard = numberCard;
 	}
 
-	public void setNumberCarte(Integer numberCarte) {
-		this.numberCarte = numberCarte;
-	}
-
-	public Integer getCrytogram() {
+	public String getCrytogram() {
 		return crytogram;
 	}
 
-	public void setCrytogram(Integer crytogram) {
+	public void setCrytogram(String crytogram) {
 		this.crytogram = crytogram;
+	}	
+
+	public static BigDecimal getMONTANT_OPDEBIT() {
+		return MONTANT_OPDEBIT;
 	}
 
-	public static BigDecimal getMONTANT_OPDEBITER() {
-		return MONTANT_OPDEBITER;
-	}
-
-	public static void setMONTANT_OPDEBITER(BigDecimal mONTANT_OPDEBITER) {
-		MONTANT_OPDEBITER = mONTANT_OPDEBITER;
+	public static void setMONTANT_OPDEBIT(BigDecimal mONTANT_OPDEBIT) {
+		MONTANT_OPDEBIT = mONTANT_OPDEBIT;
 	}
 
 	public Date getDateExpiredCarte() {
