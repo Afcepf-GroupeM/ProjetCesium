@@ -2,10 +2,19 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="customer")
 public class Customer {
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-
+	@Column
     private Enum civilite;
   
     private String lastName;
@@ -17,11 +26,8 @@ public class Customer {
     private String email;
 
     private String telephone;
-
-  
-    private Integer noStreet;
-
-    private String street;
+    
+    private String address;
 
     private String city;
 
@@ -85,21 +91,13 @@ public class Customer {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-
-	public Integer getNoStreet() {
-		return noStreet;
+	
+	public String getAddress() {
+		return address;
 	}
 
-	public void setNoStreet(Integer noStreet) {
-		this.noStreet = noStreet;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getCity() {
