@@ -5,4 +5,5 @@ public enum TypePayment {
 	CarteBleue,MasterCard,Visa,AmericanExpress;
 	
 	
+	
 }
