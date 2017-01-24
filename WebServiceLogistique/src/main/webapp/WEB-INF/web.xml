@@ -28,7 +28,7 @@
 
 	<servlet-mapping>
 		<servlet-name>CXFServlet</servlet-name>
-		<url-pattern>/WS/*</url-pattern> <!-- ou autre que services/* --> <!-- URL WS en "http://localhost:8080/myWebApp/services/..." -->
+		<url-pattern>/*</url-pattern> <!-- ou autre que services/* --> <!-- URL WS en "http://localhost:8080/myWebApp/services/..." -->
 	</servlet-mapping>
 
 </web-app>

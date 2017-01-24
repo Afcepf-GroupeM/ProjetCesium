@@ -13,10 +13,7 @@ import fr.afcepf.groupem.entities.Transporteur;
 @Component
 @Transactional
 public class TrackingCodeService implements ITrackingCodeService {
-	
-	
-	@Autowired
-	ITransporteurDao transporteurDao;
+
 	
 
 	@Override
