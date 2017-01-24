@@ -184,6 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="white">
 										<h:link value="Voir détail" outcome="article" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">
 											<f:param name="itemId"  value="#{item.id}" />
+											<f:param name="isLogged" value="#{loginController.islogged}"/>
 										</h:link>
 										<p class="dollar"><span>€</span>#{item.price}</p>
 										<div class="clearfix"></div>

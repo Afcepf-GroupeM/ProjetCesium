@@ -9,8 +9,6 @@
 
 Guillaume:
 ----------
-
-
 - login admin (Pause pour le moment pour travailler facilement sur l'administration)
 
 

@@ -12,7 +12,7 @@
 </h:head>
 
 <h:body>
-<f:event listener="#{administrationController.initAdmin}" type="preRenderView" />
+<f:event listener="#{adminItemsController.init}" type="preRenderView" />
 <div id="wrapper">
 	<div id="header">
 		<h1>.: Mix HighTech - Administration - Produits :.</h1>
@@ -39,75 +39,8 @@
 					<h:commandButton value="Ajouter un nouveau item" action="#{adminItemsController.ajouterUnItem}"/>
 				</h:form>
 			</div>
-	<!--	
-			<h2>Modifier un item:</h2>
-			<div  class="modifierAjouterItem">				
-				<h:form>
-					<h:panelGrid columns="3" cellpadding="10">						
-						<h:selectOneMenu value="#{adminItemsController.searchType}">
-							<f:selectItems var="st" value="#{adminItemsController.searchTypeArray}"
-										   itemValue="#{st}"
-										   itemLabel="#{adminItemsController.searchTypeMap[st]}"/>
-						</h:selectOneMenu>
-						<h:inputText value="#{adminItemsController.searchItemInput}"/>
-						<h:commandButton value="Rechercher article" action="#{adminItemsController.searchItems}"/>
-					</h:panelGrid>
-					</h:form>
-			</div>
-			<div class="adminSearchItemResult">
-				<div class="#{adminItemsController.adminSearchMessageErrorClass}">
-					<h:outputText value="#{adminItemsController.messageErrorSearchItem}" 
-								  rendered="#{adminItemsController.firstSearchDone}"
-								  styleClass="#{adminItemsController.adminSearchMessageErrorClass}"/>		  
-				</div>	
-				<h:dataTable value="#{adminItemsController.pagesOfSearchResults[adminItemsController.pageToPrint]}"
-							var="item" headerClass=""
-							styleClass="adminSearchResultTab"
-							rowClasses="adminSearchResultTabRow"
-							rendered="#{not empty adminItemsController.searchResult}">
-						<h:column>
-							<f:facet name="header">Ref.</f:facet>
-							<h:outputText value="#{item.reference}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Nom</f:facet>
-							<h:outputText value="#{item.name}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Article</f:facet>
-							<h:outputText value="#{item.lastName}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Montant</f:facet>
-							<h:outputText value="#{item.price}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Stock</f:facet>
-							<h:outputText value="#{item.stock}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Categorie</f:facet>
-							<h:outputText value="#{item.categorie}" />
-						</h:column>
-				</h:dataTable>
-				<div class="adminUserPageNumTitle">
-					<h:outputText value="Page #{adminItemsController.pageToPrint}" 
-								  rendered="#{adminItemsController.pageToPrint ne 0 and empty adminItemsController.messageErrorSearch}"
-								  />
-				</div>		
-			</div>
-	  -->
-			<div class="adminItemChangePageMenu">
-					<h:form>
-						<ui:repeat value="#{adminItemsController.numberOfPagesOfResults}" var="page" >
-							<h:commandLink value="#{page}" action="#{adminItemsController.changePage}" 
-										   rendered="#{empty adminItemsController.messageErrorSearch}">
-								<f:param name="pageNumber" value="#{page}" />
-							</h:commandLink>
-							<h:outputText value="   "/>
-						</ui:repeat>
-					</h:form>
-			</div>
+	
+
 	</div>
 		
 		

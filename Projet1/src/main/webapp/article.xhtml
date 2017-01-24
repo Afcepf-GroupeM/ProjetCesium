@@ -248,10 +248,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</h:form>	
 					</div>
 					
-					<h:button outcome="createReview" value="Ajouter un commentaire" rendered="#{loginController.islogged}">
-						<f:param name="itemId" value="#{itemCartController.item.id}"/>
-					</h:button>
+					<h:form>
+						<h:commandButton action="#{reviewController.createReview}" value="Ajouter un commentaire" rendered="#{loginController.islogged and reviewController.hasOrderedItem}">
+							<f:param name="itemId" value="#{itemCartController.item.id}"/>
+							<f:param name="actionReview" value="Creation"/>
+						</h:commandButton>
+						<h:commandButton action="#{reviewController.displayItemReviews}" value="Afficher tous les commentaires">
+							<f:param name="itemId" value="#{itemCartController.item.id}"/>
+						</h:commandButton>
+					</h:form>
 					
+					<h:outputText value="Il n'existe aucun commentaire pour ce produit." rendered="#{empty reviewController.itemReviews}"/>
+					<ui:repeat var="rev" value="#{reviewController.itemReviews}" rendered="#{not empty reviewController.itemReviews}">
+						<div id="headerReview">
+							<div>
+								<h:outputText value="#{rev.user.firstName}" />
+								<h:outputText value="#{rev.user.lastName}" />
+								<h:outputText value="#{rev.rating}" />
+								<h:outputText value="#{rev.creationDate}" />
+							</div>
+							<div>
+								<h:form>
+									<h:commandLink action="#{reviewController.updateReview}" value="Modifier" rendered="#{loginController.islogged and loginController.userLogged.id == rev.user.id}">
+										<f:param name="reviewId" value="#{rev.id}"/>
+										<f:param name="actionReview" value="Modification"/>
+									</h:commandLink>
+									<h:commandLink action="#{reviewController.deleteReview}" value="Supprimer" rendered="#{loginController.islogged and loginController.userLogged.id == rev.user.id}">
+										<f:param name="reviewId" value="#{rev.id}" />
+										<f:param name="itemId" value="#{rev.item.id}"/>
+									</h:commandLink>
+								</h:form>
+							</div>
+						</div>
+						<div id="bodyReview">
+							<h:outputText value="#{rev.comment}"/>
+						</div>
+					</ui:repeat>
 				<div class="clearfix"> </div>
 
 				</div>

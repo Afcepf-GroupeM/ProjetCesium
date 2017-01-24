@@ -97,6 +97,26 @@ public class OrderBusImpl implements OrderBusApi{
 	}
 
 	@Override
+	public boolean hasOrderedItem(int itemId, int userId) {
+		boolean hasOrderedItem = false;
+		List<Integer> orderIdsByUser;
+		List<Integer> orderIdsInOrderLinesByItemId;
+		
+		orderIdsByUser = orderDao.getOrderIdsByUserId(userId);		
+		orderIdsInOrderLinesByItemId = orderLineDao.getOrderIdsInOrderLinesByItemId(itemId);
+		
+		for (Integer orderId : orderIdsInOrderLinesByItemId){
+			hasOrderedItem = orderIdsByUser.contains(orderId);
+			
+			if (hasOrderedItem){
+				break;
+			}
+		}
+		
+		return hasOrderedItem;
+	}
+
+	@Override
 	public List<Order> getAll() {
 		List<Order> retour = null;
 		try{
@@ -108,7 +128,8 @@ public class OrderBusImpl implements OrderBusApi{
 		}
 		return retour;
 	}
-	}
+	
+}
 	
 
 

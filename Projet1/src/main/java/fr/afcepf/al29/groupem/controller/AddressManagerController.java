@@ -32,15 +32,7 @@ public class AddressManagerController {
 	private AddressBusApi addressBus;
 	
 	public void init(ComponentSystemEvent event){
-		FacesContext fc = FacesContext.getCurrentInstance();
-		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-		Map<String,Object> userLogged = fc.getExternalContext().getSessionMap();
-		
-		if (!params.isEmpty()){
-			int addressId = Integer.parseInt(params.get("addressId"));
-			addressBus.disableAddress(addressId);
-			//l'id de l'adresse est toujours attribué, si on réactualise la page après avoir réactiver une adresse avec un update dans la base, elle sera de nouveau désactivé.
-		}
+		Map<String,Object> userLogged = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		
 		int userId = (Integer) userLogged.get("userid");
 		
@@ -60,6 +52,27 @@ public class AddressManagerController {
 				}
 			}
 		}
+	}
+	
+	public String updateAddress(){
+		int addressId = Integer.parseInt(getParam("addressId"));
+		
+		return "updateAddress?faces-redirect=true&addressId=" + addressId;
+	}
+	
+	public String deleteAddress(){
+		int addressId = Integer.parseInt(getParam("addressId"));
+		
+		addressBus.disableAddress(addressId);
+		
+		return "myaccount?faces-redirect=true";
+	}
+	
+	public String getParam(String param){
+		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String result = params.get(param);
+		
+		return result;
 	}
 
 	public String getComplement() {

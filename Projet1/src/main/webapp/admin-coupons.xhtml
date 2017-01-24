@@ -54,12 +54,13 @@
 
 					<h:panelGrid columns="3" cellpadding="1" cellspacing="2">
 						
-						<h:outputLabel value="Méta-Catégorie"/>
-						<h:outputLabel value="Catégorie"/>
+						<h:outputLabel value="Méta-Catégorie" styleClass="adminCouponTabTitle"/>
+						<h:outputLabel value="Catégorie" styleClass="adminCouponTabTitle"/>
 						<h:outputLabel value=" "/>
 						
 						<h:selectOneMenu
-							value="#{adminCouponController.metaCategoryChosenId}">
+							value="#{adminCouponController.metaCategoryChosenId}"
+							styleClass="adminCouponCatSelector">
 							<f:selectItems
 								value="#{adminCouponController.listMetaCategories}" var="meta"
 								itemLabel="#{meta.name}" itemValue="#{meta.id}" />
@@ -67,7 +68,8 @@
 								render="catSelector" />
 						</h:selectOneMenu>						
 						<h:selectOneMenu id="catSelector"
-							value="#{adminCouponController.categoryChosenId}">
+							value="#{adminCouponController.categoryChosenId}"
+							styleClass="adminCouponCatSelector">
 							<f:selectItems value="#{adminCouponController.listCategories}"
 								var="cat" itemLabel="#{cat.name}" itemValue="#{cat.id}" />
 						</h:selectOneMenu>
@@ -81,13 +83,32 @@
 						<h:inputText value="#{adminCouponController.rebate}" />
 						<h:outputLabel value="#{adminCouponController.errorMessageRebate}" styleClass="adminCouponErrorMessage"/>
 						
+						<h:outputLabel value="Date de début (JJ/MM/AAAA): "/>
+						<h:inputText size="10" value="#{adminCouponController.startDateString}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageStartDate}" styleClass="adminCouponErrorMessage"/>
+						
+						<h:outputLabel value="Date de fin (JJ/MM/AAAA): "/>
+						<h:inputText size="10" value="#{adminCouponController.endDateString}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageEndDate}" styleClass="adminCouponErrorMessage"/>
+						
+						<h:outputLabel value="Description: "/>
+						<h:inputTextarea rows="3" value="#{adminCouponController.description}"/>
+						<h:outputLabel value="#{adminCouponController.errorMessageDescription}" styleClass="adminCouponErrorMessage"/>
+						
+						
+						
 						<h:commandButton value="Créer le coupon" action="#{adminCouponController.createCoupon}"/>
-						<h:outputLabel value="#{adminCouponController.resultCreation}"/>
+						<h:outputLabel value="#{adminCouponController.resultCreation}" styleClass="adminCouponResultMessage"/>
 			
 		
 					</h:panelGrid>
 
 				</h:form>
+			</div>
+			<hr />
+			
+			<div class="adminSearchCoupon">
+				<h2>Rechercher un coupon:</h2>
 			</div>
 
 

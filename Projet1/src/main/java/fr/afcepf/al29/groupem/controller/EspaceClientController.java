@@ -59,9 +59,6 @@ public class EspaceClientController {
 		
 		listOrder = new ArrayList<>();
 		listOrder = orderBusApi.getOrderByUserId(idUser);
-		for(Order order:listOrder){
-			System.out.println(order.toString());
-		}
 		
 		listOldOrder = new ArrayList<>();
 		listOrdering = new ArrayList<>();

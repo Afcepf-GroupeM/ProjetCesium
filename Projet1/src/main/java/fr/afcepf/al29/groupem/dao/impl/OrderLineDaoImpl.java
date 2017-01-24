@@ -28,6 +28,12 @@ public class OrderLineDaoImpl implements OrderLineDaoApi {
 	public List<OrderLine> getOrderLinesByOrderId(int orderId) {
 		return entityManager.createQuery("SELECT ol FROM OrderLine ol INNER JOIN ol.order o WHERE o.id = :orderId", OrderLine.class).setParameter("orderId", orderId).getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getOrderIdsInOrderLinesByItemId(int itemId) {
+		return entityManager.createQuery("SELECT ol.order.id FROM OrderLine ol INNER JOIN ol.item i WHERE i.id = :itemId").setParameter("itemId", itemId).getResultList();
+	}
 
 	@Override
 	public OrderLine getOrderLineById(int orderLineId) {

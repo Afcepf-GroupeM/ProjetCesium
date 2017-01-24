@@ -14,8 +14,6 @@ import fr.afcepf.al29.groupem.dao.api.OrderDaoApi;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderState;
 
-
-
 @Transactional
 @Component 
 public class OrderDaoImpl implements OrderDaoApi{
@@ -57,6 +55,12 @@ public class OrderDaoImpl implements OrderDaoApi{
 								 .getResultList();
 		return listOrders;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getOrderIdsByUserId(int userId) {
+		return entityManager.createQuery("SELECT ord.id FROM Order ord WHERE ord.user.id = :userid").setParameter("userid", userId).getResultList();
+	}
 
 	@Override
 	public List<Order> getOrdersByState(OrderState state) {
@@ -75,7 +79,7 @@ public class OrderDaoImpl implements OrderDaoApi{
 				 .getResultList();
 		return listOrders;
 	}
-
+	
 	@Override
 	public Order getOrderByTrackingNumber(String trackingNumber) {
 		Order order = null;
@@ -101,7 +105,4 @@ public class OrderDaoImpl implements OrderDaoApi{
 		return listOrders;
 	}
 	
-	
-	
-
 }
