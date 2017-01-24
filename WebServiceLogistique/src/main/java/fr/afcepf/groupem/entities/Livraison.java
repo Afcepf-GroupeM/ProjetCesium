@@ -13,7 +13,8 @@ public class Livraison {
 	private Date datePriseEnCharge;
 	private Date dateLivraison;
 	
-	private StatutLine statut;
+	
+	private Statut statut;
 	
 	
 	private String lastname;
@@ -60,12 +61,7 @@ public class Livraison {
 	public void setDateLivraison(Date dateLivraison) {
 		this.dateLivraison = dateLivraison;
 	}
-	public StatutLine getStatut() {
-		return statut;
-	}
-	public void setStatut(StatutLine statut) {
-		this.statut = statut;
-	}
+
 	public String getLastname() {
 		return lastname;
 	}
@@ -119,6 +115,18 @@ public class Livraison {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Statut getStatut() {
+		return statut;
+	}
+	public void setStatut(Statut statut) {
+		this.statut = statut;
 	}
 	
 	
