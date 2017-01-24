@@ -21,9 +21,8 @@ public class PriseEnCharge {
 	@Autowired
 	private ILivraisonBus livraisonBus;
 	
-	
-	@Path("/sendPackage")
 	@GET
+	@Path("/sendPackage")
 	public String sendPackage(){
 		
 		return "WS - Logistique Lol";
