@@ -269,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div>
 								<h:form>
-									<h:commandLink action="#{reviewController.updateReview}" value="Modifier" rendered="#{loginController.islogged and loginController.userLogged.id == rev.user.id}">
+									<h:commandLink action="#{reviewController.updateReview}" value="Modifier" rendered="#{loginController.islogged and loginController.userLogged.id  == rev.user.id}">
 										<f:param name="reviewId" value="#{rev.id}"/>
 										<f:param name="actionReview" value="Modification"/>
 									</h:commandLink>
