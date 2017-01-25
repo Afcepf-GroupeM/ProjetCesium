@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS bankdb;
 CREATE DATABASE bankdb;
 
-USE bankdb;
+USE bankdb1;
 
 DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS customer;
@@ -23,24 +23,34 @@ CREATE TABLE customer(
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE account(
-	id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
-	description VARCHAR(500),
-	balance BIGDECIMAL NOT NULL,
-	typeCarte ENUM('CarteBleue','MasterCard','Visa','AmericanExpress'),	
-	numberCard VARCHAR(50) NOT NULL,
-	crytogram VARCHAR(10) NOT NULL,
-	MONTANT_OPDEBIT BIGDECIMAL NOT NULL,
-	dateExpiredCarte Date NOT NULL,
-	dateCreationAccount Date NOT NULL,	
-	PRIMARY KEY (id),
-	FOREIGN KEY (customerid) REFERENCES customer(id)
-);
+CREATE TABLE `bankdb`.`account` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(500) NOT NULL,
+  `balance` DECIMAL NOT NULL,
+  `typeCarte` ENUM('CarteBleue','MasterCard','Visa','AmericanExpress') NOT NULL,
+  `numberCard` VARCHAR(50) NOT NULL,
+  `MONTANT_OPDEBIT` DECIMAL NOT NULL,
+  `dateExpiredCarte` DATE NOT NULL,
+  `dateCreationAccount` DATE NOT NULL,
+  `customerid` INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_account_1` FOREIGN KEY `FK_account_1` (`customerid`)
+    REFERENCES `customer` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB;
 
-CREATE TABLE operation(
-	id TINYINT UNSIGNED AUTO_INCREMENT NOT NULL,
-	label VARCHAR(100) NOT NULL,
-	amount BIGDECIMAL NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (accountid) REFERENCES account(id)
-);
+
+CREATE TABLE `bankdb`.`operation` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `label` VARCHAR(100) NOT NULL,
+  `amount` DECIMAL NOT NULL,
+  `accountid` INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_operation_1` FOREIGN KEY `FK_operation_1` (`accountid`)
+    REFERENCES `account` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB;
