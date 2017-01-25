@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS bankdb;
 CREATE DATABASE bankdb;
 
-USE bankdb1;
+USE bankdb;
 
 DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS customer;
