@@ -31,9 +31,11 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 		</jaxrs:providers>
 		<jaxrs:serviceBeans>
 			<ref bean="PriseEnCharge" /> <!-- <ref bean="service2Impl" /> -->
+			<ref bean="StatutLivraison" />
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
 	<bean id="PriseEnCharge" class="fr.afcepf.groupem.rest.PriseEnCharge" />
+	<bean id="StatutLivraison" class="fr.afcepf.groupem.rest.StatutLivraison" />
 
 
 	<bean id="mySQL"
