@@ -24,11 +24,12 @@ CREATE TABLE customer(
 );
 
 CREATE TABLE `bankdb`.`account` (
-  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(500) NOT NULL,
   `balance` DECIMAL NOT NULL,
   `typeCarte` ENUM('CarteBleue','MasterCard','Visa','AmericanExpress') NOT NULL,
   `numberCard` VARCHAR(50) NOT NULL,
+  `crytogram` VARCHAR(10) NOT NULL,
   `MONTANT_OPDEBIT` DECIMAL NOT NULL,
   `dateExpiredCarte` DATE NOT NULL,
   `dateCreationAccount` DATE NOT NULL,
@@ -46,7 +47,7 @@ CREATE TABLE `bankdb`.`operation` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `label` VARCHAR(100) NOT NULL,
   `amount` DECIMAL NOT NULL,
-  `accountid` INTEGER UNSIGNED NOT NULL,
+  `accountid` BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_operation_1` FOREIGN KEY `FK_operation_1` (`accountid`)
     REFERENCES `account` (`id`)
