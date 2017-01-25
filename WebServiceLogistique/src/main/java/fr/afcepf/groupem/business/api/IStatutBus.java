@@ -11,7 +11,7 @@ public interface IStatutBus {
 	
 	Statut getStatutByLivraisonId(int idLivraison);
 	List<StatutLine> getStatutLinesByStatutId(int idStatut);
-	Statut createStatut(Statut statut);
+	Statut createNewStatut();
 	Statut addStatutLine(Statut statut, StatutLine statutLine);
 	
 	

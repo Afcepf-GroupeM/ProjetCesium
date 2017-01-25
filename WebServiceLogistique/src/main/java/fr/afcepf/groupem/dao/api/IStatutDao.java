@@ -9,8 +9,9 @@ public interface IStatutDao {
 	
 	Statut getStatutByLivraisonId(int idLivraison);
 	List<StatutLine> getStatutLinesByStatutId(int idStatut);
-	Statut createStatut(Statut statut);
+	Statut createStatut();
 	StatutLine createStatutLine(StatutLine statutLine);
+	Statut updateStatut(Statut statut);
 	
 	
 

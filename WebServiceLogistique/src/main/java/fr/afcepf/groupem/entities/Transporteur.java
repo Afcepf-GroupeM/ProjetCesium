@@ -6,6 +6,7 @@ public class Transporteur {
 	private String name;
 	private String url;
 	private String trackingPrefix;
+	private int delaiLivraisonGaranti;
 	
 	
 	
@@ -33,6 +34,13 @@ public class Transporteur {
 	public void setTrackingPrefix(String trackingPrefix) {
 		this.trackingPrefix = trackingPrefix;
 	}
+	public int getDelaiLivraisonGaranti() {
+		return delaiLivraisonGaranti;
+	}
+	public void setDelaiLivraisonGaranti(int delaiLivraisonGaranti) {
+		this.delaiLivraisonGaranti = delaiLivraisonGaranti;
+	}
+	
 	
 	
 	

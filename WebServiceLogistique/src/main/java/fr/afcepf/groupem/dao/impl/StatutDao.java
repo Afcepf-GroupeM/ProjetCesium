@@ -21,13 +21,19 @@ public class StatutDao implements IStatutDao {
 	}
 
 	@Override
-	public Statut createStatut(Statut statut) {
+	public Statut createStatut() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public StatutLine createStatutLine(StatutLine statutLine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Statut updateStatut(Statut statut) {
 		// TODO Auto-generated method stub
 		return null;
 	}
