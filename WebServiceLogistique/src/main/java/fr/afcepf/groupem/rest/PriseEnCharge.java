@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.groupem.business.api.ILivraisonBus;
 import fr.afcepf.groupem.business.api.ITrackingCodeService;
-import fr.afcepf.groupem.business.api.ITranspoteurBus;
+import fr.afcepf.groupem.business.api.ITransporteurBus;
 import fr.afcepf.groupem.entities.DemandeLivraison;
 import fr.afcepf.groupem.entities.Livraison;
 
@@ -30,7 +30,7 @@ public class PriseEnCharge {
 	ITrackingCodeService tcs;
 	
 	@Autowired
-	ITranspoteurBus transporteurBus;
+	ITransporteurBus transporteurBus;
 	
 
 	

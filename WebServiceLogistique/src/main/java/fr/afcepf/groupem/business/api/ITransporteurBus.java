@@ -2,7 +2,7 @@ package fr.afcepf.groupem.business.api;
 
 import fr.afcepf.groupem.entities.Transporteur;
 
-public interface ITranspoteurBus {
+public interface ITransporteurBus {
 	
 	Transporteur chooseTransporteurByDelaiMax(int delai);
 

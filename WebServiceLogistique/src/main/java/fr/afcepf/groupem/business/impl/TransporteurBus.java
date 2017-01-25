@@ -3,12 +3,17 @@ package fr.afcepf.groupem.business.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import fr.afcepf.groupem.business.api.ITranspoteurBus;
+import fr.afcepf.groupem.business.api.ITransporteurBus;
 import fr.afcepf.groupem.dao.api.ITransporteurDao;
 import fr.afcepf.groupem.entities.Transporteur;
 
-public class TransporteurBus implements ITranspoteurBus {
+
+@Component
+@Transactional
+public class TransporteurBus implements ITransporteurBus {
 	
 	
 	@Autowired
