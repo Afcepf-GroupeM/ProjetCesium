@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.AccountBusApi;
+import fr.afcepf.al29.groupem.business.AccountBusImpl;
 import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
@@ -25,6 +26,11 @@ public class AccountRest {
 	private Boolean numberCardExiste=false;
 	private ResponseBank responseBank;
 	
+	
+	public AccountRest() {
+		super();
+	}
+
 	@Autowired
 	private AccountBusApi accountBus;
 	
@@ -56,7 +62,13 @@ public class AccountRest {
 	
 	public Account getAccountByNumberCard(String numberCard){
 		account = null;
-		account = accountBus.getAccountByNumberCard(numberCard);
+		System.out.println("**********************ici3333333333333");
+		System.out.println(numberCard);
+		Boolean a = false;
+		System.out.println("dans AccountRest :accountBus ="+ accountBus);
+		AccountBusImpl accountbus2 = new AccountBusImpl();
+		System.out.println("Accountbus2 : " + accountbus2);
+		account = accountbus2.getAccountByNumberCard(numberCard);
 		return account;
 	}
 	
@@ -75,5 +87,48 @@ public class AccountRest {
 	public Boolean verifyAmount(BigDecimal amount){		
 		return false;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Boolean getNumberCardExiste() {
+		return numberCardExiste;
+	}
+
+	public void setNumberCardExiste(Boolean numberCardExiste) {
+		this.numberCardExiste = numberCardExiste;
+	}
+
+	public ResponseBank getResponseBank() {
+		return responseBank;
+	}
+
+	public void setResponseBank(ResponseBank responseBank) {
+		this.responseBank = responseBank;
+	}
+
+	
+	
 	
 }

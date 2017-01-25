@@ -33,13 +33,13 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 			<ref bean="AccountRest" /> <!-- <ref bean="service2Impl" /> -->
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
-	<bean id="AccountRest" class="fr.afcepf.groupem.rest.AccountRest" />
+	<bean id="AccountRest" class="fr.afcepf.al29.groupem.rest.AccountRest" />
 
 
 	<bean id="mySQL"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/ecommercedb" />
+		<property name="url" value="jdbc:mysql://localhost/bankdb" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -60,7 +60,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<tx:annotation-driven transaction-manager="txManager" />
 
 	<!-- Where Spring looks for annotations -->
-	<context:component-scan base-package="fr.afcepf.groupem" />
+	<context:component-scan base-package="fr.afcepf.al29.groupem" />
 
 
 </beans>
