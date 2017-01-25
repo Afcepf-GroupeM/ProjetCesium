@@ -2,34 +2,54 @@ package fr.afcepf.groupem.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name="livraison")
 public class Livraison {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@Column(name="trackingcode")
 	private String trackingCode;
+	
+	
+	@Column(name="nbitems")
 	private int nbItems;
 	
+	
+	@Column(name="datedemande")
+	@Temporal(TemporalType.DATE)
 	private Date dateDemande;
+	
+	
+	@Column(name="datepriseencharge")
+	@Temporal(TemporalType.DATE)
 	private Date datePriseEnCharge;
+	
+	
+	@Column(name="datelivraison")
+	@Temporal(TemporalType.DATE)
 	private Date dateLivraison;
 	
-	
+	@OneToOne(fetch=FetchType.LAZY,mappedBy="livraison")
 	private Statut statut;
 	
-	
-	private String lastname;
-	private String firstname;
-	
-	private int numero;
-	private String complementAdresse;
-	private String typeVoie;
-	private String nomVoie;
-	private String zipcode;
-	private String city;
-	private String country;
-	
-	
-	
+	@OneToOne(fetch=FetchType.LAZY,mappedBy="livraison")
+	private Adresse adresse;
+
 	
 	public String getTrackingCode() {
 		return trackingCode;
@@ -62,60 +82,6 @@ public class Livraison {
 		this.dateLivraison = dateLivraison;
 	}
 
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	public String getFirstname() {
-		return firstname;
-	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public int getNumero() {
-		return numero;
-	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-	public String getComplementAdresse() {
-		return complementAdresse;
-	}
-	public void setComplementAdresse(String complementAdresse) {
-		this.complementAdresse = complementAdresse;
-	}
-	public String getTypeVoie() {
-		return typeVoie;
-	}
-	public void setTypeVoie(String typeVoie) {
-		this.typeVoie = typeVoie;
-	}
-	public String getNomVoie() {
-		return nomVoie;
-	}
-	public void setNomVoie(String nomVoie) {
-		this.nomVoie = nomVoie;
-	}
-	public String getZipcode() {
-		return zipcode;
-	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
 	public int getId() {
 		return id;
 	}
@@ -127,6 +93,12 @@ public class Livraison {
 	}
 	public void setStatut(Statut statut) {
 		this.statut = statut;
+	}
+	public Adresse getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 	
 	

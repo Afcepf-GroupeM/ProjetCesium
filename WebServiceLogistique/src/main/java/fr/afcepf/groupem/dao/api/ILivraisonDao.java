@@ -11,6 +11,8 @@ public interface ILivraisonDao {
 	Livraison getLivraisonByDepartement(String departement);
 	Livraison getLivraisonByName(String name);
 	List<Livraison> getAllLivraisons();
+	Livraison createLivraison(Livraison livraison);
+	Livraison updateLivraison(Livraison livraison);
 	
 
 }

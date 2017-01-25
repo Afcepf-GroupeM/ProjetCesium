@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.groupem.business.api.ILivraisonBus;
+import fr.afcepf.groupem.business.api.IStatutBus;
 import fr.afcepf.groupem.dao.api.ILivraisonDao;
 import fr.afcepf.groupem.entities.Livraison;
 
@@ -14,6 +15,9 @@ public class LivraisonBus implements ILivraisonBus {
 	
 	@Autowired
 	private ILivraisonDao livraisonDao;
+	
+	@Autowired
+	IStatutBus statutBus;
 
 	@Override
 	public Livraison getLivraisonByTrackingCode(String TrackingCode) {
@@ -33,6 +37,14 @@ public class LivraisonBus implements ILivraisonBus {
 	@Override
 	public Livraison getLivraisonByName(String name) {
 		return livraisonDao.getLivraisonByName(name);
+	}
+
+	@Override
+	public Livraison createLivraison(Livraison livraison) {
+		Livraison liv = livraisonDao.createLivraison(livraison);
+		liv.setStatut(statutBus.createNewStatut(livraison));
+		liv = livraisonDao.updateLivraison(liv);
+		return liv;
 	}
 
 }

@@ -1,25 +1,23 @@
 package fr.afcepf.groupem.dao.impl;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.afcepf.groupem.dao.api.ITransporteurDao;
-import fr.afcepf.groupem.entities.Transporteur;
+import fr.afcepf.groupem.dao.api.IAdresseDao;
+import fr.afcepf.groupem.entities.Adresse;
 
 @Component
 @Transactional
-public class TransporteurDao implements ITransporteurDao {
+public class AdresseDao implements IAdresseDao {
 
 	@Override
-	public Transporteur getTransporteurByTrackingCode(String trackingCode) {
+	public Adresse getAdresseByLivraisonId(int idLivraison) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Transporteur> getAllTransporteurs() {
+	public Adresse createAdresse(Adresse adresse) {
 		// TODO Auto-generated method stub
 		return null;
 	}

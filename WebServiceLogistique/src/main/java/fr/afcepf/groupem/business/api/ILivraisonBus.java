@@ -8,6 +8,7 @@ public interface ILivraisonBus {
 	Livraison getLivraisonByCountry(String Country);
 	Livraison getLivraisonByDepartement(String departement);
 	Livraison getLivraisonByName(String name);
+	Livraison createLivraison(Livraison livraison);
 	
 
 }
