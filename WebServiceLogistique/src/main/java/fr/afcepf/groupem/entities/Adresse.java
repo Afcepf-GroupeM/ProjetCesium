@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="addresse")
+@Table(name="adresse")
 public class Adresse {
 	
 	@Id
@@ -102,6 +102,13 @@ public class Adresse {
 	public void setLivraison(Livraison livraison) {
 		this.livraison = livraison;
 	}
+	@Override
+	public String toString() {
+		return "Adresse [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", numero=" + numero
+				+ ", completement=" + completement + ", typeVoie=" + typeVoie + ", nomVoie=" + nomVoie + ", city="
+				+ city + ", zipcode=" + zipcode + ", country=" + country + "]";
+	}
+	
 	
 	
 	

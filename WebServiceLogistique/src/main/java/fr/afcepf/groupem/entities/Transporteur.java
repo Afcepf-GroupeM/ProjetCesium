@@ -17,7 +17,7 @@ public class Transporteur {
 	private String name;
 	private String url;
 	
-	@Column(name="trakingprefix")
+	@Column(name="trackingprefix")
 	private String trackingPrefix;
 	
 	@Column(name="delailivraisongaranti")

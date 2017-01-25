@@ -1,5 +1,8 @@
 package fr.afcepf.groupem.dao.impl;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,6 +12,10 @@ import fr.afcepf.groupem.entities.Adresse;
 @Component
 @Transactional
 public class AdresseDao implements IAdresseDao {
+	
+	
+	@PersistenceContext(unitName="WebServiceLogistique")
+	private EntityManager entityManager;
 
 	@Override
 	public Adresse getAdresseByLivraisonId(int idLivraison) {
@@ -18,8 +25,14 @@ public class AdresseDao implements IAdresseDao {
 
 	@Override
 	public Adresse createAdresse(Adresse adresse) {
-		// TODO Auto-generated method stub
-		return null;
+		entityManager.persist(adresse); 
+		return adresse;
+	}
+	
+	@Override
+	public Adresse updateAdresse(Adresse adresse){
+		entityManager.merge(adresse);
+		return adresse;
 	}
 
 }

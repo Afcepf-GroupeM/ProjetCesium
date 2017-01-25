@@ -39,7 +39,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<bean id="mySQL"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/ecommercedb" />
+		<property name="url" value="jdbc:mysql://localhost/wslogistique" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
