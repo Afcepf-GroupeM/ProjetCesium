@@ -24,7 +24,7 @@ public class AccountRest {
 		
 	}
 		
-	public Integer verifyAccount(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("crytogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("balance") BigDecimal balance){
+	public Integer verifyAccount(String numberCard, Date dateExpiredCarte,String crytogram,String lastName, BigDecimal balance){
 		return accountBusApi.getIdByNumberCard(numberCard);
 	}
 
