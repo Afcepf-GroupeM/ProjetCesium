@@ -28,7 +28,7 @@ public class Account {
   
     private String numberCard;
 
-    private String crytogram;
+    private String cryptogram;
 
     private static BigDecimal MONTANT_OPDEBIT;
 
@@ -44,10 +44,6 @@ public class Account {
     }
 
     public void Credit(BigDecimal amount) {
-        // TODO implement here
-    }
-
-    public void getBalance() {
         // TODO implement here
     }
 
@@ -81,15 +77,15 @@ public class Account {
 
 	public void setNumberCard(String numberCard) {
 		this.numberCard = numberCard;
-	}
-
-	public String getCrytogram() {
-		return crytogram;
-	}
-
-	public void setCrytogram(String crytogram) {
-		this.crytogram = crytogram;
 	}	
+
+	public String getCryptogram() {
+		return cryptogram;
+	}
+
+	public void setCryptogram(String cryptogram) {
+		this.cryptogram = cryptogram;
+	}
 
 	public static BigDecimal getMONTANT_OPDEBIT() {
 		return MONTANT_OPDEBIT;
@@ -117,6 +113,10 @@ public class Account {
 
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
+	}
+
+	public BigDecimal getBalance() {
+		return balance;
 	}
     
     

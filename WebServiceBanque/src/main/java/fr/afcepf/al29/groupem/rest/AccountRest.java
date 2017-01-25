@@ -2,49 +2,62 @@ package fr.afcepf.al29.groupem.rest;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.afcepf.al29.groupem.business.AccountBusApi;
-import fr.afcepf.al29.groupem.business.AccountBusImpl;
 import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
+@Component
 @Path("UserAccountService")
 public class AccountRest {
 	private int id;
 	private Account account;
 	private String name;
-	private AccountBusApi accountBusApi;
+	private Boolean numberCardExiste=false;
+	private ResponseBank responseBank;
+	
+	@Autowired
+	private AccountBusApi accountBus;
 	
 	@GET
 	@Produces("application/json")
-	@Path("verifyAccount/{numberCard,dateExpiredCarte,crytogram,lastName,balance}")
-	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("crytogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal balance){
-		id = verifyAccount(numberCard, dateExpiredCarte, crytogram, lastName, balance);
-		account = getAccountByID(id);
-		verifyDateExpiredCard(account);
-		verifyCrytogram(account);
-		verifyName(name);
-		verifyAmount(account);
-		return null;
+	@Path("receptionInfoReturnResponse/{numberCard,dateExpiredCarte,crytogram,lastName,balance}")
+	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("crytogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
+		//get the list of account by numberCard
+		account = getAccountByNumberCard(numberCard);
+		//verify if the numberCard existe in the BDD
+		if(account.equals(null)){
+			numberCardExiste = false;			
+		}else{					
+			numberCardExiste = true;
 		
-	}
+			//verify the DateExpired is still valide	
+			verifyDateExpiredCard(account);
+			//verify the Crytogram is correct
+			verifyCrytogram(account);
+			//verify the Name is correct
+			verifyName(name);
+			//verify the customer get enough money to pay the amount
+			verifyAmount(amount);
+		}
+		//TODO: put the status and ... in the object responseBank, and send the response
+		return responseBank;
 		
-	public Integer verifyAccount(String numberCard, Date dateExpiredCarte,String crytogram,String lastName, BigDecimal balance){
-
-		return accountBusApi.getIdByNumberCard(numberCard);
-
-
-		
-
-	}
+	}	
 	
-	public Account getAccountByID(Integer id){
-		return null;
+	public Account getAccountByNumberCard(String numberCard){
+		account = null;
+		account = accountBus.getAccountByNumberCard(numberCard);
+		return account;
 	}
 	
 	public boolean verifyDateExpiredCard(Account account){
@@ -59,7 +72,8 @@ public class AccountRest {
 		return null;
 	}
 	
-	public Boolean verifyAmount(Account account){
+	public Boolean verifyAmount(BigDecimal amount){		
 		return false;
 	}
+	
 }
