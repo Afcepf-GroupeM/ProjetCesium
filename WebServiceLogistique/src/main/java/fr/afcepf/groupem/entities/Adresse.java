@@ -1,18 +1,39 @@
 package fr.afcepf.groupem.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="addresse")
 public class Adresse {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String lastname;
 	private String firstname;
 	private int numero;
 	private String completement;
+	
+	@Column(name="typevoie")
 	private String typeVoie;
+	
+	@Column(name="nomvoie")
 	private String nomVoie;
 	private String city;
 	private String zipcode;
 	private String country;
-	private int idlivraison;
+	
+	@OneToOne
+	@JoinColumn(name="idlivraison")
+	private Livraison livraison;
 	
 	
 	public int getId() {
@@ -75,12 +96,13 @@ public class Adresse {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public int getIdlivraison() {
-		return idlivraison;
+	public Livraison getLivraison() {
+		return livraison;
 	}
-	public void setIdlivraison(int idlivraison) {
-		this.idlivraison = idlivraison;
+	public void setLivraison(Livraison livraison) {
+		this.livraison = livraison;
 	}
+	
 	
 	
 

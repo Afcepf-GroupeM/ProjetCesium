@@ -16,10 +16,15 @@ public class TransporteurBus implements ITranspoteurBus {
 
 	@Override
 	public Transporteur chooseTransporteurByDelaiMax(int delai) {
+		Transporteur transporteurChoisi = null;
 		List<Transporteur> listTransporteurs = transporteurDao.getAllTransporteurs();
-		
-		
-		return null;
+		for (Transporteur transporteur : listTransporteurs) {
+			if(transporteur.getDelaiLivraisonGaranti() <= delai){
+				transporteurChoisi = transporteur;
+				break;
+			}
+		}	
+		return transporteurChoisi;
 	}
 
 }

@@ -41,9 +41,10 @@ public class LivraisonBus implements ILivraisonBus {
 
 	@Override
 	public Livraison createLivraison(Livraison livraison) {
-		
-		livraison.setStatut(statutBus.createNewStatut());
-		return livraisonDao.createLivraison(livraison);
+		Livraison liv = livraisonDao.createLivraison(livraison);
+		liv.setStatut(statutBus.createNewStatut(livraison));
+		liv = livraisonDao.updateLivraison(liv);
+		return liv;
 	}
 
 }

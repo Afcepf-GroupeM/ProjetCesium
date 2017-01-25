@@ -5,12 +5,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.groupem.business.api.IStatutBus;
 import fr.afcepf.groupem.dao.api.IStatutDao;
+import fr.afcepf.groupem.entities.Livraison;
 import fr.afcepf.groupem.entities.Statut;
 import fr.afcepf.groupem.entities.StatutLine;
 
+@Transactional
+@Component
 public class StatutBus implements IStatutBus {
 	
 	@Autowired
@@ -30,11 +35,11 @@ public class StatutBus implements IStatutBus {
 	}
 
 	@Override
-	public Statut createNewStatut() {
-		Statut statut = statutDao.createStatut();
+	public Statut createNewStatut(Livraison livraison) {
+		Statut statut = statutDao.createStatut(livraison);
 		
 		StatutLine statutLine = new StatutLine();
-		statutLine.setIdstatut(statut.getId());
+		statutLine.setStatut(statut);
 		statutLine.setDateUpdate(new Date());
 		statutLine.setLocationUpdate("PARIS");
 		statutLine.setDetailsUpdate("Demande de prise en charge par le marchand.");

@@ -2,6 +2,9 @@ package fr.afcepf.groupem.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +14,9 @@ import fr.afcepf.groupem.entities.Livraison;
 @Component
 @Transactional
 public class LivraisonDao implements ILivraisonDao {
+	
+	@PersistenceContext(unitName="WebServiceLogistique")
+	private EntityManager entityManager;
 
 	@Override
 	public Livraison getLivraisonByTrackingCode(String TrackingCode) {
@@ -44,8 +50,14 @@ public class LivraisonDao implements ILivraisonDao {
 	
 	@Override
 	public Livraison createLivraison(Livraison livraison){
-		
-		return null;
+		entityManager.persist(livraison);
+		return livraison;
+	}
+
+	@Override
+	public Livraison updateLivraison(Livraison livraison) {
+		entityManager.merge(livraison);
+		return livraison;
 	}
 
 }
