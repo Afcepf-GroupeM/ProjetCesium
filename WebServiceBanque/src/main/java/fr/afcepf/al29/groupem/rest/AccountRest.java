@@ -19,6 +19,8 @@ public class AccountRest {
 	private Account account;
 	private String name;
 	private AccountBusApi accountBusApi;
+	private BigDecimal balance;
+	private BigDecimal amount;
 	
 	@GET
 	@Produces("application/json")
@@ -27,9 +29,9 @@ public class AccountRest {
 		id = verifyAccount(numberCard, dateExpiredCarte, crytogram, lastName, balance);
 		account = getAccountByID(id);
 		verifyDateExpiredCard(account);
-		verifyCrytogram(account);
+		verifyCryptogram(account);
 		verifyName(name);
-		verifyAmount(account);
+		verifyAmount(amount);
 		return null;
 		
 	}
@@ -43,6 +45,7 @@ public class AccountRest {
 
 	}
 	
+	
 	public Account getAccountByID(Integer id){
 		return null;
 	}
@@ -51,7 +54,12 @@ public class AccountRest {
 		return false;
 	}
 	
-	public boolean verifyCrytogram(Account account){
+	public boolean verifyCryptogram(Account account){
+		
+		
+		
+		
+		
 		return false;
 	}
 	
@@ -59,7 +67,11 @@ public class AccountRest {
 		return null;
 	}
 	
-	public Boolean verifyAmount(Account account){
+	public Boolean verifyAmount(BigDecimal amount){
+		if (amount.compareTo(account.getBalance())< 0) 
+			System.out.println();
+		
+		
 		return false;
 	}
 }
