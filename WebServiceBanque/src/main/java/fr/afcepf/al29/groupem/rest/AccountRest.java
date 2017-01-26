@@ -18,14 +18,13 @@ import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
 @Component
-@Path("UserAccountService")
+@Path("/UserAccountService")
 public class AccountRest {
 	private int id;
 	private Account account;
 	private String name;
 	private Boolean numberCardExiste=false;
-	private ResponseBank responseBank;
-	
+	private ResponseBank responseBank;	
 	
 	public AccountRest() {
 		super();
@@ -36,7 +35,7 @@ public class AccountRest {
 	
 	@GET
 	@Produces("application/json")
-	@Path("receptionInfoReturnResponse/")
+	@Path("/receptionInfoReturnResponse")
 	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
 		//get the account by numberCard
 		account = getAccountByNumberCard(numberCard);
@@ -66,12 +65,10 @@ public class AccountRest {
 	public Account getAccountByNumberCard(String numberCard){
 		account = null;
 		System.out.println("**********************ici3333333333333");
-		System.out.println(numberCard);
-		Boolean a = false;
+		System.out.println("numberCard" + numberCard);		
 		System.out.println("dans AccountRest :accountBus ="+ accountBus);
-		AccountBusImpl accountbus2 = new AccountBusImpl();
-		System.out.println("Accountbus2 : " + accountbus2);
-		account = accountbus2.getAccountByNumberCard(numberCard);
+		System.out.println("Accountbus2 : " + accountBus);
+		account = accountBus.getAccountByNumberCard(numberCard);
 		return account;
 	}
 	
@@ -103,6 +100,7 @@ public class AccountRest {
 		Account account = null;
 		numberCard = "123456789";
 		account = getAccountByNumberCard(numberCard);
+		System.out.println(account.toString());
 		return account;
 	}
 	
