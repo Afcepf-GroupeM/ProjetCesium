@@ -59,5 +59,9 @@ public class Operation {
 		this.dateOp = dateOp;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Operation [id=" + id + ", label=" + label + ", amount=" + amount + ", dateOp=" + dateOp + "]";
+	}
+	
 }

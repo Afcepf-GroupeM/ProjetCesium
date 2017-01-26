@@ -27,6 +27,7 @@ public class AccountRest {
 	private ResponseBank responseBank;
 	
 	
+	
 	public AccountRest() {
 		super();
 	}
@@ -36,11 +37,12 @@ public class AccountRest {
 	
 	@GET
 	@Produces("application/json")
-	@Path("receptionInfoReturnResponse/{numberCard,dateExpiredCarte,crytogram,lastName,balance}")
-	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("crytogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
-		//get the list of account by numberCard
+	@Path("receptionInfoReturnResponse/")
+	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
+		//get the account by numberCard
 		account = getAccountByNumberCard(numberCard);
 		//verify if the numberCard existe in the BDD
+		/*
 		if(account.equals(null)){
 			numberCardExiste = false;			
 		}else{					
@@ -48,13 +50,15 @@ public class AccountRest {
 		
 			//verify the DateExpired is still valide	
 			verifyDateExpiredCard(account);
-			//verify the Crytogram is correct
-			verifyCrytogram(account);
+			//verify the Cryptogram is correct
+			verifyCryptogram(account.getCryptogram());
 			//verify the Name is correct
 			verifyName(name);
 			//verify the customer get enough money to pay the amount
 			verifyAmount(amount);
 		}
+
+*/
 		//TODO: put the status and ... in the object responseBank, and send the response
 		return responseBank;
 		
@@ -76,7 +80,11 @@ public class AccountRest {
 		return false;
 	}
 	
-	public boolean verifyCrytogram(Account account){
+	public boolean verifyCryptogram(String cryptogram){
+		Boolean a = false;
+		if(cryptogram==account.getCryptogram()){
+			
+		}
 		return false;
 	}
 	
@@ -90,5 +98,59 @@ public class AccountRest {
 		
 		
 		return false;
+		
 	}
+	
+	@GET
+	@Produces("text/plain")
+	@Path("/test")
+	public Account test(@PathParam("numberCard")String numberCard){
+		Account account = null;
+		numberCard = "123456789";
+		account = getAccountByNumberCard(numberCard);
+		return account;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Boolean getNumberCardExiste() {
+		return numberCardExiste;
+	}
+
+	public void setNumberCardExiste(Boolean numberCardExiste) {
+		this.numberCardExiste = numberCardExiste;
+	}
+
+	public ResponseBank getResponseBank() {
+		return responseBank;
+	}
+
+	public void setResponseBank(ResponseBank responseBank) {
+		this.responseBank = responseBank;
+	}
+
+	
+	
 }

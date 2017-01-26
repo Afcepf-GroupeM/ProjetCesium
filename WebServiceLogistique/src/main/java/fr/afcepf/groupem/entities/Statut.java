@@ -22,6 +22,7 @@ public class Statut {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="statut")
 	private List<StatutLine> statutLines;
 	
