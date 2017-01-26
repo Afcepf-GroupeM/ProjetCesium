@@ -37,7 +37,7 @@ public class AccountRest {
 	@GET
 	@Produces("application/json")
 	@Path("receptionInfoReturnResponse/{numberCard,dateExpiredCarte,crytogram,lastName,balance}")
-	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("crytogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
+	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
 		//get the list of account by numberCard
 		account = getAccountByNumberCard(numberCard);
 		//verify if the numberCard existe in the BDD
@@ -49,7 +49,7 @@ public class AccountRest {
 		
 			//verify the DateExpired is still valide	
 			verifyDateExpiredCard(account);
-			//verify the Crytogram is correct
+			//verify the Cryptogram is correct
 			verifyCryptogram(account.getCryptogram());
 			//verify the Name is correct
 			verifyName(name);
@@ -80,7 +80,7 @@ public class AccountRest {
 	}
 	
 	public boolean verifyCryptogram(String cryptogram){
-		
+		Boolean a = false;
 		if(cryptogram==account.getCryptogram()){
 			
 		}
