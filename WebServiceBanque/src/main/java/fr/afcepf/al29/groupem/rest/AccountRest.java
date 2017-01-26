@@ -18,7 +18,7 @@ import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
 @Component
-@Path("UserAccountService")
+@Path("/UserAccountService")
 public class AccountRest {
 	private int id;
 	private Account account;
@@ -34,14 +34,18 @@ public class AccountRest {
 	@Autowired
 	private AccountBusApi accountBus;
 	
+//	{numberCard,dateExpiredCarte,crytogram,lastName,balance}
+	
 	@GET
 	@Produces("application/json")
-	@Path("receptionInfoReturnResponse/{numberCard,dateExpiredCarte,crytogram,lastName,balance}")
-	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("crytogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
-		//get the list of account by numberCard
+	@Path("receptionInfoReturnResponse/")
+	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
+		//get the account by numberCard
 		account = getAccountByNumberCard(numberCard);
 		//verify if the numberCard existe in the BDD
+		/*
 		if(account.equals(null)){
+		
 			numberCardExiste = false;			
 		}else{					
 			numberCardExiste = true;
@@ -49,26 +53,41 @@ public class AccountRest {
 			//verify the DateExpired is still valide	
 			verifyDateExpiredCard(account);
 			//verify the Crytogram is correct
-			verifyCrytogram(account);
+			verifyCryptogram(account);
 			//verify the Name is correct
 			verifyName(name);
 			//verify the customer get enough money to pay the amount
 			verifyAmount(amount);
 		}
+		
+		*/
 		//TODO: put the status and ... in the object responseBank, and send the response
-		return responseBank;
+		return responseBank;	
 		
 	}	
 	
 	public Account getAccountByNumberCard(String numberCard){
 		account = null;
-		System.out.println("**********************ici3333333333333");
+		System.out.println("*********dans AccountRest*************ici11111");
 		System.out.println(numberCard);
 		Boolean a = false;
 		System.out.println("dans AccountRest :accountBus ="+ accountBus);
-		AccountBusImpl accountbus2 = new AccountBusImpl();
-		System.out.println("Accountbus2 : " + accountbus2);
-		account = accountbus2.getAccountByNumberCard(numberCard);
+		//AccountBusImpl accountbus2 = new AccountBusImpl();
+		
+//		System.out.println("Accountbus " + accountbus2);
+		System.out.println("\n----------------------\nAccountBus dans AccountRest : " + accountBus + "\n---------------------\n");
+		account = accountBus.getAccountByNumberCard(numberCard);
+		return account;
+	}
+	
+	
+	@GET
+	@Path("/test")
+	@Produces("text/plain")
+	public Account testWS (@PathParam("numberCard")String numberCard){
+		numberCard = "123456789";
+		account = getAccountByNumberCard(numberCard);
+		System.out.println("***********in test****************" + account.toString());
 		return account;
 	}
 	
@@ -76,7 +95,7 @@ public class AccountRest {
 		return false;
 	}
 	
-	public boolean verifyCrytogram(Account account){
+	public boolean verifyCryptogram(Account account){
 		return false;
 	}
 	
@@ -85,10 +104,50 @@ public class AccountRest {
 	}
 	
 	public Boolean verifyAmount(BigDecimal amount){
-		if (amount.compareTo(account.getBalance())< 0) 
-			System.out.println();
-		
-		
 		return false;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Boolean getNumberCardExiste() {
+		return numberCardExiste;
+	}
+
+	public void setNumberCardExiste(Boolean numberCardExiste) {
+		this.numberCardExiste = numberCardExiste;
+	}
+
+	public ResponseBank getResponseBank() {
+		return responseBank;
+	}
+
+	public void setResponseBank(ResponseBank responseBank) {
+		this.responseBank = responseBank;
+	}
+
+	
+
+	
 }
