@@ -24,7 +24,7 @@ public class Account {
     private BigDecimal balance;
     @Column
 	@Enumerated(EnumType.STRING)
-    private Enum typeCarte;
+    private TypeCarte typeCarte;
   
     private String numberCard;
 
@@ -61,15 +61,15 @@ public class Account {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
+	}	
 
-	public Enum getTypeCarte() {
+	public TypeCarte getTypeCarte() {
 		return typeCarte;
 	}
 
-	public void setTypeCarte(Enum typeCarte) {
+	public void setTypeCarte(TypeCarte typeCarte) {
 		this.typeCarte = typeCarte;
-	}	
+	}
 
 	public String getNumberCard() {
 		return numberCard;
@@ -118,7 +118,12 @@ public class Account {
 	public BigDecimal getBalance() {
 		return balance;
 	}
-    
-    
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", description=" + description + ", balance=" + balance + ", typeCarte="
+				+ typeCarte + ", numberCard=" + numberCard + ", cryptogram=" + cryptogram + ", dateExpiredCarte="
+				+ dateExpiredCarte + ", dateCreationAccount=" + dateCreationAccount + "]";
+	}    
 
 }
