@@ -57,7 +57,7 @@ public class AccountRest {
 			verifyAmount(amount);
 		}
 
-*/
+		*/
 		//TODO: put the status and ... in the object responseBank, and send the response
 		return responseBank;
 		
@@ -94,6 +94,16 @@ public class AccountRest {
 	public Boolean verifyAmount(BigDecimal amount){
 		return false;
 		
+	}
+	
+	@GET
+	@Produces("text/plain")
+	@Path("/test")
+	public Account test(@PathParam("numberCard")String numberCard){
+		Account account = null;
+		numberCard = "123456789";
+		account = getAccountByNumberCard(numberCard);
+		return account;
 	}
 	
 	public int getId() {
