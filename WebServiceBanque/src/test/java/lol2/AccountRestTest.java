@@ -9,6 +9,7 @@ import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.rest.AccountRest;
 
 public class AccountRestTest {
+	/*
 private Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired
@@ -23,5 +24,5 @@ private Logger log = Logger.getLogger(this.getClass());
 		
 		Assert.assertTrue(!(account==null));
 	}
-
+*/
 }

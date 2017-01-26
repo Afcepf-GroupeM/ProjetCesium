@@ -100,4 +100,57 @@ public class AccountRest {
 		return false;
 		
 	}
+	
+	@GET
+	@Produces("text/plain")
+	@Path("/test")
+	public Account test(@PathParam("numberCard")String numberCard){
+		Account account = null;
+		numberCard = "123456789";
+		account = getAccountByNumberCard(numberCard);
+		return account;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Boolean getNumberCardExiste() {
+		return numberCardExiste;
+	}
+
+	public void setNumberCardExiste(Boolean numberCardExiste) {
+		this.numberCardExiste = numberCardExiste;
+	}
+
+	public ResponseBank getResponseBank() {
+		return responseBank;
+	}
+
+	public void setResponseBank(ResponseBank responseBank) {
+		this.responseBank = responseBank;
+	}
+
+	
+	
 }
