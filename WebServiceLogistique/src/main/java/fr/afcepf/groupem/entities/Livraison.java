@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -50,8 +52,14 @@ public class Livraison {
 	private Statut statut;
 	
 	@JsonIgnore
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="livraison")
+	@ManyToOne
+	@JoinColumn(name="idadresse")
 	private Adresse adresse;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="idtransporteur")
+	private Transporteur transporteur;
 
 	
 	public String getTrackingCode() {
@@ -103,12 +111,11 @@ public class Livraison {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public Transporteur getTransporteur() {
+		return transporteur;
+	}
+	public void setTransporteur(Transporteur transporteur) {
+		this.transporteur = transporteur;
+	}
 
 }

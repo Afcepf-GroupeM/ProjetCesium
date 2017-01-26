@@ -1,11 +1,17 @@
 package fr.afcepf.groupem.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="transporteur")
@@ -23,7 +29,9 @@ public class Transporteur {
 	@Column(name="delailivraisongaranti")
 	private int delaiLivraisonGaranti;
 	
-	
+	@JsonIgnore
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="transporteur")
+	private List<Livraison> livraisons;
 	
 	public int getId() {
 		return id;
@@ -55,11 +63,11 @@ public class Transporteur {
 	public void setDelaiLivraisonGaranti(int delaiLivraisonGaranti) {
 		this.delaiLivraisonGaranti = delaiLivraisonGaranti;
 	}
+	public List<Livraison> getLivraisons() {
+		return livraisons;
+	}
+	public void setLivraisons(List<Livraison> livraisons) {
+		this.livraisons = livraisons;
+	}
 	
-	
-	
-	
-	
-	
-
 }

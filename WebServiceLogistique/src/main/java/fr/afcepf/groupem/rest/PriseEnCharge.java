@@ -18,6 +18,7 @@ import fr.afcepf.groupem.business.api.ITrackingCodeService;
 import fr.afcepf.groupem.business.api.ITransporteurBus;
 import fr.afcepf.groupem.entities.DemandeLivraison;
 import fr.afcepf.groupem.entities.Livraison;
+import fr.afcepf.groupem.entities.Transporteur;
 
 
 
@@ -73,12 +74,15 @@ public class PriseEnCharge {
 		System.out.println("Nb items: " + demande.getNbItem());
 		System.out.println("Delai max: " + demande.getDelaiMax());
 		
+		Transporteur transporteur = transporteurBus.chooseTransporteurByDelaiMax(demande.getDelaiMax());
+		
 		Livraison liv = new Livraison();
 		liv.setAdresse(demande.getAdresse());
 		liv.setDateDemande(new Date());
 		liv.setDatePriseEnCharge(new Date());
 		liv.setNbItems(demande.getNbItem());
-		liv.setTrackingCode(tcs.generateTrackingCode(transporteurBus.chooseTransporteurByDelaiMax(demande.getDelaiMax()), 
+		liv.setTransporteur(transporteur);
+		liv.setTrackingCode(tcs.generateTrackingCode(transporteur, 
 													 demande.getAdresse().getCountry(), 
 													 demande.getAdresse().getZipcode()));
 		Date date = new Date();

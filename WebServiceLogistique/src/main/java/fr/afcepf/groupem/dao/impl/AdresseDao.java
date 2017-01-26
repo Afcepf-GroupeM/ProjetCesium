@@ -35,4 +35,11 @@ public class AdresseDao implements IAdresseDao {
 		return adresse;
 	}
 
+	@Override
+	public boolean checkAdresse(String lastName, String firstName, int numero, String complement, String typeVoie,
+			String nomVoie, String city, String zipCode, String country) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

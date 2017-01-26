@@ -1,13 +1,17 @@
 package fr.afcepf.groupem.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="adresse")
@@ -31,9 +35,9 @@ public class Adresse {
 	private String zipcode;
 	private String country;
 	
-	@OneToOne
-	@JoinColumn(name="idlivraison")
-	private Livraison livraison;
+	@JsonIgnore
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="adresse")
+	private List<Livraison> livraisons;
 	
 	
 	public int getId() {
@@ -96,11 +100,11 @@ public class Adresse {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public Livraison getLivraison() {
-		return livraison;
+	public List<Livraison> getLivraisons() {
+		return livraisons;
 	}
-	public void setLivraison(Livraison livraison) {
-		this.livraison = livraison;
+	public void setLivraisons(List<Livraison> livraisons) {
+		this.livraisons = livraisons;
 	}
 	@Override
 	public String toString() {
