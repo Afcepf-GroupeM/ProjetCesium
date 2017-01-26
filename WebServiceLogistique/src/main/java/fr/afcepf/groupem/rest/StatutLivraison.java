@@ -23,6 +23,7 @@ public class StatutLivraison {
 	@Produces("application/json")
 	public Statut sendStatut(String trackingCode){
 		Livraison livraison = livraisonBus.getLivraisonByTrackingCode(trackingCode);
+		livraison.toString();
 		Statut statut = livraison.getStatut();
 		return statut;
 	}
