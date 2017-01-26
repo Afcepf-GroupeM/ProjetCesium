@@ -27,6 +27,7 @@ public class AccountRest {
 	private ResponseBank responseBank;
 	
 	
+	
 	public AccountRest() {
 		super();
 	}
