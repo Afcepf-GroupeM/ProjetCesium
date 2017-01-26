@@ -18,7 +18,7 @@ import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
 @Component
-@Path("/UserAccountService")
+@Path("UserAccountService")
 public class AccountRest {
 	private int id;
 	private Account account;
@@ -34,8 +34,6 @@ public class AccountRest {
 	@Autowired
 	private AccountBusApi accountBus;
 	
-//	{numberCard,dateExpiredCarte,crytogram,lastName,balance}
-	
 	@GET
 	@Produces("application/json")
 	@Path("receptionInfoReturnResponse/")
@@ -45,7 +43,6 @@ public class AccountRest {
 		//verify if the numberCard existe in the BDD
 		/*
 		if(account.equals(null)){
-		
 			numberCardExiste = false;			
 		}else{					
 			numberCardExiste = true;
@@ -53,41 +50,28 @@ public class AccountRest {
 			//verify the DateExpired is still valide	
 			verifyDateExpiredCard(account);
 			//verify the Crytogram is correct
-			verifyCryptogram(account);
+			verifyCryptogram(account.getCryptogram());
 			//verify the Name is correct
 			verifyName(name);
 			//verify the customer get enough money to pay the amount
 			verifyAmount(amount);
 		}
-		
-		*/
+
+*/
 		//TODO: put the status and ... in the object responseBank, and send the response
-		return responseBank;	
+		return responseBank;
 		
 	}	
 	
 	public Account getAccountByNumberCard(String numberCard){
 		account = null;
-		System.out.println("*********dans AccountRest*************ici11111");
+		System.out.println("**********************ici3333333333333");
 		System.out.println(numberCard);
 		Boolean a = false;
 		System.out.println("dans AccountRest :accountBus ="+ accountBus);
-		//AccountBusImpl accountbus2 = new AccountBusImpl();
-		
-//		System.out.println("Accountbus " + accountbus2);
-		System.out.println("\n----------------------\nAccountBus dans AccountRest : " + accountBus + "\n---------------------\n");
-		account = accountBus.getAccountByNumberCard(numberCard);
-		return account;
-	}
-	
-	
-	@GET
-	@Path("/test")
-	@Produces("text/plain")
-	public Account testWS (@PathParam("numberCard")String numberCard){
-		numberCard = "123456789";
-		account = getAccountByNumberCard(numberCard);
-		System.out.println("***********in test****************" + account.toString());
+		AccountBusImpl accountbus2 = new AccountBusImpl();
+		System.out.println("Accountbus2 : " + accountbus2);
+		account = accountbus2.getAccountByNumberCard(numberCard);
 		return account;
 	}
 	
@@ -95,7 +79,11 @@ public class AccountRest {
 		return false;
 	}
 	
-	public boolean verifyCryptogram(Account account){
+	public boolean verifyCryptogram(String cryptogram){
+		
+		if(cryptogram==account.getCryptogram()){
+			
+		}
 		return false;
 	}
 	
@@ -105,6 +93,7 @@ public class AccountRest {
 	
 	public Boolean verifyAmount(BigDecimal amount){
 		return false;
+		
 	}
 	
 	public int getId() {
