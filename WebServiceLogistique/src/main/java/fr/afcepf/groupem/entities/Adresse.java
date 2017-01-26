@@ -1,5 +1,7 @@
 package fr.afcepf.groupem.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="adresse")
 public class Adresse {
 	
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
@@ -31,6 +37,7 @@ public class Adresse {
 	private String zipcode;
 	private String country;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="idlivraison")
 	private Livraison livraison;
