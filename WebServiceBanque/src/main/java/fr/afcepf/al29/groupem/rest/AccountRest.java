@@ -49,7 +49,7 @@ public class AccountRest {
 			//verify the DateExpired is still valide	
 			verifyDateExpiredCard(account);
 			//verify the Crytogram is correct
-			verifyCrytogram(account);
+			verifyCryptogram(account.getCryptogram());
 			//verify the Name is correct
 			verifyName(name);
 			//verify the customer get enough money to pay the amount
@@ -76,7 +76,11 @@ public class AccountRest {
 		return false;
 	}
 	
-	public boolean verifyCrytogram(Account account){
+	public boolean verifyCryptogram(String cryptogram){
+		
+		if(cryptogram==account.getCryptogram()){
+			
+		}
 		return false;
 	}
 	

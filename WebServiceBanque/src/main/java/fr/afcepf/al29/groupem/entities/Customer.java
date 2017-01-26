@@ -15,7 +15,7 @@ public class Customer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 	@Column
-    private Enum civilite;
+    private Civilite civilite;
   
     private String lastName;
 
@@ -44,11 +44,12 @@ public class Customer {
 		this.id = id;
 	}
 
-	public Enum getCivilite() {
+	
+	public Civilite getCivilite() {
 		return civilite;
 	}
 
-	public void setCivilite(Enum civilite) {
+	public void setCivilite(Civilite civilite) {
 		this.civilite = civilite;
 	}
 
