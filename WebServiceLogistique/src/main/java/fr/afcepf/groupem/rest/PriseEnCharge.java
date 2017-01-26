@@ -3,6 +3,7 @@ package fr.afcepf.groupem.rest;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -65,7 +66,12 @@ public class PriseEnCharge {
 	@POST
 	@Path("/add")
 	@Consumes("application/json")
+	@Produces("application/json")
 	public Livraison addDemande(DemandeLivraison demande){
+		
+		System.out.println("Adresse: " + demande.getAdresse());
+		System.out.println("Nb items: " + demande.getNbItem());
+		System.out.println("Delai max: " + demande.getDelaiMax());
 		
 		Livraison liv = new Livraison();
 		liv.setAdresse(demande.getAdresse());

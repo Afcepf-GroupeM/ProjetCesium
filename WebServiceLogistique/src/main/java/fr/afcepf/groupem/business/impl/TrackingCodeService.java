@@ -2,12 +2,10 @@ package fr.afcepf.groupem.business.impl;
 
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.groupem.business.api.ITrackingCodeService;
-import fr.afcepf.groupem.dao.api.ITransporteurDao;
 import fr.afcepf.groupem.entities.Transporteur;
 
 @Component

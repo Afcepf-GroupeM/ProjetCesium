@@ -31,15 +31,17 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 		</jaxrs:providers>
 		<jaxrs:serviceBeans>
 			<ref bean="PriseEnCharge" /> <!-- <ref bean="service2Impl" /> -->
+			<ref bean="StatutLivraison" />
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
 	<bean id="PriseEnCharge" class="fr.afcepf.groupem.rest.PriseEnCharge" />
+	<bean id="StatutLivraison" class="fr.afcepf.groupem.rest.StatutLivraison" />
 
 
 	<bean id="mySQL"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/ecommercedb" />
+		<property name="url" value="jdbc:mysql://localhost/wslogistique" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>

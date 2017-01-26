@@ -20,8 +20,7 @@ public class LivraisonDao implements ILivraisonDao {
 
 	@Override
 	public Livraison getLivraisonByTrackingCode(String TrackingCode) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("SELECT l FROM Livraison l WHERE l.trackingCode = :trackingCode", Livraison.class).setParameter("trackingCode", TrackingCode).getSingleResult();
 	}
 
 	@Override
