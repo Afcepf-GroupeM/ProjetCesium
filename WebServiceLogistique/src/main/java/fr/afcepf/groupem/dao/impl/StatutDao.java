@@ -22,14 +22,12 @@ public class StatutDao implements IStatutDao {
 
 	@Override
 	public Statut getStatutByLivraisonId(int idLivraison) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("SELECT s FROM Statut s INNER JOIN s.Livraison l WHERE l.id = :idLivraison", Statut.class).setParameter("idLivraison", idLivraison).getSingleResult();
 	}
 
 	@Override
 	public List<StatutLine> getStatutLinesByStatutId(int idStatut) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("SELECT sl FROM StatutLine sl INNER JOIN sl.Statut s WHERE s.id = :idStatut", StatutLine.class).setParameter("idStatut", idStatut).getResultList();
 	}
 
 	@Override

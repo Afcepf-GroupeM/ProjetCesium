@@ -24,14 +24,12 @@ public class StatutBus implements IStatutBus {
 	
 	@Override
 	public Statut getStatutByLivraisonId(int idLivraison) {
-		// TODO Auto-generated method stub
-		return null;
+		return statutDao.getStatutByLivraisonId(idLivraison);
 	}
 
 	@Override
 	public List<StatutLine> getStatutLinesByStatutId(int idStatut) {
-		// TODO Auto-generated method stub
-		return null;
+		return statutDao.getStatutLinesByStatutId(idStatut);
 	}
 
 	@Override
@@ -55,8 +53,14 @@ public class StatutBus implements IStatutBus {
 
 	@Override
 	public Statut addStatutLine(Statut statut, StatutLine statutLine) {
-		// TODO Auto-generated method stub
-		return null;
+		List<StatutLine> statutLines = statut.getStatutLines();
+		statutLines.add(statutLine);
+		statut.setStatutLines(statutLines);
+		
+		statutDao.updateStatut(statut);
+		statutDao.createStatutLine(statutLine);
+		
+		return statut;
 	}
 
 }

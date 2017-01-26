@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.groupem.business.api.ILivraisonBus;
 import fr.afcepf.groupem.business.api.IStatutBus;
+import fr.afcepf.groupem.dao.api.IAdresseDao;
 import fr.afcepf.groupem.dao.api.ILivraisonDao;
 import fr.afcepf.groupem.entities.Livraison;
 
@@ -15,6 +16,9 @@ public class LivraisonBus implements ILivraisonBus {
 	
 	@Autowired
 	private ILivraisonDao livraisonDao;
+	
+	@Autowired
+	private IAdresseDao adresseDao;
 	
 	@Autowired
 	IStatutBus statutBus;
@@ -41,7 +45,9 @@ public class LivraisonBus implements ILivraisonBus {
 
 	@Override
 	public Livraison createLivraison(Livraison livraison) {
+		livraison.setAdresse(adresseDao.createAdresse(livraison.getAdresse()));
 		Livraison liv = livraisonDao.createLivraison(livraison);
+		
 		liv.setStatut(statutBus.createNewStatut(livraison));
 		liv = livraisonDao.updateLivraison(liv);
 		return liv;

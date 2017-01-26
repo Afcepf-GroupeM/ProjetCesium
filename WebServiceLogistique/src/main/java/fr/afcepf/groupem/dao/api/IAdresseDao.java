@@ -6,6 +6,7 @@ public interface IAdresseDao {
 	
 	Adresse getAdresseByLivraisonId(int idLivraison);
 	Adresse createAdresse(Adresse adresse);
+	Adresse updateAdresse(Adresse adresse);
 	
 
 }

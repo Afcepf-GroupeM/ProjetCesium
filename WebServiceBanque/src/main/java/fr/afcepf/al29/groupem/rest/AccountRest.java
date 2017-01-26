@@ -36,9 +36,9 @@ public class AccountRest {
 	
 	@GET
 	@Produces("application/json")
-	@Path("receptionInfoReturnResponse/{numberCard,dateExpiredCarte,crytogram,lastName,balance}")
-	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String crytogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
-		//get the list of account by numberCard
+	@Path("receptionInfoReturnResponse/")
+	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
+		//get the account by numberCard
 		account = getAccountByNumberCard(numberCard);
 		//verify if the numberCard existe in the BDD
 		/*
