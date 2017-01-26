@@ -5,5 +5,5 @@ import java.util.List;
 import fr.afcepf.al29.groupem.entities.Account;
 
 public interface AccountDaoApi {
-	public Account getAccountByNumberCard(String numberCard);
+	public List<Account> getAccountByNumberCard(String numberCard);
 }

@@ -16,7 +16,7 @@ public class AccountBusImpl implements AccountBusApi{
 	private AccountDaoApi accoundDao;
 	
 	@Override
-	public Account getAccountByNumberCard(String numberCard) {	
+	public List<Account> getAccountByNumberCard(String numberCard) {	
 		System.out.println("*******dans bus***********2222");
 		return accoundDao.getAccountByNumberCard(numberCard);
 	}

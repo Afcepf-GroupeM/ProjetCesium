@@ -18,14 +18,14 @@ import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
 @Component
-@Path("UserAccountService")
+@Path("/UserAccountService")
 public class AccountRest {
 	private int id;
+	private List<Account> accounts;
 	private Account account;
 	private String name;
 	private Boolean numberCardExiste=false;
-	private ResponseBank responseBank;
-	
+	private ResponseBank responseBank;	
 	
 	public AccountRest() {
 		super();
@@ -36,10 +36,10 @@ public class AccountRest {
 	
 	@GET
 	@Produces("application/json")
-	@Path("receptionInfoReturnResponse/")
+	@Path("/receptionInfoReturnResponse")
 	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
 		//get the account by numberCard
-		account = getAccountByNumberCard(numberCard);
+		accounts = getAccountByNumberCard(numberCard);
 		//verify if the numberCard existe in the BDD
 		/*
 		if(account.equals(null)){
@@ -57,22 +57,20 @@ public class AccountRest {
 			verifyAmount(amount);
 		}
 
-*/
+		*/
 		//TODO: put the status and ... in the object responseBank, and send the response
 		return responseBank;
 		
 	}	
 	
-	public Account getAccountByNumberCard(String numberCard){
-		account = null;
+	public List<Account> getAccountByNumberCard(String numberCard){
+		accounts = null;
 		System.out.println("**********************ici3333333333333");
-		System.out.println(numberCard);
-		Boolean a = false;
+		System.out.println("numberCard" + numberCard);		
 		System.out.println("dans AccountRest :accountBus ="+ accountBus);
-		AccountBusImpl accountbus2 = new AccountBusImpl();
-		System.out.println("Accountbus2 : " + accountbus2);
-		account = accountbus2.getAccountByNumberCard(numberCard);
-		return account;
+		System.out.println("Accountbus2 : " + accountBus);
+		accounts = accountBus.getAccountByNumberCard(numberCard);
+		return accounts;
 	}
 	
 	public boolean verifyDateExpiredCard(Account account){
@@ -94,6 +92,23 @@ public class AccountRest {
 	public Boolean verifyAmount(BigDecimal amount){
 		return false;
 		
+	}
+	
+	@GET
+	@Produces("text/plain")
+	@Path("/test")
+	public List<Account> test(@PathParam("numberCard")String numberCard){
+		List<Account> accounts = null;
+		numberCard = "123456789";
+		accounts = getAccountByNumberCard(numberCard);
+		if(accounts.size()!=0){
+			for(Account a:accounts){
+				System.out.println(a.toString());
+			}
+		}else
+		{System.out.println(accounts);}
+			
+		return accounts;
 	}
 	
 	public int getId() {

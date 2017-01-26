@@ -18,15 +18,15 @@ public class AccountDaoImpl implements AccountDaoApi{
 	private EntityManager entityManager;
 	
 	@Override
-	public Account getAccountByNumberCard(String numberCard) {
-		System.out.println("***********dans Dao**************** 3333");
-		Account account = null; 
+	public List<Account> getAccountByNumberCard(String numberCard) {
+		System.out.println("***********dans Dao " + numberCard +"**************** 3333");
+		List<Account> accounts = null; 
 	    try {
-	    	account = entityManager.createQuery("SELECT a FROM Account a WHERE a.numberCard = :numberCard", Account.class).setParameter("numberCard", numberCard).getSingleResult(); 
+	    	accounts = entityManager.createQuery("SELECT a FROM Account a WHERE a.numberCard = :numberCard", Account.class).setParameter("numberCard", numberCard).getResultList(); 
 	    } catch (Exception e) {
 	    	e.printStackTrace();
 	    }
-	    return account;
+	    return accounts;
 	}
 
 }
