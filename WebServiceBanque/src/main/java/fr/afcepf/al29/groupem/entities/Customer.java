@@ -116,6 +116,13 @@ public class Customer {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", civilite=" + civilite + ", lastName=" + lastName + ", firstName=" + firstName
+				+ ", birthday=" + birthday + ", email=" + email + ", telephone=" + telephone + ", address=" + address
+				+ ", city=" + city + ", zipCode=" + zipCode + "]";
+	}
     
 
 }

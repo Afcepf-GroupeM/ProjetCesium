@@ -41,6 +41,7 @@ public class AccountRest {
 		//get the list of account by numberCard
 		account = getAccountByNumberCard(numberCard);
 		//verify if the numberCard existe in the BDD
+		/*
 		if(account.equals(null)){
 			numberCardExiste = false;			
 		}else{					
@@ -55,6 +56,8 @@ public class AccountRest {
 			//verify the customer get enough money to pay the amount
 			verifyAmount(amount);
 		}
+
+*/
 		//TODO: put the status and ... in the object responseBank, and send the response
 		return responseBank;
 		
