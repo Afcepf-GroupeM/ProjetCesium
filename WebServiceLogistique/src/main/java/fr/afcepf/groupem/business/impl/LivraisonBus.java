@@ -8,6 +8,7 @@ import fr.afcepf.groupem.business.api.ILivraisonBus;
 import fr.afcepf.groupem.business.api.IStatutBus;
 import fr.afcepf.groupem.dao.api.IAdresseDao;
 import fr.afcepf.groupem.dao.api.ILivraisonDao;
+import fr.afcepf.groupem.entities.Adresse;
 import fr.afcepf.groupem.entities.Livraison;
 
 @Component
@@ -50,6 +51,9 @@ public class LivraisonBus implements ILivraisonBus {
 		
 		liv.setStatut(statutBus.createNewStatut(livraison));
 		liv = livraisonDao.updateLivraison(liv);
+		Adresse adresse = liv.getAdresse();
+		adresse.setLivraison(liv);
+		adresseDao.updateAdresse(adresse);
 		return liv;
 	}
 
