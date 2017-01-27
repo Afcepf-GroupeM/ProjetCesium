@@ -7,6 +7,5 @@ import fr.afcepf.al29.groupem.entities.Customer;
 
 public interface AccountBusApi {
 	public List<Account> getAccountByNumberCard(String numberCard);
-	public Customer getCustomerByAccount(Account account);
 	
 }

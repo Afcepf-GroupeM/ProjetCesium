@@ -2,15 +2,16 @@ package fr.afcepf.al29.groupem.entities;
 
 public class ResponseBank {
 	private String status;
-	private Integer code;
+	private Integer referenceNumber;
+	
 	public ResponseBank() {
 		super();
-	}
+	}	
 	
-	public ResponseBank(String status, Integer code) {
+	public ResponseBank(String status, Integer referenceNumber) {
 		super();
 		this.status = status;
-		this.code = code;
+		this.referenceNumber = referenceNumber;
 	}
 
 	public String getStatus() {
@@ -19,13 +20,13 @@ public class ResponseBank {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Integer getCode() {
-		return code;
+
+	public Integer getReferenceNumber() {
+		return referenceNumber;
 	}
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	
-	
+
+	public void setReferenceNumber(Integer referenceNumber) {
+		this.referenceNumber = referenceNumber;
+	}	
 
 }

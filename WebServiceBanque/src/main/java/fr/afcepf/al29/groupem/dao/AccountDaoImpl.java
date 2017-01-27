@@ -30,11 +30,6 @@ public class AccountDaoImpl implements AccountDaoApi{
 	    return accounts;
 	}
 
-	@Override
-	public Customer getCustomerByAccount(Account account) {
-		Customer customer = new Customer();
-		//customer = entityManager.createQuery("SELECT c FROM Customer c WHERE Account.customerid = :customerid")
-		return customer;
-	}
+	
 
 }
