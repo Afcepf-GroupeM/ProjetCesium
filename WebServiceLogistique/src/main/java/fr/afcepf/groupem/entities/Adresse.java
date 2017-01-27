@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name="adresse")
 public class Adresse {
 	
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;

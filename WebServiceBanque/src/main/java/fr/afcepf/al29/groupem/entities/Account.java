@@ -3,18 +3,24 @@ package fr.afcepf.al29.groupem.entities;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="account")
 public class Account {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
@@ -35,7 +41,14 @@ public class Account {
     private Date dateExpiredCarte;
 
     private Date dateCreationAccount;
-
+    
+    @OneToMany(fetch=FetchType.LAZY,mappedBy="account")
+    private List<Operation> operations;
+    
+    @ManyToOne
+    @JoinColumn(name="customerid")
+    private Customer customer;
+    
     public Account() {
     }
 
@@ -117,6 +130,25 @@ public class Account {
 
 	public BigDecimal getBalance() {
 		return balance;
+	}
+	
+
+	public List<Operation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(List<Operation> operations) {
+		this.operations = operations;
+	}
+	
+	
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override

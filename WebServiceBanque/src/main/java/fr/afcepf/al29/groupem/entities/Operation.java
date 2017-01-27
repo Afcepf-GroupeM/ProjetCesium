@@ -5,9 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
 @Entity
 @Table(name="operation")
@@ -23,6 +27,12 @@ public class Operation {
 
 
     private Date dateOp;
+    
+    @ManyToOne
+    @JoinColumn(name="accountid")
+    private Account account;
+    
+    
     
     public Operation() {
     }
@@ -58,10 +68,20 @@ public class Operation {
 	public void setDateOp(Date dateOp) {
 		this.dateOp = dateOp;
 	}
+	
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	@Override
 	public String toString() {
 		return "Operation [id=" + id + ", label=" + label + ", amount=" + amount + ", dateOp=" + dateOp + "]";
 	}
+	
+	
 	
 }

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="statutline")
 public class StatutLine {
@@ -31,6 +33,7 @@ public class StatutLine {
 	@Column(name="detailsupdate")
 	private String detailsUpdate;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idstatut")
 	private Statut statut;
