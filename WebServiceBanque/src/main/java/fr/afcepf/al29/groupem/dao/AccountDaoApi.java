@@ -11,5 +11,5 @@ public interface AccountDaoApi {
 	
 	
 	//methode pour debiter le compte
-	public Account debitAccount(BigDecimal Amount, Account account);
+	public Account debitAccount(BigDecimal amount, Account account);
 }

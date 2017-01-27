@@ -27,8 +27,8 @@ public class AccountBusImpl implements AccountBusApi{
 
 	//transmission de la methode debitAccount au DAO
 	@Override
-	public Account debitAccount(BigDecimal Amount, Account account) {
-		return accountDao.debitAccount(Amount, account);
+	public Account debitAccount(BigDecimal amount, Account account) {
+		return accountDao.debitAccount(amount, account);
 	}
 	
 }
