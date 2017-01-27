@@ -1,7 +1,11 @@
 package fr.afcepf.al29.groupem.rest;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -15,6 +19,7 @@ import org.springframework.stereotype.Component;
 import fr.afcepf.al29.groupem.business.AccountBusApi;
 import fr.afcepf.al29.groupem.business.AccountBusImpl;
 import fr.afcepf.al29.groupem.entities.Account;
+import fr.afcepf.al29.groupem.entities.Customer;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
 @Component
@@ -24,7 +29,10 @@ public class AccountRest {
 	private List<Account> accounts;
 	private Account account;
 	private String name;
-	private Boolean numberCardExiste=false;
+	private Boolean numberCardExiste = false;
+	private Boolean isExpired = true;
+	private Boolean cryptogramCorrect = false;
+	private Boolean nameCorrect = false;
 	private ResponseBank responseBank;	
 	
 	public AccountRest() {
@@ -37,27 +45,33 @@ public class AccountRest {
 	@GET
 	@Produces("application/json")
 	@Path("/receptionInfoReturnResponse")
-	public ResponseBank receptionInfoReturnResponse(@PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
+	public ResponseBank receptionInfoReturnResponse(@PathParam("nameCompany")String nameCompany, @PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
 		//get the account by numberCard
 		accounts = getAccountByNumberCard(numberCard);
 		//verify if the numberCard existe in the BDD
-		/*
-		if(account.equals(null)){
+		
+		if(accounts.size()==0){
 			numberCardExiste = false;			
 		}else{					
 			numberCardExiste = true;
-		
+			//take the object account
+			account = accounts.get(0);
 			//verify the DateExpired is still valide	
-			verifyDateExpiredCard(account);
-			//verify the Crytogram is correct
-			verifyCryptogram(account.getCryptogram());
-			//verify the Name is correct
-			verifyName(name);
-			//verify the customer get enough money to pay the amount
-			verifyAmount(amount);
+			isExpired = verifyDateExpiredCard(account);
+			if(isExpired = false){
+				//verify the Crytogram is correct
+				verifyCryptogram(account.getCryptogram());
+				if(cryptogramCorrect = true ){				
+					//verify the Name is correct
+					verifyName(account);
+					//verify the customer get enough money to pay the amount
+					verifyAmount(amount);
+					//TODO: construire la réponse
+				}
+			}
 		}
 
-		*/
+		
 		//TODO: put the status and ... in the object responseBank, and send the response
 		return responseBank;
 		
@@ -74,18 +88,45 @@ public class AccountRest {
 	}
 	
 	public boolean verifyDateExpiredCard(Account account){
-		return false;
+		Boolean expired = true;
+		//year and month of today:
+		Calendar cToday = Calendar.getInstance();
+		int yearToday = cToday.get(Calendar.YEAR);
+		int monthToday = cToday.get(Calendar.MONTH) + 1;
+		
+		//year and month of expiredDay of bankCard:		
+		Calendar cExpiredDay = new GregorianCalendar();
+		cExpiredDay.setTime(account.getDateExpiredCarte());
+		int yearExpiredDay = cExpiredDay.get(Calendar.YEAR);
+		//Add one to month {0 - 11}
+		int monthExpiredDay = cExpiredDay.get(Calendar.MONTH) + 1;
+		//int day = cExpiredDay.get(Calendar.DAY_OF_MONTH);
+		if(yearExpiredDay < yearToday){
+			expired = false;
+			if(monthExpiredDay < monthToday){
+				expired = false;
+			}else{
+				expired = true;
+			}
+		}else{
+			expired = true;
+		}
+		return expired;
 	}
 	
 	public boolean verifyCryptogram(String cryptogram){
 		
-		if(cryptogram==account.getCryptogram()){
-			
+		if(cryptogram.equals(account.getCryptogram())){
+			cryptogramCorrect = true;
+		} else {
+			cryptogramCorrect = false;
 		}
-		return false;
+		return cryptogramCorrect;
 	}
 	
-	public String verifyName(String name){
+	public String verifyName(Account account){
+		Customer customer = new Customer();
+		customer = accountBus.getCustomerByAccount(account);
 		return null;
 	}
 	

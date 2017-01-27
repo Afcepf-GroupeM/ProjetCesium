@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.entities.Account;
+import fr.afcepf.al29.groupem.entities.Customer;
 
 @Transactional
 @Component
@@ -27,6 +28,13 @@ public class AccountDaoImpl implements AccountDaoApi{
 	    	e.printStackTrace();
 	    }
 	    return accounts;
+	}
+
+	@Override
+	public Customer getCustomerByAccount(Account account) {
+		Customer customer = new Customer();
+		
+		return customer;
 	}
 
 }
