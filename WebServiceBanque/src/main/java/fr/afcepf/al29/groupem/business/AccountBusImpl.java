@@ -8,17 +8,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.al29.groupem.dao.AccountDaoApi;
 import fr.afcepf.al29.groupem.entities.Account;
+import fr.afcepf.al29.groupem.entities.Customer;
 
 @Transactional
 @Component
 public class AccountBusImpl implements AccountBusApi{
 	@Autowired
-	private AccountDaoApi accoundDao;
+	private AccountDaoApi accountDao;
 	
 	@Override
 	public Account getAccountByNumberCard(String numberCard) {	
 		System.out.println("*******dans bus***********2222");
-		return accoundDao.getAccountByNumberCard(numberCard);
+		return accountDao.getAccountByNumberCard(numberCard);
+	}
+
+	@Override
+	public Customer getCustomerByAccount(Account account) {		
+		return accountDao.getCustomerByAccount(account);
 	}
 	
 }
