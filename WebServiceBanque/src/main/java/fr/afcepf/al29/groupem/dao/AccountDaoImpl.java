@@ -35,15 +35,15 @@ public class AccountDaoImpl implements AccountDaoApi{
 	
 
 	
-	//methode pour debiter le compte, il faut: creer un objet "compte", creer un objet "montant"
+	//methode pour debiter le compte, il faut creer un objet "compte", creer un objet "montant"
 	@Override
-	public Account debitAccount(BigDecimal Amount, Account account) {
-		Account account1 = new Account();
-		Operation operation1 = new Operation();
-		BigDecimal balance = account1.getBalance().subtract(Amount);
+	public Account debitAccount(BigDecimal amount, Account account) {
 		
-		entityManager.createQuery("UPDATE Account set balance = :balance", Account.class).setParameter("balance", balance).executeUpdate();
-		return account1;
+		
+		account.setBalance(account.getBalance().subtract(amount));
+		
+		entityManager.merge(account);
+		return account;
 	}
 
 }
