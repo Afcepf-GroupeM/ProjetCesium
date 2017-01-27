@@ -111,6 +111,16 @@ public class AccountRest {
 		return account;
 	}
 	
+	
+	@GET
+	@Produces("text/plain")
+	@Path("/test2")
+	public String test2(){
+		
+		return "lol";
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
