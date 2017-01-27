@@ -18,8 +18,10 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.AccountBusApi;
 import fr.afcepf.al29.groupem.business.AccountBusImpl;
+import fr.afcepf.al29.groupem.business.OperationBusApi;
 import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.Customer;
+import fr.afcepf.al29.groupem.entities.Operation;
 import fr.afcepf.al29.groupem.entities.ResponseBank;
 
 @Component
@@ -33,7 +35,13 @@ public class AccountRest {
 	private Boolean isExpired = true;
 	private Boolean cryptogramCorrect = false;
 	private Boolean nameCorrect = false;
+	private Boolean balanceEnough = false;
 	private ResponseBank responseBank;	
+	//in response, return un status de prélèvement "OK" ou "NOT-OK"
+	private String statusResponse;
+	//in response, return un referenceNumber = operation.id
+	private Integer referenceNumberResponse;
+	private Operation operation;
 	
 	public AccountRest() {
 		super();
@@ -41,6 +49,8 @@ public class AccountRest {
 
 	@Autowired
 	private AccountBusApi accountBus;
+	@Autowired
+	private OperationBusApi opeBus;
 	
 	@GET
 	@Produces("application/json")
@@ -48,36 +58,60 @@ public class AccountRest {
 	public ResponseBank receptionInfoReturnResponse(@PathParam("nameCompany")String nameCompany, @PathParam("numberCard")String numberCard,@PathParam("dateExpiredCarte") Date dateExpiredCarte,@PathParam("cryptogram") String cryptogram,@PathParam("lastName") String lastName,@PathParam("amount") BigDecimal amount){
 		//get the account by numberCard
 		accounts = getAccountByNumberCard(numberCard);
-		//verify if the numberCard existe in the BDD
-		
+		System.out.println("***************in AccountRest***in method  line 61" + numberCard);
+		//1.verify if the numberCard existe in the BDD		
 		if(accounts.size()==0){
-			numberCardExiste = false;			
+			numberCardExiste = false;	
+			setResponseBankNegative(statusResponse,referenceNumberResponse);
 		}else{					
 			numberCardExiste = true;
 			//take the object account
 			account = accounts.get(0);
-			//verify the DateExpired is still valide	
+			//2.verify the DateExpired is still valide	
 			isExpired = verifyDateExpiredCard(account);
 			if(isExpired = false){
-				//verify the Crytogram is correct
+				//3.verify the Crytogram is correct
 				verifyCryptogram(account.getCryptogram());
 				if(cryptogramCorrect = true ){				
-					//verify the Name is correct
-					verifyName(account);
-					//verify the customer get enough money to pay the amount
-					verifyAmount(amount);
-					//TODO: construire la réponse
-					//TODO: Debit balance of account
-					debitAccount(amount, account);
-				}
-			}
+					//4.verify the Name is correct
+					verifyName(account, lastName);
+					if(nameCorrect = true){
+						//5.verify the customer get enough money to pay the amount
+						verifyAmount(account,amount);
+						if(balanceEnough = true){
+							//construire la réponse
+							statusResponse = "OK";
+							//créer un opération de prélèvement
+							operation = opeBus.createOperation(amount, account,nameCompany);
+							//response positive: OK
+							referenceNumberResponse = operation.getId();
+							responseBank.setStatus(statusResponse);
+							responseBank.setReferenceNumber(referenceNumberResponse);							
+							//TODO: Debit balance of account
+							debitAccount(amount,account);
+						}else{
+							setResponseBankNegative(statusResponse,referenceNumberResponse);
+							  }
+					}else{
+						setResponseBankNegative(statusResponse,referenceNumberResponse);
+						  }
+				}else{
+					setResponseBankNegative(statusResponse,referenceNumberResponse);
+					  }
+				
+			}else{
+				setResponseBankNegative(statusResponse,referenceNumberResponse);
+				  }
 		}
-
-		
-		//TODO: put the status and ... in the object responseBank, and send the response
-		return responseBank;
-		
+		return responseBank;		
 	}	
+	
+	public void setResponseBankNegative(String status,Integer reference){
+		statusResponse = "NOT-OK";
+		referenceNumberResponse = 0;
+		responseBank.setStatus(statusResponse);
+		responseBank.setReferenceNumber(referenceNumberResponse);
+	}
 	
 	public List<Account> getAccountByNumberCard(String numberCard){
 		accounts = null;
@@ -126,19 +160,29 @@ public class AccountRest {
 		return cryptogramCorrect;
 	}
 	
-	public String verifyName(Account account){
-		Customer customer = new Customer();
-		customer = accountBus.getCustomerByAccount(account);
-		return null;
+	public Boolean verifyName(Account account,String lastNameInput){		
+		Customer customer = account.getCustomer();
+		String lastNameOfAccount = customer.getLastName();
+		if(lastNameOfAccount.equals(lastNameInput)){
+			nameCorrect = true;
+		}else{
+			nameCorrect = false;
+		}
+		return nameCorrect;
 	}
 	
-	public Boolean verifyAmount(BigDecimal amount){
-		return false;
+	public Boolean verifyAmount(Account account,BigDecimal amount){
+		if((account.getBalance().compareTo(amount))==1){
+			balanceEnough = true;
+		}else{
+			balanceEnough = false;
+		}
+		return balanceEnough;
 		
 	}
 	
-	public void debitAccount(BigDecimal amount, Account account){
-		accountBus.debitAccount(amount, account);
+	public void debitAccount(BigDecimal amount,Account account){
+		//accountBus.debitAccount(amount,account);
 	}
 	
 	@GET
@@ -157,6 +201,8 @@ public class AccountRest {
 			
 		return accounts;
 	}
+	
+	
 	
 	public int getId() {
 		return id;

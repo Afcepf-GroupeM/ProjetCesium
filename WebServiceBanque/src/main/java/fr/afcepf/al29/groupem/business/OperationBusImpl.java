@@ -4,11 +4,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.al29.groupem.dao.OperationDaoApi;
 import fr.afcepf.al29.groupem.entities.Account;
 import fr.afcepf.al29.groupem.entities.Operation;
 
+@Transactional
+@Component
 public class OperationBusImpl implements OperationBusApi {
 
 	@Autowired

@@ -23,10 +23,7 @@ public class AccountBusImpl implements AccountBusApi{
 		return accountDao.getAccountByNumberCard(numberCard);
 	}
 
-	@Override
-	public Customer getCustomerByAccount(Account account) {		
-		return accountDao.getCustomerByAccount(account);
-	}
+
 
 	//transmission de la methode debitAccount au DAO
 	@Override
