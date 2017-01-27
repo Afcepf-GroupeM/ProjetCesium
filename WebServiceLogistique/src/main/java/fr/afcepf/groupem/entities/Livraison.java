@@ -8,12 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="livraison")
@@ -45,13 +45,16 @@ public class Livraison {
 	@Temporal(TemporalType.DATE)
 	private Date dateLivraison;
 	
-	@JsonIgnore
 	@OneToOne(fetch=FetchType.LAZY,mappedBy="livraison")
 	private Statut statut;
 	
-	@JsonIgnore
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="livraison")
+	@ManyToOne
+	@JoinColumn(name="idadresse")
 	private Adresse adresse;
+	
+	@ManyToOne
+	@JoinColumn(name="idtransporteur")
+	private Transporteur transporteur;
 
 	
 	public String getTrackingCode() {
@@ -103,12 +106,11 @@ public class Livraison {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public Transporteur getTransporteur() {
+		return transporteur;
+	}
+	public void setTransporteur(Transporteur transporteur) {
+		this.transporteur = transporteur;
+	}
 
 }

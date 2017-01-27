@@ -1,5 +1,6 @@
 package fr.afcepf.groupem.business.impl;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,14 +47,30 @@ public class LivraisonBus implements ILivraisonBus {
 
 	@Override
 	public Livraison createLivraison(Livraison livraison) {
-		livraison.setAdresse(adresseDao.createAdresse(livraison.getAdresse()));
-		Livraison liv = livraisonDao.createLivraison(livraison);
+		boolean checkAdresse = false;
+		Adresse adresse = livraison.getAdresse();
+		List<Adresse> adressesBase = adresseDao.getAll();
 		
+		for (Adresse adresseBase : adressesBase){
+			checkAdresse = adresseBase.equals(adresse);
+			
+			if (checkAdresse){
+				adresse = adresseBase;
+				break;
+			}
+		}
+		
+		if (checkAdresse){
+			livraison.setAdresse(adresse);
+		}
+		else{
+			livraison.setAdresse(adresseDao.createAdresse(livraison.getAdresse()));
+		}
+		
+		Livraison liv = livraisonDao.createLivraison(livraison);
 		liv.setStatut(statutBus.createNewStatut(livraison));
 		liv = livraisonDao.updateLivraison(liv);
-		Adresse adresse = liv.getAdresse();
-		adresse.setLivraison(liv);
-		adresseDao.updateAdresse(adresse);
+		
 		return liv;
 	}
 
