@@ -68,7 +68,7 @@ public class AccountRest {
 					verifyAmount(amount);
 					//TODO: construire la réponse
 					//TODO: Debit balance of account
-					debitAccount(amount);
+					debitAccount(amount, account);
 				}
 			}
 		}
@@ -137,8 +137,8 @@ public class AccountRest {
 		
 	}
 	
-	public void debitAccount(BigDecimal amount){
-		accountBus.debitAccount(amount);
+	public void debitAccount(BigDecimal amount, Account account){
+		accountBus.debitAccount(amount, account);
 	}
 	
 	@GET

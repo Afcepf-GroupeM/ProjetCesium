@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.business;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class AccountBusImpl implements AccountBusApi{
 	@Override
 	public Customer getCustomerByAccount(Account account) {		
 		return accountDao.getCustomerByAccount(account);
+	}
+
+	//transmission de la methode debitAccount au DAO
+	@Override
+	public Account debitAccount(BigDecimal Amount, Account account) {
+		return accountDao.debitAccount(Amount, account);
 	}
 	
 }
