@@ -28,7 +28,6 @@ public class TransporteurDao implements ITransporteurDao {
 	@Override
 	public List<Transporteur> getAllTransporteurs() {
 		List<Transporteur> listeTr = entityManager.createQuery("SELECT transp FROM Transporteur transp ORDER BY transp.delaiLivraisonGaranti DESC",Transporteur.class).getResultList();
-		
 		return listeTr;
 	}
 
