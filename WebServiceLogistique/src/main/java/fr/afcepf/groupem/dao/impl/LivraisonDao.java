@@ -55,8 +55,7 @@ public class LivraisonDao implements ILivraisonDao {
 
 	@Override
 	public Livraison updateLivraison(Livraison livraison) {
-		entityManager.merge(livraison);
-		return livraison;
+		return entityManager.merge(livraison);
 	}
 
 }

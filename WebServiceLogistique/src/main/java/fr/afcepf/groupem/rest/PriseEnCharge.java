@@ -3,7 +3,6 @@ package fr.afcepf.groupem.rest;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,7 +15,9 @@ import org.springframework.stereotype.Component;
 import fr.afcepf.groupem.business.api.ILivraisonBus;
 import fr.afcepf.groupem.business.api.ITrackingCodeService;
 import fr.afcepf.groupem.business.api.ITransporteurBus;
-import fr.afcepf.groupem.entities.DemandeLivraison;
+import fr.afcepf.groupem.dto.DemandeLivraisonDto;
+import fr.afcepf.groupem.dto.ReponseLivraisonDto;
+import fr.afcepf.groupem.entities.Adresse;
 import fr.afcepf.groupem.entities.Livraison;
 import fr.afcepf.groupem.entities.Transporteur;
 
@@ -68,23 +69,32 @@ public class PriseEnCharge {
 	@Path("/add")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Livraison addDemande(DemandeLivraison demande){
+	public ReponseLivraisonDto addDemande(DemandeLivraisonDto demande){
+		Adresse adresse = new Adresse();
+		adresse.setLastname(demande.getLastName());
+		adresse.setFirstname(demande.getFirstName());
+		adresse.setNumero(demande.getNumero());
+		adresse.setComplement(demande.getComplement());
+		adresse.setTypeVoie(demande.getTypeVoie());
+		adresse.setNomVoie(demande.getNomVoie());
+		adresse.setCity(demande.getCity());
+		adresse.setZipcode(demande.getZipcode());
+		adresse.setCountry(demande.getCountry());
 		
-		System.out.println("Adresse: " + demande.getAdresse());
-		System.out.println("Nb items: " + demande.getNbItem());
+		System.out.println("Adresse: " + adresse);
+		System.out.println("Nb items: " + demande.getNbItems());
 		System.out.println("Delai max: " + demande.getDelaiMax());
 		
 		Transporteur transporteur = transporteurBus.chooseTransporteurByDelaiMax(demande.getDelaiMax());
 		
 		Livraison liv = new Livraison();
-		liv.setAdresse(demande.getAdresse());
+		liv.setAdresse(adresse);
 		liv.setDateDemande(new Date());
 		liv.setDatePriseEnCharge(new Date());
-		liv.setNbItems(demande.getNbItem());
+		liv.setNbItems(demande.getNbItems());
 		liv.setTransporteur(transporteur);
-		liv.setTrackingCode(tcs.generateTrackingCode(transporteur, 
-													 demande.getAdresse().getCountry(), 
-													 demande.getAdresse().getZipcode()));
+		liv.setTrackingCode(tcs.generateTrackingCode(transporteur, adresse.getCountry(), adresse.getZipcode()));
+		
 		Date date = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
@@ -95,7 +105,27 @@ public class PriseEnCharge {
 		
 		liv = livraisonBus.createLivraison(liv);
 		
-		return liv;
+		ReponseLivraisonDto reponse = new ReponseLivraisonDto();
+		reponse.setTrackingCode(liv.getTrackingCode());
+		reponse.setNbItems(liv.getNbItems());
+		reponse.setDateDemande(liv.getDateDemande());
+		reponse.setDatePriseEnCharge(liv.getDatePriseEnCharge());
+		reponse.setDateLivraison(liv.getDateLivraison());
+		
+		reponse.setLastName(adresse.getLastname());
+		reponse.setFirstName(adresse.getFirstname());
+		reponse.setNumero(adresse.getNumero());
+		reponse.setComplement(adresse.getComplement());
+		reponse.setTypeVoie(adresse.getTypeVoie());
+		reponse.setNomVoie(adresse.getNomVoie());
+		reponse.setCity(adresse.getCity());
+		reponse.setZipcode(adresse.getZipcode());
+		reponse.setCountry(adresse.getCountry());
+		
+		reponse.setTransporteurName(transporteur.getName());
+		reponse.setUrl(transporteur.getUrl());
+		
+		return reponse;
 	}
 	
 

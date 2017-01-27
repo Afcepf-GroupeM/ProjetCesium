@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name="adresse")
 public class Adresse {
@@ -35,7 +33,6 @@ public class Adresse {
 	private String zipcode;
 	private String country;
 	
-	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="adresse")
 	private List<Livraison> livraisons;
 	
@@ -107,14 +104,63 @@ public class Adresse {
 		this.livraisons = livraisons;
 	}
 	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Adresse other = (Adresse) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (complement == null) {
+			if (other.complement != null)
+				return false;
+		} else if (!complement.equals(other.complement))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
+			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
+			return false;
+		if (nomVoie == null) {
+			if (other.nomVoie != null)
+				return false;
+		} else if (!nomVoie.equals(other.nomVoie))
+			return false;
+		if (numero != other.numero)
+			return false;
+		if (typeVoie == null) {
+			if (other.typeVoie != null)
+				return false;
+		} else if (!typeVoie.equals(other.typeVoie))
+			return false;
+		if (zipcode == null) {
+			if (other.zipcode != null)
+				return false;
+		} else if (!zipcode.equals(other.zipcode))
+			return false;
+		return true;
+	}
+	@Override
 	public String toString() {
 		return "Adresse [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", numero=" + numero
 				+ ", complement=" + complement + ", typeVoie=" + typeVoie + ", nomVoie=" + nomVoie + ", city="
 				+ city + ", zipcode=" + zipcode + ", country=" + country + "]";
 	}
-	
-	
-	
-	
 
 }

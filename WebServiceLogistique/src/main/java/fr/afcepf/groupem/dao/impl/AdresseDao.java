@@ -1,8 +1,9 @@
 package fr.afcepf.groupem.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,10 +37,8 @@ public class AdresseDao implements IAdresseDao {
 	}
 
 	@Override
-	public boolean checkAdresse(String lastName, String firstName, int numero, String complement, String typeVoie,
-			String nomVoie, String city, String zipCode, String country) {
-		// TODO Auto-generated method stub
-		return false;
+	public List<Adresse> getAll() {
+		return entityManager.createQuery("SELECT adr FROM Adresse adr", Adresse.class).getResultList();
 	}
 
 }

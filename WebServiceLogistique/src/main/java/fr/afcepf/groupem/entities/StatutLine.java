@@ -66,10 +66,5 @@ public class StatutLine {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
-	
-	
-	
-	
-	
 
 }

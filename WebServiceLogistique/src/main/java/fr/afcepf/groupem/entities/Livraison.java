@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name="livraison")
 public class Livraison {
@@ -47,16 +45,13 @@ public class Livraison {
 	@Temporal(TemporalType.DATE)
 	private Date dateLivraison;
 	
-	@JsonIgnore
 	@OneToOne(fetch=FetchType.LAZY,mappedBy="livraison")
 	private Statut statut;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="idadresse")
 	private Adresse adresse;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="idtransporteur")
 	private Transporteur transporteur;

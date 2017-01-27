@@ -12,8 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name="statut")
 public class Statut {
@@ -22,11 +20,9 @@ public class Statut {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="statut")
 	private List<StatutLine> statutLines;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="idlivraison")
 	private Livraison livraison;
@@ -50,8 +46,5 @@ public class Statut {
 	public void setLivraison(Livraison livraison) {
 		this.livraison = livraison;
 	}
-	
-	
-	
 
 }

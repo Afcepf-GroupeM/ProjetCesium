@@ -27,7 +27,7 @@ public class StatutDao implements IStatutDao {
 
 	@Override
 	public List<StatutLine> getStatutLinesByStatutId(int idStatut) {
-		return entityManager.createQuery("SELECT sl FROM StatutLine sl INNER JOIN sl.Statut s WHERE s.id = :idStatut", StatutLine.class).setParameter("idStatut", idStatut).getResultList();
+		return entityManager.createQuery("SELECT sl FROM StatutLine sl INNER JOIN sl.statut s WHERE s.id = :idStatut", StatutLine.class).setParameter("idStatut", idStatut).getResultList();
 	}
 
 	@Override
