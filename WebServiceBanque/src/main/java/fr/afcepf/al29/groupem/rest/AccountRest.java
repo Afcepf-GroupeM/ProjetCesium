@@ -67,6 +67,8 @@ public class AccountRest {
 					//verify the customer get enough money to pay the amount
 					verifyAmount(amount);
 					//TODO: construire la réponse
+					//TODO: Debit balance of account
+					debitAccount(amount);
 				}
 			}
 		}
@@ -133,6 +135,10 @@ public class AccountRest {
 	public Boolean verifyAmount(BigDecimal amount){
 		return false;
 		
+	}
+	
+	public void debitAccount(BigDecimal amount){
+		accountBus.debitAccount(amount);
 	}
 	
 	@GET
