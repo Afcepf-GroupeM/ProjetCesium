@@ -33,6 +33,12 @@ public class AccountDaoImpl implements AccountDaoApi{
 	    return accounts;
 	}
 
+	@Override
+	public Account debitAccount(Account account) {
+		account = entityManager.merge(account);
+		return account;
+	}
+
 	
 	
 

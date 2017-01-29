@@ -18,18 +18,18 @@ public class AccountBusImpl implements AccountBusApi{
 	private AccountDaoApi accountDao;
 	
 	@Override
-	public Account getAccountByNumberCard(String numberCard) {	
+	public List<Account> getAccountByNumberCard(String numberCard) {	
 		System.out.println("*******dans bus***********2222");
 		return accountDao.getAccountByNumberCard(numberCard);
 	}
 
-
-
-	//transmission de la methode debitAccount au DAO
 	@Override
 	public Account debitAccount(BigDecimal amount, Account account) {
-		return accountDao.debitAccount(amount, account);
+		BigDecimal newBalance = account.getBalance().subtract(amount);
+		account.setBalance(newBalance);
+		return accountDao.debitAccount(account);
 	}
+	
 	
 	
 }

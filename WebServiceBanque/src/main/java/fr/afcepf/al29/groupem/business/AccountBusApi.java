@@ -8,8 +8,5 @@ import fr.afcepf.al29.groupem.entities.Customer;
 
 public interface AccountBusApi {
 	public List<Account> getAccountByNumberCard(String numberCard);
-	
-	//methode pour débiter le compte qui a besoin en parametre du compte et du montant
-	public Account debitAccount(BigDecimal amount, Account account);
-	
+	public Account debitAccount(BigDecimal amount,Account account);
 }
