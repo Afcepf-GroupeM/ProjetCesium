@@ -29,7 +29,7 @@ CREATE TABLE `bankdb`.`account` (
   `balance` DECIMAL NOT NULL,
   `typeCarte` ENUM('CarteBleue','MasterCard','Visa','AmericanExpress') NOT NULL,
   `numberCard` VARCHAR(50) NOT NULL,
-  `crytogram` VARCHAR(10) NOT NULL,
+  `cryptogram` VARCHAR(10) NOT NULL,
   `MONTANT_OPDEBIT` DECIMAL NOT NULL,
   `dateExpiredCarte` DATE NOT NULL,
   `dateCreationAccount` DATE NOT NULL,
@@ -47,6 +47,7 @@ CREATE TABLE `bankdb`.`operation` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `label` VARCHAR(100) NOT NULL,
   `amount` DECIMAL NOT NULL,
+  `dateOp` DATE NOT NULL,
   `accountid` BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_operation_1` FOREIGN KEY `FK_operation_1` (`accountid`)

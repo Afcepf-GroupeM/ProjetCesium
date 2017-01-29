@@ -24,6 +24,8 @@ public class OperationBusImpl implements OperationBusApi {
 		operation.setAmount(amount);
 		operation.setAccount(account);
 		operation.setLabel(label);
+		Date date = new Date();
+		operation.setDateOp(date);
 		
 		Operation operationCreated = operationDao.createOperation(operation);
 		
