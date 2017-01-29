@@ -1,4 +1,4 @@
-package fr.afcepf.al29.groupem.entities;
+package fr.afcepf.al29.groupem.dto;
 
 public class ResponseBank {
 	private String status;
