@@ -92,8 +92,7 @@ public class WSShippingBusImpl implements IWSShippingBusApi {
 				returnLogistique = new JSONObject(sortie);			
 				shippingResponse.setTrackingCode(returnLogistique.getString("trackingCode"));
 				shippingResponse.setDateLivraison((Date) returnLogistique.get("dateLivraison"));
-				shippingResponse.setDateLivraison((Date) returnLogistique.get("dateLivraison"));
-				
+				shippingResponse.setDatePriseEnCharge((Date) returnLogistique.get("datePriseEnCharge"));				
 								
 			} catch (JSONException e) {
 				shippingResponse.setReturnCode(3);

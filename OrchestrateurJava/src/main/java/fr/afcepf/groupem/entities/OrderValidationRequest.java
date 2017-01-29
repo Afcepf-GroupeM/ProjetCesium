@@ -17,8 +17,8 @@ public class OrderValidationRequest {
 	private String firstname;
 //	Carte bancaire
 	private String cardNumber;
-	private String monthValidity;
-	private String yearValidity;
+	private int monthValidity;
+	private int yearValidity;
 	private String cryptogram;
 	
 	
@@ -76,16 +76,16 @@ public class OrderValidationRequest {
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-	public String getMonthValidity() {
+	public int getMonthValidity() {
 		return monthValidity;
 	}
-	public void setMonthValidity(String monthValidity) {
+	public void setMonthValidity(int monthValidity) {
 		this.monthValidity = monthValidity;
 	}
-	public String getYearValidity() {
+	public int getYearValidity() {
 		return yearValidity;
 	}
-	public void setYearValidity(String yearValidity) {
+	public void setYearValidity(int yearValidity) {
 		this.yearValidity = yearValidity;
 	}
 	public String getCryptogram() {

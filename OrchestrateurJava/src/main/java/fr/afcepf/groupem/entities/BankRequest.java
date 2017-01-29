@@ -9,7 +9,8 @@ public class BankRequest {
 	private String lastname;
 //	Credit Card
 	private String cardNumber;
-	private Date expirationDate;
+	private int monthExpiration;
+	private int yearExpiration;
 	private String cryptogram;
 	
 //	Order
@@ -56,13 +57,6 @@ public class BankRequest {
 		this.amount = amount;
 	}
 
-	public Date getExpirationDate() {
-		return expirationDate;
-	}
-
-	public void setExpirationDate(Date expirationDate) {
-		this.expirationDate = expirationDate;
-	}
 
 	public String getCompanyName() {
 		return companyName;
@@ -70,6 +64,22 @@ public class BankRequest {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+
+	public int getMonthExpiration() {
+		return monthExpiration;
+	}
+
+	public void setMonthExpiration(int monthExpiration) {
+		this.monthExpiration = monthExpiration;
+	}
+
+	public int getYearExpiration() {
+		return yearExpiration;
+	}
+
+	public void setYearExpiration(int yearExpiration) {
+		this.yearExpiration = yearExpiration;
 	}
 	
 	
