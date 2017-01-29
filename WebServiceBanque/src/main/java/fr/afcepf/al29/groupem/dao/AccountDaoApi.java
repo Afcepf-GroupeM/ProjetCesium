@@ -7,5 +7,6 @@ import fr.afcepf.al29.groupem.entities.Customer;
 
 public interface AccountDaoApi {
 	public List<Account> getAccountByNumberCard(String numberCard);
+	public Account debitAccount(Account account);
 	
 }

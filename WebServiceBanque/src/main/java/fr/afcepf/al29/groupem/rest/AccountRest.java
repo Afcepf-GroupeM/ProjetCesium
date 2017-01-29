@@ -142,7 +142,7 @@ public class AccountRest {
 					System.out.println("isExpired == false : " +(isExpired == false));
 					if(isExpired == false){
 						//3.verify the Crytogram is correct
-						verifyCryptogram(account.getCryptogram());
+						verifyCryptogram(requestData.getCryptogram(),account.getCryptogram());
 						System.out.println("******************cryptogramCorrect = " + cryptogramCorrect);
 						if(cryptogramCorrect == true ){				
 							//4.verify the Name is correct
@@ -161,8 +161,9 @@ public class AccountRest {
 									referenceNumberResponse = operation.getId();
 									responseBank.setStatus(statusResponse);
 									responseBank.setReferenceNumber(referenceNumberResponse);							
-									//TODO: Debit balance of account
-									debitAccount(amount,account);
+									//Debit balance of account
+									account = debitAccount(amount,account);
+									System.out.println("**********************************final***********" + account.toString());
 								}else{
 									setResponseBankNegative(statusResponse,referenceNumberResponse);
 									  }
@@ -267,9 +268,9 @@ public class AccountRest {
 		return expired;
 	}
 	
-	public boolean verifyCryptogram(String cryptogram){
+	public boolean verifyCryptogram(String cryptogramInput,String cryptogramAccount){
 		
-		if(cryptogram.equals(account.getCryptogram())){
+		if(cryptogramInput.equals(cryptogramAccount)){
 			cryptogramCorrect = true;
 		} else {
 			cryptogramCorrect = false;
@@ -298,8 +299,8 @@ public class AccountRest {
 		
 	}
 	
-	public void debitAccount(BigDecimal amount,Account account){
-		//accountBus.debitAccount(amount,account);
+	public Account debitAccount(BigDecimal amount,Account account){
+		return accountBus.debitAccount(amount,account);
 	}
 	
 	@GET
