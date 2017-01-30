@@ -27,6 +27,12 @@ public class ResponseBank {
 
 	public void setReferenceNumber(Integer referenceNumber) {
 		this.referenceNumber = referenceNumber;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "ResponseBank [status=" + status + ", referenceNumber=" + referenceNumber + "]";
+	}
+	
 
 }
