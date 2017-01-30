@@ -74,7 +74,7 @@ public class Orchestrateur {
 		bankRequest.setNumberCard(orchRequest.getCardNumber());
 		bankRequest.setCryptogram(orchRequest.getCryptogram());
 		bankRequest.setMonthExpiredCard(orchRequest.getMonthValidity());
-		bankRequest.setYearExpiredCard(orchRequest.getYearValidity());
+		bankRequest.setYearExpiredCard(2000 + orchRequest.getYearValidity());
 		bankRequest.setLastName(orchRequest.getLastname());
 		
 		BankResponse bankResponse = wsBankBus.checkPayement(bankRequest);
@@ -111,12 +111,13 @@ public class Orchestrateur {
 				
 				orchResponse.setDateLivraison(shippingResponse.getDateLivraison());
 				orchResponse.setTrackingCode(shippingResponse.getTrackingCode());
+				orchResponse.setTrackingUrl(shippingResponse.getUrl());
+				orchResponse.setTransporteurName(shippingResponse.getTransporteurName());
 			}
 			} else {
 				orchResponse.setErrorCode(4);
 				orchResponse.setMessage("Paiement refusé - Verifier les informations.");
-			}
-		
+			}	
 		}
 		return orchResponse;
 	}

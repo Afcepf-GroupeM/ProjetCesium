@@ -223,12 +223,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</h:commandLink>	
 					</h:column>
 				</h:dataTable>
+				<br/><br/>
+				<h:outputText value="Choix de la livraison : "/>
+				<h:selectOneMenu value="#{itemCartController.shippingOptionChosen}">
+					<f:selectItems value="#{itemCartController.shippingOptions}" var="option"
+									itemLabel="#{itemCartController.shippingOptionsMap[option]}"
+									itemValue="#{option}"/>
+					<f:ajax listener="#{itemCartController.ajaxChangeShipOption}"
+								render="totalAmountRender" />
+					
+				</h:selectOneMenu>
 				<br/>
-				<h6>Montant total: <h:outputText value="#{itemCartController.totalAmount}"/>€</h6>
+				<br/>
+				<h6>Montant total: <h:outputLabel id="totalAmountRender" value="#{itemCartController.totalAmount}"/>€</h6>
 				<br/>
 				
 				<h:commandButton value="Valider la commande"  action="#{itemCartController.validateCart}">
 					<f:param name="cartid" value="#{itemCartController.cart.id}"/>
+					<f:param name="shipid" value="#{itemCartController.shippingOptionChosen}"/>
 				</h:commandButton>
 				</h:form>
 			</h:panelGroup>

@@ -25,7 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--fonts-->
+<!--fonts-->	
 <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'/>
 <!--//fonts-->
 <script type="text/javascript" src="js/move-top.js"></script>
@@ -198,6 +198,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="banner-mat">
 				<div class="cadre-logout">
+				
+			<h:panelGroup rendered="#{not orderController.responseOrchOk}">
+				<h2>Erreur lors de la validation de la commande</h2><br/>
+				<h:outputText value="#{orderController.errorResponseOrch}"/>
+			</h:panelGroup>	
+				
+			<h:panelGroup rendered="#{orderController.responseOrchOk}">
+		
 			<h2>Commande validée!</h2><br/>
 			<h2>Veuillez trouver le recapitulatif de votre commande ci dessous:</h2><br/>
 			<h4>Commande numero: <h:outputText value="#{orderController.order.id}"/>.</h4>
@@ -237,7 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h6><h:outputText value="#{orderController.order.adresseFacturation.number}"/><h:outputText value="#{orderController.order.adresseFacturation.complement}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadType}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadName}"/></h6><br />
 				<h6><h:outputText value="#{orderController.order.adresseFacturation.zipcode}"/> <h:outputText value="#{orderController.order.adresseFacturation.city}"/></h6><br /> 
 				<h6><h:outputText value="#{orderController.order.adresseFacturation.country}"/></h6><br /> 
-			
+			</h:panelGroup>
 			</div>
 		</div>
 	

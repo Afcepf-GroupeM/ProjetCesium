@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	xmlns:p="http://primefaces.org/ui">
 <head>
 
-<title>.: GroupeM EC - Commande validée! :.</title>
+<title>.: GroupeM EC - Paiement :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -229,8 +229,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			<h:form>
 				<br />
-				<h:commandButton value="Demo : generer données valides"
+				<h:commandButton value="Generer données valides"
 					action="#{orderController.demoFillFields}" style="margin-top:20px;margin-bottom:20px;" />
+				<h:commandButton value="! DEMO !"
+					action="#{orderController.demoStaticFields}" style="margin-top:20px;margin-bottom:20px;" />
 				<br />
 				<div>
 					<h:selectOneRadio value="#{orderController.cardTypeChosen}" layout="pageDirection">
@@ -285,6 +287,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									value="#{orderController.errorCardCVV}" />
 							</p:column>
 						</p:row>
+						
+						<p:row>
+							<p:column>
+								<b><h:outputText value="Nom associé à la carte:"
+										style="margin-top:10px;" /></b>
+							</p:column>
+							<p:column>
+								<h:inputText value="#{orderController.lastName}" />
+							</p:column>
+							<p:column>
+								<h:outputText styleClass="error"
+									value="#{orderController.errorLastName}" />
+							</p:column>
+						</p:row>
+						
 						<p:row style="margin-top:10px;">
 							<p:column colspan="3" style="text-align: center;">
 								<h:commandButton value="Valider la commande!"
