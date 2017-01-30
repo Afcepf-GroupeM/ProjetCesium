@@ -10,14 +10,16 @@ import java.net.URLConnection;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import fr.afcepf.groupem.business.api.IWSBankBusApi;
 import fr.afcepf.groupem.entities.BankRequest;
 import fr.afcepf.groupem.entities.BankResponse;
 
+@Component
 public class WSBankBusImpl implements IWSBankBusApi {
 	
-	private String urlWSBank = "http://localhost:8080/WebServiceBanque/UserAccountService/receptionInfoReturnResponse/";
+	private String urlWSBank = "http://localhost:8080/WebServiceBanque/UserAccountService/receptionInfoReturnResponse";
 
 	
 //	
@@ -59,8 +61,8 @@ public class WSBankBusImpl implements IWSBankBusApi {
 			System.out.println("Response from WS Bank : " + sortie );
 			try {
 				returnBank = new JSONObject(sortie);			
-				bankResponse.setTransactionId(returnBank.getInt("transactionId"));
-				bankResponse.setStatut(returnBank.getString("statut"));
+				bankResponse.setTransactionId(returnBank.getInt("referenceNumber"));
+				bankResponse.setStatut(returnBank.getString("status"));
 								
 			} catch (JSONException e) {
 				bankResponse.setReturnCode(3);
@@ -77,7 +79,7 @@ public class WSBankBusImpl implements IWSBankBusApi {
 		}
 		
 		
-		System.out.println("Response after calling WS Bank : \n" + bankRequest.toString() );
+		System.out.println("Response after calling WS Bank : \n" + bankResponse.toString() );
 		return bankResponse;
 	}
 

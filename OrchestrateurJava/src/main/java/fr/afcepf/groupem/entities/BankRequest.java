@@ -6,40 +6,50 @@ import java.util.Date;
 public class BankRequest {
 	
 //  Client
-	private String lastname;
+	private String lastName;
 //	Credit Card
-	private String cardNumber;
-	private int monthExpiration;
-	private int yearExpiration;
+	private String numberCard;
+	private int monthExpiredCard;
+	private int yearExpiredCard;
 	private String cryptogram;
 	
 //	Order
 	private BigDecimal amount;
 	
 //	Company
-	private String companyName = "Mix HighTech";
+	private String nameCompany = "Mix HighTech";
 
-	
-	
-	
-	
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-
-	public String getCardNumber() {
-		return cardNumber;
+	public String getNumberCard() {
+		return numberCard;
 	}
 
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber;
+	public void setNumberCard(String numberCard) {
+		this.numberCard = numberCard;
 	}
 
+	public int getMonthExpiredCard() {
+		return monthExpiredCard;
+	}
+
+	public void setMonthExpiredCard(int monthExpiredCard) {
+		this.monthExpiredCard = monthExpiredCard;
+	}
+
+	public int getYearExpiredCard() {
+		return yearExpiredCard;
+	}
+
+	public void setYearExpiredCard(int yearExpiredCard) {
+		this.yearExpiredCard = yearExpiredCard;
+	}
 
 	public String getCryptogram() {
 		return cryptogram;
@@ -57,30 +67,18 @@ public class BankRequest {
 		this.amount = amount;
 	}
 
-
-	public String getCompanyName() {
-		return companyName;
+	public String getNameCompany() {
+		return nameCompany;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setNameCompany(String nameCompany) {
+		this.nameCompany = nameCompany;
 	}
 
-	public int getMonthExpiration() {
-		return monthExpiration;
-	}
-
-	public void setMonthExpiration(int monthExpiration) {
-		this.monthExpiration = monthExpiration;
-	}
-
-	public int getYearExpiration() {
-		return yearExpiration;
-	}
-
-	public void setYearExpiration(int yearExpiration) {
-		this.yearExpiration = yearExpiration;
-	}
+	
+	
+	
+	
 	
 	
 	

@@ -12,7 +12,7 @@ public class Test {
 		 Account account = null;
 		 String numberCard = "123456789";
 		 System.out.println("*************ici");
-		 account = rest.getAccountByNumberCard(numberCard);
+//		 account = rest.getAccountByNumberCard(numberCard);
 		 System.out.println(account.toString());
 	}
 

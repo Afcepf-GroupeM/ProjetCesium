@@ -2,39 +2,39 @@ package fr.afcepf.groupem.entities;
 
 public class ShippingRequest {
 	
-	private String lastname;
-	private String firstname;
+	private String lastName;
+	private String firstName;
 	
-	private int roadNumber;
+	private int numero;
 	private String complement;
-	private String roadType;
-	private String roadName;
+	private String typeVoie;
+	private String nomVoie;
 	private String city;
 	private String zipcode;
 	private String country;
 	
-	private int nbItem;
+	private int nbItems;
 	private int delaiMax; //nb jours max pour livrer
 	
 	
 	
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public int getRoadNumber() {
-		return roadNumber;
+	public int getNumero() {
+		return numero;
 	}
-	public void setRoadNumber(int roadNumber) {
-		this.roadNumber = roadNumber;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 	public String getComplement() {
 		return complement;
@@ -42,17 +42,17 @@ public class ShippingRequest {
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
-	public String getRoadType() {
-		return roadType;
+	public String getTypeVoie() {
+		return typeVoie;
 	}
-	public void setRoadType(String roadType) {
-		this.roadType = roadType;
+	public void setTypeVoie(String typeVoie) {
+		this.typeVoie = typeVoie;
 	}
-	public String getRoadName() {
-		return roadName;
+	public String getNomVoie() {
+		return nomVoie;
 	}
-	public void setRoadName(String roadName) {
-		this.roadName = roadName;
+	public void setNomVoie(String nomVoie) {
+		this.nomVoie = nomVoie;
 	}
 	public String getCity() {
 		return city;
@@ -72,11 +72,11 @@ public class ShippingRequest {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public int getNbItem() {
-		return nbItem;
+	public int getNbItems() {
+		return nbItems;
 	}
-	public void setNbItem(int nbItem) {
-		this.nbItem = nbItem;
+	public void setNbItems(int nbItems) {
+		this.nbItems = nbItems;
 	}
 	public int getDelaiMax() {
 		return delaiMax;
@@ -84,6 +84,8 @@ public class ShippingRequest {
 	public void setDelaiMax(int delaiMax) {
 		this.delaiMax = delaiMax;
 	}
+	
+	
 	
 	
 	

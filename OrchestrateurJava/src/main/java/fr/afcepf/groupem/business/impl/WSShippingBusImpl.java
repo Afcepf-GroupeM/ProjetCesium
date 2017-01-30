@@ -9,14 +9,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import fr.afcepf.groupem.business.api.IWSShippingBusApi;
 import fr.afcepf.groupem.entities.ShippingRequest;
 import fr.afcepf.groupem.entities.ShippingResponse;
 
+@Component
 public class WSShippingBusImpl implements IWSShippingBusApi {
 
 	
@@ -28,8 +31,7 @@ public class WSShippingBusImpl implements IWSShippingBusApi {
 //	
 //	Return code:
 //	0 : OK 
-//	1 : Failed -> JSONException on AddresseJson creation 
-//	2 : Failed -> JSONException on shippingRequestJson creation
+//	1 : Failed -> JSONException on shippingRequestJson creation
 //	4 : Failed -> MalformedURLException on response from WS Logistique
 //	5 : Failed -> IOException
 //	
@@ -41,31 +43,25 @@ public class WSShippingBusImpl implements IWSShippingBusApi {
 		shippingResponse.setReturnCode(0);
 		shippingResponse.setMessage("");
 		
-		JSONObject adresseJson = new JSONObject();
+		JSONObject shippingRequestJson = new JSONObject();
 		try {
-			adresseJson.put("lastname", shippingRequest.getLastname());
-			adresseJson.put("firstname", shippingRequest.getFirstname());
-			adresseJson.put("numero", shippingRequest.getRoadNumber());
-			adresseJson.put("complement", shippingRequest.getComplement());
-			adresseJson.put("typeVoie", shippingRequest.getRoadType());
-			adresseJson.put("nomVoie", shippingRequest.getRoadName());
-			adresseJson.put("city", shippingRequest.getCity());
-			adresseJson.put("zipcode", shippingRequest.getZipcode());
-			adresseJson.put("country", shippingRequest.getCountry());			
+			shippingRequestJson.put("lastName", shippingRequest.getLastName());
+			shippingRequestJson.put("firstName", shippingRequest.getFirstName());
+			shippingRequestJson.put("numero", shippingRequest.getNumero());
+			shippingRequestJson.put("complement", shippingRequest.getComplement());
+			shippingRequestJson.put("typeVoie", shippingRequest.getTypeVoie());
+			shippingRequestJson.put("nomVoie", shippingRequest.getNomVoie());
+			shippingRequestJson.put("city", shippingRequest.getCity());
+			shippingRequestJson.put("zipcode", shippingRequest.getZipcode());
+			shippingRequestJson.put("country", shippingRequest.getCountry());	
+			shippingRequestJson.put("nbItems", shippingRequest.getNbItems());
+			shippingRequestJson.put("delaiMax", shippingRequest.getDelaiMax());
 		} catch (JSONException e) {
 			shippingResponse.setReturnCode(1);
 			shippingResponse.setMessage(e.getMessage());
 		}
 		
-		JSONObject shippingRequestJson = new JSONObject();
-		try {
-			shippingRequestJson.put("nbItem", shippingRequest.getNbItem());
-			shippingRequestJson.put("delaiMax", shippingRequest.getDelaiMax());
-			shippingRequestJson.put("adresse", adresseJson);
-		} catch (JSONException e) {
-			shippingResponse.setReturnCode(2);
-			shippingResponse.setMessage(e.getMessage());
-		}
+		
 		
 		JSONObject returnLogistique = null;
 		System.out.println("\n----------\n.: Call: WS Logistique - PriseEnCharge :.");
@@ -91,8 +87,8 @@ public class WSShippingBusImpl implements IWSShippingBusApi {
 			try {
 				returnLogistique = new JSONObject(sortie);			
 				shippingResponse.setTrackingCode(returnLogistique.getString("trackingCode"));
-				shippingResponse.setDateLivraison((Date) returnLogistique.get("dateLivraison"));
-				shippingResponse.setDatePriseEnCharge((Date) returnLogistique.get("datePriseEnCharge"));				
+				shippingResponse.setDateLivraison(new Date(TimeUnit.SECONDS.toMillis((long) returnLogistique.get("dateLivraison"))));
+				shippingResponse.setDatePriseEnCharge(new Date(TimeUnit.SECONDS.toMillis((long) returnLogistique.get("datePriseEnCharge"))));				
 								
 			} catch (JSONException e) {
 				shippingResponse.setReturnCode(3);

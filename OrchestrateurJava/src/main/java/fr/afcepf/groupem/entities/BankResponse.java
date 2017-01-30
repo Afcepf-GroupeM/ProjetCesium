@@ -2,8 +2,8 @@ package fr.afcepf.groupem.entities;
 
 public class BankResponse {
 	
-	private String statut;
-	private int transactionId;
+	private String status;
+	private int referenceNumber;
 	
 	
 	private String message;
@@ -11,16 +11,16 @@ public class BankResponse {
 	
 	
 	public String getStatut() {
-		return statut;
+		return status;
 	}
 	public void setStatut(String statut) {
-		this.statut = statut;
+		this.status = statut;
 	}
 	public int getTransactionId() {
-		return transactionId;
+		return referenceNumber;
 	}
 	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
+		this.referenceNumber = transactionId;
 	}
 	public String getMessage() {
 		return message;
@@ -36,8 +36,8 @@ public class BankResponse {
 	}
 	@Override
 	public String toString() {
-		return "BankResponse [statut=" + statut + ", "
-							+ "transactionId=" + transactionId + ", "
+		return "BankResponse [statut=" + status + ", "
+							+ "transactionId=" + referenceNumber + ", "
 							+ "returnCode=" + returnCode +","
 							+ " message=" + message + "]";
 	}
