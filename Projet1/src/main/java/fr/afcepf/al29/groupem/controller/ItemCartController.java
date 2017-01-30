@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
 import javax.servlet.http.HttpSession;
 
@@ -52,17 +54,34 @@ public class ItemCartController {
     private HashMap<Integer, Float> cartLinesSubtotal = new HashMap<>();
     int idNewItem;
     int quantityNewItem;
-
+    
+    private String shippingOptionChosen = "1";
+    private List<String> shippingOptions ;
+    private HashMap<String, String> shippingOptionsMap;
+    private HashMap<String, Float> shippingOptionsPriceMap;
 
 
 
 
     public void initCartDetail(ComponentSystemEvent c1){
-
+    	shippingOptions = new ArrayList<>();
+    	shippingOptions.add("1");
+    	shippingOptions.add("2");
+    	shippingOptions.add("3");
+    	
+    	shippingOptionsMap = new HashMap<>(); 
+    	shippingOptionsMap.put("1", "Standard - 5 jours ouvrés - 4€90");
+    	shippingOptionsMap.put("2", "Rapide - 3 jours ouvrés - 6€90");
+    	shippingOptionsMap.put("3", "24h Garanti - 11€90");
+    	
+    	shippingOptionsPriceMap  = new HashMap<>();
+    	shippingOptionsPriceMap.put("1", 4.90f);
+    	shippingOptionsPriceMap.put("2", 6.90f);
+    	shippingOptionsPriceMap.put("3", 11.90f);
 
 
         idOwnerCart = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
-        totalAmount = 0f;
+        totalAmount = shippingOptionsPriceMap.get(shippingOptionChosen);
 
         if(idOwnerCart != null){
             setCart(cartBus.getCartByUserId(idOwnerCart));
@@ -222,6 +241,13 @@ public class ItemCartController {
         }
 
         return returnPage;
+    }
+    
+    
+    public void ajaxChangeShipOption (AjaxBehaviorEvent event) {
+    	
+    	
+    	totalAmount += shippingOptionsPriceMap.get(shippingOptionChosen);
     }
 
 
@@ -407,7 +433,39 @@ public class ItemCartController {
         this.isCartEmpty = isCartEmpty;
     }
 
+	public String getShippingOptionChosen() {
+		return shippingOptionChosen;
+	}
 
+	public void setShippingOptionChosen(String shippingOptionChosen) {
+		this.shippingOptionChosen = shippingOptionChosen;
+	}
+
+	public List<String> getShippingOptions() {
+		return shippingOptions;
+	}
+
+	public void setShippingOptions(List<String> shippingOptions) {
+		this.shippingOptions = shippingOptions;
+	}
+
+	public HashMap<String, String> getShippingOptionsMap() {
+		return shippingOptionsMap;
+	}
+
+	public void setShippingOptionsMap(HashMap<String, String> shippingOptionsMap) {
+		this.shippingOptionsMap = shippingOptionsMap;
+	}
+
+	public HashMap<String, Float> getShippingOptionsPriceMap() {
+		return shippingOptionsPriceMap;
+	}
+
+	public void setShippingOptionsPriceMap(HashMap<String, Float> shippingOptionsPriceMap) {
+		this.shippingOptionsPriceMap = shippingOptionsPriceMap;
+	}
+
+	
 
 
 }

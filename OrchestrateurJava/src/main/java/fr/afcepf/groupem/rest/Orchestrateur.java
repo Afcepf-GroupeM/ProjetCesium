@@ -74,7 +74,7 @@ public class Orchestrateur {
 		bankRequest.setNumberCard(orchRequest.getCardNumber());
 		bankRequest.setCryptogram(orchRequest.getCryptogram());
 		bankRequest.setMonthExpiredCard(orchRequest.getMonthValidity());
-		bankRequest.setYearExpiredCard(orchRequest.getYearValidity());
+		bankRequest.setYearExpiredCard(2000 + orchRequest.getYearValidity());
 		bankRequest.setLastName(orchRequest.getLastname());
 		
 		BankResponse bankResponse = wsBankBus.checkPayement(bankRequest);

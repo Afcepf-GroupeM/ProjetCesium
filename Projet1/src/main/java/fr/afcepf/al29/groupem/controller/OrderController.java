@@ -56,6 +56,9 @@ public class OrderController {
 	private List<Address> addresses;
 	private List<Address> billingAddresses;
 	
+	private String shippingOptionChosen;
+	private float shippingCost;
+	
 	private Address addressBillingChosen;
 	private Address addressShippingChosen;
 	private String addressShippingChosenId;
@@ -100,6 +103,8 @@ public class OrderController {
 	
 	
 	public void initAddressChoice(ComponentSystemEvent c2){
+		shippingOptionChosen = getParam("shipid");
+		System.out.println("\nOrderController - initAdresse - shippingOptionChosen : " + shippingOptionChosen);
 		idOwnerOrder = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		addresses = addressBus.getAddressesByUserId(idOwnerOrder);
 		billingAddresses = new ArrayList<>();
@@ -113,6 +118,7 @@ public class OrderController {
 		
 		
 	public void initPayment(ComponentSystemEvent c3){
+		System.out.println("\nOrderController - initPayment - shippingOptionChosen : " + shippingOptionChosen);	
 		idTypePayment = new ArrayList<>();
 		idTypePayment.add("0"); // Visa
 		idTypePayment.add("1"); // Mastercard
@@ -129,6 +135,26 @@ public class OrderController {
 	
 	
 	public void initOrderValidate(ComponentSystemEvent c){
+		System.out.println("\nOrderController - initOrderValidate - shippingOptionChosen : " + shippingOptionChosen);	
+		switch (shippingOptionChosen) {
+		case "1":
+			shippingCost = 4.90f;
+			break;
+		case "2":
+			shippingCost = 6.90f;
+			break;
+		case "3":
+			shippingCost = 11.90f;
+		break;
+
+		default:
+			break;
+		}
+		
+		
+		
+		
+		
 		addressBillingChosen = addressBus.getAddressById(Integer.parseInt(addressBillingChosenId));
 		addressShippingChosen = addressBus.getAddressById(Integer.parseInt(addressShippingChosenId));
 		idOwnerOrder = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
@@ -149,7 +175,7 @@ public class OrderController {
 		
 		
 		order = new Order();
-		order.setAmount(getOrderAmount(cart));
+		order.setAmount(getOrderAmount(cart) + shippingCost);
 		
 		Carrier carrier = new Carrier();
 		
@@ -220,6 +246,7 @@ public class OrderController {
 	
 	
 	public String validateAddresses(){
+		
 	    String returnAddress = null;
 	    
 	    if(addressBillingChosenId.isEmpty()) {
@@ -332,9 +359,27 @@ public class OrderController {
 		int year = Integer.parseInt(cardYear);
 		request.put("yearValidity", year);
 		request.put("cryptogram", cardCVV);
-		request.put("montant", getOrderAmount(cart));
+		request.put("montant", (getOrderAmount(cart)+ shippingCost));
 		request.put("nbOfItems", getCartNbItems(cart));
-		request.put("nbDaysMaxToDeliver", optionLivraison);
+		
+		int nbDays = 10;
+		switch (shippingOptionChosen) {
+		case "1":
+			nbDays = 5;
+			break;
+		case "2":
+			nbDays = 3;
+			break;
+		case "3":
+			nbDays = 2;
+		break;
+
+		default:
+			nbDays = 5;
+			break;
+		}
+		
+		request.put("nbDaysMaxToDeliver", nbDays);
 		
 		JSONObject response = null;
 		try {
@@ -417,6 +462,8 @@ public class OrderController {
 		}
 		return nbItems;
 	}
+	
+	
 
 
 
@@ -834,6 +881,30 @@ public class OrderController {
 
 	public void setErrorResponseOrch(String errorResponseOrch) {
 		this.errorResponseOrch = errorResponseOrch;
+	}
+
+
+
+	public String getShippingOptionChosen() {
+		return shippingOptionChosen;
+	}
+
+
+
+	public void setShippingOptionChosen(String shippingOptionChosen) {
+		this.shippingOptionChosen = shippingOptionChosen;
+	}
+
+
+
+	public float getShippingCost() {
+		return shippingCost;
+	}
+
+
+
+	public void setShippingCost(float shippingCost) {
+		this.shippingCost = shippingCost;
 	}
 	
 	

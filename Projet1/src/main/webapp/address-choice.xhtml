@@ -85,6 +85,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
 <f:event listener="#{orderController.initAddressChoice}" type="preRenderView" />
+<f:metadata>
+    <f:viewParam name="shipid" value="#{orderController.shippingOptionChosen}" />
+</f:metadata>	
+
   <!--header-->
 	<div class="header">
 		<div class="header-top">
