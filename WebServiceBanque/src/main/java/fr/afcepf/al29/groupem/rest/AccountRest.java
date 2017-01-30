@@ -73,6 +73,7 @@ public class AccountRest {
 				//1.verify if the numberCard existe in the BDD		
 				if(accounts.size()==0){
 					numberCardExiste = false;	
+					System.out.println("1. number Card n'existe pas.");
 					setResponseBankNegative(statusResponse,referenceNumberResponse);
 				}else{					
 					numberCardExiste = true;
@@ -102,16 +103,20 @@ public class AccountRest {
 									//Debit balance of account
 									account = debitAccount(amount,account);									
 								}else{
+									System.out.println("5. customer don't have enough money to pay.");
 									setResponseBankNegative(statusResponse,referenceNumberResponse);
 									  }
 							}else{
+								System.out.println("4. family name is not correct. ");
 								setResponseBankNegative(statusResponse,referenceNumberResponse);
 								  }
 						}else{
+							System.out.println("3. cryptogram n'est pas correct.");
 							setResponseBankNegative(statusResponse,referenceNumberResponse);
 							  }
 						
 					}else{
+						System.out.println("2. card is expired.");
 						setResponseBankNegative(statusResponse,referenceNumberResponse);
 						  }
 				}
