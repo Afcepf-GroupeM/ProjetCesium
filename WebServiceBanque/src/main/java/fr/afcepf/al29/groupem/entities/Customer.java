@@ -20,8 +20,9 @@ public class Customer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 	
-	@Enumerated(EnumType.STRING)
+	
 	@Column
+	@Enumerated(EnumType.STRING)
     private Civilite civilite;
   
     private String lastName;
