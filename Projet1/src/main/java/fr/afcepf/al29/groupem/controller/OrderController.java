@@ -1,5 +1,12 @@
 package fr.afcepf.al29.groupem.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +19,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.apache.commons.validator.routines.RegexValidator;
+import org.primefaces.json.JSONException;
+import org.primefaces.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,6 +39,7 @@ import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
 import fr.afcepf.al29.groupem.entities.TypePayment;
+import fr.afcepf.al29.groupem.entities.User;
 
 @Scope("session")
 @Component
@@ -60,10 +70,17 @@ public class OrderController {
 	private String errorCardCVV;
 	private String errorBillingAddress;
 	private String errorShippingAddress;
+	private String errorLastName;
+	private String errorResponseOrch;
+	
+	private String lastName;
+	private int optionLivraison; //in days max to deliver
 	
 	private String cardTypeChosen;
 	private List<String> idTypePayment;
 	private HashMap<String, String> labelTypePayment;
+	
+	private boolean responseOrchOk;
 	
 	
 	@Autowired
@@ -112,23 +129,38 @@ public class OrderController {
 	
 	
 	public void initOrderValidate(ComponentSystemEvent c){
+		addressBillingChosen = addressBus.getAddressById(Integer.parseInt(addressBillingChosenId));
+		addressShippingChosen = addressBus.getAddressById(Integer.parseInt(addressShippingChosenId));
 		idOwnerOrder = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		int cartId = cartBus.getCartByUserId(idOwnerOrder).getId();
 		cart = cartBus.getCartById(cartId);
 		cartLines = cartBus.getCartLinesByCartId(cartId);
+		
+		
+		JSONObject responseOrch = validateOrderOrch();
+		responseOrchOk = responseOrch.getInt("returnCode") == 0;
+		
+		
+		if(responseOrchOk) {
+			
+		
+		
+		
+		
+		
 		order = new Order();
 		order.setAmount(getOrderAmount(cart));
 		
 		Carrier carrier = new Carrier();
 		
 		carrier.setId(1);
-		carrier.setName("UPS");
-		carrier.setTrackingUrl("http://www.ups.fr/tracking");
+		carrier.setName(responseOrch.getString("transporteurName"));
+		carrier.setTrackingUrl(responseOrch.getString("trackingUrl"));
 		order.setCarrier(carrier);
 		order.setCreationDate(new Date());
 		OrderState orderState = OrderState.EnPreparation;
 		order.setState(orderState);
-		order.setTrackingNumber("ABC1234567489");
+		order.setTrackingNumber(responseOrch.getString("trackingCode"));
 		
 		order.setUser(userBus.getUserById(idOwnerOrder));
 		
@@ -150,8 +182,7 @@ public class OrderController {
 		
 		order.setTypePayment(typePayment);
 		
-		addressBillingChosen = addressBus.getAddressById(Integer.parseInt(addressBillingChosenId));
-		addressShippingChosen = addressBus.getAddressById(Integer.parseInt(addressShippingChosenId));
+		
 		
 		order.setAdresseFacturation(addressBillingChosen);
 		order.setAdresseLivraison(addressShippingChosen);
@@ -180,6 +211,10 @@ public class OrderController {
 			cartBus.destroyCartLine(cartLine);
 		}
 		cartBus.destroyCartById(cartId);
+		
+		} else {  // if responseOrchOk false
+			errorResponseOrch = responseOrch.getString("message");
+		}
 		
 	}
 	
@@ -276,6 +311,74 @@ public class OrderController {
 	}
 	
 	
+	
+	public JSONObject validateOrderOrch() {
+		String urlOrch = "http://localhost:8080/OrchestrateurJava/Orchestrateur/validation";
+		
+		JSONObject request = new JSONObject();
+		User user = userBus.getUserById(idOwnerOrder);
+		request.put("lastname", lastName);
+		request.put("firstname", user.getfirstName());
+		request.put("roadNumber", addressShippingChosen.getNumber());
+		request.put("complement", addressShippingChosen.getComplement());
+		request.put("roadType", addressShippingChosen.getRoadType());
+		request.put("roadName", addressShippingChosen.getRoadName());
+		request.put("city", addressShippingChosen.getCity());
+		request.put("zipcode", addressShippingChosen.getZipcode());
+		request.put("country", addressShippingChosen.getCountry());
+		request.put("cardNumber", cardNumber);
+		int month = Integer.parseInt(cardMonth);
+		request.put("monthValidity", month);
+		int year = Integer.parseInt(cardYear);
+		request.put("yearValidity", year);
+		request.put("cryptogram", cardCVV);
+		request.put("montant", getOrderAmount(cart));
+		request.put("nbOfItems", getCartNbItems(cart));
+		request.put("nbDaysMaxToDeliver", optionLivraison);
+		
+		JSONObject response = null;
+		try {
+			URL url = new URL(urlOrch);
+			URLConnection connection = url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setConnectTimeout(5000);
+			connection.setReadTimeout(5000);
+			OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+			out.write(request.toString());
+			out.close();
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String line;
+			String sortie = "";
+			while ((line = in.readLine()) != null) {
+				sortie += line;
+			}
+			response = new JSONObject(sortie);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			System.out.println("OrderController - validateOrderOrch MalformedURLException");
+		} catch (JSONException e) {
+			e.printStackTrace();
+			System.out.println("OrderController - validateOrderOrch JSONException");
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("OrderController - validateOrderOrch IOException");
+		}		
+		return response;
+	}
+	
+	
+	public String demoStaticFields(){
+		cardNumber = "4716653949676335";
+		cardMonth = "11";
+		cardYear = "18";
+		cardCVV = "007";
+		cardTypeChosen = "0";
+		lastName="Lagaffe";
+		return null;
+	}
+	
 	public String demoFillFields() {
 	    String[] month = {"01","02","03","04","05","06","07","08","09","10","11","12"};
 	    String[] card = {"4716653949676335","4916164152576186","4024007156307968","4532286725151165","4024007185853529","4024007118560977","4929147839867222","4916910893700091","4532378203387609","4539276159659679","4485216286589740","4532072977138294","4716398053510181","4024007157622886","4716751650805877","4485708588672521","4796881650675641","4485795803262402","4485410993604658","4496083796073681","4916837581323508","4532846756964396","4532844311543037","4929258699227140","4024007105842917","4985371269593733","4716969673119130","4485095267705230","4024007177947776","4024007120689319","4916528819162376","4916679465533624","4532426430025839","4532440018831831","4253895303760481","4024007162015464","4539461588904843","4556767923722098","4556596653836954","4024007116929174","4532120399549430","4532106711886295","4716771901300767","4756352081168646","4578470492263388","4024007125411990","4929972226293231","4532755538500032","4532578668636180","4024007150985801","4556229123369824","4716865200903568","4532432703982045","4024007144256962","4716728178186238","4556711300120161","4485257322300973","4485172424803065","4532656734312000","4716255069430673","4929406069517927","4539515636195405","4024007168438884","4916248777668666","4539355194735114","4916496989615211","4532346568181842","4916234299393488","4024007122406308","4539389615045753","4485530315136947","4532360250920482","4024007153539746","4449111138961079","4797729102900886","4716356578532056","4929620058286449","4024007113978513","4024007144074688","4916129837195496","4024007130307928","4556416922396005","4929310424112434","4916543501450484","4556028301990033","4556691083942637","4475791780946515","4916973491605419","4716860808477693","4929936346138196","4916889934292773","4916907748455558","4539895232471446","4024007165640359","4532869699958804","4817312582635482","4532136942681389","4556646196024079","4556245608209400","4929638289008291"};
@@ -304,6 +407,15 @@ public class OrderController {
 	        totalAmount += paramCartLine.getQuantity() * paramCartLine.getUnitPrice();
         }
 	    return totalAmount;
+	}
+	
+	public int getCartNbItems(Cart cart) {
+		int nbItems = 0;
+		List<CartLine> cartLines = cartBus.getCartLinesByCartId(cart.getId());
+		for (CartLine cartLine : cartLines) {
+			nbItems += cartLine.getQuantity();
+		}
+		return nbItems;
 	}
 
 
@@ -663,6 +775,66 @@ public class OrderController {
     public void setErrorShippingAddress(String paramErrorShippingAddress) {
         errorShippingAddress = paramErrorShippingAddress;
     }
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+
+	public String getErrorLastName() {
+		return errorLastName;
+	}
+
+
+
+	public void setErrorLastName(String errorLastName) {
+		this.errorLastName = errorLastName;
+	}
+
+
+
+	public int getOptionLivraison() {
+		return optionLivraison;
+	}
+
+
+
+	public void setOptionLivraison(int optionLivraison) {
+		this.optionLivraison = optionLivraison;
+	}
+
+
+
+	public boolean isResponseOrchOk() {
+		return responseOrchOk;
+	}
+
+
+
+	public void setResponseOrchOk(boolean responseOrchOk) {
+		this.responseOrchOk = responseOrchOk;
+	}
+
+
+
+	public String getErrorResponseOrch() {
+		return errorResponseOrch;
+	}
+
+
+
+	public void setErrorResponseOrch(String errorResponseOrch) {
+		this.errorResponseOrch = errorResponseOrch;
+	}
 	
 	
 	

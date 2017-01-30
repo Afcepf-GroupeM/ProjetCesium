@@ -8,6 +8,8 @@ public class OrderValidationReponse {
 	private int returnCode;
 	
 	private String trackingCode;
+	private String trackingUrl;
+	private String transporteurName;
 	private Date dateLivraison;
 	
 	private int transactionId;
@@ -52,6 +54,30 @@ public class OrderValidationReponse {
 
 	public void setTransactionId(int transactionId) {
 		this.transactionId = transactionId;
+	}
+
+	public int getReturnCode() {
+		return returnCode;
+	}
+
+	public void setReturnCode(int returnCode) {
+		this.returnCode = returnCode;
+	}
+
+	public String getTrackingUrl() {
+		return trackingUrl;
+	}
+
+	public void setTrackingUrl(String trackingUrl) {
+		this.trackingUrl = trackingUrl;
+	}
+
+	public String getTransporteurName() {
+		return transporteurName;
+	}
+
+	public void setTransporteurName(String transporteurName) {
+		this.transporteurName = transporteurName;
 	} 
 	
 	

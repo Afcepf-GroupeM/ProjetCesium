@@ -8,6 +8,9 @@ public class ShippingResponse {
 	private Date datePriseEnCharge;
 	private Date dateLivraison;
 	
+	private String transporteurName;
+	private String url;
+	
 	private int returnCode;
 	private String message;
 	
@@ -47,6 +50,18 @@ public class ShippingResponse {
 	public String toString() {
 		return "ShippingResponse [trackingCode=" + trackingCode + ", datePriseEnCharge=" + datePriseEnCharge
 				+ ", dateLivraison=" + dateLivraison + ", returnCode=" + returnCode + ", message=" + message + "]";
+	}
+	public String getTransporteurName() {
+		return transporteurName;
+	}
+	public void setTransporteurName(String transporteurName) {
+		this.transporteurName = transporteurName;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	

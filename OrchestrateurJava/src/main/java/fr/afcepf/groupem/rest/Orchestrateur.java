@@ -111,12 +111,13 @@ public class Orchestrateur {
 				
 				orchResponse.setDateLivraison(shippingResponse.getDateLivraison());
 				orchResponse.setTrackingCode(shippingResponse.getTrackingCode());
+				orchResponse.setTrackingUrl(shippingResponse.getUrl());
+				orchResponse.setTransporteurName(shippingResponse.getTransporteurName());
 			}
 			} else {
 				orchResponse.setErrorCode(4);
 				orchResponse.setMessage("Paiement refusé - Verifier les informations.");
-			}
-		
+			}	
 		}
 		return orchResponse;
 	}
