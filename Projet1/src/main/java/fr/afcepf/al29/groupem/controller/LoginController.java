@@ -19,11 +19,11 @@ import fr.afcepf.al29.groupem.entities.User;
 @Scope("session")
 @Component
 @ManagedBean
-public class LoginController implements Serializable{
+public class LoginController {
 	
 	
 	
-	private static final long serialVersionUID = 1L;
+	
 	
 	private String login;
 	private String password;

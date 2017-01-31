@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.controller;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -16,6 +18,7 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.CartBusApi;
@@ -24,12 +27,17 @@ import fr.afcepf.al29.groupem.entities.Cart;
 import fr.afcepf.al29.groupem.entities.CartLine;
 import fr.afcepf.al29.groupem.entities.Item;
 
-
+@SessionScoped
 @Component
-@ManagedBean
-public class ItemCartController {
+@ManagedBean(name="itemCartController")
+public class ItemCartController implements Serializable {
 
-    @Autowired
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1099785566722272315L;
+
+	@Autowired
     private ItemBusApi itemBus;
 
     @Autowired
@@ -245,8 +253,7 @@ public class ItemCartController {
     
     
     public void ajaxChangeShipOption (AjaxBehaviorEvent event) {
-    	
-    	
+  	
     	totalAmount += shippingOptionsPriceMap.get(shippingOptionChosen);
     }
 

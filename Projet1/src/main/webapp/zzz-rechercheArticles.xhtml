@@ -25,7 +25,7 @@
 			
 		<legend>Résultat de recherche</legend>
 		
-		<img src="#{request.contextPath}#{rechercheArticleController.imagePath}#{rechercheArticleController.item.id}/1.jpg" height="128" width="128"></img>
+		<img src="#{request.contextPath}#{rechercheArticleController.imagePath}#{rechercheArticleController.item.id}/1.jpg" class="thumbsnail-mixhightech"></img>
 		<h:dataTable value="#{rechercheArticleController.items}"  var="item">
 			
 			<h:column>
@@ -38,7 +38,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Prix</f:facet>
-				<h:outputLabel value="#{item.price}"/>
+				<h:outputLabel value="#{item.price} €"/>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Stock</f:facet>

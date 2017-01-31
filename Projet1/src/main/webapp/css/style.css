@@ -861,7 +861,8 @@ ul.callbacks_tabs.callbacks1_tabs {
 	border-radius:5px;
 }
 .col-md img{
-	width:100%;
+	width:100%;  
+	height : 20%;
 	border:2px solid #E5E5E5;
 }
 .content-top-in {
@@ -2290,4 +2291,14 @@ h2.contact-in,h2.products-in {
 }
 .contact-top input[type="submit"]{
 	width:30%;
+}
+
+.thumbsnail-mixhightech {
+	max-width: auto;
+    max-height: 128px;
+}
+
+.thumbsnail-article-mixhightech {
+	width: 300px;
+    height: auto;
 }

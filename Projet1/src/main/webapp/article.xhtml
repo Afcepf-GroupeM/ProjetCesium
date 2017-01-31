@@ -44,9 +44,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				$('#etalage').etalage({
 					thumb_image_width: 300,
-					thumb_image_height: 400,
+					thumb_image_height: 240,
 					source_image_width: 900,
-					source_image_height: 1200,
+					source_image_height: 620,
 					show_hint: true,
 					click_callback: function(image_anchor, instance_id){
 						alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
@@ -195,8 +195,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul id="etalage">
 							<li>
 								
-									<img class="etalage_thumb_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg" alt="" height="128" width="128"/>
-									<img class="etalage_source_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg" alt="" height="128" width="128"/>
+									<img class="etalage_thumb_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg"/>
+									<img class="etalage_source_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg"/>
 							
 							</li>
 							<!-- <li>
@@ -292,7 +292,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 		<!---->
-				<div class="footer">
+			<div class="footer">
 			<div class="footer-top">
 				<div class="container">
 					<div class="col-md-4 footer-in">						
@@ -326,42 +326,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="footer-middle">
 				<div class="container">
 					<div class="footer-middle-in">
-						<h6>About us</h6>
-						<p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
+						<h6>A propos de nous</h6>
+						<p>Mix Hightech est une entreprise spécialisée dans la vente de matériels informatiques.</p>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Information</h6>
+						<h6>Informations</h6>
 						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Delivery Information</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms Conditions</a></li>
+							<li><a href="#">Livraison</a></li>
+							<li><a href="#">Conditions Générales</a></li>
+							<li><a href="#">Vie Privée</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Customer Service</h6>
+						<h6>Service Client</h6>
 						<ul>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="#">Returns</a></li>
-							<li><a href="#">Site Map</a></li>
+							<li><a href="contact.html">Contactez-Nous</a></li>
+							<li><a href="#">Retours</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>My Account</h6>
+						<h6>Mon Compte</h6>
 						<ul>
-							<li><a href="account.xhtml">My Account</a></li>
-							<li><a href="#">Order History</a></li>
+							<li><a href="account.xhtml">Mon Compte</a></li>
+							<li><a href="#">HIstorique Des Commandes</a></li>
 							<li><a href="wishlist.html">Wish List</a></li>
 							<li><a href="#">Newsletter</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Extras</h6>
+						<h6>Aide</h6>
 						<ul>
-							<li><a href="#">Brands</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Affiliates</a></li>
-							<li><a href="#">Specials</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Aide</a></li>
+							<li><a href="#">Dépannage</a></li>
 						</ul>
 					</div>
 					<div class="clearfix"></div>
@@ -384,7 +381,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					</script>
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
+				
 		</div>
-</h:body>
+</body>
 </html>
