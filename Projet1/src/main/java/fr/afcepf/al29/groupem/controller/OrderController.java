@@ -114,7 +114,7 @@ public class OrderController implements Serializable {
 	
 	public void initAddressChoice(ComponentSystemEvent c2){
 
-		System.out.println("\nOrderController - initAdresse - shippingOptionChosen : " + shippingOptionChosen);
+//		System.out.println("\nOrderController - initAdresse - shippingOptionChosen : " + shippingOptionChosen);
 		idOwnerOrder = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		addresses = addressBus.getAddressesByUserId(idOwnerOrder);
 		billingAddresses = new ArrayList<>();
@@ -128,7 +128,7 @@ public class OrderController implements Serializable {
 		
 		
 	public void initPayment(ComponentSystemEvent c3){
-		System.out.println("\nOrderController - initPayment - shippingOptionChosen : " + shippingOptionChosen);	
+//		System.out.println("\nOrderController - initPayment - shippingOptionChosen : " + shippingOptionChosen);	
 		idTypePayment = new ArrayList<>();
 		idTypePayment.add("0"); // Visa
 		idTypePayment.add("1"); // Mastercard
@@ -145,7 +145,7 @@ public class OrderController implements Serializable {
 	
 	
 	public void initOrderValidate(ComponentSystemEvent c){
-		System.out.println("\nOrderController - initOrderValidate - shippingOptionChosen : " + shippingOptionChosen);	
+//		System.out.println("\nOrderController - initOrderValidate - shippingOptionChosen : " + shippingOptionChosen);	
 		switch (shippingOptionChosen) {
 		case "1":
 			shippingCost = 4.90f;
@@ -397,8 +397,8 @@ public class OrderController implements Serializable {
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Content-Type", "application/json");
-			connection.setConnectTimeout(5000);
-			connection.setReadTimeout(5000);
+			connection.setConnectTimeout(40000);
+			connection.setReadTimeout(40000);
 			OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
 			out.write(request.toString());
 			out.close();

@@ -70,8 +70,8 @@ public class WSShippingBusImpl implements IWSShippingBusApi {
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Content-Type", "application/json");
-			connection.setConnectTimeout(5000);
-			connection.setReadTimeout(5000);
+			connection.setConnectTimeout(30000);
+			connection.setReadTimeout(30000);
 			OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
 			System.out.println("Request sent to WS Logistique : " + shippingRequestJson.toString());
 			out.write(shippingRequestJson.toString());
