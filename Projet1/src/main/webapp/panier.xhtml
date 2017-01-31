@@ -230,7 +230,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									itemLabel="#{itemCartController.shippingOptionsMap[option]}"
 									itemValue="#{option}"/>
 					<f:ajax listener="#{itemCartController.ajaxChangeShipOption}"
-								render="totalAmountRender optionChoisie" />
+								render="totalAmountRender" />
 					
 				</h:selectOneMenu>
 				<br/>
@@ -238,7 +238,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h6>Montant total: <h:outputLabel id="totalAmountRender" value="#{itemCartController.totalAmount}"/>€</h6>
 				<br/>
 				
-				<h:commandButton value="Valider la commande"  action="#{itemCartController.validateCart}">
+				<h:commandButton value="Valider la commande"  action="#{itemCartController.validateCart}" styleClass="hvr-shutter-in-vertical4">
 				<f:setPropertyActionListener target="#{orderController.shippingOptionChosen}" value="#{itemCartController.shippingOptionChosen}" />
 					<f:param name="cartid" value="#{itemCartController.cart.id}"/>
 
