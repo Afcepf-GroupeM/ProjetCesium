@@ -78,9 +78,9 @@ public class ItemCartController implements Serializable {
     	shippingOptions.add("3");
     	
     	shippingOptionsMap = new HashMap<>(); 
-    	shippingOptionsMap.put("1", "Standard - 5 jours ouvrés - 4€90");
-    	shippingOptionsMap.put("2", "Rapide - 3 jours ouvrés - 6€90");
-    	shippingOptionsMap.put("3", "24h Garanti - 11€90");
+    	shippingOptionsMap.put("1", "Standard - 5 jours ouvrÃ©s - 4â‚¬90");
+    	shippingOptionsMap.put("2", "Rapide - 3 jours ouvrÃ©s - 6â‚¬90");
+    	shippingOptionsMap.put("3", "24h Garanti - 11â‚¬90");
     	
     	shippingOptionsPriceMap  = new HashMap<>();
     	shippingOptionsPriceMap.put("1", 4.90f);
