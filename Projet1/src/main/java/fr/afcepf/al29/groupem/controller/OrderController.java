@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -15,6 +16,8 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -41,12 +44,16 @@ import fr.afcepf.al29.groupem.entities.OrderState;
 import fr.afcepf.al29.groupem.entities.TypePayment;
 import fr.afcepf.al29.groupem.entities.User;
 
-@Scope("session")
+@SessionScoped
 @Component
 @ManagedBean
-public class OrderController {
+public class OrderController implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3238956143809806409L;
 	private Order order;
 	private Cart cart;
 	private List<OrderLine> orderLines;
@@ -56,7 +63,10 @@ public class OrderController {
 	private List<Address> addresses;
 	private List<Address> billingAddresses;
 	
+	
 	private String shippingOptionChosen;
+
+	
 	private float shippingCost;
 	
 	private Address addressBillingChosen;
@@ -103,7 +113,7 @@ public class OrderController {
 	
 	
 	public void initAddressChoice(ComponentSystemEvent c2){
-		shippingOptionChosen = getParam("shipid");
+
 		System.out.println("\nOrderController - initAdresse - shippingOptionChosen : " + shippingOptionChosen);
 		idOwnerOrder = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
 		addresses = addressBus.getAddressesByUserId(idOwnerOrder);
@@ -906,7 +916,9 @@ public class OrderController {
 	public void setShippingCost(float shippingCost) {
 		this.shippingCost = shippingCost;
 	}
-	
+
+
+
 	
 	
 

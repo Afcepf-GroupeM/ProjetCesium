@@ -174,7 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ui:repeat var="it" value="#{itemListController.chosenCategory.items}">
 						<div class="col-md-3 md-col">
 							<div class="col-md">
-								<img src="#{request.contextPath}#{itemListController.imagePath}#{it.id}/1.jpg" height="128" width="128"/>
+								<img src="#{request.contextPath}#{itemListController.imagePath}#{it.id}/1.jpg" class="thumbsnail-mixhightech"/>
 								<div class="top-content">
 									<h5>#{it.name}</h5>
 									<div class="white">								
@@ -184,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</h:link>
 										 
 										
-										<p class="dollar"><span>€</span>#{it.price}</p>
+										<p class="dollar">#{it.price}<span>€</span></p>
 										<div class="clearfix"></div>
 									</div>
 								</div>							

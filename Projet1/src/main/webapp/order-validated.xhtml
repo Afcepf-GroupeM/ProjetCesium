@@ -207,51 +207,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h:panelGroup rendered="#{orderController.responseOrchOk}">
 		
 			<h2>Commande validée!</h2><br/>
-			<h2>Veuillez trouver le recapitulatif de votre commande ci dessous:</h2><br/>
-			<h4>Commande numero: <h:outputText value="#{orderController.order.id}"/>.</h4>
+			<h3>Veuillez trouver le recapitulatif de votre commande ci dessous:</h3><br/>
+			<h4>Commande numero: <h:outputText value="#{orderController.order.id}"/></h4><br/>
 			
 			<h:dataTable value="#{orderController.orderLines}"  var="line" styleClass="order-table"
     			headerClass="order-table-header"
     			rowClasses="order-table-odd-row,order-table-even-row">
     			
+    			<h:column>
+				<img src="#{request.contextPath}/images/items/#{line.item.id}/1.jpg" height="128px" class="thumbsnail-mixhightech"></img>
+				</h:column>
+				
 				<h:column>
 					<f:facet name="header">Articles</f:facet>
 					<h:outputText value="#{line.item.name}"/>
 				</h:column>
 				<h:column>
-					<f:facet name="header">Prix unitaire</f:facet>
-					<h:outputText value="#{line.unitPrice}"/>
-				</h:column>
-				<h:column>
 					<f:facet name="header">Quantité</f:facet>
 					<h:outputText value="#{line.quantity}"/>
 				</h:column> 
+				<h:column>
+					<f:facet name="header">Prix unitaire</f:facet>
+					<h:outputText value="#{line.unitPrice} €"/>
+				</h:column>				
 				</h:dataTable>
 				<br/><br/>
-				
-				<h4>Montant total: <h:outputText value="#{orderController.order.amount}"/>€</h4><br /><br/>
-				<h4>Type de paiement: <h:outputText value="#{orderController.order.typePayment}"/></h4><br />
-				<h4>Date de commande: <h:outputText value="#{orderController.order.creationDate}"/></h4><br />
-				<h4>Etat: <h:outputText value="#{orderController.order.state}"/></h4><br />
-				<h4>Transporteur: <h:outputText value="#{orderController.order.carrier.name}"/></h4><br />
-				<h4>Numero de suivi: <h:outputText value="#{orderController.order.trackingNumber}"/></h4><br />
-				<h4>Adresse de livraison:</h4><br /> 
-				<h6><h:outputText value="#{orderController.order.adresseLivraison.number}"/><h:outputText value="#{orderController.order.adresseLivraison.complement}"/> <h:outputText value="#{orderController.order.adresseLivraison.roadType}"/> <h:outputText value="#{orderController.order.adresseLivraison.roadName}"/></h6><br />
-				<h6><h:outputText value="#{orderController.order.adresseLivraison.zipcode}"/> <h:outputText value="#{orderController.order.adresseLivraison.city}"/></h6><br /> 
-				<h6><h:outputText value="#{orderController.order.adresseLivraison.country}"/></h6><br /> 
-				
-				<br /><br />
-				<h4>Adresse de facturation:</h4><br /> 
-				<h6><h:outputText value="#{orderController.order.adresseFacturation.number}"/><h:outputText value="#{orderController.order.adresseFacturation.complement}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadType}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadName}"/></h6><br />
-				<h6><h:outputText value="#{orderController.order.adresseFacturation.zipcode}"/> <h:outputText value="#{orderController.order.adresseFacturation.city}"/></h6><br /> 
-				<h6><h:outputText value="#{orderController.order.adresseFacturation.country}"/></h6><br /> 
+				<h:panelGrid columns="2" cellpadding="15" cellspacing="30">
+				<h:outputText value="Montant total:"/>		<h:outputText value="#{orderController.order.amount}€"/>
+				<h:outputText value="Type de paiement:"/> 	<h:outputText value="#{orderController.order.typePayment}"/>
+				<h:outputText value="Date de commande:"/> 	<h:outputText value="#{orderController.order.creationDate}"/>
+				<h:outputText value="Etat:"/>				<h:outputText value="#{orderController.order.state}"/>
+				<h:outputText value="Transporteur:"/>		<h:outputText value="#{orderController.order.carrier.name}"/>
+				<h:outputText value="Numero de suivi:"/>	<h:outputText value="#{orderController.order.trackingNumber}"/>
+				<h:panelGroup>
+					<br/>
+					Adresse de livraison<br/><br/>
+					<h:outputText value="#{orderController.order.adresseLivraison.number}"/><h:outputText value="#{orderController.order.adresseLivraison.complement}"/> <h:outputText value="#{orderController.order.adresseLivraison.roadType}"/> <h:outputText value="#{orderController.order.adresseLivraison.roadName}"/><br />
+					<h:outputText value="#{orderController.order.adresseLivraison.zipcode}"/> <h:outputText value="#{orderController.order.adresseLivraison.city}"/><br /> 
+					<h:outputText value="#{orderController.order.adresseLivraison.country}"/>
+				</h:panelGroup>
+				<h:panelGroup>
+					<br/>
+					Adresse de Facturation<br/><br/>
+					<h:outputText value="#{orderController.order.adresseFacturation.number}"/><h:outputText value="#{orderController.order.adresseFacturation.complement}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadType}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadName}"/><br />
+					<h:outputText value="#{orderController.order.adresseFacturation.zipcode}"/> <h:outputText value="#{orderController.order.adresseFacturation.city}"/><br /> 
+					<h:outputText value="#{orderController.order.adresseFacturation.country}"/>
+				</h:panelGroup>
+			
+				</h:panelGrid>
+							
 			</h:panelGroup>
 			</div>
 		</div>
 	
 		
 		<!---->
-				<div class="footer">
+			<div class="footer">
 			<div class="footer-top">
 				<div class="container">
 					<div class="col-md-4 footer-in">						
@@ -285,42 +296,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="footer-middle">
 				<div class="container">
 					<div class="footer-middle-in">
-						<h6>About us</h6>
-						<p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
+						<h6>A propos de nous</h6>
+						<p>Mix Hightech est une entreprise spécialisée dans la vente de matériels informatiques.</p>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Information</h6>
+						<h6>Informations</h6>
 						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Delivery Information</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms Conditions</a></li>
+							<li><a href="#">Livraison</a></li>
+							<li><a href="#">Conditions Générales</a></li>
+							<li><a href="#">Vie Privée</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Customer Service</h6>
+						<h6>Service Client</h6>
 						<ul>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="#">Returns</a></li>
-							<li><a href="#">Site Map</a></li>
+							<li><a href="contact.html">Contactez-Nous</a></li>
+							<li><a href="#">Retours</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>My Account</h6>
+						<h6>Mon Compte</h6>
 						<ul>
-							<li><a href="account.xhtml">My Account</a></li>
-							<li><a href="#">Order History</a></li>
+							<li><a href="account.xhtml">Mon Compte</a></li>
+							<li><a href="#">HIstorique Des Commandes</a></li>
 							<li><a href="wishlist.html">Wish List</a></li>
 							<li><a href="#">Newsletter</a></li>
 						</ul>
 					</div>
 					<div class="footer-middle-in">
-						<h6>Extras</h6>
+						<h6>Aide</h6>
 						<ul>
-							<li><a href="#">Brands</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Affiliates</a></li>
-							<li><a href="#">Specials</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Aide</a></li>
+							<li><a href="#">Dépannage</a></li>
 						</ul>
 					</div>
 					<div class="clearfix"></div>
@@ -343,7 +351,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					</script>
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
+				
 		</div>
 </body>
 </html>
