@@ -8,9 +8,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -58,8 +62,7 @@ public class EspaceClientController {
 	private List<Address> listAddress;
 	
 	//variables from WSLogi
-	private Map<Integer, List<String>> statutLines;
-	private List<Integer> keyStatutLines;
+	private List<Map<String, String>> statutLines;
 	
 	@Autowired
 	UserBusApi userBusApi;
@@ -138,17 +141,31 @@ public class EspaceClientController {
 			
 			System.out.println("Response from WS Logistique : " + sortie );
 			
-			try {//get les élément attendu
+			try {//get les ï¿½lï¿½ment attendu
 				returnWSLogiJson = new JSONObject(sortie);
-				JSONArray arr = returnWSLogiJson.getJSONArray("statutLines");
-				for (int i = 0; i < arr.length(); i++)
-				{
-				    String dateUpdate = arr.getJSONObject(i).getString("post_id");//A continuer!!!
+				System.out.println("affichage du json\n" + returnWSLogiJson.toString());
+				statutLines = new ArrayList<>();
+				JSONArray array = returnWSLogiJson.getJSONArray("statutLines");
+				
+				for (int i = 0; i < array.length(); i++) {
+				    String dateUpdate = array.getJSONObject(i).getString("dateUpdate");
+				    String locationUpdate = array.getJSONObject(i).getString("locationUpdate");
+				    String detailsUpdate = array.getJSONObject(i).getString("detailsUpdate");
+				    
+				    Map<String, String> sLinesInfos = new HashMap<>();
+				    sLinesInfos.put("dateUpdate", dateUpdate);
+				    sLinesInfos.put("locationUpdate", locationUpdate);
+				    sLinesInfos.put("detailsUpdate", detailsUpdate);
+				    
+				    statutLines.add(sLinesInfos);
 				}
-				//ReceiveStatutDto wsLogiResponse = new ObjectMapper().readValue(returnWSLogiJson, ReceiveStatutDto.class);
-				//statutLines = (Map<Integer, List<String>>) returnWSLogiJson.get("statutLines");
-				//statutLines = wsLogiResponse.getStatutLines();
-				keyStatutLines = new ArrayList<>(statutLines.keySet());
+				System.out.println("affichage de la map\n" + statutLines.toString());
+				
+				/*for (int i : keyStatutLines){
+					Collection<List<String>> test = new ArrayList<>();
+					test = statutLines.values();
+					System.out.println();
+				}*/
 			} catch (JSONException err) {
 				System.out.println("Error with WS Bank :\n\tJSONException on response from WS Logistique");
 				err.printStackTrace();
@@ -265,16 +282,11 @@ public class EspaceClientController {
 	public void setMessageOldOrder(String messageOldOrder) {
 		this.messageOldOrder = messageOldOrder;
 	}
-	public Map<Integer, List<String>> getStatutLines() {
+	public List<Map<String, String>> getStatutLines() {
 		return statutLines;
 	}
-	public void setStatutLines(Map<Integer, List<String>> statutLines) {
+	public void setStatutLines(List<Map<String, String>> statutLines) {
 		this.statutLines = statutLines;
 	}
-	public List<Integer> getKeyStatutLines() {
-		return keyStatutLines;
-	}
-	public void setKeyStatutLines(List<Integer> keyStatutLines) {
-		this.keyStatutLines = keyStatutLines;
-	}
+	
 }

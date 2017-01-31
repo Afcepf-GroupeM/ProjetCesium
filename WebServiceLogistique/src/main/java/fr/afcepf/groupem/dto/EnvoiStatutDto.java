@@ -25,7 +25,7 @@ public class EnvoiStatutDto {
 	private String transporteurName;
 	private String url;
 	
-	private Map<Integer, List<String>> statutLines;
+	private List<Map<String, String>> statutLines;
 
 	public String getTrackingCode() {
 		return trackingCode;
@@ -155,11 +155,11 @@ public class EnvoiStatutDto {
 		this.url = url;
 	}
 
-	public Map<Integer, List<String>> getStatutLines() {
+	public List<Map<String, String>> getStatutLines() {
 		return statutLines;
 	}
 
-	public void setStatutLines(Map<Integer, List<String>> statutLines) {
+	public void setStatutLines(List<Map<String, String>> statutLines) {
 		this.statutLines = statutLines;
 	}
 

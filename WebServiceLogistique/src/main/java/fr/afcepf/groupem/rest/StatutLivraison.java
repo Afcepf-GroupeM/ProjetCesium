@@ -42,7 +42,7 @@ public class StatutLivraison {
 	public EnvoiStatutDto sendStatut(DemandeStatutDto demande){
 		String trackingCode = demande.getTrackingCode();
 		
-		System.out.println("Code de tracking à recherher: " + trackingCode);
+		System.out.println("Code de tracking ï¿½ recherher: " + trackingCode);
 		
 		Livraison livraison = livraisonBus.getLivraisonByTrackingCode(trackingCode);
 		Adresse adresse = livraison.getAdresse();
@@ -50,22 +50,20 @@ public class StatutLivraison {
 		Transporteur transporteur = livraison.getTransporteur();
 		List<StatutLine> statutLines = statutBus.getStatutLinesByStatutId(statut.getId());
 		
-		int sLine = 1;
-		Map<Integer, List<String>> sLines = new HashMap<Integer, List<String>>();
+		List<Map<String, String>> sLines = new ArrayList<>();
 		
 		for (StatutLine statutLine : statutLines){
-			List<String> slContent = new ArrayList<>();
+			Map<String, String> slContent = new HashMap<>();
 			
 			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 			Date dateUpdateSl = statutLine.getDateUpdate();
 			String dateUpdate = df.format(dateUpdateSl);
 			
-			slContent.add(dateUpdate);
-			slContent.add(statutLine.getLocationUpdate());
-			slContent.add(statutLine.getDetailsUpdate());
+			slContent.put("dateUpdate", dateUpdate);
+			slContent.put("locationUpdate", statutLine.getLocationUpdate());
+			slContent.put("detailsUpdate", statutLine.getDetailsUpdate());
 			
-			sLines.put(sLine, slContent);
-			sLine++;
+			sLines.add(slContent);
 		}
 		
 		EnvoiStatutDto etatLivraison = new EnvoiStatutDto();
