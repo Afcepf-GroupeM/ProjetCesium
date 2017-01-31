@@ -794,6 +794,24 @@ ul.callbacks_tabs.callbacks1_tabs {
 	
 	line-height:1.3em;
 }
+.hvr-shutter-in-vertical3{
+	float:right;
+}
+.hvr-shutter-in-vertical4{
+	float:left;	
+	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	line-height: 1.3em;
+	display: inline-block;
+	vertical-align: middle;
+	transform: translateZ(0);
+	position: relative;
+	transition-property: color;
+	transition-duration: 0.3s;
+	color: #fff;
+	font-size: 1em;
+	padding: 0.5em 1em;
+	border-radius: 5px;
+}
 .hvr-shutter-in-vertical:before {
   content: "";
   position: absolute;
