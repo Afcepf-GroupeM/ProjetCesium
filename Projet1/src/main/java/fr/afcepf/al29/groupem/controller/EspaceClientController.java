@@ -110,9 +110,12 @@ public class EspaceClientController {
 	}
 	
 	public void initStatutViewer(ComponentSystemEvent e){
+		int orderId = Integer.parseInt(getParam("orderId"));
 		String trackingCode = getParam("trackingCode");
 		String urlWSLogi = "http://localhost:8080/WebServiceLogistique/StatutLivraison/send";
 		JSONObject returnWSLogiJson = null;
+		
+		ordering = orderBusApi.getOrderById(orderId);
 		
 		JSONObject statutRequestJson = new JSONObject();
 		statutRequestJson.put("trackingCode", trackingCode);
@@ -141,9 +144,9 @@ public class EspaceClientController {
 			
 			System.out.println("Response from WS Logistique : " + sortie );
 			
-			try {//get les �l�ment attendu
+			try {
 				returnWSLogiJson = new JSONObject(sortie);
-				System.out.println("affichage du json\n" + returnWSLogiJson.toString());
+				
 				statutLines = new ArrayList<>();
 				JSONArray array = returnWSLogiJson.getJSONArray("statutLines");
 				
@@ -159,13 +162,7 @@ public class EspaceClientController {
 				    
 				    statutLines.add(sLinesInfos);
 				}
-				System.out.println("affichage de la map\n" + statutLines.toString());
 				
-				/*for (int i : keyStatutLines){
-					Collection<List<String>> test = new ArrayList<>();
-					test = statutLines.values();
-					System.out.println();
-				}*/
 			} catch (JSONException err) {
 				System.out.println("Error with WS Bank :\n\tJSONException on response from WS Logistique");
 				err.printStackTrace();
@@ -180,9 +177,10 @@ public class EspaceClientController {
 	}
 	
 	public String goToStatutViewer(){
+		int orderId = Integer.parseInt(getParam("orderId"));
 		String trackingCode = getParam("trackingCode");
 		
-		return "statutViewer?faces-redirect=true&trackingCode=" + trackingCode;
+		return "statutViewer?faces-redirect=true&orderId=" + orderId + "&trackingCode=" + trackingCode;
 	}
 	
 	public String getParam(String param){

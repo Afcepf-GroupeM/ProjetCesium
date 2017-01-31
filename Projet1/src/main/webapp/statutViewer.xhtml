@@ -162,8 +162,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	
+	<div class="container">
+		<div class="addressForm">
+			<h2 class="account-in"> 
+				<h:outputText value="Suivi de la livraison de votre commande N° #{espaceClientController.ordering.id}" />
+			</h2>
+			<div>
+				
+			</div>
+			<div>
+				<h:dataTable class="table-account1"  var="sl" value="#{espaceClientController.statutLines}" styleClass="order-table"
+					headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
+					<h:column>
+		    			<f:facet name="header">Date</f:facet>
+						<h:outputText value="#{sl.dateUpdate}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Location</f:facet>
+						<h:outputText value="#{sl.locationUpdate}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Détails</f:facet>
+						<h:outputText value="#{sl.detailsUpdate}" />
+					</h:column>
+				</h:dataTable>>
+			</div>
+		</div>
+	</div>
 	
-		
 	<!---->
 		<div class="footer">
 			<div class="footer-top">

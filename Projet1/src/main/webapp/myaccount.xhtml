@@ -224,6 +224,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    		<h:form>
 		    			<h:commandLink value="#{order.trackingNumber}" action="#{espaceClientController.goToStatutViewer}">
 		    				<f:param name="trackingCode" value="#{order.trackingNumber}"/>
+		    				<f:param name="orderId" value="#{order.id}"/>
 		    			</h:commandLink>
 		    		</h:form>	
 		    	</h:column>    	

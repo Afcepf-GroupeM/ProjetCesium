@@ -28,5 +28,7 @@ public interface OrderBusApi {
 	List<Order>getAll();
 
 	boolean hasOrderedItem(int itemId, int userId);
+	
+	Order getOrderById(int orderId);
 
 }

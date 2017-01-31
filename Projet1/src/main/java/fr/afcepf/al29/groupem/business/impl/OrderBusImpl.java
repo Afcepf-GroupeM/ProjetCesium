@@ -128,6 +128,11 @@ public class OrderBusImpl implements OrderBusApi{
 		}
 		return retour;
 	}
+
+	@Override
+	public Order getOrderById(int orderId) {
+		return orderDao.getOrderById(orderId);
+	}
 	
 }
 	
