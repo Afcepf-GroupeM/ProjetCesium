@@ -8,19 +8,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
-import org.apache.myfaces.view.facelets.el.RedirectMethodExpressionValueExpressionValueChangeListener;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
@@ -31,7 +25,6 @@ import org.springframework.stereotype.Component;
 import fr.afcepf.al29.groupem.business.api.AddressBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
-import fr.afcepf.al29.groupem.dto.ReceiveStatutDto;
 import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
@@ -62,6 +55,20 @@ public class EspaceClientController {
 	private List<Address> listAddress;
 	
 	//variables from WSLogi
+	private String trackingCode;
+	private String dateDemande;
+	private String datePriseEnCharge;
+	private String dateLivraison;
+	private String lastName;
+	private String firstName;
+	private int numero;
+	private String complement;
+	private String typeVoie;
+	private String nomVoie;
+	private String city;
+	private String zipcode;
+	private String country;
+	private String transporteurName;
 	private List<Map<String, String>> statutLines;
 	
 	@Autowired
@@ -111,7 +118,7 @@ public class EspaceClientController {
 	
 	public void initStatutViewer(ComponentSystemEvent e){
 		int orderId = Integer.parseInt(getParam("orderId"));
-		String trackingCode = getParam("trackingCode");
+		trackingCode = getParam("trackingCode");
 		String urlWSLogi = "http://localhost:8080/WebServiceLogistique/StatutLivraison/send";
 		JSONObject returnWSLogiJson = null;
 		
@@ -146,6 +153,33 @@ public class EspaceClientController {
 			
 			try {
 				returnWSLogiJson = new JSONObject(sortie);
+				
+				trackingCode = returnWSLogiJson.getString("trackingCode");
+				dateDemande = returnWSLogiJson.getString("dateDemande");
+				datePriseEnCharge = returnWSLogiJson.getString("datePriseEnCharge");
+				dateLivraison = returnWSLogiJson.getString("dateLivraison");
+				lastName = returnWSLogiJson.getString("lastName");
+				firstName = returnWSLogiJson.getString("firstName");
+				transporteurName = returnWSLogiJson.getString("transporteurName");
+				
+				numero = returnWSLogiJson.getInt("numero");
+				
+				//si complement null alors renvoie une erreur "Null key."
+				/*if (returnWSLogiJson.getString(complement) != null){
+					complement = returnWSLogiJson.getString(complement);
+				}
+				else{
+					complement = "";
+				}
+				
+				*<h:outputText value="Complement: #{espaceClientController.complement}"/>
+						<br/>
+				*/
+				typeVoie = returnWSLogiJson.getString("typeVoie");
+				nomVoie = returnWSLogiJson.getString("nomVoie");
+				city = returnWSLogiJson.getString("city");
+				zipcode = returnWSLogiJson.getString("zipcode");
+				country = returnWSLogiJson.getString("country");
 				
 				statutLines = new ArrayList<>();
 				JSONArray array = returnWSLogiJson.getJSONArray("statutLines");
@@ -279,6 +313,102 @@ public class EspaceClientController {
 	}
 	public void setMessageOldOrder(String messageOldOrder) {
 		this.messageOldOrder = messageOldOrder;
+	}
+	public String getTrackingCode() {
+		return trackingCode;
+	}
+	public void setTrackingCode(String trackingCode) {
+		this.trackingCode = trackingCode;
+	}
+	public String getDateDemande() {
+		return dateDemande;
+	}
+	public void setDateDemande(String dateDemande) {
+		this.dateDemande = dateDemande;
+	}
+	public String getDatePriseEnCharge() {
+		return datePriseEnCharge;
+	}
+	public void setDatePriseEnCharge(String datePriseEnCharge) {
+		this.datePriseEnCharge = datePriseEnCharge;
+	}
+	public String getDateLivraison() {
+		return dateLivraison;
+	}
+	public void setDateLivraison(String dateLivraison) {
+		this.dateLivraison = dateLivraison;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public String getComplement() {
+		return complement;
+	}
+
+	public void setComplement(String complement) {
+		this.complement = complement;
+	}
+
+	public String getTypeVoie() {
+		return typeVoie;
+	}
+
+	public void setTypeVoie(String typeVoie) {
+		this.typeVoie = typeVoie;
+	}
+
+	public String getNomVoie() {
+		return nomVoie;
+	}
+
+	public void setNomVoie(String nomVoie) {
+		this.nomVoie = nomVoie;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getTransporteurName() {
+		return transporteurName;
+	}
+	public void setTransporteurName(String transporteurName) {
+		this.transporteurName = transporteurName;
 	}
 	public List<Map<String, String>> getStatutLines() {
 		return statutLines;

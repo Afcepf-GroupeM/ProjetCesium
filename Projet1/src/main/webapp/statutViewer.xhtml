@@ -168,7 +168,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h:outputText value="Suivi de la livraison de votre commande N° #{espaceClientController.ordering.id}" />
 			</h2>
 			<div>
-				
+				<h4>
+					<h:outputText value="Informations générales:"/>
+				</h4>
+				<br />
+				<h:panelGrid columns="3">
+					<h:panelGroup>
+						<h:outputText value="Nom: #{espaceClientController.lastName}"/>
+						<br/>
+						<h:outputText value="Nom: #{espaceClientController.firstName}"/>
+						<br/>
+						<h:outputText value="Numero: #{espaceClientController.numero}"/>
+						<br/>
+						<h:outputText value="Type de voie: #{espaceClientController.typeVoie}"/>
+						<br/>
+						<h:outputText value="Nom de la voie: #{espaceClientController.nomVoie}"/>
+						<br/>
+						<h:outputText value="Code postal: #{espaceClientController.zipcode}"/>
+						<br/>
+						<h:outputText value="Ville: #{espaceClientController.city}"/>
+						<br/>
+						<h:outputText value="Pays: #{espaceClientController.country}"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<h:outputText value="Date demande livraison: #{espaceClientController.dateDemande}"/>
+						<br/>
+						<h:outputText value="Date de prise en charge: #{espaceClientController.datePriseEnCharge}"/>
+						<br/>
+						<h:outputText value="Date de livraison: #{espaceClientController.dateLivraison}"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<h:outputText value="Transporteur: #{espaceClientController.transporteurName}"/>
+						<br/>
+						<h:outputText value="Code de suivi: #{espaceClientController.trackingCode}"/>
+					</h:panelGroup>
+				</h:panelGrid>
 			</div>
 			<div>
 				<h:dataTable class="table-account1"  var="sl" value="#{espaceClientController.statutLines}" styleClass="order-table"
@@ -179,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h:outputText value="#{sl.dateUpdate}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">Location</f:facet>
+						<f:facet name="header">Localisation</f:facet>
 						<h:outputText value="#{sl.locationUpdate}" />
 					</h:column>
 					<h:column>
