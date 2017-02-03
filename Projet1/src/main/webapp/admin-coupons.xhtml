@@ -109,7 +109,116 @@
 			
 			<div class="adminSearchCoupon">
 				<h2>Rechercher un coupon:</h2>
+				<h:form>
+				<h:panelGrid columns="3" cellpadding="1" cellspacing="2">
+					<h:outputText value="Rechercher par: " />
+					<h:selectOneMenu value="#{adminCouponController.searchType}">
+						<f:selectItem itemLabel="Date" itemValue="1"/>
+						<f:selectItem itemLabel="Code promo" itemValue="2"/>						
+						<f:selectItem itemLabel="Catégorie" itemValue="4"/>
+						<f:selectItem itemLabel="Remise" itemValue="3"/>
+						<f:ajax listener="#{adminCouponController.ajaxChangeSearchType}"
+								render="searchBy" />
+					</h:selectOneMenu>
+					<h:commandButton action="#{adminCouponController.getAllCoupons}" value="Afficher tout" />
+				</h:panelGrid>
+				
+				<h:panelGroup id="searchBy">
+					<h:panelGrid columns="3" cellpadding="1" cellspacing="2" rendered="#{adminCouponController.searchType eq '2'}">
+						<h:outputText value="Code contenant: " />
+						<h:inputText value="#{adminCouponController.codeToSearch}" />
+						<h:commandButton action="#{adminCouponController.searchByCode}" value="Rechercher" />
+					</h:panelGrid>
+					
+					<h:panelGrid columns="5" cellpadding="1" cellspacing="2" rendered="#{adminCouponController.searchType eq '1'}">
+						<h:outputText value="Code " />
+						<h:selectOneMenu value="#{adminCouponController.searchDateOption1}">
+							<f:selectItem itemLabel="commançant" itemValue="start"/>
+							<f:selectItem itemLabel="finissant" itemValue="finish"/>
+						</h:selectOneMenu>
+						<h:selectOneMenu value="#{adminCouponController.searchDateOption2}">
+							<f:selectItem itemLabel="le" itemValue="on"/>
+							<f:selectItem itemLabel="avant le" itemValue="before"/>
+							<f:selectItem itemLabel="après le" itemValue="after"/>
+						</h:selectOneMenu>
+						<h:inputText value="#{adminCouponController.dateToSearch}" />
+						<h:commandButton action="adminCouponController.searchByDate" value="Rechercher" />
+					</h:panelGrid>
+					
+					<h:panelGrid columns="4" cellpadding="1" cellspacing="2" rendered="#{adminCouponController.searchType eq '3'}">
+						<h:outputText value="Remise " />
+						<h:selectOneMenu value="#{adminCouponController.rebateSearchOption}">
+							<f:selectItem itemLabel="inférieure à" itemValue="lesserthan"/>
+							<f:selectItem itemLabel="supérieure à" itemValue="greaterthan"/>
+							<f:selectItem itemLabel="égal à" itemValue="equal"/>
+						</h:selectOneMenu>
+						<h:inputText value="#{adminCouponController.rebateToSearch}" />
+						<h:commandButton action="adminCouponController.searchByRebate" value="Rechercher" />
+					</h:panelGrid>
+					
+					<h:panelGrid columns="5" cellpadding="1" cellspacing="2" rendered="#{adminCouponController.searchType eq '4'}">
+						<h:outputText value="Séléction: " />
+						<h:selectOneMenu
+							value="#{adminCouponController.metaCategoryChosenId}"
+							styleClass="adminCouponCatSelector">
+							<f:selectItems
+								value="#{adminCouponController.listMetaCategories}" var="meta"
+								itemLabel="#{meta.name}" itemValue="#{meta.id}" />
+							<f:ajax listener="#{adminCouponController.ajaxChangeMeta}"
+								render="catSelector" />
+						</h:selectOneMenu>						
+						<h:selectOneMenu id="catSelector"
+							value="#{adminCouponController.categoryChosenId}"
+							styleClass="adminCouponCatSelector">
+							<f:selectItems value="#{adminCouponController.listCategories}"
+								var="cat" itemLabel="#{cat.name}" itemValue="#{cat.id}" />
+						</h:selectOneMenu>
+						<h:commandButton action="#{adminCouponController.searchByCat}" value="Rechercher" />
+						<h:outputText value="#{adminCouponController.errorSearch}" styleClass="error" />
+					</h:panelGrid>
+				
+				</h:panelGroup>
+				</h:form>
+				
+				<div >
+					<h:outputText value="Aucun résultat n'a été trouvé." rendered="#{empty adminCouponController.searchResult and adminCouponController.hasSearchBeenDone}" />
+					<h:dataTable value="#{adminCouponController.searchResult}" var="coup" rendered="#{not empty adminCouponController.searchResult}"
+										styleClass="adminSearchResultTab"
+										rowClasses="adminSearchResultTabRow">
+						<h:column>
+							<f:facet name="header">id</f:facet>
+							<h:outputText value="#{coup.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Code</f:facet>
+							<h:outputText value="#{coup.code}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Reduction en %</f:facet>
+							<h:outputText value="#{coup.rebate}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Categorie</f:facet>
+							<h:outputText value="#{coup.category.id}-#{coup.category.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Debut</f:facet>
+							<h:outputText value="#{coup.startDate}" >
+								<f:convertDateTime pattern="dd/MM/yyy" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Fin</f:facet>
+							<h:outputText value="#{coup.endDate}" >
+								<f:convertDateTime pattern="dd/MM/yyy" />
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+				</div>
+				
+				
 			</div>
+			
 
 
 

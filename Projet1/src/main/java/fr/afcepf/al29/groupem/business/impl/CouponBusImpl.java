@@ -41,7 +41,7 @@ public class CouponBusImpl implements CouponBusApi{
     }
 
     @Override
-    public Coupon getCouponByCode(String paramCode) {        
+    public List<Coupon> getCouponByCode(String paramCode) {        
         return couponDao.getCouponByCode(paramCode);
     }
 

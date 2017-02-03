@@ -14,7 +14,7 @@ public interface CouponDaoApi {
     
     
     Coupon getCouponById(int paramCouponId);
-    Coupon getCouponByCode(String code);
+    List<Coupon> getCouponByCode(String code);
     
     List<Coupon> getAllCoupons();
     

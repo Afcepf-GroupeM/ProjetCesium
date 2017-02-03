@@ -3,11 +3,13 @@ package fr.afcepf.al29.groupem.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -23,9 +25,16 @@ import fr.afcepf.al29.groupem.entities.Category;
 import fr.afcepf.al29.groupem.entities.Coupon;
 import fr.afcepf.al29.groupem.entities.MetaCategory;
 
+@RequestScoped
 @ManagedBean
 @Component
 public class AdminCouponController {
+	
+	@Autowired
+    private CouponBusApi couponBus;
+    
+    @Autowired
+    private CategoryBusApi catBus;
     
     private List<MetaCategory> listMetaCategories;
     private String metaCategoryChosenId;
@@ -59,12 +68,20 @@ public class AdminCouponController {
     
     private boolean firstLoad = true;
     
+    private String searchType = "1";  //v1
+    private String errorSearch = "";
+    private String codeToSearch; // v20
     
-    @Autowired
-    private CouponBusApi couponBus;
+    private String searchDateOption1 = "start"; //v30
+    private String searchDateOption2 = "before"; //v31
+    private String dateToSearch; //v32
     
-    @Autowired
-    private CategoryBusApi catBus;
+    private String rebateSearchOption = "lesserthan"; //v40
+    private String rebateToSearch; //v41
+    
+    private List<Coupon> searchResult;
+    
+    private boolean hasSearchBeenDone = false;
     
     
     
@@ -163,9 +180,120 @@ public class AdminCouponController {
     }
     
     
+    public String getAllCoupons() {
+    	searchResult = null;
+    	searchResult = couponBus.getAllCoupons();
+    	hasSearchBeenDone = true;
+    	
+    	return null;
+    }
+    
+  public String searchByCode() {
+	  searchResult = null;
+	  if(codeToSearch.isEmpty()){
+		  errorSearch = "Champ vide.";
+	  } else {		  
+		  searchResult = couponBus.getCouponByCode(codeToSearch);
+		  hasSearchBeenDone = true;
+	  }
+	  return null;
+  }
+  
+  public String searchByDate() {
+	  searchResult = null;
+	  DateValidator dateValidator = DateValidator.getInstance();
+	  boolean isDateValid = dateValidator.isValid(dateToSearch, "dd/MM/yyy");
+	  errorSearch = "";
+	  
+	  if(!isDateValid){
+		  errorSearch = "La date est invalide. (Format JJ/MM/AAAA)";
+	  } else {  
+		  DateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
+		  Date date = null;
+		  try {
+			date = dateFormater.parse(dateToSearch);
+		} catch (ParseException e) {
+			System.out.println("AdminCouponController - searchByDate - Erreur de parsing de la date. \nMessage: " + e.getMessage());
+		}
+		  String option = searchDateOption1 + searchDateOption2;
+		  switch (option) {
+		case "startbefore":
+			searchResult = couponBus.getCouponsStartinBefore(date);
+			break;
+		case "startafter":
+			searchResult = couponBus.getCouponsStartinBefore(date);
+			break;
+		case "starton":
+			searchResult = couponBus.getCouponsStartingOn(date);
+			break;
+		case "finishbefore":
+			searchResult = couponBus.getCouponsEndingBefore(date);
+			break;
+		case "finishafter":
+			searchResult = couponBus.getCouponsEndingAfter(date);
+			break;
+		case "finishon":
+			searchResult = couponBus.getCouponsEndingOn(date);
+			break;
+	
+		default:
+			break;
+		}
+		  hasSearchBeenDone = true;
+		  
+	}
+	  return null;
+  }
+  
+  public String searchByRebate() {
+	  searchResult = null;
+	  RegexValidator rebateValidator = new RegexValidator("(100)|([1-9]?[0-9])", false);
+	  boolean isValidRebateToSearch = rebateValidator.isValid(rebateToSearch);
+	  errorSearch = "";
+	  if(!isValidRebateToSearch){
+		  errorSearch = "Réduction non valide. Entrer un entier entre 0 et 100";
+	  } else {
+		  switch (rebateSearchOption) {
+		case "lesserthan":
+			searchResult = couponBus.getCouponsByRebateLesserThan(Integer.valueOf(rebateToSearch));
+			break;
+		case "greaterthan":
+			searchResult = couponBus.getCouponsByRebateGreaterThan(Integer.valueOf(rebateToSearch));
+			break;
+		case "equal":
+			searchResult = couponBus.getCouponsByRebateEquals(Integer.valueOf(rebateToSearch));
+			break;
+		default:
+			break;
+		}
+		  hasSearchBeenDone = true;
+	  }
+	  return null;
+  }
+  
+  public String searchByCat() {
+	  searchResult = null;
+	  errorSearch= "";
+	  searchResult = couponBus.getCouponsByCatId(Integer.parseInt(categoryChosenId));
+	  hasSearchBeenDone = true;
+	  return null;
+  }
+    
+    
+    
+    
+//  #################
+//  	  AJAX
+//  #################
+    
+    
     
     public void ajaxChangeMeta(AjaxBehaviorEvent event) {
         listCategories = catBus.getCategoryByMetaId(Integer.parseInt(metaCategoryChosenId));
+    }
+    
+    public void ajaxChangeSearchType(AjaxBehaviorEvent event) {
+        
     }
     
     
@@ -552,6 +680,106 @@ public class AdminCouponController {
     public void setEndDateString(String paramEndDateString) {
         endDateString = paramEndDateString;
     }
+
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+
+	public String getErrorSearch() {
+		return errorSearch;
+	}
+
+
+	public void setErrorSearch(String errorSearch) {
+		this.errorSearch = errorSearch;
+	}
+
+
+	public String getCodeToSearch() {
+		return codeToSearch;
+	}
+
+
+	public void setCodeToSearch(String codeToSearch) {
+		this.codeToSearch = codeToSearch;
+	}
+
+
+	public String getSearchDateOption1() {
+		return searchDateOption1;
+	}
+
+
+	public void setSearchDateOption1(String searchDateOption1) {
+		this.searchDateOption1 = searchDateOption1;
+	}
+
+
+	public String getSearchDateOption2() {
+		return searchDateOption2;
+	}
+
+
+	public void setSearchDateOption2(String searchDateOption2) {
+		this.searchDateOption2 = searchDateOption2;
+	}
+
+
+	public String getDateToSearch() {
+		return dateToSearch;
+	}
+
+
+	public void setDateToSearch(String dateToSearch) {
+		this.dateToSearch = dateToSearch;
+	}
+
+
+	public String getRebateSearchOption() {
+		return rebateSearchOption;
+	}
+
+
+	public void setRebateSearchOption(String rebateSearchOption) {
+		this.rebateSearchOption = rebateSearchOption;
+	}
+
+
+	public String getRebateToSearch() {
+		return rebateToSearch;
+	}
+
+
+	public void setRebateToSearch(String rebateToSearch) {
+		this.rebateToSearch = rebateToSearch;
+	}
+
+
+	public List<Coupon> getSearchResult() {
+		return searchResult;
+	}
+
+
+	public void setSearchResult(List<Coupon> searchResult) {
+		this.searchResult = searchResult;
+	}
+
+
+	public boolean isHasSearchBeenDone() {
+		return hasSearchBeenDone;
+	}
+
+
+	public void setHasSearchBeenDone(boolean hasSearchBeenDone) {
+		this.hasSearchBeenDone = hasSearchBeenDone;
+	}
     
 
     

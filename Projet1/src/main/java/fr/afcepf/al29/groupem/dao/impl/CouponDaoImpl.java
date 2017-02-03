@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,27 +53,29 @@ public class CouponDaoImpl implements CouponDaoApi{
 
 
     @Override
-    public Coupon getCouponByCode(String paramCode) {
-        Coupon coupon = null;
+    public List<Coupon> getCouponByCode(String paramCode) {
+        List<Coupon> coupons = new ArrayList<>();
         try {
-            coupon = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.code = :couponcode",Coupon.class)
-                                         .setParameter("couponcode", paramCode)
-                                         .getSingleResult();
+            coupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.code LIKE :couponcode",Coupon.class)
+                                         .setParameter("couponcode", '%'+paramCode+'%')
+                                         .getResultList();
         } catch (Exception e) {}
-        return coupon;
+        return coupons;
     }
 
 
     @Override
     public List<Coupon> getAllCoupons() {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup",Coupon.class).getResultList();
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup",Coupon.class).getResultList();
         return listCoupons;
     }
 
 
     @Override
     public List<Coupon> getCouponsByCatId(int paramCatId) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.category.id = :catid",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.category.id = :catid",Coupon.class)
                                                 .setParameter("catid", paramCatId)
                                                 .getResultList();
         return listCoupons;
@@ -81,7 +84,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsStartinBefore(Date paramDate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.startDate <= :stdate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.startDate <= :stdate",Coupon.class)
                                                 .setParameter("stdate", paramDate)
                                                 .getResultList();
         return listCoupons;
@@ -90,7 +94,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsStartingAfter(Date paramDate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.startDate >= :stdate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.startDate >= :stdate",Coupon.class)
                 .setParameter("stdate", paramDate)
                 .getResultList();
         return listCoupons;
@@ -99,7 +104,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsStartingOn(Date paramDate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.startDate = :stdate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.startDate = :stdate",Coupon.class)
                 .setParameter("stdate", paramDate)
                 .getResultList();
         return listCoupons;
@@ -108,7 +114,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsEndingBefore(Date paramDate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.endDate <= :enddate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.endDate <= :enddate",Coupon.class)
                 .setParameter("eddate", paramDate)
                 .getResultList();
         return listCoupons;
@@ -117,7 +124,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsEndingAfter(Date paramDate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.endDate >= :enddate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.endDate >= :enddate",Coupon.class)
                 .setParameter("enddate", paramDate)
                 .getResultList();
         return listCoupons;
@@ -126,7 +134,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsEndingOn(Date paramDate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.endDate = :enddate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.endDate = :enddate",Coupon.class)
                 .setParameter("enddate", paramDate)
                 .getResultList();
         return listCoupons;
@@ -135,7 +144,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsByRebateLesserThan(int paramRebate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.rebate <= :rebate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.rebate <= :rebate",Coupon.class)
                 .setParameter("rebate", paramRebate)
                 .getResultList();
         return listCoupons;
@@ -144,7 +154,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsByRebateGreaterThan(int paramRebate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.rebate >= :rebate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.rebate >= :rebate",Coupon.class)
                 .setParameter("rebate", paramRebate)
                 .getResultList();
         return listCoupons;
@@ -153,7 +164,8 @@ public class CouponDaoImpl implements CouponDaoApi{
 
     @Override
     public List<Coupon> getCouponsByRebateEquals(int paramRebate) {
-        List<Coupon> listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.rebate = :rebate",Coupon.class)
+    	List<Coupon> listCoupons = new ArrayList<>();
+        listCoupons = entityManager.createQuery("SELECT coup FROM Coupon coup WHERE coup.rebate = :rebate",Coupon.class)
                 .setParameter("rebate", paramRebate)
                 .getResultList();
         return listCoupons;
