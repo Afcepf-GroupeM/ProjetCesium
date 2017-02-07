@@ -413,4 +413,16 @@ tr:hover.adminSearchResultTabRow {
 	width: 150px;
 }
 
+.adminCouponSearchResultNothingFound {
+	text-align: center;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+.adminCouponSearchResults {
+	text-align: center;
+	margin-top: 30px;
+	
+}
+
 }

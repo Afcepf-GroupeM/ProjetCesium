@@ -77,7 +77,7 @@ public class CouponBusImpl implements CouponBusApi{
 
     @Override
     public List<Coupon> getCouponsEndingAfter(Date paramDate) {        
-        return getCouponsEndingAfter(paramDate);
+        return couponDao.getCouponsEndingAfter(paramDate);
     }
 
     @Override
@@ -86,17 +86,17 @@ public class CouponBusImpl implements CouponBusApi{
     }
 
     @Override
-    public List<Coupon> getCouponsByRebateLesserThan(int paramRebate) {        
+    public List<Coupon> getCouponsByRebateLesserThan(float paramRebate) {        
         return couponDao.getCouponsByRebateLesserThan(paramRebate);
     }
 
     @Override
-    public List<Coupon> getCouponsByRebateGreaterThan(int paramRebate) {        
+    public List<Coupon> getCouponsByRebateGreaterThan(float paramRebate) {        
         return couponDao.getCouponsByRebateGreaterThan(paramRebate);
     }
 
     @Override
-    public List<Coupon> getCouponsByRebateEquals(int paramRebate) {        
+    public List<Coupon> getCouponsByRebateEquals(float paramRebate) {        
         return couponDao.getCouponsByRebateEquals(paramRebate);
     }
 

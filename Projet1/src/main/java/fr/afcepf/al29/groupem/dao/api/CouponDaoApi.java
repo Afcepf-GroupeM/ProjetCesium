@@ -28,9 +28,9 @@ public interface CouponDaoApi {
     List<Coupon> getCouponsEndingAfter(Date date);
     List<Coupon> getCouponsEndingOn(Date date);
     
-    List<Coupon> getCouponsByRebateLesserThan(int rebate);
-    List<Coupon> getCouponsByRebateGreaterThan(int rebate);
-    List<Coupon> getCouponsByRebateEquals(int rebate);
+    List<Coupon> getCouponsByRebateLesserThan(float rebate);
+    List<Coupon> getCouponsByRebateGreaterThan(float rebate);
+    List<Coupon> getCouponsByRebateEquals(float rebate);
     
     
 

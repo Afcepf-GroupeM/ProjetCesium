@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -25,7 +26,7 @@ import fr.afcepf.al29.groupem.entities.Category;
 import fr.afcepf.al29.groupem.entities.Coupon;
 import fr.afcepf.al29.groupem.entities.MetaCategory;
 
-@RequestScoped
+@SessionScoped
 @ManagedBean
 @Component
 public class AdminCouponController {
@@ -41,6 +42,12 @@ public class AdminCouponController {
     
     private List<Category> listCategories;
     private String categoryChosenId;
+    
+    private List<MetaCategory> listMetaCategoriesSearch;
+    private String metaCategoryChosenIdSearch;
+    
+    private List<Category> listCategoriesSearch;
+    private String categoryChosenIdSearch;
     
     private List<Coupon> listCouponsToPrint;
     private Coupon coupon;
@@ -87,10 +94,12 @@ public class AdminCouponController {
     
     
     public void initAdminCoupon(ComponentSystemEvent c){
-        listMetaCategories = catBus.getAllMetaCategory();    
+        listMetaCategories = catBus.getAllMetaCategory(); 
+        listMetaCategoriesSearch = listMetaCategories;
         if(firstLoad){
             Iterator<MetaCategory> it = listMetaCategories.iterator();
             listCategories = catBus.getCategoryByMetaId(it.next().getId());
+            listCategoriesSearch = listCategories;
             firstLoad = false;
         }
     }
@@ -106,7 +115,7 @@ public class AdminCouponController {
         if(!isCouponCodeValid){
             errorMessageCodeCoupon = "Code coupon invalide: caracteres alphanumeriques uniquement";
         } else {
-            if(couponBus.getCouponByCode(codeCoupon) != null){
+            if(couponBus.getCouponByCode(codeCoupon) == null){
                 errorMessageCodeCoupon = "Le code " + codeCoupon + " existe deja pour un autre coupon";
             } else {
                 errorMessageCodeCoupon = ""; 
@@ -172,9 +181,9 @@ public class AdminCouponController {
             coupon.setImagePath("url_image");
             
             coupon = couponBus.createCoupon(coupon);
+            
             resultCreation = "Coupon \" " + codeCoupon +" \" créé. Id: " + coupon.getId() + ".";
-            
-            
+            resetCreateCouponForm();
         }        
         return null;
     }
@@ -189,8 +198,10 @@ public class AdminCouponController {
     }
     
   public String searchByCode() {
+	  System.out.println("AdminCouponController - searchByCode - Method Entry");
+	  errorSearch = "";
 	  searchResult = null;
-	  if(codeToSearch.isEmpty()){
+	  if(codeToSearch.isEmpty() || codeToSearch == null){
 		  errorSearch = "Champ vide.";
 	  } else {		  
 		  searchResult = couponBus.getCouponByCode(codeToSearch);
@@ -200,13 +211,14 @@ public class AdminCouponController {
   }
   
   public String searchByDate() {
+	  System.out.println("AdminCouponController - searchByDate - Method Entry");
 	  searchResult = null;
 	  DateValidator dateValidator = DateValidator.getInstance();
 	  boolean isDateValid = dateValidator.isValid(dateToSearch, "dd/MM/yyy");
 	  errorSearch = "";
 	  
 	  if(!isDateValid){
-		  errorSearch = "La date est invalide. (Format JJ/MM/AAAA)";
+		  errorSearch = "Format ou date invalide. (Format JJ/MM/AAAA)";
 	  } else {  
 		  DateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
 		  Date date = null;
@@ -216,12 +228,13 @@ public class AdminCouponController {
 			System.out.println("AdminCouponController - searchByDate - Erreur de parsing de la date. \nMessage: " + e.getMessage());
 		}
 		  String option = searchDateOption1 + searchDateOption2;
+		  System.out.println("AdminCouponController SearchByDate - Option choisie: " + option);
 		  switch (option) {
 		case "startbefore":
 			searchResult = couponBus.getCouponsStartinBefore(date);
 			break;
 		case "startafter":
-			searchResult = couponBus.getCouponsStartinBefore(date);
+			searchResult = couponBus.getCouponsStartingAfter(date);
 			break;
 		case "starton":
 			searchResult = couponBus.getCouponsStartingOn(date);
@@ -246,22 +259,24 @@ public class AdminCouponController {
   }
   
   public String searchByRebate() {
+	  System.out.println("AdminCouponController - searchByRebate - Method Entry");
+	  System.out.println("AdminCouponController searchByRebate - Option choisie: " + rebateSearchOption);
 	  searchResult = null;
-	  RegexValidator rebateValidator = new RegexValidator("(100)|([1-9]?[0-9])", false);
+	  RegexValidator rebateValidator = new RegexValidator("(100)|([1-9]?[0-9]{1}(\\.[0-9]?[0-9]?)?)", false);
 	  boolean isValidRebateToSearch = rebateValidator.isValid(rebateToSearch);
 	  errorSearch = "";
 	  if(!isValidRebateToSearch){
-		  errorSearch = "Réduction non valide. Entrer un entier entre 0 et 100";
+		  errorSearch = "Réduction non valide. Entrer une valeur entre 0 et 100. Deux chiffres après la virgule.";
 	  } else {
 		  switch (rebateSearchOption) {
 		case "lesserthan":
-			searchResult = couponBus.getCouponsByRebateLesserThan(Integer.valueOf(rebateToSearch));
+			searchResult = couponBus.getCouponsByRebateLesserThan(Float.valueOf(rebateToSearch));
 			break;
 		case "greaterthan":
-			searchResult = couponBus.getCouponsByRebateGreaterThan(Integer.valueOf(rebateToSearch));
+			searchResult = couponBus.getCouponsByRebateGreaterThan(Float.valueOf(rebateToSearch));
 			break;
 		case "equal":
-			searchResult = couponBus.getCouponsByRebateEquals(Integer.valueOf(rebateToSearch));
+			searchResult = couponBus.getCouponsByRebateEquals(Float.valueOf(rebateToSearch));
 			break;
 		default:
 			break;
@@ -272,13 +287,24 @@ public class AdminCouponController {
   }
   
   public String searchByCat() {
+	  System.out.println("AdminCouponController - searchByCat - Method Entry");
 	  searchResult = null;
 	  errorSearch= "";
-	  searchResult = couponBus.getCouponsByCatId(Integer.parseInt(categoryChosenId));
+	  searchResult = couponBus.getCouponsByCatId(Integer.parseInt(categoryChosenIdSearch));
 	  hasSearchBeenDone = true;
 	  return null;
   }
     
+  
+  
+  public void resetCreateCouponForm() {
+	  codeCoupon = "";
+	  rebate = "";
+	  startDate = null;
+	  endDate = null;
+	  description = "";
+	  
+  }
     
     
     
@@ -290,6 +316,10 @@ public class AdminCouponController {
     
     public void ajaxChangeMeta(AjaxBehaviorEvent event) {
         listCategories = catBus.getCategoryByMetaId(Integer.parseInt(metaCategoryChosenId));
+    }
+    
+    public void ajaxChangeMetaSearch(AjaxBehaviorEvent event) {
+        listCategoriesSearch = catBus.getCategoryByMetaId(Integer.parseInt(metaCategoryChosenIdSearch));
     }
     
     public void ajaxChangeSearchType(AjaxBehaviorEvent event) {
@@ -779,6 +809,46 @@ public class AdminCouponController {
 
 	public void setHasSearchBeenDone(boolean hasSearchBeenDone) {
 		this.hasSearchBeenDone = hasSearchBeenDone;
+	}
+
+
+	public List<MetaCategory> getListMetaCategoriesSearch() {
+		return listMetaCategoriesSearch;
+	}
+
+
+	public void setListMetaCategoriesSearch(List<MetaCategory> listMetaCategoriesSearch) {
+		this.listMetaCategoriesSearch = listMetaCategoriesSearch;
+	}
+
+
+	public String getMetaCategoryChosenIdSearch() {
+		return metaCategoryChosenIdSearch;
+	}
+
+
+	public void setMetaCategoryChosenIdSearch(String metaCategoryChosenIdSearch) {
+		this.metaCategoryChosenIdSearch = metaCategoryChosenIdSearch;
+	}
+
+
+	public List<Category> getListCategoriesSearch() {
+		return listCategoriesSearch;
+	}
+
+
+	public void setListCategoriesSearch(List<Category> listCategoriesSearch) {
+		this.listCategoriesSearch = listCategoriesSearch;
+	}
+
+
+	public String getCategoryChosenIdSearch() {
+		return categoryChosenIdSearch;
+	}
+
+
+	public void setCategoryChosenIdSearch(String categoryChosenIdSearch) {
+		this.categoryChosenIdSearch = categoryChosenIdSearch;
 	}
     
 
