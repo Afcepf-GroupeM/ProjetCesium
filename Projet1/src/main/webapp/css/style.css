@@ -1639,6 +1639,28 @@ span#isBilling{
 	padding: 4em 1em;
 }
 
+/*--Comments--*/
+#headerReview{
+	background-color: #fff5cc;
+	border-style: solid;
+	border-color: #fc5e35;
+	border-top-width: 2px;
+	border-right-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 1px;
+}
+#bodyReview{
+	min-height: 50px;
+	background-color: #fffae6;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+	border-color: #fc5e35;
+	border-right-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+}
+
 /*--checkout--*/
 .check-out {
   padding: 6em 1em;

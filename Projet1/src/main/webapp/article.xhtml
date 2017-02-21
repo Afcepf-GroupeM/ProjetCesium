@@ -261,13 +261,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h:outputText value="Il n'existe aucun commentaire pour ce produit." rendered="#{empty reviewController.itemReviews}"/>
 					<ui:repeat var="rev" value="#{reviewController.itemReviews}" rendered="#{not empty reviewController.itemReviews}">
 						<div id="headerReview">
-							<div>
+							<div id="headerInfo">
 								<h:outputText value="#{rev.user.firstName}" />
 								<h:outputText value="#{rev.user.lastName}" />
 								<h:outputText value="#{rev.rating}" />
 								<h:outputText value="#{rev.creationDate}" />
 							</div>
-							<div>
+							<div id="headerLink">
 								<h:form>
 									<h:commandLink action="#{reviewController.updateReview}" value="Modifier" rendered="#{loginController.islogged and loginController.userLogged.id  == rev.user.id}">
 										<f:param name="reviewId" value="#{rev.id}"/>
