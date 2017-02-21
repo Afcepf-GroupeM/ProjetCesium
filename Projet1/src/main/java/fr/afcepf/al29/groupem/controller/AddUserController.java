@@ -17,8 +17,14 @@ import org.apache.commons.validator.routines.RegexValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import fr.afcepf.al29.groupem.business.api.ItemBusApi;
+import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
+import fr.afcepf.al29.groupem.dao.api.OrderLineDaoApi;
 import fr.afcepf.al29.groupem.entities.Civilite;
+import fr.afcepf.al29.groupem.entities.Item;
+import fr.afcepf.al29.groupem.entities.Order;
+import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.User;
 
 @Component
@@ -44,9 +50,28 @@ public class AddUserController {
 	private List<String> monthList;
 	private List<String> yearList;
 	
+	private DataGeneration dataGen = new DataGeneration();
+	private int nbUsersToGenerate;
+	private String messageUsersGenerate;
+	private List<User> listUsersGenerated;
+	
+	private int nbOrdersToGenerate;
+	private String messageOrdersGenerate;
+	private List<Order> listOrdersGenerated;
+	
+	
 
 	@Autowired
+	private ItemBusApi itemBus;
+	
+	@Autowired
 	private UserBusApi userBus;
+	
+	@Autowired
+	private OrderBusApi orderBus;
+	
+	@Autowired
+	private OrderLineDaoApi orderLineBus;
 	
 	@PostConstruct
 	public void init(){
@@ -133,6 +158,40 @@ public class AddUserController {
 		birthYear = "";
 		email = "";
 		phone = "";		
+	}
+	
+	
+	
+	public String generateUsers(){
+		Date dateDebut = new Date();
+		listUsersGenerated = dataGen.generateUsers(nbUsersToGenerate);
+		listUsersGenerated = userBus.generateUsers(listUsersGenerated);
+		Date dateFin = new Date();
+		long totalTime = dateFin.getTime() - dateDebut.getTime();
+		messageUsersGenerate = "Succes - "+ nbUsersToGenerate + " utilisateurs ajoutés à la base! - Effectué en " + totalTime + " millisecondes.";
+		return null;
+		
+	}
+	
+	
+	public String generateOrders(){
+		Date dateDebut = new Date();
+		List<User> allUsers = userBus.getAllUsers();
+		List<Item> allItems = itemBus.getAllItems();
+		
+		listOrdersGenerated = dataGen.gernerateOrder(allUsers, allItems, nbOrdersToGenerate);
+		for (Order order : listOrdersGenerated) {
+			order = orderBus.createOrder(order);
+			for (OrderLine orderLine : order.getOrderLines()) {
+				orderLine.setOrder(order);
+				orderLineBus.createOrderLine(orderLine);
+			}
+		}
+		Date dateFin = new Date();
+		long totalTime = dateFin.getTime() - dateDebut.getTime();
+		messageOrdersGenerate = "Succes - "+ nbOrdersToGenerate + " orders ajoutées à la base! - Effectué en " + totalTime + " millisecondes.";
+		
+		return null;
 	}
 	
 	
@@ -240,4 +299,70 @@ public class AddUserController {
 	public void setListeCivilite(Civilite[] listeCivilite) {
 		this.listeCivilite = listeCivilite;
 	}
+
+	public DataGeneration getDataGen() {
+		return dataGen;
+	}
+
+	public void setDataGen(DataGeneration dataGen) {
+		this.dataGen = dataGen;
+	}
+
+	public int getNbUsersToGenerate() {
+		return nbUsersToGenerate;
+	}
+
+	public void setNbUsersToGenerate(int nbUsersToGenerate) {
+		this.nbUsersToGenerate = nbUsersToGenerate;
+	}
+
+	public String getMessageUsersGenerate() {
+		return messageUsersGenerate;
+	}
+
+	public void setMessageUsersGenerate(String messageUsersGenerate) {
+		this.messageUsersGenerate = messageUsersGenerate;
+	}
+
+	public UserBusApi getUserBus() {
+		return userBus;
+	}
+
+	public void setUserBus(UserBusApi userBus) {
+		this.userBus = userBus;
+	}
+
+	public List<User> getListUsersGenerated() {
+		return listUsersGenerated;
+	}
+
+	public void setListUsersGenerated(List<User> listUsersGenerated) {
+		this.listUsersGenerated = listUsersGenerated;
+	}
+
+	public int getNbOrdedsToGenerate() {
+		return nbOrdersToGenerate;
+	}
+
+	public void setNbOrdedsToGenerate(int nbOrdedsToGenerate) {
+		this.nbOrdersToGenerate = nbOrdedsToGenerate;
+	}
+
+	public String getMessageOrdersGenerate() {
+		return messageOrdersGenerate;
+	}
+
+	public void setMessageOrdersGenerate(String messageOrdersGenerate) {
+		this.messageOrdersGenerate = messageOrdersGenerate;
+	}
+
+	public List<Order> getListOrdersGenerated() {
+		return listOrdersGenerated;
+	}
+
+	public void setListOrdersGenerated(List<Order> listOrdersGenerated) {
+		this.listOrdersGenerated = listOrdersGenerated;
+	}
+	
+	
 }

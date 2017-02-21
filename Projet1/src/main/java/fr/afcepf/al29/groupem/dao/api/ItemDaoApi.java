@@ -20,5 +20,6 @@ public interface ItemDaoApi {
 	Item findItem(int itemId);
 	
 	List<Item> getItemsByStockLessThan(int stock);
+	List<Item> getAllItems();
 
 }

@@ -14,5 +14,6 @@ public interface UserDaoApi {
 	boolean deleteUser(User user);
     List<User> getUsersByFirstname(String paramName);
     List<User> getUsersByLastname(String paramName);
+	List<User> getAllUsers();
 
 }

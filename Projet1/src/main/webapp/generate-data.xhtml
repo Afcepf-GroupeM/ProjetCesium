@@ -13,16 +13,18 @@
 	<div>
 		<h3>Ajouter users:</h3>
 		<h:form>
-			<h:outputLabel value="Nb d'users a ajouter: " /> <h:inputText value="#{generationController.nbUserTogenerate}" />
-			<h:commandButton value="Generer!" action="#{generationController.generateUsers()}" >
+			<h:outputLabel value="Nb d'users a ajouter: " /> <h:inputText value="#{addUserController.nbUsersToGenerate}" />
+			<h:commandButton value="Generer!" action="#{addUserController.generateUsers()}" >
 
 			</h:commandButton>
 		</h:form>
+		<br />
 	</div>
 	<div>
-	<h:panelGroup id="usersgenerated">
-		<h:outputText value="#{generationController.messageUserGenerate}" />
-		<h:dataTable value="#{generationController.listUsers}" var="user" rendered="#{not empty generationController.listUsers}">
+	<h:panelGroup>
+		<h4><h:outputText value="#{addUserController.messageUsersGenerate}" /></h4>
+		<br /><br />
+		<h:dataTable value="#{addUserController.listUsersGenerated}" var="user" rendered="#{not empty addUserController.listUsersGenerated}">
 			<h:column>
 				<f:facet name="header">id</f:facet>
 				<h:outputText value="#{user.id}" />
@@ -53,7 +55,59 @@
 		
 		</h:panelGroup>
 		</div>
+		
+		
+		
+		
+		<div>
+		<h3>Ajouter Orders:</h3>
+		<h:form>
+			<h:outputLabel value="Nb d'orders a ajouter: " /> <h:inputText value="#{addUserController.nbOrdedsToGenerate}" />
+			<h:commandButton value="Generer!" action="#{addUserController.generateOrders()}" >
+
+			</h:commandButton>
+		</h:form>
+		<br />
 	</div>
+	
+	
+	<h:panelGroup>
+		<h4><h:outputText value="#{addUserController.messageOrdersGenerate}" /></h4>
+		<br /><br />
+		<h:dataTable value="#{addUserController.listOrdersGenerated}" var="order" rendered="#{not empty addUserController.listOrdersGenerated}">
+			<h:column>
+				<f:facet name="header">id</f:facet>
+				<h:outputText value="#{order.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Email client</f:facet>
+				<h:outputText value="#{order.user.email}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Montant</f:facet>
+				<h:outputText value="#{order.amount}€" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nombre d'items</f:facet>
+				<h:outputText value="#{order.orderLines.size()}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Date commande:</f:facet>
+				<h:outputText value="#{order.creationDate}">
+					<f:convertDateTime pattern="dd/MM/yyy" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		
+		</h:panelGroup>
+		</div>
+		
+		
+	
 
 
 

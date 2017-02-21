@@ -8,7 +8,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.entities.User;
-import fr.afcepf.al29.groupem.utils.DataGeneration;
 
 @Component
 @ManagedBean
