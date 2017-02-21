@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<h1>Génération de données dans la DB</h1>
+
+<div>
+	<div>
+		<h3>Ajouter users:</h3>
+		<h:form>
+			<h:outputLabel value="Nb d'users a ajouter: " /> <h:inputText value="#{generationController.nbUserTogenerate}" />
+			<h:commandButton value="Generer!" action="#{generationController.generateUsers()}" >
+
+			</h:commandButton>
+		</h:form>
+	</div>
+	<div>
+	<h:panelGroup id="usersgenerated">
+		<h:outputText value="#{generationController.messageUserGenerate}" />
+		<h:dataTable value="#{generationController.listUsers}" var="user" rendered="#{not empty generationController.listUsers}">
+			<h:column>
+				<f:facet name="header">id</f:facet>
+				<h:outputText value="#{user.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				<h:outputText value="#{user.lastName}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Prenom</f:facet>
+				<h:outputText value="#{user.firstName}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+				<h:outputText value="#{user.email}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Date naissance:</f:facet>
+				<h:outputText value="#{user.birthDate}">
+					<f:convertDateTime pattern="dd/MM/yyy" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		
+		</h:panelGroup>
+		</div>
+	</div>
+
+
+
+</body> 
+</html>
