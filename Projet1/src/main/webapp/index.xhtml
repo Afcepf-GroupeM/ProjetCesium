@@ -9,15 +9,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <head>
 <title>.: GroupeM EC - Index :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/dynamic.css" rel="stylesheet" type="text/css" media="all" />
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -70,6 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
   <!--header-->
+  <h:panelGroup id="header">
 	<div class="header">
 		<div class="header-top">
 			<div class="container">	
@@ -91,6 +96,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span id="accountCartMenu">
 								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
 							</span>
+							
+							
+							<h:panelGroup rendered="#{not loginController.islogged}">
+							<span id="accountCartMenu">
+							<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+							</span>
+								<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+						    	  <div class="modal-dialog">
+										<div class="loginmodal-container">
+											<h1>Connexion &agrave; votre compte</h1><br/>
+										  <h:form id="loginForm">
+										  <h:inputText label="name" value="#{loginController.login}" a:placeholder="E-mail" ></h:inputText>
+											<h:inputText label="pasword" value="#{loginController.password}" a:placeholder="Mot de passe" ></h:inputText>
+											<h:commandButton value="Connexion" action="#{loginController.loginActionAjax()}" styleClass="login loginmodal-submit">
+												<f:ajax event="click" execute="loginForm" render="header loginErrorMessage"/>
+											</h:commandButton>											
+											<h:outputText id="loginErrorMessage" value="#{loginController.errorMessage}" rendered="#{not empty loginController.errorMessage}" />
+										  </h:form>
+										</div>
+									</div>
+								  </div>
+							</h:panelGroup>
+								  
+								  
+								  
+								  
+								  
 							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
 							<span id="accountCartMenu">
 								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
@@ -182,6 +214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
+	</h:panelGroup>
 
 		<!---->
 		<div class="container">
@@ -299,5 +332,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 				
 		</div>
+		
+		  
 </body>
 </html>
