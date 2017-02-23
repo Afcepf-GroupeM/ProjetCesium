@@ -8,7 +8,6 @@ public interface ReviewDaoApi {
 
 	// CRUD (Create - Read - Update - Delete)
 	Review createReview(Review review);
-	List<Review> getLastFiveReviewsByItemId(int itemId);
 	List<Review> getReviewsByItemId(int itemId);
 	List<Review> getReviewsByUserId(int userId);
 	Review getReviewById(int reviewId);

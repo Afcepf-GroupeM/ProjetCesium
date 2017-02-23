@@ -161,7 +161,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div>
 						<h:form>
 							<h:inputText value="#{rechercheArticleController.keyword}"/>
-							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" class="commandLink searchLink" />
 						</h:form>
 					</div>
 					<div class="clearfix"> </div>
@@ -176,78 +176,79 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	<!--  Page content -->
 	<div class="container">
-	<h4>Détail de votre panier</h4>
-		<div class="wish-list">
-		<!-- Rendered if Cart is empty -->
-		
-		<h:panelGroup rendered="#{itemCartController.isCartEmpty}">
-			<h6>Le panier est vide... :( </h6><br/>
-			Commencez à ajouter des produits au panier! 
-		</h:panelGroup>
-		
-		<!--  Rendered if Cart if NOT empty -->
-		
-		<h:panelGroup rendered="#{not itemCartController.isCartEmpty}">
-		<h:form>
-			<h:dataTable value="#{itemCartController.cartLines}"  var="line" styleClass="order-table"
-    			headerClass="order-table-header"
-    			rowClasses="order-table-odd-row,order-table-even-row">
-    			<h:column>
-				<img src="#{request.contextPath}#{itemCartController.imagePath}#{line.item.id}/1.jpg" height="128px" class="thumbsnail-mixhightech"></img>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Nom des articles</f:facet>
-					<h:outputText value="#{line.item.name}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Prix unitaire</f:facet>
-					<h:outputText value="#{line.unitPrice}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Stock</f:facet>	
-					<h:outputText value="#{line.item.stock}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Quantité</f:facet>
-					<h:outputText value="#{line.quantity}"/>
-				</h:column> 
-				<h:column>
-					<f:facet name="header">Prix Total</f:facet>
-					<h:outputText value="#{itemCartController.cartLinesSubtotal[line.id]}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Supprimer</f:facet>
-					<h:commandLink action="#{itemCartController.removeItemFromCart}">
-						<h:outputText value="X"/>
-						<f:param name="itemIdToRemove" value="#{line.item.id}"/>
-					</h:commandLink>	
-					</h:column>
-				</h:dataTable>
-				<br/><br/>
-				<h:outputText value="Choix de la livraison : "/>
-				<h:selectOneMenu value="#{itemCartController.shippingOptionChosen}">
-					<f:selectItems value="#{itemCartController.shippingOptions}" var="option"
-									itemLabel="#{itemCartController.shippingOptionsMap[option]}"
-									itemValue="#{option}"/>
-					<f:ajax listener="#{itemCartController.ajaxChangeShipOption}"
-								render="totalAmountRender" />
-					
-				</h:selectOneMenu>
-				<br/>
-				<br/>
-				<h6>Montant total: <h:outputLabel id="totalAmountRender" value="#{itemCartController.totalAmount}"/>€</h6>
-				<br/>
-				
-				<h:commandButton value="Valider la commande"  action="#{itemCartController.validateCart}" styleClass="hvr-shutter-in-vertical4">
-				<f:setPropertyActionListener target="#{orderController.shippingOptionChosen}" value="#{itemCartController.shippingOptionChosen}" />
-					<f:param name="cartid" value="#{itemCartController.cart.id}"/>
-
-				</h:commandButton>
-				</h:form>
+		<div class="account">
+			<h2 class="account-in">Détail de votre panier</h2>
+			<div class="wish-list">
+			<!-- Rendered if Cart is empty -->
+			
+			<h:panelGroup rendered="#{itemCartController.isCartEmpty}">
+				<h6>Le panier est vide... :( </h6><br/>
+				Commencez à ajouter des produits au panier! 
 			</h:panelGroup>
-		<h:outputText value="#{itemCartController.messageIncorrectCart}"/>
+			
+			<!--  Rendered if Cart if NOT empty -->
+			
+			<h:panelGroup rendered="#{not itemCartController.isCartEmpty}">
+			<h:form>
+				<h:dataTable value="#{itemCartController.cartLines}"  var="line" styleClass="order-table"
+	    			headerClass="order-table-header"
+	    			rowClasses="order-table-odd-row,order-table-even-row">
+	    			<h:column>
+					<img src="#{request.contextPath}#{itemCartController.imagePath}#{line.item.id}/1.jpg" height="128px" class="thumbsnail-mixhightech"></img>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nom des articles</f:facet>
+						<h:outputText value="#{line.item.name}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Prix unitaire</f:facet>
+						<h:outputText value="#{line.unitPrice}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Stock</f:facet>	
+						<h:outputText value="#{line.item.stock}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Quantité</f:facet>
+						<h:outputText value="#{line.quantity}"/>
+					</h:column> 
+					<h:column>
+						<f:facet name="header">Prix Total</f:facet>
+						<h:outputText value="#{itemCartController.cartLinesSubtotal[line.id]}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Supprimer</f:facet>
+						<h:commandLink action="#{itemCartController.removeItemFromCart}">
+							<h:outputText value="X"/>
+							<f:param name="itemIdToRemove" value="#{line.item.id}"/>
+						</h:commandLink>	
+						</h:column>
+					</h:dataTable>
+					<br/><br/>
+					<h:outputText value="Choix de la livraison : "/>
+					<h:selectOneMenu value="#{itemCartController.shippingOptionChosen}">
+						<f:selectItems value="#{itemCartController.shippingOptions}" var="option"
+										itemLabel="#{itemCartController.shippingOptionsMap[option]}"
+										itemValue="#{option}"/>
+						<f:ajax listener="#{itemCartController.ajaxChangeShipOption}"
+									render="totalAmountRender" />
+						
+					</h:selectOneMenu>
+					<br/>
+					<br/>
+					<h6>Montant total: <h:outputLabel id="totalAmountRender" value="#{itemCartController.totalAmount}"/>€</h6>
+					<br />
+					<div id="linkPanier">
+						<h:commandLink value="Valider la commande"  action="#{itemCartController.validateCart}" styleClass="commandLink">
+							<f:setPropertyActionListener target="#{orderController.shippingOptionChosen}" value="#{itemCartController.shippingOptionChosen}" />
+							<f:param name="cartid" value="#{itemCartController.cart.id}"/>
+						</h:commandLink>
+					</div>
+					</h:form>
+				</h:panelGroup>
+			<h:outputText value="#{itemCartController.messageIncorrectCart}"/>
+			</div>
 		</div>
-		
 	</div>
 	
 	

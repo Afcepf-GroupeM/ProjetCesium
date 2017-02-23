@@ -1,7 +1,10 @@
 package fr.afcepf.al29.groupem.business.impl;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,11 +34,6 @@ public class ReviewBusImpl implements ReviewBusApi {
 		
 		Review reviewCreated = reviewDao.createReview(review);
 		return reviewCreated;
-	}
-
-	@Override
-	public List<Review> getLastFiveReviewsByItemId(int itemId) {
-		return reviewDao.getLastFiveReviewsByItemId(itemId);
 	}
 
 	@Override
@@ -70,6 +68,29 @@ public class ReviewBusImpl implements ReviewBusApi {
 	@Override
 	public boolean deleteReview(int reviewId) {
 		return reviewDao.deleteReview(reviewId);
+	}
+
+	@Override
+	public double getMeanRating(int itemId) {
+		double ratingSum = 0d;
+		double meanRating = 0d;
+		
+		List<Review> reviewList = reviewDao.getReviewsByItemId(itemId);
+		
+		for (Review review : reviewList){
+			ratingSum += review.getRating();
+		}
+		
+		Locale locale  = new Locale("en", "UK");
+		
+		DecimalFormat df = (DecimalFormat) NumberFormat.getNumberInstance(locale);
+		df.applyPattern("#.##");
+		
+		if (reviewList.size() > 0){
+			meanRating = Double.parseDouble(df.format(ratingSum / reviewList.size()));
+		}
+		
+		return meanRating;
 	}
 
 }
