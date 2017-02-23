@@ -16,6 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
 <!-- Custom Theme files -->
+<script src="js/article.js"></script>
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
@@ -177,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div>
 						<h:form>
 							<h:inputText value="#{rechercheArticleController.keyword}"/>
-							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
+							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" class="commandLink searchLink" />
 						</h:form>
 					</div>
 					<div class="clearfix"> </div>
@@ -189,106 +190,131 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!---->
 		<div class="container">
-			<div class="single">
-				<div class="col-md-9 top-in-single">
-					<div class="col-md-5 single-top">	
-						<ul id="etalage">
-							<li>
+			<div class="account">
+				<h2 class="account-in">Fiche produit</h2>
+				<div class="single">
+					<div class="col-md-9 top-in-single">
+						<div class="col-md-5 single-top">
+							<ul id="etalage">
+								<li>
+									
+										<img class="etalage_thumb_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg"/>
+										<img class="etalage_source_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg"/>
 								
-									<img class="etalage_thumb_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg"/>
-									<img class="etalage_source_image img-responsive" src="#{request.contextPath}#{itemCartController.imagePath}#{itemCartController.item.id}/1.jpg"/>
-							
-							</li>
-							<!-- <li>
-								<img class="etalage_thumb_image img-responsive" src="images/si2.jpg" alt="" />
-								<img class="etalage_source_image img-responsive" src="images/si2.jpg" alt="" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image img-responsive" src="images/si.jpg" alt=""  />
-								<img class="etalage_source_image img-responsive" src="images/si.jpg" alt="" />
-							</li>
-						    <li>
-								<img class="etalage_thumb_image img-responsive" src="images/si1.jpg"  alt="" />
-								<img class="etalage_source_image img-responsive" src="images/si1.jpg" alt="" />
-							</li> -->
-						</ul>
-
-					</div>	
-					
-					<div class="col-md-7 single-top-in">
-					<h:form>
-						<div class="single-para">
-							<h4><h:outputText value="#{itemCartController.item.name}"/></h4>
-							<div class="para-grid">
-								<span  class="add-to"><h:outputText value="#{itemCartController.item.price}"/> €</span>
-									
-									
-									<h:commandLink value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" styleClass="hvr-shutter-in-vertical hvr-shutter-in-vertical2 hvr-shutter-in-vertical3" >
-										<f:param name = "quantity" value="#{itemCartController.quantity}"/>
-										<f:param name = "itemId" value="#{itemCartController.item.id}"/>
-									</h:commandLink>
-								<!-- <a href="#" class="hvr-shutter-in-vertical cart-to">Ajouter au panier</a>	 -->
-											
-								<div class="clearfix"></div>
-							 </div>
-							<h5><h:outputText value="#{itemCartController.item.stock}" /> produit<h:outputText value="s" rendered="#{itemCartController.item.stock gt 1}"/> en stock</h5>
-							<div class="available">
-								<h6>Options :</h6>
-								<ul>
-									<li>Quantité
-										<h:selectOneMenu value="#{itemCartController.quantity}">
-										<f:selectItems value="#{itemCartController.quantityList}" />
-										</h:selectOneMenu>
-									</li>
+								</li>
+								<!-- <li>
+									<img class="etalage_thumb_image img-responsive" src="images/si2.jpg" alt="" />
+									<img class="etalage_source_image img-responsive" src="images/si2.jpg" alt="" />
+								</li>
+								<li>
+									<img class="etalage_thumb_image img-responsive" src="images/si.jpg" alt=""  />
+									<img class="etalage_source_image img-responsive" src="images/si.jpg" alt="" />
+								</li>
+							    <li>
+									<img class="etalage_thumb_image img-responsive" src="images/si1.jpg"  alt="" />
+									<img class="etalage_source_image img-responsive" src="images/si1.jpg" alt="" />
+								</li> -->
 							</ul>
+	
+						</div>	
+						
+						<div class="col-md-7 single-top-in">
+						<h:form>
+							<div class="single-para">
+								<h4><h:outputText value="#{itemCartController.item.name}"/></h4>
+								<div class="para-grid">
+									<span  class="add-to"><h:outputText value="#{itemCartController.item.price}"/> €</span>
+										
+										
+										<h:commandLink value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" styleClass="hvr-shutter-in-vertical hvr-shutter-in-vertical2 hvr-shutter-in-vertical3" >
+											<f:param name = "quantity" value="#{itemCartController.quantity}"/>
+											<f:param name = "itemId" value="#{itemCartController.item.id}"/>
+										</h:commandLink>
+									<!-- <a href="#" class="hvr-shutter-in-vertical cart-to">Ajouter au panier</a>	 -->
+												
+									<div class="clearfix"></div>
+								 </div>
+								<h5><h:outputText value="#{itemCartController.item.stock}" /> produit<h:outputText value="s" rendered="#{itemCartController.item.stock gt 1}"/> en stock</h5>
+								<table id="optionReview">
+									<tr>
+										<td class="available">
+											<h6>Options :</h6>
+											<ul>
+												<li>Quantité : 
+													<h:selectOneMenu value="#{itemCartController.quantity}">
+														<f:selectItems value="#{itemCartController.quantityList}" />
+													</h:selectOneMenu>
+												</li>
+											</ul>
+										</td>
+										<td class="available">
+											<h6>Note générale (sur 5) :</h6>
+											<span id="meanRatingReview"><h:outputText value="#{reviewController.meanRating}" rendered="#{not empty reviewController.itemReviews}"/></span>
+											<span><h:outputText  value="Aucun commentaire" rendered="#{empty reviewController.itemReviews}"/></span>
+										</td>
+									</tr>
+								</table>
+								<p><h:outputText value="#{itemCartController.item.description}"/></p>
+								
+							</div>
+							</h:form>	
 						</div>
-							<p><h:outputText value="#{itemCartController.item.description}"/></p>
-							
-						</div>
-						</h:form>	
+						
+						<h2 class="account-in">Commentaires (<h:outputText value="#{reviewController.itemReviews.size()}" />)</h2>
+						
+						<h:form>
+							<h:commandLink action="#{reviewController.createReview}" value="Ajouter un commentaire" class="commandLink" rendered="#{loginController.islogged and reviewController.hasOrderedItem}">
+								<f:param name="itemId" value="#{itemCartController.item.id}"/>
+								<f:param name="actionReview" value="Creation"/>
+							</h:commandLink>
+						</h:form>
+						
+						<h:outputText value="Il n'existe aucun commentaire pour ce produit." rendered="#{empty reviewController.itemReviews}"/>
+						<ui:repeat var="rev" value="#{reviewController.itemReviews}" rendered="#{not empty reviewController.itemReviews}">
+							<table class="tableComment" id="tableComment#{rev.id}">
+								<tr class="headerReview">
+									<td>
+										<h:outputText class="espacementRight" value="#{rev.user.civilite}."/>
+										<h:outputText class="espacementRight espacementLeft" value="#{rev.user.firstName}" />
+										<h:outputText class="espacementLeft" value="#{rev.user.lastName}" />
+									</td>
+									<td class="ratingReview" id="ratingReview#{rev.id}">
+										<h:outputText value="#{rev.rating}" />
+									</td>
+									<td class="dateReview">
+										<h:outputText value="#{rev.creationDate}" />
+									</td>
+								</tr>
+								<tr class="headerReview linkReview">
+									<td colspan="3">
+										<h:form>
+											<h:commandLink class="espacementRight" action="#{reviewController.updateReview}" value="Modifier" rendered="#{loginController.islogged and loginController.userLogged.id  == rev.user.id}">
+												<f:param name="reviewId" value="#{rev.id}"/>
+												<f:param name="actionReview" value="Modification"/>
+											</h:commandLink>
+											<h:commandLink class="espacementLeft" action="#{reviewController.deleteReview}" value="Supprimer" rendered="#{loginController.islogged and loginController.userLogged.id == rev.user.id}">
+												<f:param name="reviewId" value="#{rev.id}" />
+												<f:param name="itemId" value="#{rev.item.id}"/>
+											</h:commandLink>
+										</h:form>
+									</td>
+								</tr>
+								<tr class="bodyReview">
+									<td colspan="3">
+										<h:outputText value="#{rev.comment}"/>
+									</td>
+								</tr>
+							</table>
+						</ui:repeat>
+						<h:form id="allReviewsForm" rendered="#{not empty reviewController.itemReviews}">
+							<h:commandLink onclick="return false" value="Afficher tous les commentaires" id="allReviewsLink" class="commandLink" />
+						</h:form>
+					<div class="clearfix"> </div>
+	
 					</div>
-					
-					<h:form>
-						<h:commandButton action="#{reviewController.createReview}" value="Ajouter un commentaire" rendered="#{loginController.islogged and reviewController.hasOrderedItem}">
-							<f:param name="itemId" value="#{itemCartController.item.id}"/>
-							<f:param name="actionReview" value="Creation"/>
-						</h:commandButton>
-						<h:commandButton action="#{reviewController.displayItemReviews}" value="Afficher tous les commentaires">
-							<f:param name="itemId" value="#{itemCartController.item.id}"/>
-						</h:commandButton>
-					</h:form>
-					
-					<h:outputText value="Il n'existe aucun commentaire pour ce produit." rendered="#{empty reviewController.itemReviews}"/>
-					<ui:repeat var="rev" value="#{reviewController.itemReviews}" rendered="#{not empty reviewController.itemReviews}">
-						<div id="headerReview">
-							<div id="headerInfo">
-								<h:outputText value="#{rev.user.firstName}" />
-								<h:outputText value="#{rev.user.lastName}" />
-								<h:outputText value="#{rev.rating}" />
-								<h:outputText value="#{rev.creationDate}" />
-							</div>
-							<div id="headerLink">
-								<h:form>
-									<h:commandLink action="#{reviewController.updateReview}" value="Modifier" rendered="#{loginController.islogged and loginController.userLogged.id  == rev.user.id}">
-										<f:param name="reviewId" value="#{rev.id}"/>
-										<f:param name="actionReview" value="Modification"/>
-									</h:commandLink>
-									<h:commandLink action="#{reviewController.deleteReview}" value="Supprimer" rendered="#{loginController.islogged and loginController.userLogged.id == rev.user.id}">
-										<f:param name="reviewId" value="#{rev.id}" />
-										<f:param name="itemId" value="#{rev.item.id}"/>
-									</h:commandLink>
-								</h:form>
-							</div>
-						</div>
-						<div id="bodyReview">
-							<h:outputText value="#{rev.comment}"/>
-						</div>
-					</ui:repeat>
-				<div class="clearfix"> </div>
-
-				</div>
-			
-				<div class="clearfix"> </div>
+				
+					<div class="clearfix"> </div>
+			</div>
 		</div>
 	</div>
 		<!---->

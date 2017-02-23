@@ -1640,25 +1640,136 @@ span#isBilling{
 }
 
 /*--Comments--*/
-#headerReview{
-	background-color: #fff5cc;
-	border-style: solid;
-	border-color: #fc5e35;
-	border-top-width: 2px;
-	border-right-width: 2px;
-	border-left-width: 2px;
-	border-bottom-width: 1px;
+.tableComment{
+	margin-top: 10px;
+	table-layout: fixed;
+	width: 100%;
 }
-#bodyReview{
-	min-height: 50px;
-	background-color: #fffae6;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-	border-color: #fc5e35;
-	border-right-width: 2px;
-	border-left-width: 2px;
-	border-bottom-width: 2px;
+.tableComment tr{
+	word-wrap: break-word;
+}
+.headerReview{
+	color: #747272;
+	font-weight: bold;
+	background-color: #fff5cc;
+}
+.ratingReview{
+	text-align: center;
+}
+.dateReview{
+	text-align: right;
+}
+.linkReview{
+	text-align: right;	
+}
+.linkReview a{
+	color: #747272;
+}
+.bodyReview{
+	height: 50px;
+	background-color: #f2f2f2;
+}
+.bodyReview td {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+#allReviewsForm{
+	margin-top: 10px;
+	text-align: center;
+}
+
+/*--optionReview table--*/
+.account span{
+	padding: 0em;
+}
+#optionReview{
+	width: 100%;
+}
+#meanRatingReview{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+/*--commandLink--*/
+.commandLink{
+	display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+	background: rgb(157,218,216);
+	background: -moz-linear-gradient(top, rgba(157,218,216,1) 52%, rgba(119,168,164,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(52%,rgba(157,218,216,1)), color-stop(100%,rgba(119,168,164,1)));
+	background: -webkit-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+	color:#fff;
+	font-size:1em;
+	padding:0.5em 1em;
+	border-radius:5px;
+}
+.commandLink:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(252,94,53);
+	background: -moz-linear-gradient(top, rgba(252,94,53,1) 55%, rgba(252,94,53,1) 55%, rgba(233,71,34,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(55%,rgba(252,94,53,1)), color-stop(55%,rgba(252,94,53,1)), color-stop(100%,rgba(233,71,34,1)));
+	background: -webkit-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -o-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: -ms-linear-gradient(top, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+	background: linear-gradient(to bottom, rgba(252,94,53,1) 55%,rgba(252,94,53,1) 55%,rgba(233,71,34,1) 100%);
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  border-radius:5px;
+}
+.commandLink:hover, .commandLink:focus, .commandLink:active {
+  color: white;
+   text-decoration:none;
+}
+.commandLink:hover:before, .commandLink:active:before {
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+}
+
+/*--searchForm--*/
+.searchLink{
+	margin-left: 5px;
+	margin-bottom: 3px;
+	padding: 0.25em 1em;
+}
+
+/*--Panier--*/
+#linkPanier{
+	text-align: center;	
+}
+
+/*--espacement--*/
+.espacementLeft{
+	margin-left: 2.5px;
+}
+.espacementRight{
+	margin-right: 2.5px;
 }
 
 /*--checkout--*/
