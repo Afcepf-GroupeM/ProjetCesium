@@ -22,4 +22,6 @@ public interface ItemDaoApi {
 	List<Item> getItemsByStockLessThan(int stock);
 	List<Item> getAllItems();
 
+	List<Item> getItemsByName(String keyword);
+	
 }

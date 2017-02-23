@@ -83,6 +83,14 @@ public class ItemBusImpl implements ItemBusApi {
 		return itemDao.getAllItems();
 	}
 
+	@Override
+	public List<Item> getItemsByName(String keyword) {
+		
+		System.out.println("ItemBus - getItemsByName - Entrée - keyword: "+ keyword);
+		return itemDao.getItemsByName(keyword);
+		
+	}
+
 	
 	
 	
