@@ -70,6 +70,11 @@
   padding: 17px 0px;
   font-family: roboto;
   font-size: 14px;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
@@ -93,4 +98,15 @@
 
 .login-help{
   font-size: 12px;
+}
+
+.login-button-div {
+	margin:auto;
+	width: 120px;
+	
+}
+
+.loginerrormessage {
+	color : red !important;
+	font-weight: bold; 
 }

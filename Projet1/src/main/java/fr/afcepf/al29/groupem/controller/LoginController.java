@@ -1,11 +1,10 @@
 package fr.afcepf.al29.groupem.controller;
 
 
-import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ActionEvent;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -56,12 +55,13 @@ public class LoginController {
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());
 				returnPage = "index?faces-redirect=true";		
 			}	
+			
+
 		}
 		return returnPage;
 	}
 	
-	public String loginActionAjax(AjaxBehaviorEvent event){
-		System.out.println("\n-----\nLoginController - loginActionAjax - Entrée\n----");
+	public void loginActionAjax(ActionEvent event){
 		EmailValidator emailValidator = EmailValidator.getInstance();
 		boolean isLoginValid = emailValidator.isValid(login);
 		
@@ -77,7 +77,7 @@ public class LoginController {
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());	
 			}	
 		}
-		return "";
+	
 	}
 
 	

@@ -10,14 +10,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 <head>
 <title>.: GroupeM EC - Index :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="js/bootstrap.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -70,6 +71,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>
+
+
+
 </head>
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
@@ -102,17 +106,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span id="accountCartMenu">
 							<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
 							</span>
-								<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+								<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalTop" aria-hidden="true" style="display: none;">
 						    	  <div class="modal-dialog">
 										<div class="loginmodal-container">
-											<h1>Connexion &agrave; votre compte</h1><br/>
+											<h1>Connexion à votre compte</h1><br/>
 										  <h:form id="loginForm">
 										  <h:inputText label="name" value="#{loginController.login}" a:placeholder="E-mail" ></h:inputText>
 											<h:inputText label="pasword" value="#{loginController.password}" a:placeholder="Mot de passe" ></h:inputText>
-											<h:commandButton value="Connexion" action="#{loginController.loginActionAjax()}" styleClass="login loginmodal-submit">
-												<f:ajax event="click" execute="loginForm" render="header loginErrorMessage"/>
-											</h:commandButton>											
-											<h:outputText id="loginErrorMessage" value="#{loginController.errorMessage}" rendered="#{not empty loginController.errorMessage}" />
+											<div class="login-button-div">
+												<p:commandButton value="Connexion" id="login"
+																 update="loginErrorMessage header" 
+																 actionListener="#{loginController.loginActionAjax}" 
+																 styleClass="loginmodal-submit"/>
+											</div>
+											<br />
+											<div class="loginerrormessage">							
+												<h:outputText id="loginErrorMessage" value="#{loginController.errorMessage}" rendered="#{not empty loginController.errorMessage}" styleClass="loginerrormessage"/>
+										 	</div>	
 										  </h:form>
 										</div>
 									</div>
