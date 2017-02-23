@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -19,6 +20,8 @@ public class RechercheArticleController {
 	private ItemBusApi itemBus;
 	
 	
+	private List<Item> listeresultat;
+	
 	private List<Item> items;
 	private String keyword;
 	private String keywordSearched;
@@ -34,6 +37,20 @@ public class RechercheArticleController {
 	}
 
 
+	public List<Item> complete(String keyword) {
+		System.out.println("RechercheArticleController - complete - Entrée - keyword: "+ keyword);
+		List<Item> listetousitems = itemBus.getItemsByName(keyword);
+		listeresultat = new ArrayList<>();
+        for (int i = 0; i < 10  && listetousitems.size() > i ; i++) {  
+            listeresultat.add(listetousitems.get(i));
+        }  
+        
+        System.out.println("RechercheArticleController - sortie - liste résultat : " + listeresultat.size());
+        return listeresultat;  
+    } 
+	
+	
+	
 	public ItemBusApi getItemBus() {
 		return itemBus;
 	}
@@ -81,6 +98,16 @@ public class RechercheArticleController {
 
 	public void setKeywordSearched(String keywordSearched) {
 		this.keywordSearched = keywordSearched;
+	}
+
+
+	public List<Item> getListeresultat() {
+		return listeresultat;
+	}
+
+
+	public void setListeresultat(List<Item> listeresultat) {
+		this.listeresultat = listeresultat;
 	}
 	
 	

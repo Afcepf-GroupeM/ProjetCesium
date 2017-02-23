@@ -99,4 +99,17 @@ public class ItemDaoImpl implements ItemDaoApi {
 		return listItems;
 	}
 
+	@Override
+	public List<Item> getItemsByName(String keyword) {
+		
+		Query query;
+		List<Item> items;
+		System.out.println("ItemDao - getItemsByName - Entrée - keyword: "+ keyword);
+		query = entityManager.createQuery("SELECT i FROM Item i WHERE UPPER(i.name) LIKE:keyword");
+		query.setParameter("keyword", "%" + keyword.toUpperCase() + "%");
+		items = query.getResultList();
+		System.out.println("ItemDao - getItemsByName - Entrée - keyword: "+ items.size());
+		return items;
+	}
+
 }
