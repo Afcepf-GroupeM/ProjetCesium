@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -58,6 +58,26 @@ public class LoginController {
 			}	
 		}
 		return returnPage;
+	}
+	
+	public String loginActionAjax(AjaxBehaviorEvent event){
+		System.out.println("\n-----\nLoginController - loginActionAjax - Entrée\n----");
+		EmailValidator emailValidator = EmailValidator.getInstance();
+		boolean isLoginValid = emailValidator.isValid(login);
+		
+		if(!isLoginValid){
+			errorMessage = "Format d'adresse mail invalide.";
+		} else{	
+			if(!(userBus.checkUserCredential(login, password))){
+				errorMessage = "Nom d'utilisateur et/ou mot de passe invalide(s).";
+			} else {
+				errorMessage = "Connecté!";			
+				islogged = true;
+				userLogged = userBus.getUserByLogin(login);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());	
+			}	
+		}
+		return "";
 	}
 
 	

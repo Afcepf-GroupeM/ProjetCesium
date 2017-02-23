@@ -69,6 +69,13 @@ public class UserDaoImpl implements UserDaoApi {
         listUsers = entityManager.createQuery("SELECT usr FROM User usr WHERE usr.firstName LIKE :firstname",User.class).setParameter("firstname", '%'+firstname+'%').getResultList();
         return listUsers;
     }
+
+	@Override
+	public List<User> getAllUsers() {
+		List<User> listUsers = new ArrayList<>();
+		listUsers = entityManager.createQuery("SELECT usr FROM User usr",User.class).getResultList();
+		return listUsers;
+	}
 	
 	
 

@@ -92,4 +92,11 @@ public class ItemDaoImpl implements ItemDaoApi {
 		
 	}
 
+	@Override
+	public List<Item> getAllItems() {
+		List<Item> listItems = new ArrayList<>();
+		listItems = entityManager.createQuery("SELECT itm FROM Item itm",Item.class).getResultList();
+		return listItems;
+	}
+
 }

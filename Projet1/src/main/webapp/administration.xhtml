@@ -85,15 +85,21 @@
 			<h2>Statistiques commerciales</h2>
 			<span class="statBox">
 				Commandes aujourd'hui : <h:outputText value="#{administrationController.ordersToday}"/> <br/>
-				Chiffre d'affaire aujourd'hui : <h:outputText value="#{administrationController.caToday}"/><br/>
+				Chiffre d'affaires aujourd'hui : <h:outputText value="#{administrationController.caToday}">
+													<f:convertNumber type="currency" currencySymbol="€"/>
+												</h:outputText><br/>
 			</span>
 			<span class="statBox">
 				Commandes ce mois ci : <h:outputText value="#{administrationController.ordersMonth}"/><br/>
-				Chiffre d'affaire ce mois ci : <h:outputText value="#{administrationController.caMonth}"/><br />
+				Chiffre d'affaires ce mois ci : <h:outputText value="#{administrationController.caMonth}">
+											   	<f:convertNumber type="currency" currencySymbol="€"/>
+											   </h:outputText><br />
 			</span>
 			<span class="statBox">
 				Commandes totales : <h:outputText value="#{administrationController.ordersTotal}"/><br />
-				Chiffre d'affaire total : <h:outputText value="#{administrationController.caTotal}"/><br/>
+				Chiffre d'affaires total : <h:outputText value="#{administrationController.caTotal}">
+										  	<f:convertNumber type="currency" currencySymbol="€"/>
+										  </h:outputText><br/>
 			</span>
 		</div>
 		

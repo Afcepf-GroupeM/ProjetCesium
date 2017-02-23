@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/dynamic.css" rel="stylesheet" type="text/css" media="all" />
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+
+</h:head> 
+<body> 
+
+<h1>Génération de données dans la DB</h1>
+
+<div>
+	<div>
+		<h3>Ajouter users:</h3>
+		<h:form>
+			<h:outputLabel value="Nb d'users a ajouter: " /> <h:inputText value="#{addUserController.nbUsersToGenerate}" />
+			<h:commandButton value="Generer!" action="#{addUserController.generateUsers()}" >
+
+			</h:commandButton>
+		</h:form>
+		<br />
+	</div>
+	<div>
+	<h:panelGroup>
+		<h4><h:outputText value="#{addUserController.messageUsersGenerate}" /></h4>
+		<br /><br />
+		<h:dataTable value="#{addUserController.listUsersGenerated}" var="user" rendered="#{not empty addUserController.listUsersGenerated}">
+			<h:column>
+				<f:facet name="header">id</f:facet>
+				<h:outputText value="#{user.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				<h:outputText value="#{user.lastName}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Prenom</f:facet>
+				<h:outputText value="#{user.firstName}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+				<h:outputText value="#{user.email}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Date naissance:</f:facet>
+				<h:outputText value="#{user.birthDate}">
+					<f:convertDateTime pattern="dd/MM/yyy" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		
+		</h:panelGroup>
+		</div>
+		
+		
+		
+		
+		<div>
+		<h3>Ajouter Orders:</h3>
+		<h:form>
+			<h:outputLabel value="Nb d'orders a ajouter: " /> <h:inputText value="#{addUserController.nbOrdedsToGenerate}" />
+			<h:commandButton value="Generer!" action="#{addUserController.generateOrders()}" >
+
+			</h:commandButton>
+		</h:form>
+		<br />
+	</div>
+	
+	
+	<h:panelGroup>
+		<h4><h:outputText value="#{addUserController.messageOrdersGenerate}" /></h4>
+		<br /><br />
+		<h:dataTable value="#{addUserController.listOrdersGenerated}" var="order" rendered="#{not empty addUserController.listOrdersGenerated}">
+			<h:column>
+				<f:facet name="header">id</f:facet>
+				<h:outputText value="#{order.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Email client</f:facet>
+				<h:outputText value="#{order.user.email}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Montant</f:facet>
+				<h:outputText value="#{order.amount}€" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nombre d'items</f:facet>
+				<h:outputText value="#{order.orderLines.size()}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Date commande:</f:facet>
+				<h:outputText value="#{order.creationDate}">
+					<f:convertDateTime pattern="dd/MM/yyy" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		
+		</h:panelGroup>
+		</div>
+		
+		
+	
+
+
+
+</body> 
+</html>
