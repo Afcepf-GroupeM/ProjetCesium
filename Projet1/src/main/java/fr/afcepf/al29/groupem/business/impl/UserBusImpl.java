@@ -10,8 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.al29.groupem.business.api.SecurityManagerApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
+import fr.afcepf.al29.groupem.dao.api.AddressDaoApi;
 import fr.afcepf.al29.groupem.dao.api.UserDaoApi;
+import fr.afcepf.al29.groupem.entities.Address;
 import fr.afcepf.al29.groupem.entities.Civilite;
+import fr.afcepf.al29.groupem.entities.RoadType;
 import fr.afcepf.al29.groupem.entities.User;
 
 @Transactional
@@ -20,6 +23,9 @@ public class UserBusImpl implements UserBusApi{
 	
 	@Autowired
 	private UserDaoApi userDao;
+	
+	@Autowired
+	private AddressDaoApi addressDao;
 	
 	@Autowired
 	private SecurityManagerApi secMan;
@@ -63,6 +69,12 @@ public class UserBusImpl implements UserBusApi{
 	public User getUserByLogin(String login) {
 		User user = userDao.getUserByEmail(login);
 		return user;
+	}
+	
+	@Override
+	public List<User> getAllUsers(){
+		List<User> listAllUsers = userDao.getAllUsers();
+		return listAllUsers;
 	}
 
 	@Override
@@ -109,6 +121,26 @@ public class UserBusImpl implements UserBusApi{
             break;
         }
 	    return listUsers;
+	}
+	
+	@Override
+	public List<User> generateUsers(List<User> listUsers){
+		for (User user : listUsers) {
+			user = userDao.createUser(user);
+			Address address = new Address();
+			address.setBilling(true);
+			address.setCity("VilleParDefaut");
+			address.setCountry("France");
+			address.setName("NomParDefaut");
+			address.setNumber(1);
+			address.setRoadName("par Defaut");
+			address.setRoadType(RoadType.Rue);
+			address.setUser(user);
+			address.setValid(true);
+			address.setZipcode("99999");
+			addressDao.createAddress(address);
+		}
+		return listUsers;
 	}
 
 

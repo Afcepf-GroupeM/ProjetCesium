@@ -1,5 +1,6 @@
 package fr.afcepf.al29.groupem.business.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,20 @@ public class ItemBusImpl implements ItemBusApi {
 	@Override
 	public List<Item> getItemsByStockLessthan(int stock) {
 		return itemDao.getItemsByStockLessThan(stock);
+	}
+
+	@Override
+	public List<Item> getAllItems() {
+		
+		return itemDao.getAllItems();
+	}
+
+	@Override
+	public List<Item> getItemsByName(String keyword) {
+		
+		System.out.println("ItemBus - getItemsByName - Entrée - keyword: "+ keyword);
+		return itemDao.getItemsByName(keyword);
+		
 	}
 
 	

@@ -1,7 +1,8 @@
-package fr.afcepf.groupem.utils;
+package fr.afcepf.al29.groupem.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -9,11 +10,44 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.afcepf.al29.groupem.business.impl.SecurityManagerBCrypt;
+import fr.afcepf.al29.groupem.dao.api.OrderDaoApi;
+import fr.afcepf.al29.groupem.dao.api.UserDaoApi;
+import fr.afcepf.al29.groupem.dao.impl.UserDaoImpl;
+import fr.afcepf.al29.groupem.entities.Carrier;
 import fr.afcepf.al29.groupem.entities.Civilite;
+import fr.afcepf.al29.groupem.entities.Item;
+import fr.afcepf.al29.groupem.entities.Order;
+import fr.afcepf.al29.groupem.entities.OrderLine;
+import fr.afcepf.al29.groupem.entities.OrderState;
+import fr.afcepf.al29.groupem.entities.TypePayment;
 import fr.afcepf.al29.groupem.entities.User;
 
+@Transactional
+@Component
 public class DataGeneration {
+	
+	
+	Civilite civilite;
+	Date birthDate;
+	String email;
+	String phone;
+	String hashPassword;
+	Random rand = new Random();
+	SecurityManagerBCrypt secuMan = new SecurityManagerBCrypt();
+	
+	
 
 	String[] firstNames = {"Liliana","Conchita","Janita","Piedad","Jeffery","Zenia","Mose","Travis","Carlena","Norma","Audry","Bruna","Sheba","Keitha","Jule",
 			"Berenice","Roy","Lenore","Alane","Georgia","Dangelo","Kelton","Jonah","Carsen","Jaron","Ellis","Connor","Leo","Abram","Braylen","Braylon","Stephen",
@@ -83,53 +117,110 @@ public class DataGeneration {
 					  "1977","1978","1979","1980","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995",
 					  "1996","1997","1998","1999","2000","2001","2002","2003","2004"};
 	
+	String[] yearsOrders = {"2010","2011","2012","2013","2014","2015","2016","2017"};
+	
 	String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
 	
 	String[] days = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"};
 	
-
-	Civilite civilite;
-	Date birthDate;
-	String email;
-	String phone;
-	String hashPassword;
-
-	Random rand = new Random();
 	
-	SecurityManagerBCrypt secuMan = new SecurityManagerBCrypt();
-
-	
-	
-	public void generateUsers(int numberToGenerate){
+	public List<User> generateUsers(int numberToGenerate){
 		
-		User user = new User();
-		user.setfirstName(firstNames[rand.nextInt(449)]);
-		user.setlastName(lastNames[rand.nextInt(449)]);
-		user.setEmail(user.getfirstName() + rand.nextInt(100) + "@" + user.getlastName() + ".com");	
-		user.setCivilite(Civilite.values()[rand.nextInt(2)]);
-		user.setphone( "0" + (rand.nextInt(6-1) + 1) 
-						   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1)
-						   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1)
-						   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1)
-						   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1));
+		List<User> usersGenerated = new ArrayList<>();
 		
-		user.setpasswordHash(secuMan.hashPassword(user.getEmail().split("-")[0]));
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date bdate = new Date();
-		try {
-			bdate= dateFormat.parse(years[rand.nextInt(85)] + months[rand.nextInt(13-1)+1] + days[rand.nextInt(29-1)+1]);
-		} catch (ParseException e) {
-			System.out.println("Generate Users date format error: " + e.getMessage());
+		for (int i = 0; i < numberToGenerate; i++) {
+			User user = new User();
+			user.setCivilite(Civilite.values()[rand.nextInt(2)]);
+			user.setfirstName(firstNames[rand.nextInt(449)]);
+			user.setlastName(lastNames[rand.nextInt(449)]);
+			user.setEmail(user.getfirstName().toLowerCase() + rand.nextInt(100) + "@" + user.getlastName().toLowerCase() + ".com");	
+			user.setphone( "0" + (rand.nextInt(6-1) + 1) 
+							   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1)
+							   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1)
+							   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1)
+							   + (rand.nextInt(10-1) + 1)+ (rand.nextInt(10-1) + 1));
+			
+			user.setpasswordHash(secuMan.hashPassword(user.getEmail().split("-")[0]));
+			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date bdate = new Date();
+			try {
+				bdate= dateFormat.parse(years[rand.nextInt(84)] +"-"+ months[rand.nextInt(12-1)+1] +"-"+ days[rand.nextInt(27-1)+1]);
+			} catch (ParseException e) {
+				System.out.println("Generate Users date format error: " + e.getMessage());
+			}
+			user.setBirthDate(bdate);
+			usersGenerated.add(user);
+			
+			
 		}
-		user.setBirthDate(bdate);
+
+		return usersGenerated;
+
+	}
+	
+	
+	public List<Order> gernerateOrder(List<User> users, List<Item> items, int nbToGenerate){
+		List<Order> listOrders = new ArrayList<>();
+		int maxNbItems = 5;
+		int maxQuantity = 3;
 		
-		
-
-
-
-
-
+		for (int i = 0; i < nbToGenerate; i++) {
+			
+			
+			User userRandom = users.get(rand.nextInt(users.size()));
+			Order order = new Order();		
+			
+			order.setUser(userRandom);
+			order.setAdresseLivraison(userRandom.getAddresses().get(0));
+			order.setAdresseFacturation(userRandom.getAddresses().get(0));
+			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date cdate = new Date();
+			try {
+				cdate= dateFormat.parse(yearsOrders[rand.nextInt(yearsOrders.length)] +"-"+ months[rand.nextInt(months.length)] +"-"+ days[rand.nextInt(days.length)]);
+			} catch (ParseException e) {
+				System.out.println("Generate Users date format error: " + e.getMessage());
+			}
+			order.setCreationDate(cdate);
+			order.setTypePayment(TypePayment.values()[rand.nextInt(3)]);
+			order.setState(OrderState.Livree);
+			order.setTrackingNumber("123ABC-456-UPS");
+			Carrier carrier = new Carrier();
+			
+			carrier.setId(1);
+			carrier.setName("UPS");
+			carrier.setTrackingUrl("http://www.ups.com");
+			order.setCarrier(carrier);
+			
+			List<OrderLine> orderLines = new ArrayList<>();
+			int nbItems = rand.nextInt(maxNbItems) + 1;
+			for (int j = 0; j < nbItems; j++) {
+				int idRandomItem = rand.nextInt(items.size());
+				Item item = items.get(idRandomItem);
+				int quantity = rand.nextInt(maxQuantity)+1;
+				float unitPrice = item.getPrice();
+				
+				OrderLine orderLine = new OrderLine();
+				orderLine.setItem(item);
+				orderLine.setOrder(order);
+				orderLine.setQuantity(quantity);
+				orderLine.setUnitPrice(unitPrice);
+				orderLines.add(orderLine);				
+			}
+			
+			order.setOrderLines(orderLines);
+			
+			float amount = 0f;
+			for (OrderLine orderLine : orderLines) {
+				amount += orderLine.getQuantity()*orderLine.getUnitPrice();
+			}
+			order.setAmount(amount);
+			listOrders.add(order);			
+			
+		}
+	
+		return listOrders;
 	}
 
 
@@ -189,6 +280,104 @@ public class DataGeneration {
 
 	public void setHashPassword(String hashPassword) {
 		this.hashPassword = hashPassword;
+	}
+
+
+
+
+	public String[] getFirstNames() {
+		return firstNames;
+	}
+
+
+
+
+	public void setFirstNames(String[] firstNames) {
+		this.firstNames = firstNames;
+	}
+
+
+
+
+	public String[] getLastNames() {
+		return lastNames;
+	}
+
+
+
+
+	public void setLastNames(String[] lastNames) {
+		this.lastNames = lastNames;
+	}
+
+
+
+
+	public String[] getYears() {
+		return years;
+	}
+
+
+
+
+	public void setYears(String[] years) {
+		this.years = years;
+	}
+
+
+
+
+	public String[] getMonths() {
+		return months;
+	}
+
+
+
+
+	public void setMonths(String[] months) {
+		this.months = months;
+	}
+
+
+
+
+	public String[] getDays() {
+		return days;
+	}
+
+
+
+
+	public void setDays(String[] days) {
+		this.days = days;
+	}
+
+
+
+
+	public Random getRand() {
+		return rand;
+	}
+
+
+
+
+	public void setRand(Random rand) {
+		this.rand = rand;
+	}
+
+
+
+
+	public SecurityManagerBCrypt getSecuMan() {
+		return secuMan;
+	}
+
+
+
+
+	public void setSecuMan(SecurityManagerBCrypt secuMan) {
+		this.secuMan = secuMan;
 	}
 
 	

@@ -1,11 +1,10 @@
 package fr.afcepf.al29.groupem.controller;
 
 
-import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
+import javax.faces.event.ActionEvent;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -56,8 +55,29 @@ public class LoginController {
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());
 				returnPage = "index?faces-redirect=true";		
 			}	
+			
+
 		}
 		return returnPage;
+	}
+	
+	public void loginActionAjax(ActionEvent event){
+		EmailValidator emailValidator = EmailValidator.getInstance();
+		boolean isLoginValid = emailValidator.isValid(login);
+		
+		if(!isLoginValid){
+			errorMessage = "Format d'adresse mail invalide.";
+		} else{	
+			if(!(userBus.checkUserCredential(login, password))){
+				errorMessage = "Nom d'utilisateur et/ou mot de passe invalide(s).";
+			} else {
+				errorMessage = "Connecté!";			
+				islogged = true;
+				userLogged = userBus.getUserByLogin(login);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());	
+			}	
+		}
+	
 	}
 
 	

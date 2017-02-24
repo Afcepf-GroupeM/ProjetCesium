@@ -1,22 +1,16 @@
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE   html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-
-<meta http-equiv="refresh" content="5;url=index.xhtml" />
-<title>.: GroupeM EC - Session expirée :.</title>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>.: GroupeM EC - Recherche :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script>-->
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -39,19 +33,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					});
 				</script>
-<!--slider-script-->
-		<script src="js/responsiveslides.min.js"></script>
-			<script>
-				$(function () {
-				  $("#slider1").responsiveSlides({
-					auto: true,
-					speed: 500,
-					namespace: "callbacks",
-					pager: true,
-				  });
-				});
-			</script>
-<!--//slider-script-->
 <script>$(document).ready(function(c) {
 	$('.alert-close').on('click', function(c){
 		$('.message').fadeOut('slow', function(c){
@@ -69,15 +50,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 });
 </script>
 
-<style>
-.cadre-logout{margin: 70px auto; width: 40%;}
 
 
-</style>
-</head>
+
+
+
+</h:head>
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
-  <!--header-->
+  <!--header--> 
 	<div class="header">
 		<div class="header-top">
 			<div class="container">	
@@ -131,8 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-bottom">
 		<div class="container">
 			<div class="h_menu4">
-			
-			<h:form>
+				<h:form>
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
 				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
@@ -154,13 +134,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 				<script type="text/javascript" src="js/nav.js"></script>
 				</h:form>
-				
 			</div>
 		</div>
 		</div>
 		<div class="header-bottom-in">
-			<div class="container">
-			<div class="header-bottom-on">
+		<div class="container">
+		<div class="header-bottom-on">
 			
 			<div class="header-can">
 				<ul class="social-in">
@@ -171,20 +150,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>	
 					<!--
 					<div class="down-top">		
-							<select class="in-drop">
+						  <select class="in-drop">
 							  <option value="Dollars" class="in-of">Dollars</option>
 							  <option value="Euro" class="in-of">Euro</option>
 							  <option value="Yen" class="in-of">Yen</option>
 							</select>
 					 </div>
-					   -->
+					 -->
 					<div>
 						<h:form>
-							<h:inputText value="#{rechercheArticleController.keyword}"/>
-							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" class="commandLink searchLink" />
+							 <p:autoComplete completeMethod="#{rechercheArticleController.complete}"
+							 id="itemName"
+                        	value="#{rechercheArticleController.keyword}"   
+                        	var="item"
+                        	itemLabel="#{item.name}"
+                        	itemValue="#{item.name}"/>
+							<h:commandButton value="Rechercher" action="#{rechercheArticleController.doSearch}"/>
 						</h:form>
 					</div>
-
 					<div class="clearfix"> </div>
 			</div>
 			<div class="clearfix"></div>
@@ -192,16 +175,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
-	<div class="banner-mat">
-				<div class="cadre-logout">
-			<h2>Votre session à expiré.</h2>
-			<p>Vous avez été inactif pendant plus de 30 minutes.<br/><br/>Vous serez redirigé automatiquement vers la page d'accueil dans 5 secondes.</p>
-			</div>
-		</div>
 	
-		
+		<div class="container">
+			<div class="products">
+					<h2 class=" products-in">RESULTATS DE VOTRE RECHERCHE</h2>
+					<h:form>
+					<div class=" top-products">
+					<h:panelGroup rendered="#{empty rechercheArticleController.items}">
+						<h3>Aucun resultat.</h3>
+						<p>Aucun resultat n'a été trouvé pour votre recherche <b>"<h:outputText value="#{rechercheArticleController.keywordSearched}"/>"</b>.<br/>
+						Veuillez rééssayer en élargissant votre recherche, en utilisant d'autres termes.</p>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{not empty rechercheArticleController.items}">
+					<ui:repeat var="item" value="#{rechercheArticleController.items}">
+						<div class="col-md-3 md-col">
+							<div class="col-md">
+								<img src="#{request.contextPath}#{rechercheArticleController.imagePath}#{item.id}/1.jpg" class="thumbsnail-mixhightech" />
+								<div class="top-content">
+									<h5>#{item.name}</h5>
+									<div class="white">
+										<h:link value="Voir détail" outcome="article" class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">
+											<f:param name="itemId"  value="#{item.id}" />
+											<f:param name="isLogged" value="#{loginController.islogged}"/>
+										</h:link>
+										<p class="dollar">#{item.price}<span>€</span></p>
+										<div class="clearfix"></div>
+									</div>
+								</div>							
+							</div>
+						</div>
+						</ui:repeat>
+						</h:panelGroup>
+						</div>
+						</h:form>
+						</div>
+						</div>
 		<!---->
-			<div class="footer">
+		<div class="footer">
 			<div class="footer-top">
 				<div class="container">
 					<div class="col-md-4 footer-in">						

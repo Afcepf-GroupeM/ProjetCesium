@@ -22,4 +22,10 @@ public interface UserBusApi {
 
 
     List<User> searchUsers(String paramInput, String paramSearchType);
+
+
+	List<User> generateUsers(List<User> listUsers);
+
+
+	List<User> getAllUsers();
 }

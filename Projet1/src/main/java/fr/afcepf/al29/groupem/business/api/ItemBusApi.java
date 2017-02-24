@@ -19,6 +19,10 @@ public interface ItemBusApi {
 	Item findItem (int itemId);
 	
 	List<Item> getItemsByStockLessthan(int stock);
+	List<Item> getAllItems();
+	
+	List<Item> getItemsByName(String keyword);
+	
 	
 	
 }

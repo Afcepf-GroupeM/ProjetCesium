@@ -31,6 +31,7 @@ public class ReviewController {
 	private User user;
 	private Item item;
 	
+	private double meanRating;
 	private boolean hasOrderedItem;
 	private Review review;
 	private List<Review> itemReviews;
@@ -56,7 +57,8 @@ public class ReviewController {
 			hasOrderedItem = orderBus.hasOrderedItem(itemId, userId);
 		}		
 		
-		itemReviews = reviewBus.getLastFiveReviewsByItemId(itemId);
+		meanRating = reviewBus.getMeanRating(itemId);
+		itemReviews = reviewBus.getReviewsByItemId(itemId);
 	}
 	
 	public void initInReviewPage(ComponentSystemEvent event){
@@ -87,7 +89,7 @@ public class ReviewController {
 	}
 	
 	public String actionReview(){
-		RegexValidator ratingValidator = new RegexValidator("^([0-4]\\.[05])|([0-4],[05])|([0-5])$", false);
+		RegexValidator ratingValidator = new RegexValidator("^([0-4][\\.,][05])|(5[\\.,]0)|([0-5])$", false);
 		
 		boolean ratingValid = ratingValidator.isValid(rating) && (!rating.isEmpty());
 		
@@ -244,6 +246,14 @@ public class ReviewController {
 
 	public void setHasOrderedItem(boolean hasOrderedItem) {
 		this.hasOrderedItem = hasOrderedItem;
+	}
+
+	public double getMeanRating() {
+		return meanRating;
+	}
+
+	public void setMeanRating(double meanRating) {
+		this.meanRating = meanRating;
 	}
 	
 }
