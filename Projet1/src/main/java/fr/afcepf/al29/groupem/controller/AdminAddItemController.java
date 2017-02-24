@@ -45,6 +45,7 @@ public class AdminAddItemController{
 	private String message;	
 	private Part file;
 	private String fileContent;
+	
 
 	@Autowired
 	private CategoryBusApi categoryBusApi;
