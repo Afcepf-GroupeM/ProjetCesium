@@ -48,7 +48,7 @@ public class LoginController {
 			if(!(userBus.checkUserCredential(login, password))){
 				errorMessage = "Nom d'utilisateur et/ou mot de passe invalide(s).";
 			} else {
-				errorMessage = "Connecté!";
+				errorMessage = "";
 				
 				islogged = true;
 				userLogged = userBus.getUserByLogin(login);
@@ -71,7 +71,7 @@ public class LoginController {
 			if(!(userBus.checkUserCredential(login, password))){
 				errorMessage = "Nom d'utilisateur et/ou mot de passe invalide(s).";
 			} else {
-				errorMessage = "Connecté!";			
+				errorMessage = "";			
 				islogged = true;
 				userLogged = userBus.getUserByLogin(login);
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userid", userLogged.getId());	

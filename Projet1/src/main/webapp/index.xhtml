@@ -17,7 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-3.1.1.js"></script>
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
@@ -73,6 +73,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+if(!$('.loginerrormessage').is(':empty')){
+	$('#login-modal').modal('show');
+}
+});
+
+
+</script>
+
+
 
 </head>
 <body>
@@ -102,35 +114,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</span>
 							
 							
+							
+							
+							
 							<h:panelGroup rendered="#{not loginController.islogged}">
 							<span id="accountCartMenu">
 							<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
 							</span>
-								<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalTop" aria-hidden="true" style="display: none;">
-						    	  <div class="modal-dialog">
-										<div class="loginmodal-container">
-											<h1>Connexion à votre compte</h1><br/>
-										  <h:form id="loginForm">
-										  <h:inputText label="name" value="#{loginController.login}" a:placeholder="E-mail" ></h:inputText>
-											<h:inputText label="pasword" value="#{loginController.password}" a:placeholder="Mot de passe" ></h:inputText>
-											<div class="login-button-div">
-												<p:commandButton value="Connexion" id="login"
-																 update="loginErrorMessage header" 
-																 actionListener="#{loginController.loginActionAjax}" 
-																 styleClass="loginmodal-submit"/>
-											</div>
-											<br />
-											<div class="loginerrormessage">							
-												<h:outputText id="loginErrorMessage" value="#{loginController.errorMessage}" rendered="#{not empty loginController.errorMessage}" styleClass="loginerrormessage"/>
-										 	</div>	
-										  </h:form>
-										</div>
-									</div>
-								  </div>
+								
 							</h:panelGroup>
 								  
 								  
-								  
+							
 								  
 								  
 							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
@@ -169,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
 				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
-					<li class="active"><a href="#" >#{metaCat.name}</a>
+					<li ><a href="#" >#{metaCat.name}</a>
 						<ul class="drop">
 							<ui:repeat var="cat" value="#{metaCat.categories}">
 							<li>
@@ -196,7 +191,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<div class="header-can">
 				<ul class="social-in">
-						<li><a href="accueil.jsf"><i> </i></a></li>
+						<li><a href="index.jsf"><i> </i></a></li>
 						<li><a href="https://fr-fr.facebook.com/"><i class="facebook"> </i></a></li>
 						<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
 						<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
@@ -225,6 +220,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	</h:panelGroup>
+	
+	
+	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalTop" aria-hidden="true" style="display: none;">
+						    	  <div class="modal-dialog">
+										<div class="loginmodal-container">
+											<h1>Connexion à votre compte</h1><br/>
+										  <h:form id="loginForm">
+										  <h:inputText label="name" value="#{loginController.login}" a:placeholder="E-mail" ></h:inputText>
+											<h:inputText label="pasword" value="#{loginController.password}" a:placeholder="Mot de passe" ></h:inputText>
+											<div class="login-button-div">
+												<p:commandButton value="Connexion" id="login"
+																 update="loginErrorMessage header" 
+																 actionListener="#{loginController.loginActionAjax}" 
+																 styleClass="loginmodal-submit"/>
+											</div>
+											<br />
+											<div class="loginerrormessage">							
+												<h:outputText id="loginErrorMessage" value="#{loginController.errorMessage}" styleClass="loginerrormessage"/>
+										 	</div>	
+										  </h:form>
+										</div>
+									</div>
+								  </div>
 
 		<!---->
 		<div class="container">
@@ -274,7 +292,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p> <a href="https://fr-fr.facebook.com/"><img class="facebook" src="images/facebook.png" alt=" " /></a>
 							<a href="https://twitter.com/"><img class="twitter" src="images/twitter.png" alt=" " /></a>
 							<a href="https://www.skype.com/"><img class="skype" src="images/skype.png" alt=" " /></a>
-							<a href="accueil.jsf"><img class="earth" src="images/earth.png" alt=" " /></a>
+							<a href="index.jsf"><img class="earth" src="images/earth.png" alt=" " /></a>
 						</p>
 						
 					</div>
