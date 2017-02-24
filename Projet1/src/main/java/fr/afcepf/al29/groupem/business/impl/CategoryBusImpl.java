@@ -38,6 +38,7 @@ public class CategoryBusImpl implements CategoryBusApi {
 
 	@Override
 	public Category getCategoryById(int categoryId) {
+		System.out.println("*************dans categoryBusImpl**********");
 		//TODO Add check if null = category doesn't exist.
 		return catDao.getCategoryById(categoryId);
 	}

@@ -75,6 +75,7 @@ public class AddUserController {
 	
 	@PostConstruct
 	public void init(){
+		message ="";
 		listeCivilite = Civilite.class.getEnumConstants();
 		dayList = new ArrayList<>();
 		monthList = new ArrayList<>();
