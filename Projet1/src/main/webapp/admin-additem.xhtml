@@ -8,7 +8,7 @@
 <h:head>
 	<title>.: Mix HighTech - Administration - Produits :.</title>
 	<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"/> 	
 </h:head>
 
 <h:body>
@@ -16,10 +16,7 @@
 <div id="wrapper">
 	<div id="header">
 		<h1>.: Mix HighTech - Administration - Produits :.</h1>
-	</div>
-	
-	
-	
+	</div>	
 	
 	<div id="leftcolumn">
 	<div class="menuItem"><a href="administration.xhtml">Retour dashboard</a></div><br/>
@@ -49,21 +46,22 @@
 					<div>
 						<span id="metacategorieItem" class="mandatory">*</span>
 						<h:outputLabel value="Méta-Categorie:"/>						
-						<h:selectOneMenu value="#{adminAddItemController.metaCategory}">
-							<f:selectItems value="#{adminAddItemController.listeMetaCategory}" var="metacat" itemLabel="#{metacat.name}" itemValue="#{metacat}" />
+						<h:selectOneMenu value="#{adminAddItemController.idMetaCategory}">
+							<f:selectItems value="#{adminAddItemController.listeMetaCategory}" var="metacat" itemLabel="#{metacat.name}" itemValue="#{metacat.id}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
 						<span id="categorieItem" class="mandatory">*</span>
 						<h:outputLabel value="Categorie:"/>						
-						<h:selectOneMenu value="#{adminAddItemController.category}">
-							<f:selectItems value="#{adminAddItemController.listeCategory}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
+						<h:selectOneMenu value="#{adminAddItemController.idCategory}">
+							<f:selectItems value="#{adminAddItemController.listeCategory}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat.id}" />
 						</h:selectOneMenu>
 					</div>
 					<div>
 						<span id="priceItem" class="mandatory">*</span>
 						<h:outputLabel value="Prix:" />						
-						<h:inputText type="text" value="#{adminAddItemController.price}"/>						
+						<h:inputText type="text" value="#{adminAddItemController.price}"/>
+						<h:outputLabel value="€"></h:outputLabel>						
 					</div>
 					<div>
 						<span id="quantityItem" class="mandatory">*</span>
@@ -71,13 +69,26 @@
 						<h:inputText type="text" value="#{adminAddItemController.quantity}"/>
 					</div>
 					<div>
-						<span id="imageItem" class="mandatory">*</span>
-						<h:outputLabel value="Choisir un Image:" />						
-						<h:inputText type="text" value="#{adminAddItemController.urlImage}"/>
-						<h:commandButton value="importer" action="#{adminAddItemController.importerUnImage}"></h:commandButton>
-						<img src="urlImage" class="img-responsive" alt=""/>						
+						<span id="descriptionItem" class="mandatory">*</span>
+						<h:outputLabel value="Description:" />						
+						<h:inputText type="text" value="#{adminAddItemController.description}"/>
 					</div>
-					<h:commandButton value="Ajouter" action="#{adminAddItemController.ajouterUnItem}"/>
+					
+						<div>
+							<h:outputLabel value="Image:" />						
+							
+							<h:commandButton value="Upload" action="#{adminAddItemController.saveUnImage}"></h:commandButton>
+							<br/>
+							<img src="urlImage" class="img-responsive" alt=""/>						
+						</div>
+				
+					<br/>
+					<br/>
+					<br/>
+					<div>
+						<h:commandButton value="Ajouter" action="#{adminAddItemController.ajouterUnItem}"/>
+						<h:outputLabel value="#{adminAddItemController.message}"/>	
+					</div>
 				</h:form>
 			</div>			
 		</div>		

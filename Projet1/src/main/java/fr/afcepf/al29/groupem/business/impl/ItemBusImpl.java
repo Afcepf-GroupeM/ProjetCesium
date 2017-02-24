@@ -21,9 +21,8 @@ public class ItemBusImpl implements ItemBusApi {
 	
 	
 	@Override
-	public Item createItem(Item item) {
-		// TODO Auto-generated method stub
-		return null;
+	public Item createItem(Item item) {		
+		return itemDao.createItem(item);
 	}
 
 	@Override
