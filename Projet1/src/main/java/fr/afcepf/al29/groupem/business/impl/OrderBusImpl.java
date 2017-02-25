@@ -64,6 +64,7 @@ public class OrderBusImpl implements OrderBusApi{
 		double amount = 0.0;
 		for (Order order : orders) {
 			amount += getTotalPrice(order);
+			System.out.println("amount="+amount);
 		}
 		return amount;
 	}
@@ -80,7 +81,12 @@ public class OrderBusImpl implements OrderBusApi{
 
 	@Override
 	public List<Order> getOrdersSince(Date date) {
-		return orderDao.getOrdersSince(date);
+		List<Order> orders = orderDao.getOrdersSince(date);
+		for(Order order:orders){
+			System.out.println(order.toString());
+		}
+		//return orderDao.getOrdersSince(date);
+		return orders;
 	}
 
 	//search By trackingNumber

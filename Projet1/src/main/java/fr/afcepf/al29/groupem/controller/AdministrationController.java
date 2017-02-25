@@ -29,6 +29,7 @@ public class AdministrationController {
 	private int ordersToday;
 	private int ordersMonth;
 	private int ordersTotal;
+	private int nbAvertissementStock;
 	
 	private List<Order> ordersToPrepare; // First 5 found
 	private List<Item> itemsLowStock; // First 5 found
@@ -52,6 +53,7 @@ public class AdministrationController {
 			itemsLowStock.add(itItem.next());
 			iItem++;
 		}
+		nbAvertissementStock = itemsLowStock.size();
 		
 		// Get the first 5 orders with state "EnPreparation"
 		ordersToPrepare = new ArrayList<>();
@@ -68,6 +70,9 @@ public class AdministrationController {
 		date.add(Calendar.DAY_OF_MONTH, -1);
 		ordersToday = orderBus.getNumberOfOrdersSince(date.getTime());
 		caToday = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date.getTime())));
+		System.out.println("******************caToday="+caToday);
+		caToday=caToday.setScale(0, BigDecimal.ROUND_HALF_UP);
+		System.out.println("******************caToday="+caToday);
 		
 		
 		// Get the numbrer of orders and total amount since last month
@@ -75,6 +80,8 @@ public class AdministrationController {
 		date2.add(Calendar.MONTH, -1);
 		ordersMonth = orderBus.getNumberOfOrdersSince(date2.getTime());
 		caMonth = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date2.getTime())));
+		caMonth = caMonth.setScale(0, BigDecimal.ROUND_HALF_UP);
+		System.out.println("*********caMonth="+ caMonth);
 			
 		
 		// Get the numbrer of orders and total amount since 24h
@@ -193,19 +200,28 @@ public class AdministrationController {
 	public void setOrderBus(OrderBusApi orderBus) {
 		this.orderBus = orderBus;
 	}
-
-
+	
+	
 
 	public ItemBusApi getItemBus() {
 		return itemBus;
 	}
-
-
+	
+	
 
 	public void setItemBus(ItemBusApi itemBus) {
 		this.itemBus = itemBus;
 	}
-
 	
+	
+
+	public int getNbAvertissementStock() {
+		return nbAvertissementStock;
+	}
+
+	public void setNbAvertissementStock(int nbAvertissementStock) {
+		this.nbAvertissementStock = nbAvertissementStock;
+	}
+
 	
 }
