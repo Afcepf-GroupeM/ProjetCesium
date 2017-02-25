@@ -26,9 +26,11 @@ import fr.afcepf.al29.groupem.business.api.AddressBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
 import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Address;
+import fr.afcepf.al29.groupem.entities.ComplementAddress;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
+import fr.afcepf.al29.groupem.entities.RoadType;
 import fr.afcepf.al29.groupem.entities.User;
 
 @Scope("session")
@@ -116,9 +118,10 @@ public class EspaceClientController {
 		
 	}
 	
-	public void initStatutViewer(ComponentSystemEvent e){
+	public void initStatutViewer(){
 		int orderId = Integer.parseInt(getParam("orderId"));
 		trackingCode = getParam("trackingCode");
+		address = new Address();
 		String urlWSLogi = "http://localhost:8080/WebServiceLogistique/StatutLivraison/send";
 		JSONObject returnWSLogiJson = null;
 		
@@ -162,24 +165,24 @@ public class EspaceClientController {
 				firstName = returnWSLogiJson.getString("firstName");
 				transporteurName = returnWSLogiJson.getString("transporteurName");
 				
-				numero = returnWSLogiJson.getInt("numero");
+				address.setNumber(returnWSLogiJson.getInt("numero"));
 				
 				//si complement null alors renvoie une erreur "Null key."
-				/*if (returnWSLogiJson.getString(complement) != null){
-					complement = returnWSLogiJson.getString(complement);
+				if (returnWSLogiJson.isNull("complement")){
+					address.setComplement(null);
 				}
 				else{
-					complement = "";
+					address.setComplement(ComplementAddress.valueOf(returnWSLogiJson.getString(complement)));
 				}
 				
-				*<h:outputText value="Complement: #{espaceClientController.complement}"/>
+				/*<h:outputText value="Complement: #{espaceClientController.complement}"/>
 						<br/>
 				*/
-				typeVoie = returnWSLogiJson.getString("typeVoie");
-				nomVoie = returnWSLogiJson.getString("nomVoie");
-				city = returnWSLogiJson.getString("city");
-				zipcode = returnWSLogiJson.getString("zipcode");
-				country = returnWSLogiJson.getString("country");
+				address.setRoadType(RoadType.valueOf(returnWSLogiJson.getString("typeVoie")));
+				address.setRoadName(returnWSLogiJson.getString("nomVoie"));
+				address.setCity(returnWSLogiJson.getString("city"));
+				address.setZipcode(returnWSLogiJson.getString("zipcode"));
+				address.setCountry(returnWSLogiJson.getString("country"));
 				
 				statutLines = new ArrayList<>();
 				JSONArray array = returnWSLogiJson.getJSONArray("statutLines");
@@ -198,24 +201,24 @@ public class EspaceClientController {
 				}
 				
 			} catch (JSONException err) {
-				System.out.println("Error with WS Bank :\n\tJSONException on response from WS Logistique");
+				System.out.println("Error with WS Logistique : JSONException on response from WS Logistique");
 				err.printStackTrace();
 			}
 		} catch (MalformedURLException err) {
-			System.out.println("Error with WS Bank :\n\tMalformedURLException");
+			System.out.println("Error with WS Logistique : MalformedURLException");
 			err.printStackTrace();
 		} catch (IOException err) {
-			System.out.println("Error with WS Bank :\n\tIOException");
+			System.out.println("Error with WS Logistique : IOException");
 			err.printStackTrace();
 		}
 	}
 	
-	public String goToStatutViewer(){
+	/*public String goToStatutViewer(){
 		int orderId = Integer.parseInt(getParam("orderId"));
 		String trackingCode = getParam("trackingCode");
 		
 		return "statutViewer?faces-redirect=true&orderId=" + orderId + "&trackingCode=" + trackingCode;
-	}
+	}*/
 	
 	public String getParam(String param){
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

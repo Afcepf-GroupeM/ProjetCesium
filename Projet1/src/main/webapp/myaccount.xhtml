@@ -5,14 +5,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<head>
+<h:head>
 <title>.: GroupeM EC - Espace client :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/statutViewer.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/dynamic.css" rel="stylesheet" type="text/css" media="all" />
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -48,8 +51,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>
-</head>
-<body>
+</h:head>
+<h:body>
 <f:event listener="#{espaceClientController.init}" type="preRenderView" />
 <f:event listener="#{addressManagerController.init}" type="preRenderView" />
   <!--header-->
@@ -220,16 +223,95 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    		<h:outputLabel value="#{order.state}"></h:outputLabel>
 		    	</h:column>
 		    	<h:column>
-		    		<f:facet name="header">No. Suivi</f:facet>	
+		    		<f:facet name="header">No. Suivi</f:facet>
 		    		<h:form>
-		    			<h:commandLink value="#{order.trackingNumber}" action="#{espaceClientController.goToStatutViewer}">
+		    			<h:commandLink actionListener="#{espaceClientController.initStatutViewer()}" value="#{order.trackingNumber}">
 		    				<f:param name="trackingCode" value="#{order.trackingNumber}"/>
 		    				<f:param name="orderId" value="#{order.id}"/>
+		    				<f:passThroughAttribute name="data-toggle" value="modal" />
+		    				<f:passThroughAttribute name="data-target" value="#tracking-modal" />
+		    				<f:ajax execute="@form" render="@none" />
 		    			</h:commandLink>
-		    		</h:form>	
+		    		</h:form>
 		    	</h:column>    	
 		</h:dataTable>			
 		
+		<div class="modal fade" id="tracking-modal" style="display: none;">
+			<div class="modal-dialog">
+				<div class="statutviewermodal-container">
+					<h2 class="account-in"> 
+						<h:outputText value="Suivi de la livraison de votre commande N° #{statutViewerController.ordering.id}" />
+					</h2>
+					<div>
+						<h4>
+							<h:outputText value="Informations générales:"/>
+						</h4>
+						<br />
+						<h:panelGrid columns="3">
+							<h:panelGroup class="sv-panelGroups">
+								<span class="txt-bold">Adresse de livraison :</span>
+								<br />
+								<h:outputText class="espacementRight" value="#{espaceClientController.firstName}"/>
+								<h:outputText class="espacementLeft" value="#{espaceClientController.lastName}"/>
+								<br />
+								<h:outputText class="espacementRight" value="#{espaceClientController.address.complement}"/>
+								<h:outputText class="espacementRight espacementLeft" value="#{espaceClientController.address.number}"/>
+								<h:outputText class="espacementRight espacementLeft" value="#{espaceClientController.address.roadType}"/>
+								<h:outputText class="espacementLeft" value="#{espaceClientController.address.roadName}"/>
+								<br />
+								<h:outputText class="espacementRight" value="#{espaceClientController.address.zipcode}"/>
+								<h:outputText class="espacementLeft" value="#{espaceClientController.address.city}"/>
+								<br />
+								<h:outputText value="#{espaceClientController.address.country}"/>
+							</h:panelGroup>
+							<h:panelGroup class="sv-panelGroups">
+								<span class="txt-bold">Date demande livraison :</span>
+								<br />
+								<h:outputText value="#{espaceClientController.dateDemande}"/>
+								<br />
+								<br />
+								<span class="txt-bold">Date de prise en charge :</span>
+								<br />
+								<h:outputText value="#{espaceClientController.datePriseEnCharge}"/>
+								<br />
+								<br />
+								<span class="txt-bold">Date de livraison :</span>
+								<br />
+								<h:outputText value="#{espaceClientController.dateLivraison}"/>
+							</h:panelGroup>
+							<h:panelGroup class="sv-panelGroups">
+								<span class="txt-bold">Transporteur :</span>
+								<br />
+								<h:outputText value="#{espaceClientController.transporteurName}"/>
+								<br />
+								<br />
+								<span class="txt-bold">Code de suivi :</span>
+								<br />
+								<h:outputText value="#{espaceClientController.trackingCode}"/>
+							</h:panelGroup>
+						</h:panelGrid>
+					</div>
+					<div>
+						<h:dataTable class="table-account1"  var="sl" value="#{espaceClientController.statutLines}" styleClass="order-table"
+							headerClass="order-table-header"
+							rowClasses="order-table-odd-row,order-table-even-row">
+							<h:column>
+				    			<f:facet name="header">Date</f:facet>
+								<h:outputText value="#{sl.dateUpdate}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Localisation</f:facet>
+								<h:outputText value="#{sl.locationUpdate}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Détails</f:facet>
+								<h:outputText value="#{sl.detailsUpdate}" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</div>
+			</div>
+		</div>
 	
 		<h2 class="myaccount">Suivi de votre commande historique:</h2>		
 		<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOldOrder}"/>
@@ -429,5 +511,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 				
 		</div>
-</body>
+</h:body>
 </html>

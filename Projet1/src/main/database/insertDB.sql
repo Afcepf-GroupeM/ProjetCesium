@@ -9,16 +9,16 @@ INSERT INTO category (name,metacategoryid) VALUES ('Smartphone',4),('Téléphone
 INSERT INTO category (name,metacategoryid) VALUES ('TV',5),('Home Cinéma',5),('Lecteur DVD',5),('Lunettes 3D',5);
 INSERT INTO category (name,metacategoryid) VALUES ('Réflex',6),('Bridge',6),('Compact',6),('Camescope',6);
 
-INSERT INTO user (civilite,lastname,firstname,email,phone,birthdate,hashPassword) VALUES ('Mr','Duck','Picsou','banque@distributeur.fr',"0987654321","1958-03-15","$2a$10$9sE9xMPd5f3mop4AhJDkl.hcW1SxcjYQ.DQqZrUxtaTm13n6a5Fk.");
-INSERT INTO user (civilite,lastname,firstname,email,phone,birthdate,hashPassword) VALUES ('Mme','Duck','Daisy','daisy@la-tete-sur-les-epaules.fr',"0987654321","1971-05-23","$2a$10$lavAcynRT0.9TJBrRfIAX.HXdnp1JOaLLGpxu4z.Es33FZGQsT02W");
-INSERT INTO user (civilite,lastname,firstname,email,phone,birthdate,hashPassword) VALUES ('Mr','Duck','Donald','normal@canard.fr',"0987654321","1970-11-09","$2a$10$OMF9Ss3O9aoQ6aqeIq7c/uHk5A9LuhvIEtoeU2FlgOegRGQZGrCuC");
+/*INSERT INTO user (civilite,lastname,firstname,email,phone,birthdate,hashPassword) VALUES ('Mr','Duck','Picsou','banque@distributeur.fr',"0987654321","1958-03-15","$2a$10$9sE9xMPd5f3mop4AhJDkl.hcW1SxcjYQ.DQqZrUxtaTm13n6a5Fk.");*/
+/*INSERT INTO user (civilite,lastname,firstname,email,phone,birthdate,hashPassword) VALUES ('Mme','Duck','Daisy','daisy@la-tete-sur-les-epaules.fr',"0987654321","1971-05-23","$2a$10$lavAcynRT0.9TJBrRfIAX.HXdnp1JOaLLGpxu4z.Es33FZGQsT02W");*/
+/*INSERT INTO user (civilite,lastname,firstname,email,phone,birthdate,hashPassword) VALUES ('Mr','Duck','Donald','normal@canard.fr',"0987654321","1970-11-09","$2a$10$OMF9Ss3O9aoQ6aqeIq7c/uHk5A9LuhvIEtoeU2FlgOegRGQZGrCuC");*/
 
-INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Coffre',13,null,'Rue','du fric','PicsouVille','77777','Pays du flouze',0,1,1);
-INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('',5,'bis','Rue','des canards normaux','PicsouVille','77777','Pays du flouze',0,0,2);
-INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Maison',5,'bis','Rue','des canards normaux','PicsouVille','77777','Pays du flouze',0,0,3);
-INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Travail',13,'bis','Rue','du fric','PicsouVille','77777','Pays du flouze',0,1,3);
-INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Maison',8,null,'Chemin','des canetons','PicsouVille','77777','Pays du flouze',1,1,3);
-INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('',8,null,'Chemin','des canetons','PicsouVille','77777','Pays du flouze',1,1,2);
+/*INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Coffre',13,null,'Rue','du fric','PicsouVille','77777','Pays du flouze',0,1,1);*/
+/*INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('',5,'bis','Rue','des canards normaux','PicsouVille','77777','Pays du flouze',0,0,2);*/
+/*INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Maison',5,'bis','Rue','des canards normaux','PicsouVille','77777','Pays du flouze',0,0,3);*/
+/*INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Travail',13,'bis','Rue','du fric','PicsouVille','77777','Pays du flouze',0,1,3);*/
+/*INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('Maison',8,null,'Chemin','des canetons','PicsouVille','77777','Pays du flouze',1,1,3);*/
+/*INSERT INTO address(name,roadNumber,complement,roadType,roadName,city,zipcode,country,isBilling,isValid,userid) VALUES ('',8,null,'Chemin','des canetons','PicsouVille','77777','Pays du flouze',1,1,2);*/
 
 INSERT INTO carrier (name,trackingurl) VALUES ('Fedex','http://fedex.com/tracking/');
 
