@@ -14,7 +14,6 @@ import fr.afcepf.al29.groupem.dao.api.OrderLineDaoApi;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderLine;
 import fr.afcepf.al29.groupem.entities.OrderState;
-import fr.afcepf.al29.groupem.entities.User;
 
 @Transactional
 @Component
@@ -134,6 +133,30 @@ public class OrderBusImpl implements OrderBusApi{
 	@Override
 	public Order getOrderById(int orderId) {
 		return orderDao.getOrderById(orderId);
+	}
+
+	@Override
+	public double getCaToday() {
+		Date currentDate = new Date();
+		double caToday = orderDao.getCaToday(currentDate);
+		
+		return caToday;
+	}
+
+	@Override
+	public double getCaMonth() {
+		Date currentDate = new Date();
+		double caMonth = orderDao.getCaMonth(currentDate);
+		
+		return caMonth;
+	}
+
+	@Override
+	public int getNumberOfOrdersToday() {
+		Date currentDate = new Date();
+		int numberOfOrderstoday = orderDao.getNumberOrdersToday(currentDate);
+		
+		return numberOfOrderstoday;
 	}
 	
 }
