@@ -1333,8 +1333,8 @@ span#email{
 span#password{
 	padding-right:2em;
 }
-account#login-button{
-	padding-right:1000em;
+.account#login-button{
+	padding-right:1em;
 }
 
 /*--account--*/
@@ -1488,6 +1488,14 @@ span.message{
 	background: -o-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: -ms-linear-gradient(top, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
+}
+
+/*--statutViewer--*/
+.sv-panelGroups{
+	text-align: center;
+}
+.txt-bold{
+	font-weight: bold;
 }
 
 
@@ -2174,7 +2182,7 @@ h3.future:after,h2.products-in:after,h2.contact-in:after,h2.account-in:after {
   padding: 4.5em 0 0;
 }
 .etalage_source_image{
-	display:none !important:
+	display:none !important;
 }
 }
 @media(max-width:480px){

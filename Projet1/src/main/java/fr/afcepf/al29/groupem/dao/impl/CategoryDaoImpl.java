@@ -32,7 +32,6 @@ public class CategoryDaoImpl implements CategoryDaoApi{
 	@Override
 	public Category getCategoryById(int categoryId) {
 		Category category = entityManager.find(Category.class, categoryId);
-		System.out.println("******************dans CategoryDao, category =" + category.toString());
 		return category;
 	}
 
