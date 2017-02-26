@@ -228,7 +228,7 @@ if(!$('.loginerrormessage').is(':empty')){
 											<h1>Connexion à votre compte</h1><br/>
 										  <h:form id="loginForm">
 										  <h:inputText label="name" value="#{loginController.login}" a:placeholder="E-mail" ></h:inputText>
-											<h:inputText label="pasword" value="#{loginController.password}" a:placeholder="Mot de passe" ></h:inputText>
+											<h:inputSecret label="pasword" value="#{loginController.password}" a:placeholder="Mot de passe" ></h:inputSecret>
 											<div class="login-button-div">
 												<p:commandButton value="Connexion" id="login"
 																 update="loginErrorMessage header" 

@@ -223,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="single-para">
 								<h4><h:outputText value="#{itemCartController.item.name}"/></h4>
 								<div class="para-grid">
-									<span  class="add-to"><h:outputText value="#{itemCartController.item.price}"/> €</span>
+									<span  class="add-to"><h:outputText value="#{itemCartController.item.price}"><f:convertNumber type="currency" currencySymbol="€"/></h:outputText>}</span>
 										
 										
 										<h:commandLink value="Ajouter au panier" action ="#{itemCartController.addItemToCart}" styleClass="hvr-shutter-in-vertical hvr-shutter-in-vertical2 hvr-shutter-in-vertical3" >

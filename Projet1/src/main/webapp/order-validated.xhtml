@@ -9,8 +9,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<head>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
 
 <title>.: GroupeM EC - Commande validée! :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -68,16 +69,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 });
 </script>
 
-<style>
-.cadre-logout{margin: 70px auto; width: 40%;}
 
-.order-table{border-collapse:collapse;width: 100%;}
-.order-table-header{text-align:center;background:none repeat scroll 0 0 #E5E5E5;border-bottom:1px solid #BBBBBB;padding:16px;}
-.order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
-.order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
-
-</style>
-</head>
+</h:head>
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
 <f:event listener="#{orderController.initOrderValidate}" type="preRenderView" />
@@ -196,8 +189,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
-	<div class="banner-mat">
-				<div class="cadre-logout">
+				<div class="container">
+				
+				<div class="account">
+			<h2 class="account-in">Détail de votre commande</h2>
+			<div class="wish-list-cart">
 				
 			<h:panelGroup rendered="#{not orderController.responseOrchOk}">
 				<h2>Erreur lors de la validation de la commande</h2><br/>
@@ -205,17 +201,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</h:panelGroup>	
 				
 			<h:panelGroup rendered="#{orderController.responseOrchOk}">
-		
-			<h2>Commande validée!</h2><br/>
-			<h3>Veuillez trouver le recapitulatif de votre commande ci dessous:</h3><br/>
-			<h4>Commande numero: <h:outputText value="#{orderController.order.id}"/></h4><br/>
-			
+			<div class="txt-padding20">
+				<h2>Commande validée!</h2><br/>
+				<h3>Veuillez trouver le recapitulatif de votre commande ci dessous:</h3><br/>
+				<h4>Commande numero: <h:outputText value="#{orderController.order.id}"/></h4><br/>
+			</div>
 			<h:dataTable value="#{orderController.orderLines}"  var="line" styleClass="order-table"
     			headerClass="order-table-header"
     			rowClasses="order-table-odd-row,order-table-even-row">
     			
     			<h:column>
-				<img src="#{request.contextPath}/images/items/#{line.item.id}/1.jpg" height="128px" class="thumbsnail-mixhightech"></img>
+				<img src="#{request.contextPath}/images/items/#{line.item.id}/1.jpg" height="128px" class="thumbsnail-mixhightech-cart"></img>
 				</h:column>
 				
 				<h:column>
@@ -228,38 +224,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</h:column> 
 				<h:column>
 					<f:facet name="header">Prix unitaire</f:facet>
-					<h:outputText value="#{line.unitPrice} €"/>
+					<h:outputText value="#{line.unitPrice}"><f:convertNumber type="currency" currencySymbol="€"/></h:outputText>
 				</h:column>				
 				</h:dataTable>
-				<br/><br/>
-				<h:panelGrid columns="2" cellpadding="15" cellspacing="30">
-				<h:outputText value="Montant total:"/>		<h:outputText value="#{orderController.order.amount}€"/>
-				<h:outputText value="Type de paiement:"/> 	<h:outputText value="#{orderController.order.typePayment}"/>
-				<h:outputText value="Date de commande:"/> 	<h:outputText value="#{orderController.order.creationDate}"/>
-				<h:outputText value="Etat:"/>				<h:outputText value="#{orderController.order.state}"/>
-				<h:outputText value="Transporteur:"/>		<h:outputText value="#{orderController.order.carrier.name}"/>
-				<h:outputText value="Numero de suivi:"/>	<h:outputText value="#{orderController.order.trackingNumber}"/>
+				
+				<div class="goToPaymentLink-wrapper">
+				<div class="goToPaymentLink">
+				<p:panelGrid columns="2" cellpadding="15" cellspacing="30" styleClass="gridEnterCard">
+				<h:outputText styleClass="txt-bold" value="Montant total:"/>		<h:outputText value="#{orderController.order.amount}"><f:convertNumber type="currency" currencySymbol="€"/></h:outputText>
+				<h:outputText styleClass="txt-bold" value="Type de paiement:"/> 	<h:outputText value="#{orderController.order.typePayment}"/>
+				<h:outputText styleClass="txt-bold" value="Date de commande:"/> 	<h:outputText value="#{orderController.order.creationDate}"><f:convertDateTime pattern="dd/MM/yyy" /></h:outputText>
+				<h:outputText styleClass="txt-bold" value="Etat:"/>				<h:outputText value="#{orderController.order.state}"/>
+				<h:outputText styleClass="txt-bold" value="Transporteur:"/>		<h:outputText value="#{orderController.order.carrier.name}"/>
+				<h:outputText styleClass="txt-bold" value="Numero de suivi:"/>	<h:outputText value="#{orderController.order.trackingNumber}"/>
 				<h:panelGroup>
-					<br/>
-					Adresse de livraison<br/><br/>
-					<h:outputText value="#{orderController.order.adresseLivraison.number}"/><h:outputText value="#{orderController.order.adresseLivraison.complement}"/> <h:outputText value="#{orderController.order.adresseLivraison.roadType}"/> <h:outputText value="#{orderController.order.adresseLivraison.roadName}"/><br />
+					<div class="orderValidatedTextAdress">Adresse de livraison</div>
+					<h:outputText value="#{orderController.order.adresseLivraison.number} #{orderController.order.adresseLivraison.complement} #{orderController.order.adresseLivraison.roadType} #{orderController.order.adresseLivraison.roadName}"/><br />
 					<h:outputText value="#{orderController.order.adresseLivraison.zipcode}"/> <h:outputText value="#{orderController.order.adresseLivraison.city}"/><br /> 
 					<h:outputText value="#{orderController.order.adresseLivraison.country}"/>
 				</h:panelGroup>
 				<h:panelGroup>
-					<br/>
-					Adresse de Facturation<br/><br/>
-					<h:outputText value="#{orderController.order.adresseFacturation.number}"/><h:outputText value="#{orderController.order.adresseFacturation.complement}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadType}"/> <h:outputText value="#{orderController.order.adresseFacturation.roadName}"/><br />
+					<div class="orderValidatedTextAdress">Adresse de Facturation</div>
+					<h:outputText value="#{orderController.order.adresseFacturation.number} #{orderController.order.adresseFacturation.complement} #{orderController.order.adresseFacturation.roadType} #{orderController.order.adresseFacturation.roadName}"/><br />
 					<h:outputText value="#{orderController.order.adresseFacturation.zipcode}"/> <h:outputText value="#{orderController.order.adresseFacturation.city}"/><br /> 
 					<h:outputText value="#{orderController.order.adresseFacturation.country}"/>
 				</h:panelGroup>
 			
-				</h:panelGrid>
-							
+				</p:panelGrid>
+				</div>	
+				</div>
 			</h:panelGroup>
 			</div>
 		</div>
-	
+	</div>
 		
 		<!---->
 			<div class="footer">

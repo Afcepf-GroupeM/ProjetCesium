@@ -186,7 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<f:param name="itemId"  value="#{item.id}" />
 											<f:param name="isLogged" value="#{loginController.islogged}"/>
 										</h:link>
-										<p class="dollar">#{item.price}<span>€</span></p>
+										<p class="dollar"><h:outputText value="#{item.price}" ><f:convertNumber type="currency" currencySymbol="€"/></h:outputText></p>
 										<div class="clearfix"></div>
 									</div>
 								</div>							

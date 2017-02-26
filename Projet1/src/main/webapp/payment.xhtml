@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
+<h:head>
 
 <title>.: GroupeM EC - Paiement :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
@@ -107,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	color: red;
 }
 </style>
-</head>
+</h:head>
 <body>
 	<f:event listener="#{itemListController.init}" type="preRenderView" />
 	<f:event listener="#{orderController.initPayment}" type="preRenderView" />
@@ -223,25 +223,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="cadre-logout">
 
 			<h2>Paiement:</h2>
-			<br />
-
-
-
-			<h:form>
-				<br />
-				<h:commandButton value="Generer données valides"
-					action="#{orderController.demoFillFields}" style="margin-top:20px;margin-bottom:20px;" />
+			<h:form id="paymentForm">
+			
+			<div class="goToPaymentLink-wrapper">
+						<div class="goToPaymentLink">
 				<h:commandButton value="! DEMO !"
-					action="#{orderController.demoStaticFields}" style="margin-top:20px;margin-bottom:20px;" />
+					action="#{orderController.demoStaticFields}" styleClass="btn btn-warning" />
+					</div>
+					</div>
 				<br />
-				<div>
-					<h:selectOneRadio value="#{orderController.cardTypeChosen}" layout="pageDirection">
-						<f:selectItems value="#{orderController.idTypePayment}" var="id"
-							itemValue="#{id}"
-							itemLabel="#{orderController.labelTypePayment[id]}" />
-					</h:selectOneRadio>
-
-					<p:panelGrid cellpadding="20" cellspacing="20">
+				<div>	
+				<p:selectOneRadio id="customRadio" value="#{orderController.cardTypeChosen}" layout="custom">
+			            <f:selectItems itemValue="#{id}" value="#{orderController.idTypePayment}" var="id" itemLabel="#{orderController.labelTypePayment[id]}" />
+			        </p:selectOneRadio>
+					
+					<p:dataGrid value="#{orderController.idTypePayment}" var="id" columns="3" rowIndexVar="index" styleClass="ui-datagrid-no-borderPayment" >
+					<p:column styleClass="ui-datagrid-columnPayment">
+					  <div class="cadre-paymentCard">
+					      <p:radioButton for=":paymentForm:customRadio" itemIndex="#{index}"/><br/>
+					      <h:graphicImage value="/images/pay#{id}.png" /><br/>	
+					  		    
+					 	  </div>
+					 </p:column>
+					</p:dataGrid>
+						<br/>
+					<p:panelGrid cellpadding="20" cellspacing="20" styleClass="gridEnterCard">
 						<p:row>
 							<p:column>
 								<b><h:outputText value="Numero de carte:" /></b>
@@ -302,15 +308,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</p:column>
 						</p:row>
 						
-						<p:row style="margin-top:10px;">
-							<p:column colspan="3" style="text-align: center;">
-								<h:commandButton value="Valider la commande!"
-									action="#{orderController.validatePayment}"
-									style="margin-top:10px;" />
-							</p:column>
-						</p:row>
+					
 					</p:panelGrid>
-
+					<div class="goToPaymentLink-wrapper">
+						<div class="goToPaymentLink">
+						<h:commandLink value="Valider la commande!"
+										action="#{orderController.validatePayment}"
+										styleClass="commandLink" />
+						</div>
+					</div>
 				</div>
 			</h:form>
 

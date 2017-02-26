@@ -48,14 +48,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});	  
 	});
 	</script>				
-	
-	<style>
-.order-table{border-collapse:collapse;width: 100%;}
-.order-table-header{text-align:center;background:none repeat scroll 0 0 #E5E5E5;border-bottom:1px solid #BBBBBB;padding:16px;}
-.order-table-odd-row{text-align:center;background:none repeat scroll 0 0 #FFFFFFF;border-top:1px solid #BBBBBB;}
-.order-table-even-row{text-align:center;background:none repeat scroll 0 0 #F9F9F9;border-top:1px solid #BBBBBB;}
-</style>
-	
+		
 	</h:head>
 <h:body>
 <f:event listener="#{itemCartController.initCartDetail}" type="preRenderView" /> 
@@ -178,7 +171,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="container">
 		<div class="account">
 			<h2 class="account-in">Détail de votre panier</h2>
-			<div class="wish-list">
+			<div class="wish-list-cart">
 			<!-- Rendered if Cart is empty -->
 			
 			<h:panelGroup rendered="#{itemCartController.isCartEmpty}">
@@ -194,7 +187,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    			headerClass="order-table-header"
 	    			rowClasses="order-table-odd-row,order-table-even-row">
 	    			<h:column>
-					<img src="#{request.contextPath}#{itemCartController.imagePath}#{line.item.id}/1.jpg" height="128px" class="thumbsnail-mixhightech"></img>
+	    			
+					<img src="#{request.contextPath}#{itemCartController.imagePath}#{line.item.id}/1.jpg" 
+						 height="128px" 
+						 class="thumbsnail-mixhightech-cart"></img>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Nom des articles</f:facet>
@@ -202,19 +198,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</h:column>
 					<h:column>
 						<f:facet name="header">Prix unitaire</f:facet>
-						<h:outputText value="#{line.unitPrice}"/>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Stock</f:facet>	
-						<h:outputText value="#{line.item.stock}"/>
-					</h:column>
+						<h:outputText value="#{line.unitPrice}">
+							<f:convertNumber type="currency" currencySymbol="€"/>
+						</h:outputText>
+					</h:column>					
 					<h:column>
 						<f:facet name="header">Quantité</f:facet>
 						<h:outputText value="#{line.quantity}"/>
 					</h:column> 
 					<h:column>
 						<f:facet name="header">Prix Total</f:facet>
-						<h:outputText value="#{itemCartController.cartLinesSubtotal[line.id]}"/>
+						<h:outputText value="#{itemCartController.cartLinesSubtotal[line.id]}">
+							<f:convertNumber type="currency" currencySymbol="€"/>
+						</h:outputText>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Supprimer</f:facet>
@@ -224,7 +220,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</h:commandLink>	
 						</h:column>
 					</h:dataTable>
-					<br/><br/>
+					<div id="cartshippingchoice">
 					<h:outputText value="Choix de la livraison : "/>
 					<h:selectOneMenu value="#{itemCartController.shippingOptionChosen}">
 						<f:selectItems value="#{itemCartController.shippingOptions}" var="option"
@@ -234,12 +230,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									render="totalAmountRender" />
 						
 					</h:selectOneMenu>
-					<br/>
-					<br/>
-					<h6>Montant total: <h:outputLabel id="totalAmountRender" value="#{itemCartController.totalAmount}"/>€</h6>
-					<br />
+					</div>
+					<div id="carttotalamount">
+					<h6 id="carttotalamount">Montant total: <h:outputLabel id="totalAmountRender" value="#{itemCartController.totalAmount}">
+											<f:convertNumber type="currency" currencySymbol="€"/>
+									   </h:outputLabel></h6>
+					</div>
 					<div id="linkPanier">
-						<h:commandLink value="Valider la commande"  action="#{itemCartController.validateCart}" styleClass="commandLink">
+						<h:commandLink value="Valider le panier"  action="#{itemCartController.validateCart}" styleClass="commandLink">
 							<f:setPropertyActionListener target="#{orderController.shippingOptionChosen}" value="#{itemCartController.shippingOptionChosen}" />
 							<f:param name="cartid" value="#{itemCartController.cart.id}"/>
 						</h:commandLink>

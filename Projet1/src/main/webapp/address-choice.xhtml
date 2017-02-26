@@ -9,8 +9,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<head>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" >
+<h:head>
 
 <title>.: GroupeM EC - Commande validée! :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -81,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	font-weight: bold;
 }
 </style>
-</head>
+</h:head>
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
 <f:event listener="#{orderController.initAddressChoice}" type="preRenderView" />
@@ -208,27 +209,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="cadre-logout">
 				
 				<h2>Choix d'adresses:</h2>
-				<h:form>
+				<h:form id="chooseAdressForm">
 				<div>
 				<br/><br/>
-					<div><h4>Adresse de livraison:</h4>
-					<br/>
-							<h:selectOneRadio value="#{orderController.addressShippingChosenId}" layout="pageDirection">						            
-						            <f:selectItems itemValue="#{address.id}" value="#{orderController.addresses}" var="address" itemLabel="#{address.name} - #{address.number}#{address.complement} #{address.roadType} #{address.roadName} - #{address.zipcode} #{address.city} #{address.country}" />					           
-						    </h:selectOneRadio>
+					<div><h4>Adresse de livraison:</h4>								
+			        <p:selectOneRadio id="customRadio" value="#{orderController.addressShippingChosenId}" layout="custom">
+			            <f:selectItems itemValue="#{address.id}" value="#{orderController.addresses}" var="address" itemLabel="#{address.name} - #{address.number}#{address.complement} #{address.roadType} #{address.roadName} - #{address.zipcode} #{address.city} #{address.country}" />
+			        </p:selectOneRadio>
+					
+					<p:dataGrid value="#{orderController.addresses}" var="adresse" columns="3" rowIndexVar="index" styleClass="ui-datagrid-no-border" >
+					  <div class="cadre-adress">
+					      <p:radioButton for=":chooseAdressForm:customRadio" itemIndex="#{index}"/><br/>
+					      <h:outputText style="font-weight: bold" value="#{adresse.name}"/><br/>
+					      <h:panelGroup>
+					      	<h:outputText value="#{adresse.number} #{adresse.complement} #{adresse.roadType} #{adresse.roadName}"/><br/>
+					      		<h:outputText value="#{adresse.zipcode} - #{adresse.city}" /><br/>
+					      		<h:outputText value="#{adresse.country}" />
+					 	  </h:panelGroup>
+					 	  </div>
+					</p:dataGrid>
+	
 						    <h:outputText value="#{orderController.errorShippingAddress}" styleClass="error"/>
 					</div>
 					<br/><br/>
 					<div><h4>Adresse de facturation:</h4>
-					<br/>
-							<h:selectOneRadio value="#{orderController.addressBillingChosenId}" layout="pageDirection">						            
-						            <f:selectItems itemValue="#{addressbill.id}" value="#{orderController.billingAddresses}" var="addressbill" itemLabel="#{addressbill.name} - #{addressbill.number}#{addressbill.complement} #{addressbill.roadType} #{addressbill.roadName} - #{addressbill.zipcode} #{addressbill.city} #{addressbill.country}" />					           
-						    </h:selectOneRadio>
+					
+					 <p:selectOneRadio id="customRadio2" value="#{orderController.addressBillingChosenId}" layout="custom">
+			            <f:selectItems itemValue="#{address.id}" value="#{orderController.addresses}" var="address" itemLabel="#{address.name} - #{address.number}#{address.complement} #{address.roadType} #{address.roadName} - #{address.zipcode} #{address.city} #{address.country}" />
+			        </p:selectOneRadio>
+					
+					<p:dataGrid value="#{orderController.billingAddresses}" var="adresse" columns="3" rowIndexVar="index" styleClass="ui-datagrid-no-border" >
+					  <div class="cadre-adress">
+					      <p:radioButton for=":chooseAdressForm:customRadio2" itemIndex="#{index}"/><br/>
+					      <h:outputText style="font-weight: bold" value="#{adresse.name}"/><br/>
+					      <h:panelGroup>
+					      	<h:outputText value="#{adresse.number} #{adresse.complement} #{adresse.roadType} #{adresse.roadName}"/><br/>
+					      		<h:outputText value="#{adresse.zipcode} - #{adresse.city}" /><br/>
+					      		<h:outputText value="#{adresse.country}" />
+					 	  </h:panelGroup>
+					 	  </div>
+					</p:dataGrid>
+				    
 						    <h:outputText value="#{orderController.errorBillingAddress}" styleClass="error"/>			
 					</div>
 
 				</div>
-				<h:commandButton value="Passer au paiement" action="#{orderController.validateAddresses}"/>
+				<div class="goToPaymentLink-wrapper">
+					<div class="goToPaymentLink">
+						<h:commandLink value="Passer au paiement" action="#{orderController.validateAddresses}" styleClass="commandLink"/>
+					</div>
+				</div>
 				</h:form>
 			
 			</div>	
