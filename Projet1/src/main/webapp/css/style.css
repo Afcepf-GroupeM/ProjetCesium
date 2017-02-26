@@ -1490,15 +1490,6 @@ span.message{
 	background: linear-gradient(to bottom, rgba(157,218,216,1) 52%,rgba(119,168,164,1) 100%);
 }
 
-/*--statutViewer--*/
-.sv-panelGroups{
-	text-align: center;
-}
-.txt-bold{
-	font-weight: bold;
-}
-
-
 /*--mandatory input--*/
 .mandatory{
 	color: red;
@@ -1647,6 +1638,33 @@ span#isBilling{
 }
 .addressForm{
 	padding: 4em 1em;
+}
+
+/*--statutViewer--*/
+#tableStatutReviewInfo{
+	width: 100%;
+}
+.account span{
+	font-size: 1em;
+}
+/*#sv-tr-infoGen{
+	width: 100%;
+}*/
+.sv-td-infoGen{
+	padding-left: 104px;
+	padding-right: 104px;
+}
+.sv-td-sl{
+	text-align: center;
+}
+.sv-header-info{
+	text-align: center;
+}
+.table-account1 th{
+	text-align: center;
+}
+.txt-bold{
+	font-weight: bold;
 }
 
 /*--Comments--*/

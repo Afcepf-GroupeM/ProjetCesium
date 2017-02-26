@@ -104,5 +104,44 @@ public class OrderDaoImpl implements OrderDaoApi{
 		listOrders = entityManager.createQuery("SELECT ord FROM Order ord ORDER BY creationDate DESC", Order.class).getResultList();
 		return listOrders;
 	}
+
+	@Override
+	public double getCaToday(Date currentDate) {
+		double caToday = 0d;
+		
+		List<Double> results = entityManager.createQuery("SELECT SUM(o.amount) FROM Order o WHERE creationDate = :currentDate").setParameter("currentDate", currentDate).getResultList();
+		
+		if (!results.isEmpty()){
+			caToday = results.get(0);
+		}
+		
+		return caToday;
+	}
+
+	@Override
+	public double getCaMonth(Date currentDate) {
+		double caMonth = 0d;
+		
+		List<Double> results = entityManager.createQuery("SELECT SUM(o.amount) FROM Order o WHERE MONTH(creationDate) = MONTh(:currentDate) AND YEAR(creationDate) = YEAR(:currentDate)").setParameter("currentDate", currentDate).getResultList();
+		
+		if (!results.isEmpty()){
+			caMonth = results.get(0);
+		}
+		
+		return caMonth;
+	}
+
+	@Override
+	public int getNumberOrdersToday(Date currentDate) {
+		int numberOrdersToday = 0;
+		
+		List<Long> results = entityManager.createQuery("SELECT COUNT(o) FROM Order o WHERE creationDate = :currentDate").setParameter("currentDate", currentDate).getResultList();
+		
+		if (!results.isEmpty()){
+			numberOrdersToday = ((Long) results.get(0)).intValue();
+		}
+		
+		return numberOrdersToday;
+	}
 	
 }

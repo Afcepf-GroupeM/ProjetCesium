@@ -26,5 +26,9 @@ public interface OrderDaoApi {
 	List<Order> getOrderByState(String state);
 	
 	List<Order> getAll();
+	
+	int getNumberOrdersToday(Date currentDate);
+	double getCaToday(Date currentDate);
+	double getCaMonth(Date currentDate);
 
 }
