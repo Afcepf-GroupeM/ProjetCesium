@@ -69,20 +69,15 @@ public class AdministrationController {
 		Calendar date = Calendar.getInstance();
 		date.add(Calendar.DAY_OF_MONTH, -1);
 		ordersToday = orderBus.getNumberOfOrdersSince(date.getTime());
-		caToday = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date.getTime())));
-		System.out.println("******************caToday="+caToday);
-		caToday=caToday.setScale(0, BigDecimal.ROUND_HALF_UP);
-		System.out.println("******************caToday="+caToday);
-		
+		caToday = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date.getTime())));		
+		caToday=caToday.setScale(0, BigDecimal.ROUND_HALF_UP);		
 		
 		// Get the numbrer of orders and total amount since last month
 		Calendar date2 = Calendar.getInstance();
 		date2.add(Calendar.MONTH, -1);
 		ordersMonth = orderBus.getNumberOfOrdersSince(date2.getTime());
 		caMonth = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date2.getTime())));
-		caMonth = caMonth.setScale(0, BigDecimal.ROUND_HALF_UP);
-		System.out.println("*********caMonth="+ caMonth);
-			
+		caMonth = caMonth.setScale(0, BigDecimal.ROUND_HALF_UP);			
 		
 		// Get the numbrer of orders and total amount since 24h
 		Calendar date3 = Calendar.getInstance();
