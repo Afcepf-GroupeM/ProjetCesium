@@ -26,6 +26,10 @@ public interface OrderBusApi {
 	List<Order> searchOrders(String paramInput, String paramSearchType);
 	
 	List<Order>getAll();
+	
+	int getNumberOfOrdersToday();
+	double getCaToday();
+	double getCaMonth();
 
 	boolean hasOrderedItem(int itemId, int userId);
 	

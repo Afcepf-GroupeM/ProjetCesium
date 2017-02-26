@@ -11,34 +11,42 @@
 	<meta name="keywords"
 		content="Augment Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
- <!-- Bootstrap Core CSS -->
-<link href="css/admin/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="css/admin/style.css" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="css/admin/font-awesome.css" rel="stylesheet"/> 
-<!-- jQuery -->
-<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
-<!-- lined-icons -->
-<link rel="stylesheet" href="css/admin/icon-font.min.css" type='text/css' />
-<!-- //lined-icons -->
-<script src="js/admin/jquery-1.10.2.min.js"></script>
-<script src="js/admin/amcharts.js"></script>	
-<script src="js/admin/serial.js"></script>	
-<script src="js/admin/light.js"></script>	
-<script src="js/admin/radar.js"></script>	
-<link href="css/admin/fabochart.css" rel='stylesheet' type='text/css' />
-<!--clock init-->
-<script src="js/admin/css3clock.js"></script>
-<!--Easy Pie Chart-->
-<!--skycons-icons-->
-<script src="js/admin/skycons.js"></script>
+	<script type="application/x-javascript">
+		
+		 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+	
+	</script>
+	<!-- Bootstrap Core CSS -->
+	<link href="css/admin/bootstrap.min.css" rel='stylesheet'
+		type='text/css' />
+	<!-- Custom CSS -->
+	<link href="css/admin/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="css/admin/font-awesome.css" rel="stylesheet" />
+	<!-- jQuery -->
+	<link
+		href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400'
+		rel='stylesheet' type='text/css' />
+	<!-- lined-icons -->
+	<link rel="stylesheet" href="css/admin/icon-font.min.css"
+		type='text/css' />
+	<!-- //lined-icons -->
+	<script src="js/admin/jquery-1.10.2.min.js"></script>
+	<script src="js/admin/amcharts.js"></script>
+	<script src="js/admin/serial.js"></script>
+	<script src="js/admin/light.js"></script>
+	<script src="js/admin/radar.js"></script>
+	<link href="css/admin/fabochart.css" rel='stylesheet' type='text/css' />
+	<!--clock init-->
+	<script src="js/admin/css3clock.js"></script>
+	<!--Easy Pie Chart-->
+	<!--skycons-icons-->
+	<script src="js/admin/skycons.js"></script>
 
 	<!--//skycons-icons-->
 </h:head>
 <h:body>
-	<f:event listener="#{administrationController.initAdmin}"
+	<f:event listener="#{adminUserController.initAdminUser}"
 		type="preRenderView" />
 	<div class="page-container">
 		<!--/content-inner-->
@@ -316,64 +324,132 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="clearfix"></div>
 				</div>
 				<!-- //header-ends -->
-				<div class="outter-wp">
-					<!--custom-widgets-->
-					<div class="custom-widgets">
-						<div class="row-one">
-							<div class="col-md-3 widget">
-								<div class="stats-left ">
-									<h5>Aujourd'hui</h5>
-									<h4>Commandes</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.ordersToday}" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="col-md-3 widget states-mdl">
-								<div class="stats-left">
-									<h5>Aujourd'hui</h5>
-									<h4>CA</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.caToday}€" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="col-md-3 widget states-thrd">
-								<div class="stats-left">
-									<h5>Aujourd'hui</h5>
-									<h4>Stock(≤5)</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.nbAvertissementStock}" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="col-md-3 widget states-last">
-								<div class="stats-left">
-									<h5>Ce mois-ci</h5>
-									<h4>CA</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.caMonth}€" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
+
 				<!--//custom-widgets-->
 
 				<!-- début de graphic statique 1 -->
+				<div class="outter-wp">
+
+					<!--/sub-heard-part-->
+					<div class="sub-heard-part">
+						<ol class="breadcrumb m-b-0">
+							<li><a href="administration-dashboard.jsf">Home</a></li>
+							<li class="active">Form Utilisateur</li>
+						</ol>
+					</div>
+					<!--//sub-heard-part-->
+
+					<div class="forms-main">
+						<h2 class="inner-tittle">Form Utilisateur</h2>
+						<div class="graph-form">
+							<div class="validation-form">
+								<form>
+									<div id="content">
+										<div>											
+											<div class="vali-form">	
+																				
+												<h:form>
+												
+													<h:panelGrid columns="4" cellpadding="10">
+														<h:outputText class="user-label" value="Rechercher par: " />
+														<h:selectOneMenu class="user-select" value="#{adminUserController.searchType}">
+															<f:selectItems var="st"
+																value="#{adminUserController.searchTypeArray}"
+																itemValue="#{st}"
+																itemLabel="#{adminUserController.searchTypeMap[st]}" />
+														</h:selectOneMenu>
+														<h:inputText class="user-inputText" value="#{adminUserController.searchInput}" />
+														<h:commandButton class="user-btn user-btn:focus" value="Rechercher"
+															action="#{adminUserController.searchUsers}" />
+													</h:panelGrid>
+												
+												</h:form>
+											
+											</div>
+											
+											
+											<div class="adminSearchResult">
+												<div
+													class="#{adminUserController.adminSearchMessageErrorClass}">
+													<h:outputText
+														value="#{adminUserController.messageErrorSearch}"
+														rendered="#{adminUserController.firstSearchDone}"
+														styleClass="#{adminUserController.adminSearchMessageErrorClass}" />
+												</div>
+												<div class="graph-visual tables-main">
+												<div class="graph">
+												<div class="tables">
+												<table class="table user-table">
+													<h:dataTable class="user-table"
+														value="#{adminUserController.pagesOfSearchResults[adminUserController.pageToPrint]}"
+														var="user" headerClass=""														
+														rendered="#{not empty adminUserController.searchResult}">
+														<h:column>
+															<f:facet name="header">id</f:facet>
+															<h:outputText value="#{user.id}" />
+														</h:column>	
+														<h:column>
+															<f:facet name="header">Civilité</f:facet>
+															<h:outputText value="#{user.civilite}" />
+														</h:column>													
+														<h:column>
+															<f:facet name="header">Nom</f:facet>
+															<h:outputText value="#{user.lastName}" />
+														</h:column>
+														<h:column>
+															<f:facet name="header">Prénom</f:facet>
+															<h:outputText value="#{user.firstName}" />
+														</h:column>
+														<h:column>
+															<f:facet name="header">Email</f:facet>
+															<h:outputText value="#{user.email}" />
+														</h:column>
+														<h:column>
+															<f:facet name="header">téléphone</f:facet>
+															<h:outputText value="#{user.phone}" />
+														</h:column>
+														<h:column>
+															<f:facet name="header">anniversaire</f:facet>
+															<h:outputText value="#{user.birthDate}" />
+														</h:column>
+													</h:dataTable>
+												</table>
+												</div>
+												</div>
+												</div>
+												<div class="adminUserPageNumTitle" style="text-align: center;">
+													<h:outputText
+														value="Page #{adminUserController.pageToPrint}"
+														rendered="#{adminUserController.pageToPrint ne 0 and empty adminUserController.messageErrorSearch}" />
+												</div>
+											</div>
+										
+
+											<div class="adminUserChangePageMenu" style="text-align: center;">
+												<h:form>
+													<ui:repeat
+														value="#{adminUserController.numberOfPagesOfResults}"
+														var="page">
+														<h:commandLink value="#{page}"
+															action="#{adminUserController.changePage}"
+															rendered="#{empty adminUserController.messageErrorSearch}">
+															<f:param name="pageNumber" value="#{page}" />
+														</h:commandLink>
+														<h:outputText value="   " />
+													</ui:repeat>
+												</h:form>
+											</div>
+										</div>
+
+
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 				<!-- fin de graphic statiqu 1 -->
 
-				<iframe src="http://localhost:5601/app/kibana#/dashboard/dde7a830-fab5-11e6-b68f-592af3f8d9ae?embed=true&amp;_g=(filters%3A!()%2CrefreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow%2FM%2Cmode%3Aquick%2Cto%3Anow))" height="825" width="1350"></iframe>
 
 				<!-- début de graphic statique 2 -->
 				<!-- fin de graphic statiqu 2 -->

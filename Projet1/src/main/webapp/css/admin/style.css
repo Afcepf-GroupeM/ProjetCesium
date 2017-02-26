@@ -2752,12 +2752,13 @@ form.com-mail {
     color: #6F6F6F;
 }
  input[type="submit"] {
-    font-size: 0.9em;
+    font-size: 1.2em;
     background-color:#002561;
     border: 1px solid #002561;
     color: #fff;
-    padding: 0.4em 1em;
-    margin-top: 1em;
+    padding: 0.3em 1em;
+    margin-top: auto;
+	margin-bottom: auto;
 }
 ul#menu-comunicacao-sub {
     z-index: 999999;
@@ -8192,14 +8193,92 @@ footer  p a:hover ,.footer p a:hover{
 	}
 }
 /***responsive***/
-@media screen {
-  div.divFooter {
-    display: none;
-  }
+.user-label{
+	margin-top: 10px;
+	display: block;
+	width: 150px;	
+	margin-bottom: 5px;
+	font-weight: 400;
+	font-size: 1em;
+	color: #777;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;	
+	font-size: 1.2em;
 }
-@media print {
-  div.divFooter {
-    position: fixed;
-    bottom: 0;
-  }
+.user-select{
+	padding: 0.5em;	
+}
+.user-inputText{
+	border: 1px solid #A5A5A8;
+	font-size: 0.9em;
+	width: 94%;
+	outline: none;
+	padding: 0.5em 4em;
+	color: #000000;
+	background-color: #fff;
+	margin-top: 0.5em;
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	font: inherit;
+	box-sizing: border-box;
+	line-height: inherit;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+.user-btn{
+	margin-top: inherit;	
+	margin: 10px;
+	border-radius: 0;
+	padding: 0.3em 1em;
+	font-size: 1.2em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	overflow: visible;
+	box-sizing: border-box;
+	margin-top: :0em;
+	text-align: right;
+}
+.user-btn:focus{
+	color: #fff;
+	background-color: #00C6D7;
+	border-color: #00C6D7;
+	outline: none;
+}
+.user-table{	
+	width: 100%;
+}
+.listMetaAndCat{
+	width: 100%;
+	border: 1px solid #A5A5A8;
+}
+#listMetaCat{	
+	width: 45%;
+    float: left;   
+    padding: 10px; 
+}
+#listCat{
+	width: 45%;
+    float: left; 
+    padding: 10px; 
+}
+#clear {
+    clear: both;
+}
+.table-meta{
+	padding:0,0,0,2px;
+	width: 90%;
+ 	border-right: 1px dashed #333;
+}
+.table-cate{
+	padding:0,0,0,2px;
+	width: 90%; 
+}
+.addMessage{
+	color:red;
+}
 }

@@ -11,34 +11,42 @@
 	<meta name="keywords"
 		content="Augment Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
- <!-- Bootstrap Core CSS -->
-<link href="css/admin/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="css/admin/style.css" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="css/admin/font-awesome.css" rel="stylesheet"/> 
-<!-- jQuery -->
-<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
-<!-- lined-icons -->
-<link rel="stylesheet" href="css/admin/icon-font.min.css" type='text/css' />
-<!-- //lined-icons -->
-<script src="js/admin/jquery-1.10.2.min.js"></script>
-<script src="js/admin/amcharts.js"></script>	
-<script src="js/admin/serial.js"></script>	
-<script src="js/admin/light.js"></script>	
-<script src="js/admin/radar.js"></script>	
-<link href="css/admin/fabochart.css" rel='stylesheet' type='text/css' />
-<!--clock init-->
-<script src="js/admin/css3clock.js"></script>
-<!--Easy Pie Chart-->
-<!--skycons-icons-->
-<script src="js/admin/skycons.js"></script>
+	<script type="application/x-javascript">
+		
+		 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+	
+	</script>
+	<!-- Bootstrap Core CSS -->
+	<link href="css/admin/bootstrap.min.css" rel='stylesheet'
+		type='text/css' />
+	<!-- Custom CSS -->
+	<link href="css/admin/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="css/admin/font-awesome.css" rel="stylesheet" />
+	<!-- jQuery -->
+	<link
+		href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400'
+		rel='stylesheet' type='text/css' />
+	<!-- lined-icons -->
+	<link rel="stylesheet" href="css/admin/icon-font.min.css"
+		type='text/css' />
+	<!-- //lined-icons -->
+	<script src="js/admin/jquery-1.10.2.min.js"></script>
+	<script src="js/admin/amcharts.js"></script>
+	<script src="js/admin/serial.js"></script>
+	<script src="js/admin/light.js"></script>
+	<script src="js/admin/radar.js"></script>
+	<link href="css/admin/fabochart.css" rel='stylesheet' type='text/css' />
+	<!--clock init-->
+	<script src="js/admin/css3clock.js"></script>
+	<!--Easy Pie Chart-->
+	<!--skycons-icons-->
+	<script src="js/admin/skycons.js"></script>
 
 	<!--//skycons-icons-->
 </h:head>
 <h:body>
-	<f:event listener="#{administrationController.initAdmin}"
+	<f:event listener="#{adminCatController.initAdminCat}"
 		type="preRenderView" />
 	<div class="page-container">
 		<!--/content-inner-->
@@ -316,64 +324,126 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="clearfix"></div>
 				</div>
 				<!-- //header-ends -->
-				<div class="outter-wp">
-					<!--custom-widgets-->
-					<div class="custom-widgets">
-						<div class="row-one">
-							<div class="col-md-3 widget">
-								<div class="stats-left ">
-									<h5>Aujourd'hui</h5>
-									<h4>Commandes</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.ordersToday}" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="col-md-3 widget states-mdl">
-								<div class="stats-left">
-									<h5>Aujourd'hui</h5>
-									<h4>CA</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.caToday}€" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="col-md-3 widget states-thrd">
-								<div class="stats-left">
-									<h5>Aujourd'hui</h5>
-									<h4>Stock(≤5)</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.nbAvertissementStock}" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="col-md-3 widget states-last">
-								<div class="stats-left">
-									<h5>Ce mois-ci</h5>
-									<h4>CA</h4>
-								</div>
-								<div class="stats-right">
-									<label><h:outputText
-											value="#{administrationController.caMonth}€" /></label>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-				<!--//custom-widgets-->
+
 
 				<!-- début de graphic statique 1 -->
+				<div class="outter-wp">
+					<!--/sub-heard-part-->
+					<div class="sub-heard-part">
+						<ol class="breadcrumb m-b-0">
+							<li><a href="administration-dashboard.jsf">Home</a></li>
+							<li class="active">Form Catégorie</li>
+						</ol>
+					</div>
+					<!--//sub-heard-part-->
+					<div class="forms-main">
+						<h2 class="inner-tittle">Form Catégorie</h2>
+
+						<div class="listMetaAndCat">
+							<h2 style="color=#002561;">Liste des Méta-Catégories</h2>
+							<h6>- Cliquer sur une Méta pour afficher les Catégories -</h6>
+							<div id="listMetaCat">
+								<h4>Méta-Catégories</h4>
+								<h:form>
+									<h:dataTable class="table-meta" value="#{adminCatController.listMetaCategory}"
+										var="meta" headerClass="MCatDataGHeader"
+										styleClass="MCatDataGClass"
+										rowClasses="MCatDataGRowEven,MCatDataGRowOdd">
+										<h:column headerClass="MCatDataGCol1">
+											<f:facet name="header">Id</f:facet>
+											<h:outputText value="#{meta.id}" />
+										</h:column>
+										<h:column headerClass="MCatDataGCol2">
+											<f:facet name="header">Nom</f:facet>
+											<h:commandLink value="#{meta.name}"
+												action="#{adminCatController.printCategories}">
+												<f:param name="idMetaCat" value="#{meta.id}" />
+											</h:commandLink>
+										</h:column>
+										<h:column headerClass="MCatDataGCol3">
+											<f:facet name="header">Nb Catégories</f:facet>
+											<h:outputText value="#{adminCatController.metaMap[meta.id]}" />
+										</h:column>
+									</h:dataTable>
+								</h:form>
+							</div>
+
+							<div id="listCat">
+								<h4>
+									<h:outputText
+										value="Catégories dans #{adminCatController.metaCatChosen.name}"
+										rendered="#{adminCatController.hasOneMetaCatBeenChosen}" />
+								</h4>
+								<h:outputText value="- Choisir une méta-catégorie -"
+									rendered="#{not adminCatController.hasOneMetaCatBeenChosen}" />
+								<h:dataTable class="table-cate" value="#{adminCatController.listCategory}"
+									var="cat"
+									rendered="#{adminCatController.hasOneMetaCatBeenChosen}"
+									headerClass="CatDataGHeader" styleClass="CatDataGClass"
+									rowClasses="CatDataGRowEven,CatDataGRowOdd">
+									<h:column headerClass="CatDataGCol1">
+										<f:facet name="header">Id</f:facet>
+										<h:outputText value="#{cat.id}" />
+									</h:column>
+									<h:column headerClass="CatDataGCol2">
+										<f:facet name="header">Nom</f:facet>
+										<h:outputText value="#{cat.name}" />
+									</h:column>
+									<h:column headerClass="CatDataGCol3">
+										<f:facet name="header">Nb Articles</f:facet>
+										<h:outputText value="#{adminCatController.catMap[cat.id]}" />
+									</h:column>
+								</h:dataTable>
+							</div>
+							<div id="clear"></div>
+						</div>
+
+						<hr />
+
+						<div class="listMetaAndCat">
+							<h2>Actions rapides</h2>
+							<div id="listMetaCat">
+								<h4>Ajouter une Méta-Catégorie</h4>
+								<h:form>
+									<h:panelGrid columns="2" cellspacing="10">
+										<h:inputText class="user-inputText" value="#{adminCatController.newMetaCatName}" />
+										<h:commandButton value="Creer"
+											action="#{adminCatController.addMetaCat}" />
+									</h:panelGrid>
+								</h:form>
+								<div class="addMessage">
+									<h:outputText value="#{adminCatController.messageAddMetaCat}" />
+								</div>
+							</div>
+							<div id="listCat">
+								<h4>Ajouter une Catégorie</h4>
+								<h:form>
+									<h:panelGrid columns="3" cellspacing="10">
+										<h:panelGroup>
+											<h:outputText value="Meta Catégorie parente: " />
+											<h:selectOneMenu value="#{adminCatController.idMetaCatNewCat}">
+												<f:selectItems value="#{adminCatController.listMetaCategory}"
+													var="metacat" itemLabel="#{metacat.name}"
+													itemValue="#{metacat.id}" />
+											</h:selectOneMenu>
+										</h:panelGroup>										
+										<h:inputText class="user-inputText"  value="#{adminCatController.newCatName}" />
+										<h:commandButton value="Creer"
+											action="#{adminCatController.addCat}" />
+									</h:panelGrid>
+								</h:form>
+								<div class="addMessage">
+									<h:outputText value="#{adminCatController.messageAddCat}" />
+								</div>
+							</div>
+							<div id="clear"></div>
+						</div>
+						<hr />
+					</div>
+				</div>
+
 				<!-- fin de graphic statiqu 1 -->
 
-				<iframe src="http://localhost:5601/app/kibana#/dashboard/dde7a830-fab5-11e6-b68f-592af3f8d9ae?embed=true&amp;_g=(filters%3A!()%2CrefreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow%2FM%2Cmode%3Aquick%2Cto%3Anow))" height="825" width="1350"></iframe>
 
 				<!-- début de graphic statique 2 -->
 				<!-- fin de graphic statiqu 2 -->

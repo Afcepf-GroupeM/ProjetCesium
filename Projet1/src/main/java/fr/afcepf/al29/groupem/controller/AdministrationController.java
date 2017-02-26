@@ -66,25 +66,19 @@ public class AdministrationController {
 		}
 		
 		// Get the numbrer of orders and total amount since 24h
-		Calendar date = Calendar.getInstance();
-		date.add(Calendar.DAY_OF_MONTH, -1);
-		ordersToday = orderBus.getNumberOfOrdersSince(date.getTime());
-		caToday = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date.getTime())));		
+		/*Calendar date = Calendar.getInstance();
+		date.add(Calendar.DAY_OF_MONTH, -1);System.out.println(date.toString());
+		ordersToday = orderBus.getNumberOfOrdersSince(date.getTime());*/
+		ordersToday = orderBus.getNumberOfOrdersToday();
+		caToday = BigDecimal.valueOf(orderBus.getCaToday());
 		caToday=caToday.setScale(0, BigDecimal.ROUND_HALF_UP);		
 		
 		// Get the numbrer of orders and total amount since last month
-		Calendar date2 = Calendar.getInstance();
+		/*Calendar date2 = Calendar.getInstance();
 		date2.add(Calendar.MONTH, -1);
-		ordersMonth = orderBus.getNumberOfOrdersSince(date2.getTime());
-		caMonth = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date2.getTime())));
-		caMonth = caMonth.setScale(0, BigDecimal.ROUND_HALF_UP);			
-		
-		// Get the numbrer of orders and total amount since 24h
-		Calendar date3 = Calendar.getInstance();
-		date3.add(Calendar.YEAR, -100);
-		ordersTotal = orderBus.getNumberOfOrdersSince(date3.getTime());
-		caTotal = BigDecimal.valueOf(orderBus.getTotalPriceForAll(orderBus.getOrdersSince(date3.getTime())));
-		
+		ordersMonth = orderBus.getNumberOfOrdersSince(date2.getTime());*/
+		caMonth = BigDecimal.valueOf(orderBus.getCaMonth());
+		caMonth = caMonth.setScale(0, BigDecimal.ROUND_HALF_UP);
 		
 	}
 
