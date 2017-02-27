@@ -11,6 +11,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -22,9 +23,11 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.CategoryBusApi;
 import fr.afcepf.al29.groupem.business.api.CouponBusApi;
+import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Category;
 import fr.afcepf.al29.groupem.entities.Coupon;
 import fr.afcepf.al29.groupem.entities.MetaCategory;
+import fr.afcepf.al29.groupem.entities.User;
 
 @SessionScoped
 @ManagedBean
@@ -36,6 +39,9 @@ public class AdminCouponController {
     
     @Autowired
     private CategoryBusApi catBus;
+    
+	@Autowired
+	private UserBusApi userBus;
     
     private List<MetaCategory> listMetaCategories;
     private String metaCategoryChosenId;
@@ -89,11 +95,14 @@ public class AdminCouponController {
     private List<Coupon> searchResult;
     
     private boolean hasSearchBeenDone = false;
-    
+	private int idUser;
+	private User user;
     
     
     
     public void initAdminCoupon(ComponentSystemEvent c){
+    	idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		user = userBus.getUserById(idUser);
         listMetaCategories = catBus.getAllMetaCategory(); 
         listMetaCategoriesSearch = listMetaCategories;
         if(firstLoad){
@@ -849,6 +858,36 @@ public class AdminCouponController {
 
 	public void setCategoryChosenIdSearch(String categoryChosenIdSearch) {
 		this.categoryChosenIdSearch = categoryChosenIdSearch;
+	}
+
+
+	public UserBusApi getUserBus() {
+		return userBus;
+	}
+
+
+	public void setUserBus(UserBusApi userBus) {
+		this.userBus = userBus;
+	}
+
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
     
 

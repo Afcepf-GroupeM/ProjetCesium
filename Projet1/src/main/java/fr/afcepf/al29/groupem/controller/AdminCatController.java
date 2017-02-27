@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.CategoryBusApi;
+import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Category;
 import fr.afcepf.al29.groupem.entities.MetaCategory;
+import fr.afcepf.al29.groupem.entities.User;
 
 @ManagedBean
 @Component
@@ -38,16 +40,20 @@ public class AdminCatController {
 	
 	private String messageAddMetaCat;
 	private String messageAddCat;
-	
+	private int idUser;
+	private User user;
 	
 	@Autowired
 	private CategoryBusApi catBus;
 	
-	
+	@Autowired
+	private UserBusApi userBus;
 	
 	
 	
 	public void initAdminCat(ComponentSystemEvent c){
+		idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		user = userBus.getUserById(idUser);
 		listMetaCategory = catBus.getAllMetaCategory();
 		for (MetaCategory metaCategory : listMetaCategory) {
 			metaMap.put(metaCategory.getId(), catBus.numberOfCategoriesInMeta(metaCategory.getId()));
@@ -237,6 +243,30 @@ public class AdminCatController {
     public void setMessageAddCat(String paramMessageAddCat) {
         messageAddCat = paramMessageAddCat;
     }
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public UserBusApi getUserBus() {
+		return userBus;
+	}
+
+	public void setUserBus(UserBusApi userBus) {
+		this.userBus = userBus;
+	}
 	
 	
 	

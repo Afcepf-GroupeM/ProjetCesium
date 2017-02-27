@@ -36,12 +36,16 @@ public class AdminUserController {
     private int pageToPrint = 0;
     private HashMap<Integer, List<User>> pagesOfSearchResults = new HashMap<>();
     private List<Integer> numberOfPagesOfResults;
+	private int idUser;
+	private User user;
     
     @Autowired
     private UserBusApi userBus;
     
     
     public void initAdminUser(ComponentSystemEvent c) {
+    	idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		user = userBus.getUserById(idUser);
         searchTypeArray = new ArrayList<>();
         searchTypeArray.add("1");
         searchTypeArray.add("2");
@@ -328,6 +332,22 @@ public class AdminUserController {
         numberOfPagesOfResults = paramNumberOfPagesOfResults;
     }
 
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
    
     
     

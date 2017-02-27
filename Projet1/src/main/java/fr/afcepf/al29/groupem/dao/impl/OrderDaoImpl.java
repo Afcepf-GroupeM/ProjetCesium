@@ -111,7 +111,7 @@ public class OrderDaoImpl implements OrderDaoApi{
 		
 		List<Double> results = entityManager.createQuery("SELECT SUM(o.amount) FROM Order o WHERE creationDate = :currentDate").setParameter("currentDate", currentDate).getResultList();
 		
-		if (!results.isEmpty()){
+		if (results.get(0) != null){
 			caToday = results.get(0);
 		}
 		
@@ -124,7 +124,7 @@ public class OrderDaoImpl implements OrderDaoApi{
 		
 		List<Double> results = entityManager.createQuery("SELECT SUM(o.amount) FROM Order o WHERE MONTH(creationDate) = MONTh(:currentDate) AND YEAR(creationDate) = YEAR(:currentDate)").setParameter("currentDate", currentDate).getResultList();
 		
-		if (!results.isEmpty()){
+		if (results.get(0) != null){
 			caMonth = results.get(0);
 		}
 		

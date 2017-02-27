@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import org.springframework.stereotype.Component;
 
 import fr.afcepf.al29.groupem.business.api.ItemBusApi;
 import fr.afcepf.al29.groupem.business.api.OrderBusApi;
+import fr.afcepf.al29.groupem.business.api.UserBusApi;
 import fr.afcepf.al29.groupem.entities.Item;
 import fr.afcepf.al29.groupem.entities.Order;
 import fr.afcepf.al29.groupem.entities.OrderState;
+import fr.afcepf.al29.groupem.entities.User;
 
 @Component
 @ManagedBean
@@ -30,6 +33,8 @@ public class AdministrationController {
 	private int ordersMonth;
 	private int ordersTotal;
 	private int nbAvertissementStock;
+	private int idUser;
+	private User user;
 	
 	private List<Order> ordersToPrepare; // First 5 found
 	private List<Item> itemsLowStock; // First 5 found
@@ -40,9 +45,12 @@ public class AdministrationController {
 	@Autowired
 	private ItemBusApi itemBus;
 	
-	
+	@Autowired
+	private UserBusApi userBus;
 	
 	public void initAdmin(ComponentSystemEvent c){
+		idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userid");
+		user = userBus.getUserById(idUser);
 		
 		// Get the first 5 items with stock below 6
 		itemsLowStock = new ArrayList<>();
@@ -212,5 +220,41 @@ public class AdministrationController {
 		this.nbAvertissementStock = nbAvertissementStock;
 	}
 
+
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+
+	public UserBusApi getUserBus() {
+		return userBus;
+	}
+
+
+
+	public void setUserBus(UserBusApi userBus) {
+		this.userBus = userBus;
+	}
+	
 	
 }
