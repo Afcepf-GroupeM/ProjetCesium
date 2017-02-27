@@ -20,7 +20,7 @@ public class RechercheArticleController {
 	private ItemBusApi itemBus;
 	
 	
-	private List<Item> listeresultat;
+	private List<String> listeresultat;
 	
 	private List<Item> items;
 	private String keyword;
@@ -37,12 +37,12 @@ public class RechercheArticleController {
 	}
 
 
-	public List<Item> complete(String keyword) {
+	public List<String> complete(String keyword) {
 		System.out.println("RechercheArticleController - complete - Entrée - keyword: "+ keyword);
 		List<Item> listetousitems = itemBus.getItemsByName(keyword);
 		listeresultat = new ArrayList<>();
         for (int i = 0; i < 10  && listetousitems.size() > i ; i++) {  
-            listeresultat.add(listetousitems.get(i));
+            listeresultat.add(listetousitems.get(i).getName());
         }  
         
         System.out.println("RechercheArticleController - sortie - liste résultat : " + listeresultat.size());
@@ -101,12 +101,12 @@ public class RechercheArticleController {
 	}
 
 
-	public List<Item> getListeresultat() {
+	public List<String> getListeresultat() {
 		return listeresultat;
 	}
 
 
-	public void setListeresultat(List<Item> listeresultat) {
+	public void setListeresultat(List<String> listeresultat) {
 		this.listeresultat = listeresultat;
 	}
 	

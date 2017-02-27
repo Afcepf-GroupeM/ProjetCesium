@@ -1,17 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<h:outputScript library="primefaces" name="jquery/jquery.js" />
+<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
 <title>.: GroupeM EC - Session expirée :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -50,6 +53,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var openModal = true;
+	
+	$('.loginmodal-submit').click(function(){
+		$('#login-modal').modal('hide');
+		openModal  = true;
+		}
+	);
+
+	
+	$('#login-modal').on('hidden.bs.modal', function () {
+		if(!$('.loginerrormessage').is(':empty') &amp;&amp; openModal)
+			{ 
+				$('#login-modal').modal('show');
+				openModal  = false;
+			};
+	});
+		
+});
+</script>
 </h:head>
 <h:body>
   <!--header-->
@@ -71,9 +96,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h:link>
 						</li>
 						<li>
-							<span id="accountCartMenu">
-								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+							<h:panelGroup rendered="#{not loginController.islogged}">
+							<span id="accountCartMenu">								
+								<a href="#" data-toggle="modal" data-target="#login-modal">SE CONNECTER</a>
 							</span>
+							</h:panelGroup>
 							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
 							<span id="accountCartMenu">
 								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
@@ -153,8 +180,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 -->
 					<div>
 						<h:form>
-							<h:inputText value="#{rechercheArticleController.keyword}"/>
-							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" class="commandLink searchLink" />
+							 <p:autoComplete completeMethod="#{rechercheArticleController.complete}"
+							 id="itemName"
+                        	value="#{rechercheArticleController.keyword}"   
+                        	var="item"
+                        	itemLabel="#{item}"
+                        	itemValue="#{item}"/>
+							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" styleClass="commandLink searchLink"/>
 						</h:form>
 					</div>
 					<div class="clearfix"> </div>

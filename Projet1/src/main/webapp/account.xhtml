@@ -3,12 +3,16 @@
 <html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
+<h:outputScript library="primefaces" name="jquery/jquery.js" />
+<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
 <title>.: GroupeM EC - Creer un compte :.</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -49,16 +53,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>				
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var openModal = true;
+	
+	$('.loginmodal-submit').click(function(){
+		$('#login-modal').modal('hide');
+		openModal  = true;
+		}
+	);
+
+	
+	$('#login-modal').on('hidden.bs.modal', function () {
+		if(!$('.loginerrormessage').is(':empty') &amp;&amp; openModal)
+			{ 
+				$('#login-modal').modal('show');
+				openModal  = false;
+			};
+	});
+		
+});
+</script>
 </h:head>
 <h:body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
   <!--header-->
+  <h:panelGroup id="header">
 	<div class="header">
 		<div class="header-top">
-			<div class="container">
+			<div class="container">	
 			<div class="header-top-in">			
 				<div class="logo">
-					<a href="index.xhtml"><img src="images/logowhite.png" alt=" "/></a>
+					<a href="index.xhtml"><img src="images/logowhite.png" alt=" " /></a>
 				</div>
 				<div class="header-in">
 					<ul class="icon1 sub-icon1">
@@ -71,9 +98,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h:link>
 						</li>
 						<li>
-							<span id="accountCartMenu">
-								<h:link value="SE CONNECTER" outcome="login" rendered="#{not loginController.islogged}" />
+						<h:panelGroup rendered="#{not loginController.islogged}">
+							<span id="accountCartMenu">								
+								<a href="#" data-toggle="modal" data-target="#login-modal">SE CONNECTER</a>
 							</span>
+							</h:panelGroup>
+							
+								  
+								  
 							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
 							<span id="accountCartMenu">
 								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
@@ -110,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
 				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
-					<li><a href="#" >#{metaCat.name}</a>
+					<li ><a href="#" >#{metaCat.name}</a>
 						<ul class="drop">
 							<ui:repeat var="cat" value="#{metaCat.categories}">
 							<li>
@@ -132,8 +164,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 		<div class="header-bottom-in">
-		<div class="container">
-		<div class="header-bottom-on">
+			<div class="container">
+			<div class="header-bottom-on">
 			
 			<div class="header-can">
 				<ul class="social-in">
@@ -142,21 +174,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
 						<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
 					</ul>	
-					<!-- 
+					<!--
 					<div class="down-top">		
-						  <select class="in-drop">
+							<select class="in-drop">
 							  <option value="Dollars" class="in-of">Dollars</option>
 							  <option value="Euro" class="in-of">Euro</option>
 							  <option value="Yen" class="in-of">Yen</option>
 							</select>
 					 </div>
-					 -->
+					   -->
 					<div>
 						<h:form>
-							<h:inputText value="#{rechercheArticleController.keyword}"/>
-							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" class="commandLink searchLink" />
+							 <p:autoComplete completeMethod="#{rechercheArticleController.complete}"
+							 id="itemName"
+                        	value="#{rechercheArticleController.keyword}"   
+                        	var="item"
+                        	itemLabel="#{item}"
+                        	itemValue="#{item}"/>
+							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" styleClass="commandLink searchLink"/>
 						</h:form>
 					</div>
+
 					<div class="clearfix"> </div>
 			</div>
 			<div class="clearfix"></div>
@@ -164,6 +202,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</div>
 	</div>
+	</h:panelGroup>
+	
+	
+	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalTop" aria-hidden="true" style="display: none;">
+						    	  <div class="modal-dialog">
+										<div class="loginmodal-container">
+											<h1>Connexion à votre compte</h1><br/>
+										  <h:form id="loginForm">
+										  <h:inputText label="name" value="#{loginController.login}" a:placeholder="E-mail" ></h:inputText>
+											<h:inputSecret label="pasword" value="#{loginController.password}" a:placeholder="Mot de passe" ></h:inputSecret>
+											<div class="login-button-div">
+												<p:commandLink value="Connexion" id="login"
+																 update="loginErrorMessage header" 
+																 actionListener="#{loginController.loginActionAjax}" 
+																 styleClass="loginmodal-submit commandLink"/>
+											</div>
+											<br />
+											<div class="loginerrormessage">							
+												<h:outputText id="loginErrorMessage" value="#{loginController.errorMessage}" styleClass="loginerrormessage"/>
+										 	</div>	
+										  </h:form>
+										</div>
+									</div>
+								  </div>
+
 	
 	<div class="container">
 		<div class="account">

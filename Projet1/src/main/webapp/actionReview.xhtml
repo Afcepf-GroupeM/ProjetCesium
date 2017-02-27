@@ -6,15 +6,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE    html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
+<h:outputScript library="primefaces" name="jquery/jquery.js" />
+<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
 <title><h:outputText value=".: GroupeM EC - #{reviewController.stringActionReview} d'un commentaire :." /></title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -69,6 +73,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  		$('.message1').remove();
 		});
 	});	  
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var openModal = true;
+	
+	$('.loginmodal-submit').click(function(){
+		$('#login-modal').modal('hide');
+		openModal  = true;
+		}
+	);
+
+	
+	$('#login-modal').on('hidden.bs.modal', function () {
+		if(!$('.loginerrormessage').is(':empty') &amp;&amp; openModal)
+			{ 
+				$('#login-modal').modal('show');
+				openModal  = false;
+			};
+	});
+		
 });
 </script>
 </h:head>

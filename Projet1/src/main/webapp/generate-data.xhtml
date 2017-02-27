@@ -5,14 +5,38 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <h:head>
+<h:outputScript library="primefaces" name="jquery/jquery.js" />
+<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/dynamic.css" rel="stylesheet" type="text/css" media="all" />
-<script src="js/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
 <script src="js/bootstrap.min.js"></script>
 
 
 
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var openModal = true;
+	
+	$('.loginmodal-submit').click(function(){
+		$('#login-modal').modal('hide');
+		openModal  = true;
+		}
+	);
+
+	
+	$('#login-modal').on('hidden.bs.modal', function () {
+		if(!$('.loginerrormessage').is(':empty') &amp;&amp; openModal)
+			{ 
+				$('#login-modal').modal('show');
+				openModal  = false;
+			};
+	});
+		
+});
+</script>
 </h:head> 
 <body> 
 
