@@ -6,36 +6,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE   html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html  xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<h:outputScript library="primefaces" name="jquery/jquery.js" />
-<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
 
-<meta http-equiv="refresh" content="5;url=login.xhtml" />
-<title>.: GroupeM EC - DEmande de connexion :.</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!-- <script src="js/jquery.min.js"></script> -->
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+
+	<title>.: GroupeM EC - Veuillez vous connecter :.</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+		media="all" />
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+
+	<script src="js/bootstrap.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/dynamic.css" rel="stylesheet" type="text/css"
+		media="all" />
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords"
+		content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--fonts-->
-<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'/>
-<!--//fonts-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
-				<script type="text/javascript">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!--fonts-->
+	<link
+		href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900'
+		rel='stylesheet' type='text/css' />
+	<!--//fonts-->
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript">
 					jQuery(document).ready(function($) {
 						$(".scroll").click(function(event){		
 							event.preventDefault();
@@ -43,9 +52,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					});
 				</script>
-<!--slider-script-->
-		<script src="js/responsiveslides.min.js"></script>
-			<script>
+	<!--slider-script-->
+	<script src="js/responsiveslides.min.js"></script>
+	<script>
 				$(function () {
 				  $("#slider1").responsiveSlides({
 					auto: true,
@@ -55,8 +64,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  });
 				});
 			</script>
-<!--//slider-script-->
-<script>$(document).ready(function(c) {
+	<!--//slider-script-->
+	<script>$(document).ready(function(c) {
 	$('.alert-close').on('click', function(c){
 		$('.message').fadeOut('slow', function(c){
 	  		$('.message').remove();
@@ -64,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});	  
 });
 </script>
-<script>$(document).ready(function(c) {
+	<script>$(document).ready(function(c) {
 	$('.alert-close1').on('click', function(c){
 		$('.message1').fadeOut('slow', function(c){
 	  		$('.message1').remove();
@@ -73,12 +82,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 });
 </script>
 
-<style>
-.cadre-logout{margin: 70px auto; width: 40%;}
 
-
-</style>
-<script type="text/javascript">
+	<script type="text/javascript">
 $(document).ready(function() {
 
 	var openModal = true;
@@ -100,131 +105,146 @@ $(document).ready(function() {
 		
 });
 </script>
+
 </h:head>
 <body>
 <f:event listener="#{itemListController.init}" type="preRenderView" />
   <!--header-->
-	<div class="header">
-		<div class="header-top">
-			<div class="container">	
-			<div class="header-top-in">			
-				<div class="logo">
-					<a href="index.xhtml"><img src="images/logowhite.png" alt=" " /></a>
-				</div>
-				<div class="header-in">
-					<ul class="icon1 sub-icon1">
-						<li >
-							<h:link outcome="login" rendered="#{not loginController.islogged}">
-								<img src="images/account.png" class="img-responsive" alt=""/>
-							</h:link>
-							<h:link outcome="myaccount" rendered="#{loginController.islogged}">
-								<img src="images/account.png" class="img-responsive" alt=""/>
-							</h:link>
-						</li>
-						<li>
-							<h:panelGroup rendered="#{not loginController.islogged}">
-							<span id="accountCartMenu">								
-								<a href="#" data-toggle="modal" data-target="#login-modal">SE CONNECTER</a>
-							</span>
-							</h:panelGroup>
-							<h:link value="CREER UN COMPTE" outcome="account" rendered="#{not loginController.islogged}" />
-							<span id="accountCartMenu">
-								<h:link value="MON COMPTE" outcome="myaccount" rendered="#{loginController.islogged}" />
-							</span>
-							<h:form>
-								<h:commandLink action="#{loginController.logout}" value="SE DECONNECTER" rendered="#{loginController.islogged}" />
-							</h:form>
-							<span id="userLoggedMenu">
-								<h:outputText value="Bienvenue #{loginController.userLogged.civilite}. " rendered="#{loginController.islogged}"/>
-								<h:outputText value="#{loginController.userLogged.lastName}" rendered="#{loginController.islogged}"/>
-							</span>
-						</li>
-						<li>
-							<h:link outcome="panier">
-								<img src="images/cart_white.png" class="img-responsive" alt=""/>
-							</h:link>
-						</li>							
-						<li>
-							<span id="accountCartMenu">
-								<h:link value="MON PANIER" outcome="panier" />
-							</span>
-							<h:link value="VOIR DETAIL" outcome="panier" />
-						</li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			</div>
-		</div>
-		<div class="header-bottom">
-		<div class="container">
-			<div class="h_menu4">
-			
-			<h:form>
-				<a class="toggleMenu" href="#">Menu</a>
-				<ul class="nav">
-				<ui:repeat var="metaCat" value="#{itemListController.listMetaCategory}">
-					<li><a href="#" >#{metaCat.name}</a>
-						<ul class="drop">
-							<ui:repeat var="cat" value="#{metaCat.categories}">
-							<li>
+<h:panelGroup id="header">
+<div class="header">
+<div class="header-top">
+<div class="container">
+<div class="header-top-in">
+<div class="logo">
+<a href="index.xhtml"><img src="images/logowhite.png" alt=" " /></a>
+</div>
+<div class="header-in">
+<ul class="icon1 sub-icon1">
+<li><h:link outcome="login"
+rendered="#{not loginController.islogged}">
+<img src="images/account.png" class="img-responsive" alt="" />
+</h:link> <h:link outcome="myaccount"
+rendered="#{loginController.islogged}">
+<img src="images/account.png" class="img-responsive" alt="" />
+</h:link></li>
+<li><h:panelGroup
+rendered="#{not loginController.islogged}">
+<span id="accountCartMenu"> <a href="#"
+data-toggle="modal" data-target="#login-modal">SE
+CONNECTER</a>
+</span>
+</h:panelGroup> <h:link value="CREER UN COMPTE" outcome="account"
+rendered="#{not loginController.islogged}" /> <span
+id="accountCartMenu"> <h:link value="MON COMPTE"
+outcome="myaccount" rendered="#{loginController.islogged}" />
+</span> <h:form>
+<h:commandLink action="#{loginController.logout}"
+value="SE DECONNECTER" rendered="#{loginController.islogged}" />
+</h:form> <span id="userLoggedMenu"> <h:outputText
+value="Bienvenue #{loginController.userLogged.civilite}. "
+rendered="#{loginController.islogged}" /> <h:outputText
+value="#{loginController.userLogged.lastName}"
+rendered="#{loginController.islogged}" />
+</span></li>
+<li><h:link outcome="panier">
+<img src="images/cart_white.png" class="img-responsive" alt="" />
+</h:link></li>
+<li><span id="accountCartMenu"> <h:link
+value="MON PANIER" outcome="panier" />
+</span> <h:link value="VOIR DETAIL" outcome="panier" /></li>
+</ul>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div class="header-bottom">
+<div class="container">
+<div class="h_menu4">
+<h:form>
+<a class="toggleMenu" href="#">Menu</a>
+<ul class="nav">
+<ui:repeat var="metaCat"
+value="#{itemListController.listMetaCategory}">
+<li><a href="#">#{metaCat.name}</a>
+<ul class="drop">
+<ui:repeat var="cat" value="#{metaCat.categories}">
+<li><h:link value="#{cat.name}" outcome="categorie">
+<f:param name="catId" value="#{cat.id}" />
+</h:link></li>
+</ui:repeat>
+</ul></li>
+</ui:repeat>
+</ul>
+<script type="text/javascript" src="js/nav.js"></script>
+</h:form>
+</div>
+</div>
+</div>
+<div class="header-bottom-in">
+<div class="container">
+<div class="header-bottom-on">
 
-							<h:link value="#{cat.name}" outcome="categorie" >
-								<f:param name="catId"  value="#{cat.id}" />
-							</h:link>
-							
-							
-							</li>
-							</ui:repeat>
-						</ul>
-						</li> 			
-				</ui:repeat>	
-				</ul>
-				<script type="text/javascript" src="js/nav.js"></script>
-				</h:form>
-				
-			</div>
-		</div>
-		</div>
-		<div class="header-bottom-in">
-			<div class="container">
-			<div class="header-bottom-on">
-			
-			<div class="header-can">
-				<ul class="social-in">
-						<li><a href="index.jsf"><i> </i></a></li>
-						<li><a href="https://fr-fr.facebook.com/"><i class="facebook"> </i></a></li>
-						<li><a href="https://twitter.com/"><i class="twitter"> </i></a></li>					
-						<li><a href="https://www.skype.com/"><i class="skype"> </i></a></li>
-					</ul>	
-					<!--
-					<div class="down-top">		
-							<select class="in-drop">
-							  <option value="Dollars" class="in-of">Dollars</option>
-							  <option value="Euro" class="in-of">Euro</option>
-							  <option value="Yen" class="in-of">Yen</option>
-							</select>
-					 </div>
-					   -->
-					<div>
-						<h:form>
-							 <p:autoComplete completeMethod="#{rechercheArticleController.complete}"
-							 id="itemName"
-                        	value="#{rechercheArticleController.keyword}"   
-                        	var="item"
-                        	itemLabel="#{item}"
-                        	itemValue="#{item}"/>
-							<h:commandLink value="Rechercher" action="#{rechercheArticleController.doSearch}" styleClass="commandLink searchLink"/>
-						</h:form>
-					</div>
+<div class="header-can">
+<ul class="social-in">
+<li><a href="index.jsf"><i> </i></a></li>
+<li><a href="https://fr-fr.facebook.com/"><i
+class="facebook"> </i></a></li>
+<li><a href="https://twitter.com/"><i class="twitter">
+</i></a></li>
+<li><a href="https://www.skype.com/"><i class="skype">
+</i></a></li>
+</ul>
+<div>
+<h:form>
+<p:autoComplete
+completeMethod="#{rechercheArticleController.complete}"
+id="itemName" value="#{rechercheArticleController.keyword}"
+var="item" itemLabel="#{item}" itemValue="#{item}" />
+<h:commandLink value="Rechercher"
+action="#{rechercheArticleController.doSearch}"
+styleClass="commandLink searchLink" />
+</h:form>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</h:panelGroup>
 
-					<div class="clearfix"> </div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		</div>
-		</div>
-	</div>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+aria-labelledby="loginModalTop" aria-hidden="true"
+style="display: none;">
+<div class="modal-dialog">
+<div class="loginmodal-container">
+<h1>Connexion à votre compte</h1>
+<br />
+<h:form id="loginForm">
+<h:inputText label="name" value="#{loginController.login}"
+a:placeholder="E-mail"></h:inputText>
+<h:inputSecret label="pasword" value="#{loginController.password}"
+a:placeholder="Mot de passe"></h:inputSecret>
+<div class="login-button-div">
+<p:commandLink value="Connexion" id="login"
+update="loginErrorMessage header"
+actionListener="#{loginController.loginActionAjax}"
+styleClass="loginmodal-submit commandLink" />
+</div>
+<br />
+<div class="loginerrormessage">
+<h:outputText id="loginErrorMessage"
+value="#{loginController.errorMessage}"
+styleClass="loginerrormessage" />
+</div>
+</h:form>
+</div>
+</div>
+</div>
+<!-- Fin Header -->
 	<div class="banner-mat">
 				<div class="cadre-logout">
 			<h3>Vous devez etre connecté pour acceder à cette page.</h3>

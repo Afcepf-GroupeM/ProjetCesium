@@ -38,14 +38,13 @@ public class RechercheArticleController {
 
 
 	public List<String> complete(String keyword) {
-		System.out.println("RechercheArticleController - complete - Entrée - keyword: "+ keyword);
+		
 		List<Item> listetousitems = itemBus.getItemsByName(keyword);
 		listeresultat = new ArrayList<>();
         for (int i = 0; i < 10  && listetousitems.size() > i ; i++) {  
             listeresultat.add(listetousitems.get(i).getName());
         }  
         
-        System.out.println("RechercheArticleController - sortie - liste résultat : " + listeresultat.size());
         return listeresultat;  
     } 
 	
