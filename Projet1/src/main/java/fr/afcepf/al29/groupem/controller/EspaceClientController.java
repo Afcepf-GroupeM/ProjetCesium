@@ -173,12 +173,9 @@ public class EspaceClientController {
 					address.setComplement(null);
 				}
 				else{
-					address.setComplement(ComplementAddress.valueOf(returnWSLogiJson.getString(complement)));
+					address.setComplement(ComplementAddress.valueOf(returnWSLogiJson.getString("complement")));
 				}
 				
-				/*<h:outputText value="Complement: #{espaceClientController.complement}"/>
-						<br/>
-				*/
 				address.setRoadType(RoadType.valueOf(returnWSLogiJson.getString("typeVoie")));
 				address.setRoadName(returnWSLogiJson.getString("nomVoie"));
 				address.setCity(returnWSLogiJson.getString("city"));
@@ -214,12 +211,12 @@ public class EspaceClientController {
 		}
 	}
 	
-	/*public String goToStatutViewer(){
+	public String goToStatutViewer(){
 		int orderId = Integer.parseInt(getParam("orderId"));
 		String trackingCode = getParam("trackingCode");
 		
 		return "statutViewer?faces-redirect=true&orderId=" + orderId + "&trackingCode=" + trackingCode;
-	}*/
+	}
 	
 	public String getParam(String param){
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
