@@ -217,7 +217,6 @@ styleClass="loginerrormessage" />
 </div>
 </div>
 <!-- Fin Header -->
-	
 	<div class="container">			
 		<div class="myaccount">
 			<h2 class="myaccountprofile">
@@ -231,7 +230,7 @@ styleClass="loginerrormessage" />
 		</div>
 		
 		<h2 class=" myaccount">Suivi de votre commande en cours:</h2>				
-		<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOrdering}"/>
+		<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOrdering}" rendered="#{empty espaceClientController.listOrdering}"/>
 		<br/>				
 			<h:dataTable class="table-account1" var="order" value="#{espaceClientController.listOrdering}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"
     			headerClass="order-table-header"
@@ -277,12 +276,9 @@ styleClass="loginerrormessage" />
 		    	<h:column>
 		    		<f:facet name="header">No. Suivi</f:facet>
 		    		<h:form>
-		    			<h:commandLink actionListener="#{espaceClientController.initStatutViewer()}" value="#{order.trackingNumber}">
+		    			<h:commandLink action="#{espaceClientController.goToStatutViewer()}" value="#{order.trackingNumber}">
 		    				<f:param name="trackingCode" value="#{order.trackingNumber}"/>
 		    				<f:param name="orderId" value="#{order.id}"/>
-		    				<f:passThroughAttribute name="data-toggle" value="modal" />
-		    				<f:passThroughAttribute name="data-target" value="#tracking-modal" />
-		    				<f:ajax render="@none" />
 		    			</h:commandLink>
 		    		</h:form>
 		    	</h:column>    	
@@ -307,8 +303,8 @@ styleClass="loginerrormessage" />
 									<h:outputText class="espacementRight" value="#{espaceClientController.firstName}"/>
 									<h:outputText class="espacementLeft" value="#{espaceClientController.lastName}"/>
 									<br />
-									<h:outputText class="espacementRight" value="#{espaceClientController.address.complement}"/>
-									<h:outputText class="espacementRight espacementLeft" value="#{espaceClientController.address.number}"/>
+									<h:outputText class="espacementRight" value="#{espaceClientController.address.number}"/>
+									<h:outputText class="espacementRight espacementLeft" value="#{espaceClientController.address.complement}"/>
 									<h:outputText class="espacementRight espacementLeft" value="#{espaceClientController.address.roadType}"/>
 									<h:outputText class="espacementLeft" value="#{espaceClientController.address.roadName}"/>
 									<br />
@@ -369,9 +365,9 @@ styleClass="loginerrormessage" />
 		</div>
 	
 		<h2 class="myaccount">Suivi de votre commande historique:</h2>		
-		<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOldOrder}"/>
-		<br/>						
-		<h:dataTable class="table-account1"  var="orderold" value="#{espaceClientController.listOldOrder}" rendered="#{not empty espaceClientController.listOrdering}" styleClass="order-table"
+		<h:outputLabel class="messagemyaccount" value="#{espaceClientController.messageOldOrder}" rendered="#{empty espaceClientController.listOldOrder}"/>
+		<br/>
+		<h:dataTable class="table-account1"  var="orderold" value="#{espaceClientController.listOldOrder}" rendered="#{not empty espaceClientController.listOldOrder}" styleClass="order-table"
 			headerClass="order-table-header"
 			rowClasses="order-table-odd-row,order-table-even-row">		
 	    	<h:column>
